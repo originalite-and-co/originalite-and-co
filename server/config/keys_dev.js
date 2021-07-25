@@ -1,5 +1,8 @@
+require("dotenv").config();
+const {MONGO_URI} = process.env
+
 module.exports = {
   mongoURI:
-    'Сюда копируем URI для доступа в БД, например: mongodb+srv://username:password@..........................',
+    MONGO_URI,
   secretOrKey: 'random very very secret string',
 };
