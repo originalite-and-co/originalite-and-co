@@ -1,16 +1,21 @@
 language: node_js
 node_js:
-  - 14
+- 14
 cache:
   directories:
-    - ./client/node_modules
-
+  - "./client/node_modules"
+  - "./server/node_modules"
+deploy:
+  provider: heroku
+  api_key:
+    secure: X5/mhS7WDA/fVJQom1j8zkBPk/HCHuK4UETU12AnPTahGODUBEzS+W4E0RZv9I5uRZmeF3SlO1OruVNfYJAIFn6M22KxN+UhPNL5KfHtx+wy+AZCGAwwALssqS9pNZXrzobsRtdsfSGWX8gXzW3zzZgLF3C3HRzJTNQTTrX4giSgZRcNCUo9FOcBwmHyo69Dvt2mi+SE8oJyRW7g3NM3YODhTzaceWcOBF0WL+GDta4DKEBTFIwhxdbIJNvP33LUQ7quRj5aHDJu38lP4hE2uuVKkLIy+rGqA6KMpyBFJoxdGKyYjKWELLemy6xrmBb3AxuWdWsviDYvgBHL73qPz7biSHHemkwVuMjdybde9MkjJ/lRY0XLbDACuN23dOWwhNVjC9glQrQUj8lBkVn23dRpFqqnDOkgGCGDUJRDTKQm/aMyx351/Erg2diOf+zayZuQ92hVAPR2EE7zdDNOkurivbefthfwg7rATNKq48xqsoo1D8M8QQCyuCJFh+50W3rAXGgyNbUvHz8w6bPoKM8tJaFBcICGGjk9ZVMWnJKA/qGWLhyu8PrLBlGz2mHfvwzZJSSbvkB8Ae/Npqtm4nuZaae/gAjrAOQQyBfSKP0ifBsUoMIlqy91jgrfZHZfOiKwXx1On86Q8Gawsz4iLhFBBR8nyfFvsm9eZ+xIKCs=
+  app: originalite-and-co
+  on: develop
 before_script:
-  - npm install --prefix ./client
-
+- npm install --prefix client
+- npm install --prefix server
 script:
-  - npm run test --prefix ./client
-
-
+- npm run test
+- npm run build
 install:
-  - npm ci
+- npm ci
