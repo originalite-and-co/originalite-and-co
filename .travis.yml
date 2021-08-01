@@ -4,13 +4,30 @@ node_js:
 cache:
   directories:
     - ./client/node_modules
+    - ./server/node_modules
+
+deploy:
+  provider: heroku
+  api_key:
+
 
 before_script:
-  - npm install --prefix ./client
+  - npm install --prefix client
+  - npm install --prefix server
 
 script:
-  - npm run test --prefix ./client
+  - npm run test
+  - npm run build
+#  - npm run start
 
+#before_install:
+#  - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+#  - git lfs pull
+
+#branches:
+#  only:
+#    - master
+#    - development
 
 install:
   - npm ci

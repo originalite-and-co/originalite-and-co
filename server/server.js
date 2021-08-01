@@ -28,19 +28,24 @@ const mainRoute = require('./routes/index');
 
 const app = express();
 
+const port = process.env.PORT || 8000;
+
 app.use(cors())
 
 // Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 // DB Config
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true, useFindAndModify: false })
-  .then(() => console.log('MongoDB Connected'))
+  .connect(db, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})
+  .then(() => {
+    console.log('MongoDB Connected');
+    app.listen(port, () => console.log(`Server running on port ${port}`));
+  })
   .catch((err) => console.log(err));
 
 // Passport middleware
@@ -48,6 +53,8 @@ app.use(passport.initialize());
 
 // Passport Config
 require('./config/passport')(passport);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Use Routes
 app.use('/api/configs', globalConfigs);
@@ -70,16 +77,17 @@ app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
 app.use('/', mainRoute);
 
-// Server static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
+// // Server static assets if in production
+// if (process.env.NODE_ENV === 'production') {
+//   // Set static folder
+//   app.use(express.static('client/build'));
+//
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// }
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.get('/*',  (req, res) =>  {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});

@@ -1,0 +1,24 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test --prefix client",
+    "build": "npm run build --prefix client && rm -rf server/public/* && cp -a client/build/. server/public",
+    "start": "npm run start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/originalite-and-co/originalite-and-co.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/originalite-and-co/originalite-and-co/issues"
+  },
+  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme",
+  "engines": {
+    "node": "14.x"
+  }
+}

@@ -67,7 +67,7 @@ exports.deleteColor = (req, res, next) => {
       Color.deleteOne({ _id: req.params.id })
         .then(deletedCount =>
           res.status(200).json({
-            message: `Color witn name "${colorToDelete.name}" is successfully deletes from DB `
+            message: `Color with name "${colorToDelete.name}" is successfully deleted from DB `
           })
         )
         .catch(err =>
