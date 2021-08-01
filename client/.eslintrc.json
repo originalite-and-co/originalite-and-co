@@ -22,11 +22,7 @@
         "linebreak-style": ["error", "windows"],
         "no-undef": ["error"],
         "comma-dangle": ["error", {
-            "arrays": "never",
-            "objects": "never",
-            "imports": "never",
-            "exports": "never",
-            "functions": "never"
+            "objects": "always"
         }]
     }
 }
