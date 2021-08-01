@@ -28,7 +28,7 @@ const mainRoute = require('./routes/index');
 
 const app = express();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 app.use(cors())
 
@@ -44,7 +44,6 @@ mongoose
   .connect(db, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})
   .then(() => {
     console.log('MongoDB Connected');
-    app.listen(port, () => console.log(`Server running on port ${port}`));
   })
   .catch((err) => console.log(err));
 
@@ -91,3 +90,5 @@ app.use('/', mainRoute);
 app.get('/*',  (req, res) =>  {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
