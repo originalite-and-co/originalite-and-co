@@ -6,25 +6,25 @@ var cors = require('cors')
 const path = require('path');
 require('dotenv').config();
 
-const globalConfigs = require('./routes/globalConfigs');
-const customers = require('./routes/customers');
-const catalog = require('./routes/catalog');
-const products = require('./routes/products');
-const colors = require('./routes/colors');
-const sizes = require('./routes/sizes');
-const filters = require('./routes/filters');
-const subscribers = require('./routes/subscribers');
-const cart = require('./routes/cart');
-const orders = require('./routes/orders');
-const links = require('./routes/links');
-const pages = require('./routes/pages');
-const slides = require('./routes/slides');
-const wishlist = require('./routes/wishlist');
-const comments = require('./routes/comments');
-const shippingMethods = require('./routes/shippingMethods');
-const paymentMethods = require('./routes/paymentMethods');
-const partners = require('./routes/partners');
-const mainRoute = require('./routes/index');
+const globalConfigs = require('./app/routes/globalConfigs');
+const customers = require('./app/routes/customers');
+const catalog = require('./app/routes/catalog');
+const products = require('./app/routes/products');
+const colors = require('./app/routes/colors');
+const sizes = require('./app/routes/sizes');
+const filters = require('./app/routes/filters');
+const subscribers = require('./app/routes/subscribers');
+const cart = require('./app/routes/cart');
+const orders = require('./app/routes/orders');
+const links = require('./app/routes/links');
+const pages = require('./app/routes/pages');
+const slides = require('./app/routes/slides');
+const wishlist = require('./app/routes/wishlist');
+const comments = require('./app/routes/comments');
+const shippingMethods = require('./app/routes/shippingMethods');
+const paymentMethods = require('./app/routes/paymentMethods');
+const partners = require('./app/routes/partners');
+const mainRoute = require('./app/routes/index');
 
 const app = express();
 
@@ -37,7 +37,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const db = require('./app/config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
@@ -52,7 +52,7 @@ mongoose
 app.use(passport.initialize());
 
 // Passport Config
-require('./config/passport')(passport);
+require('./app/config/passport')(passport);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
