@@ -19,7 +19,7 @@
         "react"
     ],
     "rules": {
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": 0,
         "no-undef": ["error"],
         "comma-dangle": [
             "error", { 
