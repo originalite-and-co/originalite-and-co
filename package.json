@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test --prefix client",
-    "build": "npm run build --prefix client && rm -rf server/public/* && cp -a client/build/. server/public",
+    "build": "npm install --prefix client && npm install --prefix server & npm run build --prefix client && rm -rf server/public/* && cp -a client/build/. server/public",
     "start": "npm run start --prefix server"
   },
   "repository": {
