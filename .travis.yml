@@ -9,8 +9,8 @@ deploy:
   provider: heroku
   api_key:
     secure: ja9V5nv2mL7qkSOSRmDP4UJqZQaG7ZNHLTckd90sG+ZVkr8IglU89/EuerY6uOXm7+R3VU6p8hgrmhg7tGj/gr5SjO2tKGbE8DmS2F6egoqX615+4z6Zr8o9sGMnNxVHHyVWCfvvhqcJ6WlVpYiM+rSUca+lVhqmynuTSudaUUjN2oulZJcVOdNAyc73MsHtDHXinj70rP2lWU6dKGtTJF75AXLYqD5lhqvVflO6qqNxFxDJ/iLh9CZckVcZaSRRF9wCCsHPHkNAefMMwoCAjJXvIIuSqOWlCM1dJiys/Wn3FyVymxSrZWwlpz2PVKQr/BrS2j4mcadrmwyFqU7NG7EKNdRftXSc5u+HyE9aM9DD56r3p66BK8K9w9UeyavU2ieU5UDZVY2/CssEbcQe++oLMn7wbD5POaIEJO2Qusxgx2LrErJuR7Q8RDTgToVW86xBO7ZROgvRkQ27kA90PpGfiVA2XuQUOMX24I2gN8NMda+F14U+PJ2uKAX9eHR5eQu+rytjw4KQSveFIxcCc5vxYXJLHlcOdobJccS3kTuEu9FVTMbwhCyiHgto/uumGpgq6d1EAx7FIbGTcs6lOz+sHqCle/dw5QUA10EI55VSClj7zKMFEgGPU/B59/18NKdpXtHQdAVUUltAvEc17u5ONEreQ0q3bDUHIPKVW/8=
-  app:
-    develop: originalite-and-co
+  app: originalite-and-co
+  on: develop
 
 before_script:
 - npm install --prefix client
