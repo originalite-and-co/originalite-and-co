@@ -1,5 +1,6 @@
 import React from 'react';
 import './assets/styles/App.scss';
+import {createCatalog} from "../api/serverAPI";
 
 function App() {
   return (
@@ -7,9 +8,7 @@ function App() {
       <header className="App-header">
         <p>
           Edit
-          {' '}
           <code>src/App.js</code>
-          {' '}
           and save to reload.
         </p>
         <a
