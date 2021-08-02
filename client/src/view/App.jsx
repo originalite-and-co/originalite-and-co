@@ -1,6 +1,6 @@
 import React from 'react';
 import './assets/styles/App.scss';
-import {createCatalog} from "../api/serverAPI";
+import {createCatalog} from "../api/server";
 
 function App() {
   return (
