@@ -68,9 +68,8 @@ const getSlides = async () => {
 const deleteSlide = async (id) => {
   try {
     const response = await fetch(`${SLIDER_PATH}/${id}`, {
-      method: 'POST',
+      method: 'DELETE',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
     });
 
     if (!response.ok) {

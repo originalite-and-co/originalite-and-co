@@ -1,32 +1,27 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest": true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-//    "extends": [
-//        "plugin:react/recommended",
-//        "airbnb"
-//    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-//    "plugins": [
-//        "react"
-//    ],
-    "rules": {
-//        "linebreak-style": 0,
-//        "no-undef": ["error"],
-//        "comma-dangle": [
-//            "error", {
-//                "objects": "always"
-//                }
-//            ]
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "linebreak-style": 0,
+    "no-undef": ["error"],
+    "comma-dangle": [
+      "error",
+      {
+        "objects": "always",
+        "imports": "always"
+      }
+    ]
+  }
 }
-
-
