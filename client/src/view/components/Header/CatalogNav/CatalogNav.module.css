@@ -1,0 +1,15 @@
+.catalogNavItem{
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}

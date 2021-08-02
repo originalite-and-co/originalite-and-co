@@ -1,0 +1,17 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 12.6px;
+}
+.line{
+  width: 14px;
+  height: 1px;
+  background-color: #C4C4C4;
+}
+.middleLine{
+  width: 8px;
+  height: 1px;
+  background-color: #C4C4C4;
+}
