@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const passport = require('passport');
-var cors = require('cors')
+const cors = require('cors')
 const path = require('path');
 require('dotenv').config();
 
@@ -43,8 +42,8 @@ const db = require('./app/config/keys').mongoURI;
 mongoose
     .connect(db, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})
     .then(() => {
-        console.log('MongoDB Connected');
-        app.listen(port, () => console.log(`Server running on port ${port}`));
+        console.log('MongoDB has connected successfully');
+        app.listen(port, () => console.log(`Server is running on port ${port}`));
     })
     .catch((err) => console.log(err));
 
@@ -76,17 +75,6 @@ app.use('/api/shipping-methods', shippingMethods);
 app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
 app.use('/', mainRoute);
-
-// // Server static assets if in production
-// if (process.env.NODE_ENV === 'production') {
-//   // Set static folder
-//   app.use(express.static('client/build'));
-//
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
-
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
