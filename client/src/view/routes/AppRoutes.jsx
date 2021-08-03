@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-function AppRoutes(props) {
+function AppRoutes() {
   const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
 
   useEffect(() => {
@@ -9,7 +9,9 @@ function AppRoutes(props) {
   }, []);
 
   return (
-    <Switch />
+    <Switch>
+      <Route exact path="/" />
+    </Switch>
   );
 }
 
