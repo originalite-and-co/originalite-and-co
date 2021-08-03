@@ -1,8 +1,9 @@
-.navItem{
-  padding-right: 30px;
-}
-
 .navItemsGroup{
   display: flex;
+  justify-content: space-around;
   align-items: center;
+}
+.navItem{
+  padding-right: 30px;
+  position: relative;
 }

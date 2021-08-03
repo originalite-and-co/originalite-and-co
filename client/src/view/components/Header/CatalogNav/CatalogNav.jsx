@@ -2,7 +2,6 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 import CatalogNavStyles from './CatalogNav.module.css';
 
 const StyledLink = styled(Link)`
@@ -11,24 +10,22 @@ const StyledLink = styled(Link)`
 
 function CatalogNav() {
   return (
-    <Box>
-      <Grid container>
-        <Grid item xs={4}>
-          <StyledLink to="/">
-            <h3 className={CatalogNavStyles.catalogNavItem}>women</h3>
-          </StyledLink>
-        </Grid>
-        <Grid item xs={4}>
-          <StyledLink to="/">
-            <h3 className={CatalogNavStyles.catalogNavItem}>men</h3>
-          </StyledLink>
-        </Grid>
-        <Grid item xs={4}>
-          <StyledLink to="/">
-            <h3 className={CatalogNavStyles.catalogNavItem}>accessory</h3>
-          </StyledLink>
-        </Grid>
-      </Grid>
+    <Box className={CatalogNavStyles.catalogNavWrapper}>
+      <Box>
+        <StyledLink to="/">
+          <h3 className={CatalogNavStyles.catalogNavItem}>women</h3>
+        </StyledLink>
+      </Box>
+      <Box>
+        <StyledLink to="/">
+          <h3 className={CatalogNavStyles.catalogNavItem}>men</h3>
+        </StyledLink>
+      </Box>
+      <Box>
+        <StyledLink to="/">
+          <h3 className={CatalogNavStyles.catalogNavItem}>accessory</h3>
+        </StyledLink>
+      </Box>
     </Box>
   );
 }

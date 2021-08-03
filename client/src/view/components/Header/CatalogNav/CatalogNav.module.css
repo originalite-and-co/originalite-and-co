@@ -8,8 +8,9 @@
     color: #FFFFFF;
 }
 
-ul{
-    list-style: none;
+.catalogNavWrapper{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-top: 22px;
+    padding-bottom: 21px;
 }

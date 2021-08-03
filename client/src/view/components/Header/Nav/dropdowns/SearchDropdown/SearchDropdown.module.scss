@@ -1,0 +1,39 @@
+.active{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  right: 0;
+  background-color: #FFFFFF;
+  top: 67px;
+  transition: all 0.5s ease-out;
+  opacity: 2;
+}
+.closed{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  right: 0;
+  background-color: #FFFFFF;
+  top: 700px;
+  transition: all 0.5s ease-out;
+  opacity: 0;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textfieldWrapper{
+  width: 90%;
+  margin-top: 76px;
+  margin-bottom: 131px;
+  position: relative;
+}
+.closeIcon{
+  position: absolute;
+  top: 24px;
+  right: 0px;
+}

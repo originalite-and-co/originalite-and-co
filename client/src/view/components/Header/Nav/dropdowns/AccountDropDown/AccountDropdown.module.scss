@@ -1,0 +1,83 @@
+.active{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  right: 0;
+  background-color: #000000;
+  top: 67px;
+  transition: all 0.5s ease-out;
+  opacity: 2;
+}
+.closed{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  right: 0;
+  background-color: #000000;
+  top: 700px;
+  transition: all 0.5s ease-out;
+  opacity: 0;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textfieldWrapper{
+  width: 90%;
+  margin-top: 76px;
+  margin-bottom: 131px;
+  position: relative;
+}
+.closeIcon{
+  position: absolute;
+  top: 24px;
+  right: 0px;
+}
+
+.accountBtns{
+  margin-top: 47px;
+  margin-bottom: 79px;
+  display: flex;
+  justify-content: space-around;
+}
+.logInSignUp{
+  font-family: Josefin Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  color: #E5E5E5;
+  width: 109px;
+  background: none;
+  padding-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid #E5E5E5;
+  cursor: pointer;
+}
+
+.text{
+  font-family: Josefin Sans, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+
+.textField{
+  color: #FFFFFF !important;
+}
+.textFieldsGroup{
+  width: 90%;
+  margin: 47px auto 0px;
+}
+.test{
+  border-color: #FFFFFF !important;
+}
+.loginBtn{
+  margin-top: 135px;
+}
