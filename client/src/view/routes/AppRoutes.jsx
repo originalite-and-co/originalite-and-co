@@ -8,6 +8,7 @@ import Member from "../pages/Member";
 import Checkout from "../pages/Checkout";
 import Catalog from "../pages/Catalog";
 import Cart from "../pages/Cart";
+import Product from "../pages/Product";
 
 function AppRoutes() {
     // eslint-disable-next-line no-unused-vars
@@ -19,6 +20,7 @@ function AppRoutes() {
 
     return (
         <Switch>
+            <Route path="/catalog/:productId" component={Product}/>
             <Route path="/catalog" component={Catalog}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>
