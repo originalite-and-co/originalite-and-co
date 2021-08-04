@@ -25,7 +25,8 @@
             "error", { 
                 "objects": "always" 
                 }
-            ]
+            ],
+        "react/jsx-props-no-spreading": "off"
     }
 }
 
