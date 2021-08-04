@@ -30,6 +30,7 @@ function AppRoutes() {
             <Route path="*" component={Page404}/>
         </Switch>
     );
+
 }
 
 export default AppRoutes;
