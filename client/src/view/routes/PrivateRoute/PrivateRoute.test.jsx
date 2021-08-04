@@ -33,11 +33,13 @@ describe('Private route', () => {
     const { getByTestId, getByText, queryByText, } = render(
       <BrowserRouter>
         <Link data-testid="link" to="/test">Link</Link>
+        <Link data-testid="home-link" to="/" />
         <Route path="/login" render={() => <LoginComponent />} />
         <PrivateRoute isAuthenticated={false} component={TestComponent} path="/test" />
       </BrowserRouter>
     );
 
+    userEvent.click(getByTestId('home-link'));
     expect(queryByText(/test/i)).toBeNull();
     expect(queryByText(/login/i)).toBeNull();
     userEvent.click(getByTestId('link'));
