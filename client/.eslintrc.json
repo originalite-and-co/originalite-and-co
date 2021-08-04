@@ -5,8 +5,8 @@
         "jest": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+//        "plugin:react/recommended",
+//        "airbnb"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -16,17 +16,17 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+//        "react"
     ],
     "rules": {
-        "linebreak-style": 0,
-        "no-undef": ["error"],
-        "comma-dangle": [
-            "error", { 
-                "objects": "always" 
-                }
-            ],
-        "react/jsx-props-no-spreading": "off"
+//        "linebreak-style": 0,
+//        "no-undef": ["error"],
+//        "comma-dangle": [
+//            "error", {
+//                "objects": "always"
+//                }
+//            ],
+//        "react/jsx-props-no-spreading": "off"
     }
 }
 

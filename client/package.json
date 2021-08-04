@@ -11,7 +11,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "formik": "^2.2.9",
-    "history": "^5.0.0",
+    "history": "^4.10.1",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
     "ra-data-json-server": "^3.17.1",
