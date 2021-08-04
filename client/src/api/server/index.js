@@ -1,12 +1,11 @@
-
 /**
  * This function returns request headers
  *
  * @returns {{Authorization: (string|null), "Content-Type": string}}
  */
 export const generateHeaders = () => ({
-    "Content-Type": "application/json",
-    "Authorization": sessionStorage.getItem("token")
+  'Content-Type': 'application/json',
+  Authorization: sessionStorage.getItem('token'),
 });
 
 /**
@@ -26,9 +25,7 @@ export const generateHeaders = () => ({
  * }
  *
  * */
-export const generateResponseException = (action, response) => {
-    return new Error(`Failed to ${action}, response: ${response.status} ${response.statusText}`);
-}
+export const generateResponseException = (action, response) => new Error(`Failed to ${action}, response: ${response.status} ${response.statusText}`);
 
 /**
  * This function generates custom exception
@@ -45,10 +42,15 @@ export const generateResponseException = (action, response) => {
  *     }
  * }
  *
- * @param {String} action - verb(Continuous form) and noun that describe what action is supposed to have an error
+ * @param {String} action - verb(Continuous form) and noun
+ * that describe what action is supposed to have an error
  * @param {Error} error - Error object
  * @returns {Error}
  */
-export const generateFetchException = (action, error) => {
-    return new Error(`An error has occurred while ${action}. Error: ${error.message}`)
-}
+export const generateFetchException = (action, error) => new Error(`An error has occurred while ${action}. Error: ${error.message}`);
+
+export { default as cartRequests } from './cart';
+export { default as catalogRequests } from './catalog';
+export { default as customerRequests } from './customers';
+export { default as productRequests } from './products';
+export { default as sliderRequests } from './slider';
