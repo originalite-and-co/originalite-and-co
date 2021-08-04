@@ -1,31 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import CatalogNavStyles from './CatalogNav.module.css';
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-`;
+import WomenDropdown from './Dropdowns/WomenDropdown';
 
 function CatalogNav() {
+  const [womenToggle, setWomenToggle] = useState(false);
+
+  const handleWomenBtnClick = () => {
+    setWomenToggle(!womenToggle);
+  };
+
   return (
     <Box className={CatalogNavStyles.catalogNavWrapper}>
       <Box>
-        <StyledLink to="/">
-          <h3 className={CatalogNavStyles.catalogNavItem}>women</h3>
-        </StyledLink>
+        <Link to="/">
+          <button type="button" className={womenToggle ? CatalogNavStyles.NavItemBtnActive : CatalogNavStyles.NavItemBtnInactive} onClick={handleWomenBtnClick}>women</button>
+        </Link>
       </Box>
       <Box>
-        <StyledLink to="/">
-          <h3 className={CatalogNavStyles.catalogNavItem}>men</h3>
-        </StyledLink>
+        <Link to="/">
+          <button type="button" className={CatalogNavStyles.NavItemBtnInactive}>men</button>
+        </Link>
       </Box>
       <Box>
-        <StyledLink to="/">
-          <h3 className={CatalogNavStyles.catalogNavItem}>accessory</h3>
-        </StyledLink>
+        <Link to="/">
+          <button type="button" className={CatalogNavStyles.NavItemBtnInactive}>accessory</button>
+        </Link>
       </Box>
+      {womenToggle && <WomenDropdown womenToggle={womenToggle} />}
     </Box>
   );
 }

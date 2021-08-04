@@ -7,16 +7,19 @@
   top: 67px;
   transition: all 0.5s ease-out;
   opacity: 2;
+  height: 100vh;
 }
 .closed{
   position: absolute;
   z-index: 1;
   width: 100%;
-  right: 0;
+  right: 100vh;
   background-color: #000000;
-  top: 700px;
+  top: 67px;
   transition: all 0.5s ease-out;
   opacity: 0;
+  height: 100vh;
+
 }
 
 .wrapper{
@@ -55,10 +58,9 @@
   background: none;
   padding-bottom: 4px;
   border: none;
-  border-bottom: 1px solid #E5E5E5;
   cursor: pointer;
+  border-bottom: 1px solid #000000;
 }
-
 .text{
   font-family: Josefin Sans, sans-serif;
   font-style: normal;
@@ -68,15 +70,15 @@
   color: #FFFFFF;
 }
 
-.textField{
+.textFieldLabel{
   color: #FFFFFF !important;
 }
 .textFieldsGroup{
   width: 90%;
   margin: 47px auto 0px;
 }
-.test{
-  border-color: #FFFFFF !important;
+.textFieldInput{
+  color: #FFFFFF !important;
 }
 .loginBtn{
   margin-top: 135px;

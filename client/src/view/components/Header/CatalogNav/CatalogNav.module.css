@@ -1,4 +1,8 @@
-.catalogNavItem{
+a{
+    text-decoration: none;
+}
+
+.NavItemBtnActive{
     font-family: 'Josefin Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -6,6 +10,22 @@
     line-height: 12px;
     text-transform: uppercase;
     color: #FFFFFF;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 1px solid #FFFFFF;
+}
+.NavItemBtnInactive{
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .catalogNavWrapper{
