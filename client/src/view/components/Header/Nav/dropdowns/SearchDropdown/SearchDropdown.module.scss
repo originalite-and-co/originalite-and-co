@@ -12,22 +12,14 @@
   position: absolute;
   z-index: 1;
   width: 100%;
-  right: 100vh;
+  right: 200vh;
   background-color: #FFFFFF;
   top: 67px;
   transition: all 0.5s ease-out;
   opacity: 0;
 }
 
-.wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .textfieldWrapper{
-  width: 90%;
   margin-top: 76px;
   margin-bottom: 131px;
   position: relative;

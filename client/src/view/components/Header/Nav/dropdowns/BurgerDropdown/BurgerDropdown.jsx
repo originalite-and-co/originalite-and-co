@@ -8,7 +8,6 @@ import Social from './Social/Social';
 function BurgerDropdown({ burgerToggle, }) {
   return (
     <Box className={burgerToggle ? BurgerDropdownStyles.active : BurgerDropdownStyles.closed}>
-      <Box className={BurgerDropdownStyles.wrapper}>
         <Box className={BurgerDropdownStyles.auth}>
           <button type="button" className={BurgerDropdownStyles.btn}>Log In /</button>
           <button type="button" className={BurgerDropdownStyles.btn}>Sign Up</button>
@@ -21,7 +20,6 @@ function BurgerDropdown({ burgerToggle, }) {
           <ListItemUpper text="accessory" />
         </Box>
         <Social />
-      </Box>
     </Box>
   );
 }

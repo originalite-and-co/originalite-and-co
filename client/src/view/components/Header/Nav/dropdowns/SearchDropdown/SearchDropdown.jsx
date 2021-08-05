@@ -9,13 +9,11 @@ import Button from '../../../../Button/Button';
 function SearchDropdown({ searchToggle, }) {
   return (
     <Box className={searchToggle ? DropdownStyles.active : DropdownStyles.closed}>
-      <Box className={DropdownStyles.wrapper}>
         <Box className={DropdownStyles.textfieldWrapper}>
           <TextField fullWidth label="Search for item" />
           <CloseIcon className={DropdownStyles.closeIcon} />
         </Box>
         <Button text="search" backgroundColor="#000000" color="#FFFFFF" />
-      </Box>
     </Box>
   );
 }

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BurgerDropdownStyles from './BurgerDropdown.module.scss';
 
-// eslint-disable-next-line import/prefer-default-export
 export function ListItem({ text, }) {
   return (
     <Box className={BurgerDropdownStyles.listItem}>

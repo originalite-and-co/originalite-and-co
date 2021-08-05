@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import WomenDropdownStyles from './WomenDropdown.module.scss';
 import ListItemWomen from './ListItemWomen';
 
-function WomenDropdown({ womenToggle, }) {
+function WomenDropdown({ womenToggle, onLeave}) {
   return (
-    <Box className={womenToggle ? WomenDropdownStyles.active : WomenDropdownStyles.closed}>
-      <Box className={WomenDropdownStyles.wrapper}>
+    <Box className={womenToggle ? WomenDropdownStyles.active : WomenDropdownStyles.closed}
+         onMouseLeave={onLeave}
+    >
         <Box className={WomenDropdownStyles.list}>
           <ListItemWomen text="View all" />
           <ListItemWomen text="New arrivals" />
@@ -21,7 +22,6 @@ function WomenDropdown({ womenToggle, }) {
           <ListItemWomen text="Skirts" />
           <ListItemWomen text="Underwear" />
         </Box>
-      </Box>
     </Box>
   );
 }
