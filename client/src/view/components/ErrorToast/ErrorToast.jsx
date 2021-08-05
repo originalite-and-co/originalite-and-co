@@ -35,7 +35,7 @@ function ErrorToast({message, autoHideDuration}) {
     return (
         <Snackbar open={isOpen} onClose={handleClose} autoHideDuration={autoHideDuration} >
             <MuiAlert action={<CloseIcon data-testid="error-toast-close-icon" onClick={handleClose}/>} onClose={handleClose} variant="outlined" severity="error">
-                Failed to {message}. Reload the page, please
+                {message}
             </MuiAlert>
         </Snackbar>
     );
