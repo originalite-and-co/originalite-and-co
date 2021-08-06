@@ -8,24 +8,24 @@ import bag from '../icons/bag.svg';
 import Burger from './BurgenMenu/Burger';
 import SearchDropdown from '../dropdowns/SearchDropdown/SearchDropdown';
 import BurgerDropdown from '../dropdowns/BurgerDropdown/BurgerDropdown';
+import {useDispatch} from "react-redux";
+import {modalOperations} from "../../../../../redux/features/modal";
 
 function NavItems() {
 
-  const [searchToggle, setSearchToggle] = useState(false);
-  const [burgerToggle, setBurgerToggle] = useState(false);
+    const dispatch = useDispatch()
 
   const toggleSearch = () => {
-    setSearchToggle(!searchToggle);
-    setBurgerToggle(false);
+      dispatch(modalOperations.toggleModal("search-modal"))
   };
 
   const toggleBurger = () => {
-    setBurgerToggle(!burgerToggle);
-    setSearchToggle(false);
+      dispatch(modalOperations.toggleModal("burger-modal"))
   };
+
   return (
-    <Box className={NavItemsStyles.navItemsGroup}>
-      <Box className={NavItemsStyles.navItem} onClick={toggleSearch}>
+    <Box className={NavItemsStyles.navItemsGroup} data-testid="navItems">
+      <Box className={NavItemsStyles.navItem} onClick={toggleSearch} data-testid="nav-item-search">
           <img src={search} alt="search" />
       </Box>
       <Box className={NavItemsStyles.navItem}>
@@ -39,12 +39,12 @@ function NavItems() {
         </Link>
       </Box>
       <Box>
-        <Box onClick={toggleBurger}>
+        <Box onClick={toggleBurger} data-testid="burger">
             <Burger />
         </Box>
       </Box>
-      <SearchDropdown searchToggle={searchToggle} />
-      <BurgerDropdown burgerToggle={burgerToggle} />
+      <SearchDropdown/>
+      <BurgerDropdown/>
     </Box>
   );
 }

@@ -1,32 +1,27 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
-import WomenDropdownStyles from './WomenDropdown.module.scss';
-import ListItemWomen from './ListItemWomen';
+import CatalogNavDropdownStyles from './CatalogNavDropdown.module.scss';
+import {useSelector} from "react-redux";
+import {modalSelectors} from "../../../../../redux/features/modal";
 
-function WomenDropdown({ womenToggle, onLeave}) {
+
+WomenDropdown.propTypes = {
+  onLeave: PropTypes.func.isRequired,
+};
+
+function WomenDropdown({onLeave}) {
+  const activeModal = useSelector(modalSelectors.modal)
+  const modalIsActive = activeModal.some(stateId => stateId === 'women-modal')
+
   return (
-    <Box className={womenToggle ? WomenDropdownStyles.active : WomenDropdownStyles.closed}
+<Box className={modalIsActive ? CatalogNavDropdownStyles.active : CatalogNavDropdownStyles.closed}
          onMouseLeave={onLeave}
     >
-        <Box className={WomenDropdownStyles.list}>
-          <ListItemWomen text="View all" />
-          <ListItemWomen text="New arrivals" />
-          <ListItemWomen text="Dresses" />
-          <ListItemWomen text="Knitwear" />
-          <ListItemWomen text="Coats" />
-          <ListItemWomen text="Jackets" />
-          <ListItemWomen text="Suits & Combined" />
-          <ListItemWomen text="T-shirts" />
-          <ListItemWomen text="Jeans" />
-          <ListItemWomen text="Skirts" />
-          <ListItemWomen text="Underwear" />
+        <Box className={CatalogNavDropdownStyles.list} data-testid="list">
         </Box>
     </Box>
   );
 }
 
-WomenDropdown.propTypes = {
-  womenToggle: PropTypes.bool.isRequired,
-};
 export default WomenDropdown;

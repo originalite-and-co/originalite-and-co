@@ -8,7 +8,7 @@ import SocialStyles from './Social.module.scss';
 
 function Social() {
   return (
-    <Box className={SocialStyles.social}>
+    <Box className={SocialStyles.social} data-testid="social">
       <h3 className={SocialStyles.socialText}>follow us</h3>
       <Box className={SocialStyles.socialGroup}>
         <Box>

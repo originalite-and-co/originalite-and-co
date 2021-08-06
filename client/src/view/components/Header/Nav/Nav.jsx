@@ -7,7 +7,7 @@ import NavItems from './NavItems/NavItems';
 
 function Nav() {
   return (
-    <Box className={NavStyles.nav}>
+    <Box className={NavStyles.nav} data-testid="nav">
       <Logo />
       <NavItems />
     </Box>

@@ -5,10 +5,15 @@ import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import DropdownStyles from './SearchDropdown.module.scss';
 import Button from '../../../../Button/Button';
+import {useSelector} from "react-redux";
+import {modalSelectors} from "../../../../../../redux/features/modal";
 
-function SearchDropdown({ searchToggle, }) {
+function SearchDropdown() {
+    const activeModal = useSelector(modalSelectors.modal)
+    const modalIsActive = activeModal.some(stateId => stateId === 'search-modal')
+
   return (
-    <Box className={searchToggle ? DropdownStyles.active : DropdownStyles.closed}>
+    <Box className={modalIsActive ? DropdownStyles.active : DropdownStyles.closed}>
         <Box className={DropdownStyles.textfieldWrapper}>
           <TextField fullWidth label="Search for item" />
           <CloseIcon className={DropdownStyles.closeIcon} />
@@ -17,9 +22,9 @@ function SearchDropdown({ searchToggle, }) {
     </Box>
   );
 }
-
-SearchDropdown.propTypes = {
-  searchToggle: PropTypes.bool.isRequired,
-};
+//
+// SearchDropdown.propTypes = {
+//   searchToggle: PropTypes.bool.isRequired,
+// };
 
 export default SearchDropdown;

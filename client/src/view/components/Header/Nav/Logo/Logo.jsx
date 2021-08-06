@@ -5,7 +5,7 @@ import logo from '../icons/Originalité.svg';
 
 function Logo() {
   return (
-    <Box>
+    <Box data-testid="logo">
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
