@@ -4,8 +4,8 @@
  * @returns {{Authorization: (string|null), "Content-Type": string}}
  */
 export const generateHeaders = () => ({
-  'Content-Type': 'application/json',
-  Authorization: sessionStorage.getItem('token'),
+    'Content-Type': 'application/json',
+    Authorization: sessionStorage.getItem('token'),
 });
 
 /**
@@ -49,8 +49,11 @@ export const generateResponseException = (action, response) => new Error(`Failed
  */
 export const generateFetchException = (action, error) => new Error(`An error has occurred while ${action}. Error: ${error.message}`);
 
-export { default as cartRequests } from './cart';
-export { default as catalogRequests } from './catalog';
-export { default as customerRequests } from './customers';
-export { default as productRequests } from './products';
-export { default as sliderRequests } from './slider';
+export {default as cartRequests} from './cart';
+export {default as catalogRequests} from './catalog';
+export {default as customerRequests} from './customers';
+export {default as productRequests} from './products';
+export {default as sliderRequests} from './slider';
+export {default as wishlistRequests} from './wishlist';
+export {default as linkRequests} from './links';
+export {default as pageRequests} from './pages';

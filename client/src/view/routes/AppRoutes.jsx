@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Home from "../pages/Home";
-import Authentication from "../pages/Authentication"
-import Page404 from "../pages/Page404";
+import Home from "../pages/Home/Home";
+import Authentication from "../pages/Authentication/Authentication"
+import Page404 from "../pages/Page404/Page404";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import Member from "../pages/Member";
-import Checkout from "../pages/Checkout";
-import Catalog from "../pages/Catalog";
-import Cart from "../pages/Cart";
-import Product from "../pages/Product";
+import Member from "../pages/Member/Member";
+import Checkout from "../pages/Checkout/Checkout";
+import Catalog from "../pages/Catalog/Catalog";
+import Cart from "../pages/Cart/Cart";
+import Product from "../pages/Product/Product";
 
 function AppRoutes() {
     // eslint-disable-next-line no-unused-vars
