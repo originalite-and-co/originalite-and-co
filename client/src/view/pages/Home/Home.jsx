@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-Home.propTypes = {
-
-};
+Home.propTypes = {};
 
 function Home(props) {
-  return (
-    <div>Home</div>
-  );
+    return (
+        <>
+            <div>Home</div>
+        </>
+    );
 }
 
 export default Home;
