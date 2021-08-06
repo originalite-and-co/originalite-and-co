@@ -7,6 +7,7 @@ import CatalogNav from './CatalogNav/CatalogNav';
 import HeaderStyles from './Header.module.scss';
 
 function Header() {
+
   return (
     <Box className={HeaderStyles.header}>
       <Grid container>
