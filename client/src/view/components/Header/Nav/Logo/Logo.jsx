@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
-import logo from '../icons/Originalité.svg';
+// import logo from '../icons/Originalité.svg';
 
 function Logo() {
   return (
     <Box data-testid="logo">
       <Link to="/">
-        <img src={logo} alt="Logo" />
+        {/*<img src={logo} alt="Logo" />*/}
       </Link>
     </Box>
   );
