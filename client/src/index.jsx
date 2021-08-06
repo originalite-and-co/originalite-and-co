@@ -6,10 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import store from "./redux/store/store";
 import {Provider} from "react-redux";
 import ErrorBoundary from "./view/components/ErrorBoundary/ErrorBoundary";
+import ErrorToast from "./view/components/ErrorToast/ErrorToast";
 
 ReactDOM.render(
     <React.StrictMode>
-        <ErrorBoundary>
+        <ErrorBoundary fallback={<ErrorToast message="An error has occurred. Please try again later"/>}>
             <BrowserRouter>
                 <Provider store={store}>
                     <App/>

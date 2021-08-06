@@ -3,14 +3,14 @@ import {render} from "@testing-library/react";
 import {Router} from "react-router-dom";
 import AppRoutes from "./AppRoutes";
 
-jest.mock("../pages/Authentication.jsx", () => () => <p>Authentication</p>);
-jest.mock("../pages/Cart.jsx", () => () => <p>Cart</p>);
-jest.mock("../pages/Catalog.jsx", () => () => <p>Catalog</p>);
-jest.mock("../pages/Checkout.jsx", () => () => <p>Checkout</p>);
-jest.mock("../pages/Home.jsx", () => () => <p>Home</p>);
-jest.mock("../pages/Member.jsx", () => () => <p>Member</p>);
-jest.mock("../pages/Page404.jsx", () => () => <p>404</p>);
-jest.mock("../pages/Product.jsx", () => () => <p>Product</p>);
+jest.mock("../pages/Authentication/Authentication.jsx", () => () => <p>Authentication</p>);
+jest.mock("../pages/Cart/Cart.jsx", () => () => <p>Cart</p>);
+jest.mock("../pages/Catalog/Catalog.jsx", () => () => <p>Catalog</p>);
+jest.mock("../pages/Checkout/Checkout.jsx", () => () => <p>Checkout</p>);
+jest.mock("../pages/Home/Home.jsx", () => () => <p>Home</p>);
+jest.mock("../pages/Member/Member.jsx", () => () => <p>Member</p>);
+jest.mock("../pages/Page404/Page404.jsx", () => () => <p>404</p>);
+jest.mock("../pages/Product/Product.jsx", () => () => <p>Product</p>);
 
 
 /**

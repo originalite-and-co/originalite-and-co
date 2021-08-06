@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ErrorToast from "../ErrorToast/ErrorToast";
+import PropTypes from 'prop-types';
 
 class ErrorBoundary extends Component {
     constructor(props) {
@@ -16,12 +16,13 @@ class ErrorBoundary extends Component {
     }
 
     render() {
-        if (this.state.hasError) {
-            return <ErrorToast message="An error has occurred. Please try again later"/>
-        }
-
-        return this.props.children
+        return this.state.hasError ? this.props.fallback : this.props.children
     }
+}
+
+ErrorBoundary.propTypes = {
+    children: PropTypes.element.isRequired,
+    fallback: PropTypes.element.isRequired
 }
 
 export default ErrorBoundary;

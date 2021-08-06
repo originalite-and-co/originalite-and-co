@@ -14,9 +14,9 @@ ErrorToast.defaultProps = {
 
 /**
  *
- * @param {String} message - a message that will be displayed.
- *  Should start with a verb.
- * @param {Number} autoHideDuration = 6000 - an amount of time that component should be displayed
+ * @param {String} message - a message that will be displayed. Should start with a verb.
+ * @param {Number} autoHideDuration - an amount of time that component should be displayed. 6000 is a default value
+ *
  * @returns {JSX.Element}
  * @constructor
  */
