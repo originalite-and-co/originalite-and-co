@@ -7,7 +7,8 @@ const {
   addPage,
   updatePage,
   deletePage,
-  getPage
+  getPage,
+    getPages
 } = require("../controllers/pages");
 
 // @route   POST /pages
@@ -41,5 +42,7 @@ router.delete(
 // @desc    GET existing page
 // @access  Public
 router.get("/:customId", getPage);
+
+router.get("/", getPages)
 
 module.exports = router;
