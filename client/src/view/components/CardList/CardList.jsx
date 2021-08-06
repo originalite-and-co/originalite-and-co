@@ -1,10 +1,14 @@
-import { ProductCard } from './ProductCard';
+import { ProductCard } from '../ProductCard/ProductCard';
+import "./CardList.scss";
+import {productRequests} from "../../../api/server";
+
 
 export const CardList = () => {
+   // const products = await productRequests.retrieveProduct(); added await later
   const productsMockUp = [
     {
       enabled: true,
-      imageUrls: ['products/itemNo2'],
+      imageUrls: ['https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U'],
       quantity: 40,
       _id: '5d73ad04fcad90130470f08b',
       name: 'test product',
@@ -21,7 +25,7 @@ export const CardList = () => {
     },
     {
       enabled: true,
-      imageUrls: ['products/itemNo2'],
+      imageUrls: ['https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U'],
       quantity: 40,
       _id: '5d73ad2bfcad90130470f08c',
       name: 'test product 2',
@@ -38,7 +42,7 @@ export const CardList = () => {
     },
     {
       enabled: true,
-      imageUrls: ['products/itemNo2'],
+      imageUrls: ['https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U'],
       quantity: 40,
       _id: '5d73ad7cfcad90130470f08d',
       name: 'test product 3',
@@ -54,8 +58,17 @@ export const CardList = () => {
       date: '2019-10-14T12:46:28.042Z',
     }
   ];
-  return (
+  // .catch(error) => {
+  //     return (<div>ERROR</div>)
+  //   }
 
+  return (
+<div className={"cardlist__cards"}>
+  {
     productsMockUp.map((product) => (<ProductCard product={product} />))
+  }
+
+</div>
   );
+
 };
