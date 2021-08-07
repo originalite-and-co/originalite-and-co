@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
+
 import Box from '@material-ui/core/Box';
-import BurgerStyles from './Burger.module.scss';
 import HeaderDropdown from "../../../HeaderDropdown/HeaderDropdown";
-import BurgerDropdownStyles from "../../dropdowns/BurgerDropdown/BurgerDropdown.module.scss";
 import {ListItem, ListItemUpper} from "../../dropdowns/BurgerDropdown/ListItem";
 import Social from "../../dropdowns/BurgerDropdown/Social/Social";
+
+import styles from './Burger.module.scss';
+
 import {useDispatch, useSelector} from "react-redux";
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../../../redux/features/dropdown";
 
@@ -25,19 +27,19 @@ function Burger() {
             setActiveDropdown(false);
         } else {
             dispatch(isAnyDropdownOpenActions.closedDropdown());
-            setTimeout(() => {
-                setActiveDropdown(false);
+            // setTimeout(() => {
+                setActiveDropdown(true);
                 dispatch(isAnyDropdownOpenActions.openedDropdown())
-            }, 0)
+            // }, 0)
         }
     }
 
     const burgerDropdownContent = <>
-        <Box className={BurgerDropdownStyles.auth}>
-            <button type="button" className={BurgerDropdownStyles.btn}>Log In /</button>
-            <button type="button" className={BurgerDropdownStyles.btn}>Sign Up</button>
+        <Box className={`${styles.auth} wrapper`}>
+            <button type="button" className={styles.btn}>Log In /</button>
+            <button type="button" className={styles.btn}>Sign Up</button>
         </Box>
-        <Box className={BurgerDropdownStyles.list}>
+        <Box className={styles.list}>
             <ListItem text="New collection"/>
             <ListItem text="New arrivals"/>
             <ListItemUpper text="women collection"/>
@@ -50,17 +52,17 @@ function Burger() {
 
     return (
         <>
-            <Box className={BurgerStyles.container}>
-                <div onClick={handleBurgerIconClick} className={BurgerStyles.wrapper}>
-                    <span className={BurgerStyles.line}/>
-                    <span className={BurgerStyles.middleLine}/>
-                    <span className={BurgerStyles.line}/>
+            <Box className={styles.container}>
+                <div onClick={handleBurgerIconClick} className={styles.wrapper}>
+                    <span className={styles.line}/>
+                    <span className={styles.middleLine}/>
+                    <span className={styles.line}/>
                 </div>
             </Box>
             <HeaderDropdown
                 classNames={{
-                    closed: "",
-                    active: ""
+                    closed: styles.dropdown,
+                    active: styles.dropdownActive,
                 }}
                 isActive={isDropdownActive}
                 lockBodyScrolling
