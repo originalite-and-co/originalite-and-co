@@ -29,12 +29,12 @@ function CatalogNav() {
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
 
     useEffect(useCallback(() => {
-        if (!isAnyDropdownOpen) {
-            setActiveDropdown(false)
-        }
+            if (!isAnyDropdownOpen) {
+                setActiveDropdown(false)
+            }
 
-    }, [isAnyDropdownOpen, isDropdownActive]
-        ), [isAnyDropdownOpen, isDropdownActive]);
+        }, [isAnyDropdownOpen, isDropdownActive]
+    ), [isAnyDropdownOpen, isDropdownActive]);
 
 
     useEffect(useCallback(() => {
@@ -82,18 +82,32 @@ function CatalogNav() {
     }
 
     const handleMainCategoryLinkClick = (event, linkId) => {
-        const isTheSameLink = linkId === activeLinkId;
+        const isLinkTheSame = linkId === activeLinkId;
 
 
-        // if (isDropdownActive && !isTheSameLink) {
-        //     setActiveDropdown(false)
-        //     renderCategoryLinks(linkId);
-        //     setActiveDropdown(true);
-        // }
+        if (isDropdownActive && !isLinkTheSame && activeLinkId !== null) {
+            setTimeout(() => {
+                setActiveDropdown(false);
+            },0)
+            setTimeout(() => {
+                renderCategoryLinks(linkId);
+            }, 0)
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.closedDropdown())
+            }, 0)
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.openedDropdown())
+            }, 0)
+            setTimeout(() => {
+                setActiveDropdown(true);
+            }, 0)
+            setActiveLinkId(linkId)
+        }
 
         if (isDropdownActive) {
             dispatch(isAnyDropdownOpenActions.closedDropdown())
             setActiveDropdown(false)
+            setActiveLinkId(linkId)
         } else {
             renderCategoryLinks(linkId)
             //close all dropdowns that are active
@@ -112,6 +126,10 @@ function CatalogNav() {
             setTimeout(() => {
                 setActiveDropdown(true);
             }, 0);
+
+            setTimeout(() => {
+                setActiveLinkId(linkId)
+            })
         }
 
         // setActiveDropdown(!isDropdownActive)
