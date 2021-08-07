@@ -3,13 +3,13 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import cartReducer from "./../features/cart/index";
-import modalReducer from './../features/modal/index';
+import isAnyDropdownOpenReducer from '../features/dropdown/index';
 import searchResult from "./../features/searchResult/index";
 
 
 const rootReducer = combineReducers({
     ...cartReducer,
-    ...modalReducer,
+    ...isAnyDropdownOpenReducer,
     ...searchResult
 });
 

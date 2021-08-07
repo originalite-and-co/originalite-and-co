@@ -1,20 +1,50 @@
-import React,{useState} from 'react';
-import {Box, List} from "@material-ui/core";
-import HeaderDropdownStyles from './HeaderDropdown.module.scss'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './HeaderDropdown.module.scss';
+import {List,Box} from '@material-ui/core'
 
+HeaderDropdown.propTypes = {
+    classNames: PropTypes.shape({
+        active: PropTypes.string,
+        closed: PropTypes.string
+    }),
+    onMouseLeave: PropTypes.func,
+    children: PropTypes.element,
+    isActive: PropTypes.bool,
+    lockBodyScrolling: PropTypes.bool
+};
 
+HeaderDropdown.defaultProps = {
+    // onMouseLeave: () => null,
+    lockBodyScrolling: false
+}
 
-function HeaderDropdown({styles,isActive,children,onLeave}) {
+function HeaderDropdown(
+    {
+        classNames,
+        onMouseLeave,
+        children,
+        isActive,
+        lockBodyScrolling,
+    }
+) {
+
+    if(lockBodyScrolling){
+        debugger
+        isActive ? document.body.classList.add('lock-scroll') : document.body.classList.remove('lock-scroll');
+    }
 
     return (
-        <Box className={`${isActive ? HeaderDropdownStyles.active : HeaderDropdownStyles.closed} ${styles}`} onMouseLeave={onLeave}>
-            <Box component="nav">
-                <List className={HeaderDropdownStyles.list} data-testid="men-list">
-                    {children}
-                </List>
-            </Box>
+        <Box className={
+            isActive
+                ? `${styles.dropdown} ${styles.active} ${classNames.active} ${classNames.closed}`
+                : `${styles.dropdown} ${classNames.closed}`}
+             onMouseLeave={onMouseLeave}
+        >
+            {children}
         </Box>
     );
 }
+
 
 export default HeaderDropdown;

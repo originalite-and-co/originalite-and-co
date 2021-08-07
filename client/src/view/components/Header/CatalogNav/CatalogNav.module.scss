@@ -28,6 +28,17 @@ a {
   padding-bottom: 21px;
 }
 
+.dropdown {
+  height: 100vh;
+  right: 120vh;
+  background-color: #000000;
+  top: 124px;
+}
+
+.dropdownActive{
+  right: 0;
+}
+
 .categoryNav {
   height: 100%;
   overflow-y: auto;

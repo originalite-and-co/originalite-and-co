@@ -4,15 +4,16 @@ import {Link, NavLink} from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import styles from './CatalogNav.module.scss';
 
-import constants from '././.././.././../constants';
 import useWindowSize from "../../../hooks/useWindowSize";
 import useAsyncError from "../../../hooks/useAsyncError";
+import {useDispatch, useSelector} from "react-redux";
 import {catalogRequests} from "../../../../api/server";
+import constants from '././.././.././../constants';
 
 import {CatalogNavLink, CatalogNavButton} from './LinkButtonGenerators'
-import Dropdown from "../Dropdowns/Dropdown";
+import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import {List} from "@material-ui/core";
-import CatalogNavDropdownStyles from "../Dropdowns/CatalogNavDropdown.module.scss";
+import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../redux/features/dropdown";
 
 function CatalogNav() {
     const [catalog, setCatalog] = useState([]);
@@ -23,6 +24,18 @@ function CatalogNav() {
 
     const sizes = useWindowSize()
     const throwError = useAsyncError();
+
+    const dispatch = useDispatch();
+    const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
+
+    console.log(isAnyDropdownOpen)
+    useEffect(() => {
+        if (!isAnyDropdownOpen) {
+            setActiveDropdown(false)
+        }
+
+    }, [isAnyDropdownOpen, isDropdownActive]);
+
 
     useEffect(useCallback(() => {
         catalogRequests.getCatalog()
@@ -39,6 +52,7 @@ function CatalogNav() {
     const handleCategoryLinkClick = (event) => {
         document.body.classList.remove("lock-scroll");
         setActiveDropdown(false);
+        dispatch(isAnyDropdownOpenActions.closedDropdown());
     }
 
     const renderCategoryLinks = (linkId) => {
@@ -71,17 +85,25 @@ function CatalogNav() {
         const isTheSameLink = linkId === activeLinkId;
 
 
-        if(isDropdownActive && !isTheSameLink){
+        if (isDropdownActive && !isTheSameLink) {
             setActiveDropdown(false)
             renderCategoryLinks(linkId);
             setActiveDropdown(true);
         }
 
-        if (!isDropdownActive ){
+        if (isDropdownActive) {
+            dispatch(isAnyDropdownOpenActions.closedDropdown())
+            setActiveDropdown(false)
+        } else {
             renderCategoryLinks(linkId)
+            //close all dropdowns that are active
+            dispatch(isAnyDropdownOpenActions.closedDropdown())
+            dispatch(isAnyDropdownOpenActions.openedDropdown())
+            setActiveDropdown(true)
         }
-        setActiveDropdown(!isDropdownActive)
-        setActiveLinkId(linkId)
+
+        // setActiveDropdown(!isDropdownActive)
+        // setActiveLinkId(linkId)
     }
 
     const mainCategoryLinks = catalog
@@ -106,18 +128,31 @@ function CatalogNav() {
             )
         });
 
-    const dropdownContent = categoryLinks.length && <Box
-        component="nav"
-        className={`${styles.categoryNav} wrapper`}>
-        <List className={styles.categoryList} data-testid="men-list">
-            {categoryLinks}
-        </List>
-    </Box>;
+    const dropdownContent = categoryLinks.length && (
+        <Box
+            component="nav"
+            className={`${styles.categoryNav} wrapper`}>
+            <List className={styles.categoryList} data-testid="men-list">
+                {categoryLinks}
+            </List>
+        </Box>
+    );
 
     return (
         <Box className={`${styles.catalogNavWrapper} wrapper`} data-testid="catalog-nav">
             {mainCategoryLinks}
-            <Dropdown isActive={isDropdownActive} onLeave={() => setActiveDropdown(false)} children={dropdownContent}/>
+            <HeaderDropdown
+                classNames={{
+                    closed: styles.dropdown,
+                    active: styles.dropdownActive
+                }}
+                lockBodyScrolling
+                isActive={isDropdownActive}
+                onLeave={() => {
+                    setActiveDropdown(false)
+                    dispatch(isAnyDropdownOpenActions.closedDropdown())
+                }}
+                children={dropdownContent}/>
         </Box>
     );
 }
