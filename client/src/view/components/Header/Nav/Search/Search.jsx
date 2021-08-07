@@ -89,14 +89,14 @@ function Search(props) {
                 <img src={search} alt="search icon"/>
             </Box>
             {isDropdownActive && <HeaderDropdown
-                lockBodyScrolling={true}
+                lockBodyScrolling
                 classNames={{
                     closed: styles.dropdown,
                     active: styles.dropdownActive,
                 }}
                 isActive={isDropdownActive}
                 children={dropdownContent}
-            />
+            />}
         </>
     );
 }

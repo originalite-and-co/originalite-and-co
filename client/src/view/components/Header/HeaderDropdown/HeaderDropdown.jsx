@@ -30,7 +30,6 @@ function HeaderDropdown(
 ) {
 
     if(lockBodyScrolling){
-        debugger
         isActive ? document.body.classList.add('lock-scroll') : document.body.classList.remove('lock-scroll');
     }
 

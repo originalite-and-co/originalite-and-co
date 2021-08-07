@@ -85,11 +85,11 @@ function CatalogNav() {
         const isTheSameLink = linkId === activeLinkId;
 
 
-        if (isDropdownActive && !isTheSameLink) {
-            setActiveDropdown(false)
-            renderCategoryLinks(linkId);
-            setActiveDropdown(true);
-        }
+        // if (isDropdownActive && !isTheSameLink) {
+        //     setActiveDropdown(false)
+        //     renderCategoryLinks(linkId);
+        //     setActiveDropdown(true);
+        // }
 
         if (isDropdownActive) {
             dispatch(isAnyDropdownOpenActions.closedDropdown())
