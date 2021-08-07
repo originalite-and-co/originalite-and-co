@@ -40,7 +40,7 @@ function NavItems() {
                     <Burger/>
                 </Box>
             </Box>
-            <BurgerDropdown/>
+            {/*<BurgerDropdown/>*/}
         </Box>
     );
 }

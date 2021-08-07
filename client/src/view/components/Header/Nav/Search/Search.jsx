@@ -12,7 +12,7 @@ import {productRequests} from "../../../../../api/server";
 import Toast from "../../../Toast/Toast";
 import HeaderDropdown from "../../HeaderDropdown/HeaderDropdown";
 import Button from "../../../Button/Button";
-import {Box, TextField} from "@material-ui/core";
+import {Box, InputAdornment, TextField} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
 import search from "../icons/search.svg";
@@ -44,7 +44,7 @@ function Search(props) {
     }
 
     const handleIconClick = (event) => {
-        if (isDropdownActive){
+        if (isDropdownActive) {
             dispatch(isAnyDropdownOpenActions.closedDropdown())
             setActiveDropdown(false)
         } else {
@@ -70,12 +70,15 @@ function Search(props) {
     }
 
 
-
     const informationToast = useMemo(() => <Toast message="No items have been found "/>, []);
     const dropdownContent = <>
-        <Box className={styles.textFieldWrapper}>
-            <TextField value={searchValue} onChange={handleInputChange} fullWidth label="Search for item"/>
-            <CloseIcon className={styles.closeIcon}/>
+        <Box className={`${styles.textFieldWrapper} wrapper`}>
+            <TextField
+                value={searchValue}
+                onChange={handleInputChange}
+                fullWidth
+                label="Search for item"
+            />
         </Box>
         <Box className={styles.btnWrapper}>
             <Button text="search" backgroundColor="#000000" color="#FFFFFF" onClick={handleSubmitButtonClick}/>
