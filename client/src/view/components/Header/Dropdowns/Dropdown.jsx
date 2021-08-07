@@ -10,16 +10,13 @@ Dropdown.propTypes = {
 };
 
 function Dropdown({onLeave, children, isActive}) {
+    isActive ? document.body.classList.add('lock-scroll') : document.body.classList.remove('lock-scroll');
 
     return (
         <Box className={isActive ? CatalogNavDropdownStyles.active : CatalogNavDropdownStyles.closed}
              onMouseLeave={onLeave}
         >
-            <Box component="nav">
-                <List className={CatalogNavDropdownStyles.list} data-testid="men-list">
-                    {children}
-                </List>
-            </Box>
+            {children}
         </Box>
     );
 }

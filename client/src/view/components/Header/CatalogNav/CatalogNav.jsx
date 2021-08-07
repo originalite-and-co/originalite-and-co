@@ -1,26 +1,30 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import Box from '@material-ui/core/Box';
+
 import {Link, NavLink} from 'react-router-dom';
-import CatalogNavStyles from './CatalogNav.module.css';
-import useWindowSize from "../../../hooks/useWindowSize";
+import Box from '@material-ui/core/Box';
+import styles from './CatalogNav.module.scss';
+
 import constants from '././.././.././../constants';
-import {CatalogNavLink, CatalogNavButton} from './LinkButtonGenerators'
-import {useDispatch} from "react-redux";
+import useWindowSize from "../../../hooks/useWindowSize";
 import useAsyncError from "../../../hooks/useAsyncError";
-import Dropdown from "../Dropdowns/Dropdown";
 import {catalogRequests} from "../../../../api/server";
+
+import {CatalogNavLink, CatalogNavButton} from './LinkButtonGenerators'
+import Dropdown from "../Dropdowns/Dropdown";
+import {List} from "@material-ui/core";
+import CatalogNavDropdownStyles from "../Dropdowns/CatalogNavDropdown.module.scss";
 
 function CatalogNav() {
     const [catalog, setCatalog] = useState([]);
     const [categoryLinks, setCategoryLinks] = useState([]);
     const [isDropdownActive, setActiveDropdown] = useState(false);
+    const [activeLinkId, setActiveLinkId] = useState(null)
     const [isDesktop, setIsDesktop] = useState();
 
-    const dispatch = useDispatch()
     const sizes = useWindowSize()
     const throwError = useAsyncError();
 
-    useEffect(useCallback(()=> {
+    useEffect(useCallback(() => {
         catalogRequests.getCatalog()
             .then(
                 data => setCatalog(data),
@@ -32,15 +36,55 @@ function CatalogNav() {
         sizes.width >= constants.WINDOW_DESKTOP_SIZE ? setIsDesktop(true) : setIsDesktop(false)
     }, [])
 
-    const handleMainNavCatalogLinkAction = (event, linkId) => {
-        const categories = getAllChildCategories(catalog, linkId)
-        setCategoryLinks(categories.map(category => {
-            return <NavLink to={`/catalog/${category.id}`}>{category.name}</NavLink>
-        }));
-        setActiveDropdown(true)
+    const handleCategoryLinkClick = (event) => {
+        document.body.classList.remove("lock-scroll");
+        setActiveDropdown(false);
     }
 
-    const mainCatalogNavLinks = catalog
+    const renderCategoryLinks = (linkId) => {
+        const categories = getAllChildCategories(catalog, linkId)
+        setCategoryLinks(categories.map(category => {
+            return (
+                <li
+                    key={category._id}
+                    className={styles.categoryListItem}>
+                    <NavLink
+                        to={`/catalog/${category.id}`}
+                        className={styles.categoryLink}
+                        activeClassName={styles.categoryLinkActive}
+                        onClick={handleCategoryLinkClick}
+                    >
+                        {category.name}
+                    </NavLink>
+                </li>
+            );
+        }));
+    }
+
+    const handleMainCategoryLinkHover = (event, linkId) => {
+        setActiveDropdown(false);
+        renderCategoryLinks(linkId)
+        setActiveDropdown(true);
+    }
+
+    const handleMainCategoryLinkClick = (event, linkId) => {
+        const isTheSameLink = linkId === activeLinkId;
+
+
+        if(isDropdownActive && !isTheSameLink){
+            setActiveDropdown(false)
+            renderCategoryLinks(linkId);
+            setActiveDropdown(true);
+        }
+
+        if (!isDropdownActive ){
+            renderCategoryLinks(linkId)
+        }
+        setActiveDropdown(!isDropdownActive)
+        setActiveLinkId(linkId)
+    }
+
+    const mainCategoryLinks = catalog
         .filter(category => category.parentId === "null")
         .map(category => {
             return (
@@ -49,22 +93,31 @@ function CatalogNav() {
                         ?
                         <CatalogNavLink
                             pathTo={`/catalog/${category.id}`}
-                            handleHover={(e) => handleMainNavCatalogLinkAction(e, category.id)}
-                            styles={isDropdownActive ? `${CatalogNavStyles.NavItemBtn} active` : CatalogNavStyles.NavItemBtn}
+                            handleHover={(e) => handleMainCategoryLinkHover(e, category.id)}
+                            styles={isDropdownActive ? `${styles.NavItemBtn} active` : styles.NavItemBtn}
                             text={category.name}/>
                         :
                         <CatalogNavButton
-                            onClickFunc={(e) => handleMainNavCatalogLinkAction(e, category.id)}
-                            styles={isDropdownActive ? `${CatalogNavStyles.NavItemBtn} active` : CatalogNavStyles.NavItemBtn}
+                            onClickFunc={(e) => handleMainCategoryLinkClick(e, category.id)}
+                            styles={isDropdownActive ? `${styles.NavItemBtn} active` : styles.NavItemBtn}
                             text={category.name}/>
                     }
                 </Box>
             )
-        })
+        });
+
+    const dropdownContent = categoryLinks.length && <Box
+        component="nav"
+        className={`${styles.categoryNav} wrapper`}>
+        <List className={styles.categoryList} data-testid="men-list">
+            {categoryLinks}
+        </List>
+    </Box>;
+
     return (
-        <Box className={CatalogNavStyles.catalogNavWrapper} data-testid="catalog-nav">
-            {mainCatalogNavLinks}
-            <Dropdown isActive={isDropdownActive} onLeave={() => setActiveDropdown(false)} children={categoryLinks}/>
+        <Box className={`${styles.catalogNavWrapper} wrapper`} data-testid="catalog-nav">
+            {mainCategoryLinks}
+            <Dropdown isActive={isDropdownActive} onLeave={() => setActiveDropdown(false)} children={dropdownContent}/>
         </Box>
     );
 }
