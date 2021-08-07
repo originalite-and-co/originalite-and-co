@@ -1,23 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import Box from '@material-ui/core/Box';
 import {Link, NavLink} from 'react-router-dom';
 import CatalogNavStyles from './CatalogNav.module.css';
-import WomenDropdown from './Dropdowns/WomenDropdown';
 import useWindowSize from "../../../hooks/useWindowSize";
 import constants from '././.././.././../constants';
 import {CatalogNavLink, CatalogNavButton} from './LinkButtonGenerators'
-import {useDispatch, useSelector} from "react-redux";
-import {modalOperations, modalSelectors} from "../../../../redux/features/modal";
-import MenDropdown from "./Dropdowns/MenDropdown";
+import {useDispatch} from "react-redux";
 import useAsyncError from "../../../hooks/useAsyncError";
-import Dropdown from "./Dropdowns/Dropdown";
+import Dropdown from "../Dropdowns/Dropdown";
 import {catalogRequests} from "../../../../api/server";
-import {Drawer} from "@material-ui/core";
 
 function CatalogNav() {
+    const [catalog, setCatalog] = useState([]);
+    const [categoryLinks, setCategoryLinks] = useState([]);
+    const [isDropdownActive, setActiveDropdown] = useState(false);
+    const [isDesktop, setIsDesktop] = useState();
+
     const dispatch = useDispatch()
     const sizes = useWindowSize()
-    const [isDesktop, setIsDesktop] = useState();
     const throwError = useAsyncError();
 
     useEffect(useCallback(()=> {
@@ -31,14 +31,6 @@ function CatalogNav() {
     useEffect(() => {
         sizes.width >= constants.WINDOW_DESKTOP_SIZE ? setIsDesktop(true) : setIsDesktop(false)
     }, [])
-    const [catalog, setCatalog] = useState([]);
-    const [categoryLinks, setCategoryLinks] = useState([]);
-    const [isDropdownActive, setActiveDropdown] = useState(false);
-
-    const activeModal = useSelector(modalSelectors.modal)
-    const womenModalIsActive = activeModal.some(stateId => stateId === 'women-modal')
-    const menModalIsActive = activeModal.some(stateId => stateId === 'men-modal')
-
 
     const handleMainNavCatalogLinkAction = (event, linkId) => {
         const categories = getAllChildCategories(catalog, linkId)
@@ -58,12 +50,12 @@ function CatalogNav() {
                         <CatalogNavLink
                             pathTo={`/catalog/${category.id}`}
                             handleHover={(e) => handleMainNavCatalogLinkAction(e, category.id)}
-                            styles={womenModalIsActive ? CatalogNavStyles.NavItemBtnActive : CatalogNavStyles.NavItemBtnInactive}
+                            styles={isDropdownActive ? `${CatalogNavStyles.NavItemBtn} active` : CatalogNavStyles.NavItemBtn}
                             text={category.name}/>
                         :
                         <CatalogNavButton
                             onClickFunc={(e) => handleMainNavCatalogLinkAction(e, category.id)}
-                            styles={womenModalIsActive ? CatalogNavStyles.NavItemBtnActive : CatalogNavStyles.NavItemBtnInactive}
+                            styles={isDropdownActive ? `${CatalogNavStyles.NavItemBtn} active` : CatalogNavStyles.NavItemBtn}
                             text={category.name}/>
                     }
                 </Box>
