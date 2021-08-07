@@ -28,13 +28,13 @@ function CatalogNav() {
     const dispatch = useDispatch();
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
 
-    console.log(isAnyDropdownOpen)
-    useEffect(() => {
+    useEffect(useCallback(() => {
         if (!isAnyDropdownOpen) {
             setActiveDropdown(false)
         }
 
-    }, [isAnyDropdownOpen, isDropdownActive]);
+    }, [isAnyDropdownOpen, isDropdownActive]
+        ), [isAnyDropdownOpen, isDropdownActive]);
 
 
     useEffect(useCallback(() => {
@@ -97,9 +97,21 @@ function CatalogNav() {
         } else {
             renderCategoryLinks(linkId)
             //close all dropdowns that are active
-            dispatch(isAnyDropdownOpenActions.closedDropdown())
-            dispatch(isAnyDropdownOpenActions.openedDropdown())
-            setActiveDropdown(true)
+            dispatch(isAnyDropdownOpenActions.closedDropdown());
+
+            /**
+             * These setTimeouts are important for functionality,
+             * as they are asynchronous and somehow guarantee that the code
+             * in their callback will be executed only
+             * when call stack in event loop is empty. This means that
+             * all setState and useEffect callbacks will be executed properly
+             */
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.openedDropdown());
+            }, 0);
+            setTimeout(() => {
+                setActiveDropdown(true);
+            }, 0);
         }
 
         // setActiveDropdown(!isDropdownActive)
@@ -128,15 +140,18 @@ function CatalogNav() {
             )
         });
 
-    const dropdownContent = categoryLinks.length && (
-        <Box
-            component="nav"
-            className={`${styles.categoryNav} wrapper`}>
-            <List className={styles.categoryList} data-testid="men-list">
-                {categoryLinks}
-            </List>
-        </Box>
-    );
+    let dropdownContent;
+    if (categoryLinks.length) {
+        dropdownContent = (
+            <Box
+                component="nav"
+                className={`${styles.categoryNav} wrapper`}>
+                <List className={styles.categoryList} data-testid="men-list">
+                    {categoryLinks}
+                </List>
+            </Box>
+        );
+    }
 
     return (
         <Box className={`${styles.catalogNavWrapper} wrapper`} data-testid="catalog-nav">

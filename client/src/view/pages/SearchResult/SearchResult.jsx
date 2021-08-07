@@ -42,7 +42,7 @@ function SearchResult() {
         return <p>Loading ...</p>
     }
 
-    const res = products.map(item => <p>{item.name}</p>)
+    const res = products.map(item => <p key={item._id}>{item.name}</p>)
     return (
         <>
             <Header/>

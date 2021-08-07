@@ -50,8 +50,21 @@ function Search(props) {
         } else {
             //close all dropdowns that are active
             dispatch(isAnyDropdownOpenActions.closedDropdown())
-            setActiveDropdown(true)
-            dispatch(isAnyDropdownOpenActions.openedDropdown())
+
+            /**
+             * These setTimeouts are important for functionality,
+             * as they are asynchronous and somehow guarantee that the code
+             * in their callback will be executed only
+             * when call stack in event loop is empty. This means that
+             * all setState and useEffect callbacks will be executed properly
+             */
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.openedDropdown())
+            }, 0);
+
+            setTimeout(() => {
+                setActiveDropdown(true)
+            });
         }
     }
 
@@ -62,9 +75,9 @@ function Search(props) {
                 data => {
                     setSearchResult(data);
                     setLoaded(true);
-                    if (data.length){
-                         dispatch(searchResultActions.setSearchResult(data));
-                         history.push(`/products/search?query=${searchValue}`)
+                    if (data.length) {
+                        dispatch(searchResultActions.setSearchResult(data));
+                        history.push(`/products/search?query=${searchValue}`)
                         setActiveDropdown(false)
                         dispatch(isAnyDropdownOpenActions.closedDropdown());
                     }
@@ -76,7 +89,7 @@ function Search(props) {
 
     const informationToast = useMemo(() => <Toast
         message="No items have been found "
-        />, []);
+    />, []);
     const dropdownContent = <>
         <Box className={`${styles.textFieldWrapper} wrapper`}>
             <TextField
@@ -97,7 +110,7 @@ function Search(props) {
             <Box onClick={handleIconClick} className={styles.imageWrapper} data-testid="nav-item-search">
                 <img src={search} alt="search icon"/>
             </Box>
-              <HeaderDropdown
+            <HeaderDropdown
                 lockBodyScrolling
                 classNames={{
                     closed: styles.dropdown,

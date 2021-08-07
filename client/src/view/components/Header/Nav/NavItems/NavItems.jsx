@@ -5,7 +5,7 @@ import NavItemsStyles from './NavItems.module.scss';
 import search from '../icons/search.svg';
 import person from '../icons/person.svg';
 import bag from '../icons/bag.svg';
-import Burger from './BurgenMenu/Burger';
+import Burger from '../BurgenMenu/Burger';
 import BurgerDropdown from '../dropdowns/BurgerDropdown/BurgerDropdown';
 import {useDispatch, useSelector} from "react-redux";
 import {isAnyDropdownOpenSelectors} from "../../../../../redux/features/dropdown";

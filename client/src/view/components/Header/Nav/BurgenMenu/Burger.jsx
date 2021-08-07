@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
 import Box from '@material-ui/core/Box';
-import HeaderDropdown from "../../../HeaderDropdown/HeaderDropdown";
-import {ListItem, ListItemUpper} from "../../dropdowns/BurgerDropdown/ListItem";
-import Social from "../../dropdowns/BurgerDropdown/Social/Social";
+import HeaderDropdown from "../../HeaderDropdown/HeaderDropdown";
+import {ListItem, ListItemUpper} from "../dropdowns/BurgerDropdown/ListItem";
+import Social from "../dropdowns/BurgerDropdown/Social/Social";
 
 import styles from './Burger.module.scss';
 
 import {useDispatch, useSelector} from "react-redux";
-import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../../../redux/features/dropdown";
+import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../../redux/features/dropdown";
 
 function Burger() {
     const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -16,21 +16,32 @@ function Burger() {
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
 
     useEffect(() => {
-        if (!isAnyDropdownOpen){
+        if (!isAnyDropdownOpen) {
             setActiveDropdown(false);
         }
     }, [isAnyDropdownOpen, isDropdownActive]);
 
     const handleBurgerIconClick = (event) => {
-        if (isDropdownActive){
+        if (isDropdownActive) {
             dispatch(isAnyDropdownOpenActions.closedDropdown());
             setActiveDropdown(false);
         } else {
             dispatch(isAnyDropdownOpenActions.closedDropdown());
-            // setTimeout(() => {
+
+            /**
+             * These setTimeouts are important for functionality,
+             * as they are asynchronous and somehow guarantee that the code
+             * in their callback will be executed only
+             * when call stack in event loop is empty. This means that
+             * all setState and useEffect callbacks will be executed properly
+             */
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.openedDropdown());
+            }, 0);
+
+            setTimeout(() => {
                 setActiveDropdown(true);
-                dispatch(isAnyDropdownOpenActions.openedDropdown())
-            // }, 0)
+            }, 0);
         }
     }
 
