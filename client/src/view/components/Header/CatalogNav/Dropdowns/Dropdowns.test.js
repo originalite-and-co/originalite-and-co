@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import React from "react";
 import WomenDropdown from "./WomenDropdown";
 import store from './../../../../../redux/store/store'
-import MenDropdown from "./MenDropdown";
+import Dropdown from "./Dropdown";
 
 const MockWomenDropdown = () => {
     const fn = jest.fn()
@@ -22,7 +22,7 @@ const MockMenDropdown = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>
-                <MenDropdown onLeave={fn}/>
+                <Dropdown onLeave={fn}/>
             </Provider>
         </BrowserRouter>
     )
@@ -33,7 +33,7 @@ it('should render WomenDropdown', function () {
     render(<MockWomenDropdown/>)
 });
 
-it('should render MenDropdown', function () {
+it('should render Dropdown', function () {
     render(<MockMenDropdown/>)
 });
 
@@ -43,7 +43,7 @@ it(' MockWomenDropdown should contain a list with category items', function () {
     expect(list).toBeInTheDocument()
 });
 
-it('MenDropdown should contain a list with category items', function () {
+it('Dropdown should contain a list with category items', function () {
     render(<MockMenDropdown/>)
     const list = screen.getByTestId('men-list')
     expect(list).toBeInTheDocument()

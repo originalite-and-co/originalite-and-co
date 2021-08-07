@@ -3,23 +3,21 @@ import CatalogNavStyles from "./CatalogNav.module.css";
 import {Link} from "react-router-dom";
 import Box from "@material-ui/core/Box";
 
-export function CatalogNavLink({pathTo, onHoverFunc,styles,text}) {
+export function CatalogNavLink({pathTo, handleHover, styles, text}) {
     return (
-        <Box onMouseEnter={onHoverFunc} className={styles}>
-            <Link to={pathTo}>
-                    {text}
-            </Link>
-        </Box>
+        <Link onMouseEnter={handleHover} className={styles} to={pathTo}>
+            {text}
+        </Link>
     );
 }
 
-export function CatalogNavButton({onClickFunc,styles,text}){
+export function CatalogNavButton({onClickFunc, styles, text}) {
     return (
-            <button type="button"
-                    className={styles}
-                    onClick={onClickFunc}
-            >
-                {text}
-            </button>
+        <button type="button"
+                className={styles}
+                onClick={onClickFunc}
+        >
+            {text}
+        </button>
     )
 }
