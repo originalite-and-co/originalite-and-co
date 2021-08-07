@@ -1,0 +1,60 @@
+a {
+  color: #FFFFFF;
+}
+
+.NavItemBtn.active {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.NavItemBtn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.NavItemBtn:hover {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.catalogNavWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+  padding-bottom: 21px;
+}
+
+.categoryNav {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.categoryList {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.categoryListItem {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.categoryLink {
+  font-family: Open Sans, sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+
+  &:hover {
+    border-bottom: 1px solid #FFFFFF;
+  }
+}
+
+.categoryLinkActive {
+  border-bottom: 1px solid #FFFFFF;
+}
