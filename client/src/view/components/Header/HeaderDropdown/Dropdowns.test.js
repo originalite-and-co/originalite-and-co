@@ -28,16 +28,16 @@ const MockMenDropdown = () => {
 }
 
 
-describe('Dropdown tests', () => {
+describe('HeaderDropdown tests', () => {
     test('should render WomenDropdown', function () {
         render(<MockWomenDropdown/>)
     });
 
-    test('should render Dropdown', function () {
+    test('should render HeaderDropdown', function () {
         render(<MockMenDropdown/>)
     });
 
-    test('Dropdown should contain a list with category items', function () {
+    test('HeaderDropdown should contain a list with category items', function () {
         render(<MockMenDropdown/>)
         const list = screen.getByTestId('men-list')
         expect(list).toBeInTheDocument()

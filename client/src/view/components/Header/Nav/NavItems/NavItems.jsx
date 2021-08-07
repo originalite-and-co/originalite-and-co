@@ -18,7 +18,6 @@ function NavItems() {
   const toggleSearch = () => {
       dispatch(modalOperations.toggleModal("search-modal"))
   };
-
   const toggleBurger = () => {
       dispatch(modalOperations.toggleModal("burger-modal"))
   };

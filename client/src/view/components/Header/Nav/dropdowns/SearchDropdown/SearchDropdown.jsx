@@ -51,7 +51,9 @@ function SearchDropdown() {
                 <TextField value={searchValue} onChange={handleInputChange} fullWidth label="Search for item"/>
                 <CloseIcon className={DropdownStyles.closeIcon}/>
             </Box>
-            <Button text="search" backgroundColor="#000000" color="#FFFFFF" onClick={handleButtonClick}/>
+            <Box className={DropdownStyles.btnWrapper}>
+                <Button text="search" backgroundColor="#000000" color="#FFFFFF" onClick={handleButtonClick}/>
+            </Box>
             {isLoaded && !searchResult.length && informationToast}
         </Box>
     );

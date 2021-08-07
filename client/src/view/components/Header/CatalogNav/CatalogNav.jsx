@@ -7,8 +7,9 @@ import constants from '././.././.././../constants';
 import {CatalogNavLink, CatalogNavButton} from './LinkButtonGenerators'
 import {useDispatch} from "react-redux";
 import useAsyncError from "../../../hooks/useAsyncError";
-import Dropdown from "../Dropdowns/Dropdown";
 import {catalogRequests} from "../../../../api/server";
+import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
+import {modalOperations} from "../../../../redux/features/modal";
 
 function CatalogNav() {
     const [catalog, setCatalog] = useState([]);
@@ -19,6 +20,10 @@ function CatalogNav() {
     const dispatch = useDispatch()
     const sizes = useWindowSize()
     const throwError = useAsyncError();
+
+    const toggleCategories = () => {
+        dispatch(modalOperations.toggleModal("categories"))
+    };
 
     useEffect(useCallback(()=> {
         catalogRequests.getCatalog()
@@ -38,6 +43,7 @@ function CatalogNav() {
             return <NavLink to={`/catalog/${category.id}`}>{category.name}</NavLink>
         }));
         setActiveDropdown(true)
+        toggleCategories()
     }
 
     const mainCatalogNavLinks = catalog
@@ -51,7 +57,9 @@ function CatalogNav() {
                             pathTo={`/catalog/${category.id}`}
                             handleHover={(e) => handleMainNavCatalogLinkAction(e, category.id)}
                             styles={isDropdownActive ? `${CatalogNavStyles.NavItemBtn} active` : CatalogNavStyles.NavItemBtn}
-                            text={category.name}/>
+                            text={category.name}
+
+                        />
                         :
                         <CatalogNavButton
                             onClickFunc={(e) => handleMainNavCatalogLinkAction(e, category.id)}
@@ -64,7 +72,7 @@ function CatalogNav() {
     return (
         <Box className={CatalogNavStyles.catalogNavWrapper} data-testid="catalog-nav">
             {mainCatalogNavLinks}
-            <Dropdown isActive={isDropdownActive} onLeave={() => setActiveDropdown(false)} children={categoryLinks}/>
+            <HeaderDropdown children={categoryLinks} isActive={isDropdownActive} onLeave={() => setActiveDropdown(false)}/>
         </Box>
     );
 }

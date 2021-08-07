@@ -1,5 +1,5 @@
 .active{
-  position: absolute;
+  position: fixed;
   z-index: 1;
   width: 100%;
   right: 0;
@@ -7,6 +7,7 @@
   top: 67px;
   transition: all 0.5s ease-out;
   opacity: 2;
+
 }
 .closed{
   position: absolute;
@@ -23,9 +24,15 @@
   margin-top: 76px;
   margin-bottom: 131px;
   position: relative;
+
 }
 .closeIcon{
   position: absolute;
   top: 24px;
   right: 0px;
+}
+.btnWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

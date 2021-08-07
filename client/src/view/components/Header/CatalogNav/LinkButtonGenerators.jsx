@@ -3,9 +3,13 @@ import CatalogNavStyles from "./CatalogNav.module.css";
 import {Link} from "react-router-dom";
 import Box from "@material-ui/core/Box";
 
-export function CatalogNavLink({pathTo, handleHover, styles, text}) {
+export function CatalogNavLink({pathTo, handleHover, styles, text,onMouseLeave}) {
     return (
-        <Link onMouseEnter={handleHover} className={styles} to={pathTo}>
+        <Link onMouseEnter={handleHover}
+              className={styles}
+              to={pathTo}
+              onMouseLeave={onMouseLeave}
+        >
             {text}
         </Link>
     );
