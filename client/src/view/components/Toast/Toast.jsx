@@ -8,6 +8,10 @@ Toast.propTypes = {
     autoHideDuration: PropTypes.number,
     severity: PropTypes.oneOf(["success", "error", "info", "warning"]),
     variant: PropTypes.oneOf(["filled", "outlined", "standard"]),
+    anchorOrigin: PropTypes.exact({
+        horizontal: PropTypes.oneOf(["center", "left", "right"]),
+        vertical: PropTypes.oneOf(["bottom", "up"])
+    })
 };
 
 Toast.defaultProps = {
@@ -22,12 +26,13 @@ Toast.defaultProps = {
  * @param {Number} autoHideDuration - an amount of time that component should be displayed. 6000 is a default value
  * @param {String} severity - the severity of the alert. This defines the color and icon used.
  * @param {String} variant - the variant to use.
+ * @param {Object} anchorOrigin - The anchor of the Snackbar
  *
  * @returns {JSX.Element}
  * @constructor
  */
 
-function Toast({message, autoHideDuration, severity, variant}) {
+function Toast({message, autoHideDuration, severity, variant, anchorOrigin}) {
     const [isOpen, setOpen] = useState(true);
 
     const handleClose = (event, reason) => {
@@ -39,7 +44,7 @@ function Toast({message, autoHideDuration, severity, variant}) {
     }
 
     return (
-        <Snackbar open={isOpen} onClose={handleClose} autoHideDuration={autoHideDuration} >
+        <Snackbar open={isOpen} onClose={handleClose} anchorOrigin={anchorOrigin} autoHideDuration={autoHideDuration} >
             <MuiAlert
                 action={<CloseIcon data-testid="error-toast-close-icon" onClick={handleClose}/>}
                 onClose={handleClose}

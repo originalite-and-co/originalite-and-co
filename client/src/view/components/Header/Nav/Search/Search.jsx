@@ -62,15 +62,21 @@ function Search(props) {
                 data => {
                     setSearchResult(data);
                     setLoaded(true);
-                    data.length && dispatch(searchResultActions.setSearchResult(data));
-                    data.length && history.push("/products/search")
+                    if (data.length){
+                         dispatch(searchResultActions.setSearchResult(data));
+                         history.push(`/products/search?query=${searchValue}`)
+                        setActiveDropdown(false)
+                        dispatch(isAnyDropdownOpenActions.closedDropdown());
+                    }
                 },
                 error => throwAsyncError(error)
             )
     }
 
 
-    const informationToast = useMemo(() => <Toast message="No items have been found "/>, []);
+    const informationToast = useMemo(() => <Toast
+        message="No items have been found "
+        />, []);
     const dropdownContent = <>
         <Box className={`${styles.textFieldWrapper} wrapper`}>
             <TextField
@@ -91,7 +97,7 @@ function Search(props) {
             <Box onClick={handleIconClick} className={styles.imageWrapper} data-testid="nav-item-search">
                 <img src={search} alt="search icon"/>
             </Box>
-            {isDropdownActive && <HeaderDropdown
+              <HeaderDropdown
                 lockBodyScrolling
                 classNames={{
                     closed: styles.dropdown,
