@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
+
 import {Route, Switch} from 'react-router-dom';
+
 import Home from "../pages/Home/Home";
 import Authentication from "../pages/Authentication/Authentication"
 import Page404 from "../pages/Page404/Page404";
@@ -9,9 +11,9 @@ import Checkout from "../pages/Checkout/Checkout";
 import Catalog from "../pages/Catalog/Catalog";
 import Cart from "../pages/Cart/Cart";
 import Product from "../pages/Product/Product";
+import SearchResult from "../pages/SearchResult/SearchResult";
 
 function AppRoutes() {
-    // eslint-disable-next-line no-unused-vars
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
 
     useEffect(() => {
@@ -20,6 +22,7 @@ function AppRoutes() {
 
     return (
         <Switch>
+            <Route path="/products/search" component={SearchResult}/>
             <Route path="/catalog/:productId" component={Product}/>
             <Route path="/catalog" component={Catalog}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
