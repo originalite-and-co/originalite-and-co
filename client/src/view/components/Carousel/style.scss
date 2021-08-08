@@ -1,0 +1,12 @@
+.swiper__slide {
+  display: flex;
+  height: 100%;
+}
+
+.swiper__image {
+  display: block;
+  height: 320px;
+  width: 100%;
+  object-fit: cover;
+  margin: 0;
+}

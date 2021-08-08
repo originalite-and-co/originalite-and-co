@@ -4,28 +4,29 @@
     "es2021": true,
     "jest": true
   },
-    "extends": [
-//        "plugin:react/recommended",
-//        "airbnb"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "plugins": [
-//        "react"
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
     ],
-    "rules": {
-//        "linebreak-style": 0,
-//        "no-undef": ["error"],
-//        "comma-dangle": [
-//            "error", {
-//                "objects": "always"
-//                }
-//            ],
-//        "react/jsx-props-no-spreading": "off"
-    }
+    "prefer-default-export": 0,
+    "react/prop-types": 0,
+    "no-undef": ["error"],
+    "react/jsx-props-no-spreading": "off"
+  }
 }
