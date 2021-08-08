@@ -3,10 +3,11 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import cartReducer from "./../features/cart/index";
-
+import footerReducer from "../features/footerLinks/index";
 
 const rootReducer = combineReducers({
     ...cartReducer,
+    ...footerReducer
 });
 
 const composeEnhancers = composeWithDevTools(({
