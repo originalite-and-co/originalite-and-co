@@ -11,15 +11,17 @@ import Checkout from "../pages/Checkout/Checkout";
 import Catalog from "../pages/Catalog/Catalog";
 import Cart from "../pages/Cart/Cart";
 import Product from "../pages/Product/Product";
+import SearchResult from "../pages/SearchResult/SearchResult";
 
 import useAsyncError from "../hooks/useAsyncError";
 import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
 
 function AppRoutes() {
-    const throwError = useAsyncError()
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
     const [staticPages, setStaticPages] = useState([]);
+  
+    const throwError = useAsyncError();
 
 
     useEffect(() => {
@@ -51,6 +53,8 @@ function AppRoutes() {
 
     return (
         <Switch>
+
+            <Route path="/products/search" component={SearchResult}/>
             {staticPageRoutes}
             <Route path="/help" render={() => <p>Loading ...</p>}/>
             <Route path="/company" render={() => <p>Loading ...</p>}/>

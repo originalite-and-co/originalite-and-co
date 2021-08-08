@@ -1,0 +1,11 @@
+.dropdown{
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+
+.dropdown.active{
+  opacity: 1;
+}

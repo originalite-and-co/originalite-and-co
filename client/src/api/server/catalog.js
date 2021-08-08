@@ -55,8 +55,6 @@ const updateCatalog = async (data) => {
 };
 
 /**
- *
- * @param {Object} data
  * @returns {Promise<any>}
  */
 
@@ -79,7 +77,7 @@ const getCatalog = async () => {
 
 /**
  *
- * @param {Object} data
+ * @param {String} id
  * @returns {Promise<any>}
  */
 
@@ -102,7 +100,7 @@ const getCategory = async (id) => {
 
 /**
  *
- * @param {Object} data
+ * @param {String} id
  * @returns {Promise<any>}
  */
 

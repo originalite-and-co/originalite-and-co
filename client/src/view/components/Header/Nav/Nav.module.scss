@@ -1,0 +1,15 @@
+.nav{
+  padding: 14px 0px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.nav:after{
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #C4C4C4;
+  position: absolute;
+  bottom: 0;
+}
