@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
 import {Route, Switch} from 'react-router-dom';
 
@@ -13,16 +13,51 @@ import Cart from "../pages/Cart/Cart";
 import Product from "../pages/Product/Product";
 import SearchResult from "../pages/SearchResult/SearchResult";
 
+import useAsyncError from "../hooks/useAsyncError";
+import {linkRequests, pageRequests} from "../../api/server";
+import StaticPage from "../components/StaticPage/StaticPage";
+
 function AppRoutes() {
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
+    const [staticPages, setStaticPages] = useState([]);
+  
+    const throwError = useAsyncError();
+
 
     useEffect(() => {
         setAuthenticated(!!sessionStorage.getItem('token'));
     }, []);
 
+    useEffect(useCallback(() => {
+        pageRequests.retrievePages()
+            .then(
+                data => setStaticPages(data),
+                error => throwError(error)
+            );
+    }, [staticPages]), []);
+
+    let staticPageRoutes;
+
+    if (staticPages.length){
+       staticPageRoutes = staticPages.map(page => {
+           return <Route
+               key={page._id}
+               path={page.url}
+               render={(renderProps) =>
+                   <StaticPage
+                       title={page.title}
+                       htmlContent={page.htmlContent}
+                       {...renderProps}/>}/>
+       })
+    }
+
     return (
         <Switch>
+
             <Route path="/products/search" component={SearchResult}/>
+            {staticPageRoutes}
+            <Route path="/help" render={() => <p>Loading ...</p>}/>
+            <Route path="/company" render={() => <p>Loading ...</p>}/>
             <Route path="/catalog/:productId" component={Product}/>
             <Route path="/catalog" component={Catalog}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
