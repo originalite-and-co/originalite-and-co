@@ -17,7 +17,7 @@ const MockNavItems = () => {
 }
 
 describe("navitems", () => {
-    it('should contain three images', function () {
+    test('should contain three images', function () {
         render(<MockNavItems/>)
         const search = screen.getByAltText('search icon');
         const person = screen.getByAltText('person');

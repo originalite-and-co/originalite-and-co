@@ -15,6 +15,6 @@ const MockBurger = () => {
     )
 }
 
-it('should render burger menu', function () {
+test('should render burger menu', function () {
     render(<MockBurger/>)
 });

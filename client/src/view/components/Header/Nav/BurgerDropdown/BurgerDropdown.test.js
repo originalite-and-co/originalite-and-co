@@ -16,11 +16,11 @@ const MockBurgerDropDown = () => {
 }
 
 describe("BurgerDropdown component", () => {
-    it('renders burger-dropdown without crashing', () => {
+    test('renders burger-dropdown without crashing', () => {
         render(<MockBurgerDropDown/>)
     });
 
-    it('should contain social component', function () {
+    test('should contain social component', function () {
         render(<MockBurgerDropDown/>)
         const social = screen.getByTestId('social')
         expect(social).toBeInTheDocument()

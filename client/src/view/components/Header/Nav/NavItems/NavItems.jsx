@@ -57,7 +57,6 @@ function NavItems() {
                     <Burger/>
                 </Box>
             </Box>}
-            {/*<BurgerDropdown/>*/}
         </Box>
     );
 }

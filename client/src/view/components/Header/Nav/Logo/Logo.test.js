@@ -16,13 +16,13 @@ const MockLogo = () => {
 }
 
 describe("Logo component", () => {
-    it('should have an alt text', function () {
+    test('should have an alt text', function () {
         render(<MockLogo/>)
         const altText = screen.getByAltText('Logo')
         expect(altText).toBeInTheDocument()
     });
 
-    it('should be a link', function () {
+    test('should be a link', function () {
         render(<MockLogo/>)
         const link = screen.getByRole('link')
         expect(link).toBeInTheDocument()

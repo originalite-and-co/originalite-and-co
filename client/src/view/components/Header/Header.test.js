@@ -34,17 +34,17 @@ const MobileHeader = () => {
 }
 
 describe("Header component", () => {
-    it('renders Header without crashing', () => {
+    test('renders Header without crashing', () => {
         render(<MockHeader/>)
     });
 
-    it('should contain nav component', function () {
+    test('should contain nav component', function () {
         render(<MockHeader/>)
         const nav = screen.getByTestId('catalog-nav');
         expect(nav).toBeInTheDocument()
     });
 
-    it('should contain catalog-nav component', function () {
+    test('should contain catalog-nav component', function () {
         render(<MobileHeader/>)
         const catalogNav = screen.getByTestId('catalog-nav')
         expect(catalogNav).toBeInTheDocument()
