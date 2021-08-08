@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
+
 import {Route, Switch} from 'react-router-dom';
+
 import Home from "../pages/Home/Home";
 import Authentication from "../pages/Authentication/Authentication"
 import Page404 from "../pages/Page404/Page404";
@@ -10,16 +12,48 @@ import Catalog from "../pages/Catalog/Catalog";
 import Cart from "../pages/Cart/Cart";
 import Product from "../pages/Product/Product";
 
+import useAsyncError from "../hooks/useAsyncError";
+import {linkRequests, pageRequests} from "../../api/server";
+import StaticPage from "../components/StaticPage/StaticPage";
+
 function AppRoutes() {
-    // eslint-disable-next-line no-unused-vars
+    const throwError = useAsyncError()
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
+    const [staticPages, setStaticPages] = useState([]);
+
 
     useEffect(() => {
         setAuthenticated(!!sessionStorage.getItem('token'));
     }, []);
 
+    useEffect(useCallback(() => {
+        pageRequests.retrievePages()
+            .then(
+                data => setStaticPages(data),
+                error => throwError(error)
+            );
+    }, [staticPages]), []);
+
+    let staticPageRoutes;
+
+    if (staticPages.length){
+       staticPageRoutes = staticPages.map(page => {
+           return <Route
+               key={page._id}
+               path={page.url}
+               render={(renderProps) =>
+                   <StaticPage
+                       title={page.title}
+                       htmlContent={page.htmlContent}
+                       {...renderProps}/>}/>
+       })
+    }
+
     return (
         <Switch>
+            {staticPageRoutes}
+            <Route path="/help" render={() => <p>Loading ...</p>}/>
+            <Route path="/company" render={() => <p>Loading ...</p>}/>
             <Route path="/catalog/:productId" component={Product}/>
             <Route path="/catalog" component={Catalog}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
