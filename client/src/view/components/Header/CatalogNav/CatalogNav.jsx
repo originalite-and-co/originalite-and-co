@@ -76,14 +76,62 @@ function CatalogNav() {
     }
 
     const handleMainCategoryLinkHover = (event, linkId) => {
-        setActiveDropdown(false);
-        renderCategoryLinks(linkId)
-        setActiveDropdown(true);
+        // setActiveDropdown(false);
+        // renderCategoryLinks(linkId)
+        // setActiveDropdown(true);
+        const isLinkTheSame = linkId === activeLinkId;
+
+
+        if (isDropdownActive && !isLinkTheSame && activeLinkId !== null) {
+            setTimeout(() => {
+                setActiveDropdown(false);
+            },0)
+            setTimeout(() => {
+                renderCategoryLinks(linkId);
+            }, 0)
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.closedDropdown())
+            }, 0)
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.openedDropdown())
+            }, 0)
+            setTimeout(() => {
+                setActiveDropdown(true);
+            }, 0)
+            setActiveLinkId(linkId)
+        }
+
+        if (isDropdownActive) {
+            dispatch(isAnyDropdownOpenActions.closedDropdown())
+            setActiveDropdown(false)
+            setActiveLinkId(linkId)
+        } else {
+            renderCategoryLinks(linkId)
+            //close all dropdowns that are active
+            dispatch(isAnyDropdownOpenActions.closedDropdown());
+
+            /**
+             * These setTimeouts are important for functionality,
+             * as they are asynchronous and somehow guarantee that the code
+             * in their callback will be executed only
+             * when call stack in event loop is empty. This means that
+             * all setState and useEffect callbacks will be executed properly
+             */
+            setTimeout(() => {
+                dispatch(isAnyDropdownOpenActions.openedDropdown());
+            }, 0);
+            setTimeout(() => {
+                setActiveDropdown(true);
+            }, 0);
+
+            setTimeout(() => {
+                setActiveLinkId(linkId)
+            })
+        }
     }
 
     const handleMainCategoryLinkClick = (event, linkId) => {
         const isLinkTheSame = linkId === activeLinkId;
-
 
         if (isDropdownActive && !isLinkTheSame && activeLinkId !== null) {
             setTimeout(() => {
@@ -163,7 +211,7 @@ function CatalogNav() {
         dropdownContent = (
             <Box
                 component="nav"
-                className={`${styles.categoryNav} wrapper`}>
+                className={`${styles.categoryNav} ${styles.wrapper}`}>
                 <List className={styles.categoryList} data-testid="men-list">
                     {categoryLinks}
                 </List>
@@ -172,7 +220,7 @@ function CatalogNav() {
     }
 
     return (
-        <Box className={`${styles.catalogNavWrapper} wrapper`} data-testid="catalog-nav">
+        <Box className={`${styles.catalogNavWrapper} ${styles.wrapper}`} data-testid="catalog-nav">
             {mainCategoryLinks}
             <HeaderDropdown
                 classNames={{

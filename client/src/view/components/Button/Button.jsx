@@ -1,9 +1,14 @@
 import React from 'react';
 import ButtonStyles from './Button.module.scss';
+import propTypes from 'prop-types'
 
-// eslint-disable-next-line react/prop-types
+Button.propTypes = {
+  onClick: propTypes.func.isRequired,
+  backgroundColor: propTypes.string,
+  text: propTypes.string
+}
+
 function Button({
-  // eslint-disable-next-line react/prop-types
   onClick, backgroundColor, text, color,
 }) {
   return (

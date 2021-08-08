@@ -15,7 +15,6 @@ HeaderDropdown.propTypes = {
 };
 
 HeaderDropdown.defaultProps = {
-    // onMouseLeave: () => null,
     lockBodyScrolling: false
 }
 

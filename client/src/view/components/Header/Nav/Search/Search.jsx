@@ -17,6 +17,9 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import search from "../icons/search.svg";
 import styles from "./Search.module.scss";
+import useWindowSize from "../../../../hooks/useWindowSize";
+import constants from "../../../../constants";
+import NavItemsStyles from "../NavItems/NavItems.module.scss";
 
 Search.propTypes = {};
 
@@ -31,6 +34,14 @@ function Search(props) {
     const throwAsyncError = useAsyncError();
     const history = useHistory();
 
+    const [isDesktop, setIsDesktop] = useState()
+    const sizes = useWindowSize();
+
+    useEffect(() => {
+        sizes.width >= constants.WINDOW_DESKTOP_SIZE
+            ? setIsDesktop(true)
+            : setIsDesktop(false)
+    }, [])
 
     useEffect(() => {
         if (!isAnyDropdownOpen) {
@@ -108,7 +119,8 @@ function Search(props) {
     return (
         <>
             <Box onClick={handleIconClick} className={styles.imageWrapper} data-testid="nav-item-search">
-                <img src={search} alt="search icon"/>
+                <img className={styles.icon} src={search} alt="search icon"/>
+                {isDesktop && <p>Search</p>}
             </Box>
             <HeaderDropdown
                 lockBodyScrolling
@@ -118,7 +130,7 @@ function Search(props) {
                 }}
                 isActive={isDropdownActive}
                 children={dropdownContent}
-            />}
+            />
         </>
     );
 }

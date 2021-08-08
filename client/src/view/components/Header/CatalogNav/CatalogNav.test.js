@@ -40,15 +40,17 @@ const MockCatalog = () => {
   )
 }
 
-it('should render the button and not the link', function () {
-  render(<MockCatalogItem/>);
-  const link = screen.getByRole('link')
-  expect(link).toBeInTheDocument()
-});
-it('should render the CatalogNav component', function () {
-  render(<MockCatalog/>);
-  expect(screen.getByTestId('catalog-nav')).toBeInTheDocument()
-});
+describe("CatalogNav component", () => {
+    it('should render the button and not the link', function () {
+        render(<MockCatalogItem/>);
+        const link = screen.getByRole('link')
+        expect(link).toBeInTheDocument()
+    });
+    it('should render the CatalogNav component', function () {
+        render(<MockCatalog/>);
+        expect(screen.getByTestId('catalog-nav')).toBeInTheDocument()
+    });
+})
 
 
 

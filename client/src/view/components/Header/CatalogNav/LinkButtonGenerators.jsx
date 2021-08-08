@@ -1,7 +1,5 @@
 import React from 'react';
-import CatalogNavStyles from "./CatalogNav.module.scss";
 import {Link} from "react-router-dom";
-import Box from "@material-ui/core/Box";
 
 export function CatalogNavLink({pathTo, handleHover, styles, text,onMouseLeave}) {
     return (

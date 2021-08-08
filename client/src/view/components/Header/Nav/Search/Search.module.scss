@@ -1,3 +1,6 @@
+@import "./../../../../assets/styles/variables";
+@import "src/view/assets/typography/typography";
+
 .imageWrapper{
   padding-right: 30px;
   position: relative;
@@ -29,4 +32,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media screen and (min-width: $min-desktop){
+  .imageWrapper{
+    padding-right: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: Josefin Sans, sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    color: #E2DFDF;
+  }
+  .dropdown{
+    top: 95px;
+  }
+  .icon{
+    margin-right: 5px;
+  }
 }
