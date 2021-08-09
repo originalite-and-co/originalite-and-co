@@ -1,19 +1,14 @@
-import types from './types'
-import links from "../../../api/server/links";
+import {footerLinksTypes} from "./index";
 
-const getLinksAction = data => ({
-    type: types.GET_LINKS,
+const {GOT_LINKS} = footerLinksTypes;
+
+const getLinks = data => ({
+    type: GOT_LINKS,
     payload: data
 })
 
-const getDataThunk = () => dispatch => {
-    links.retrieveLinks()
-        .then(data => dispatch(getLinksAction(data)))
-}
-
 const actions = {
-    getDataThunk,
-    getLinksAction
+    getLinks
 };
 
 export default actions;

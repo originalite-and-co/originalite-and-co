@@ -1,25 +1,11 @@
-import {types} from "./index";
+import {footerLinksTypes} from "./index";
 
-const initialState = [
-    {
-        title: '',
-        links: [{}, {}, {}, {}]
-    },
-    {
-        title: '',
-        links: [{}, {}, {}]
-    },
-    {
-        title: '',
-        links: [{}, {}, {}]
-    }
-];
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = [], action) => {
     const {type, payload} = action;
+    const {GOT_LINKS} = footerLinksTypes;
 
     switch (type) {
-        case types.GET_LINKS:
+        case GOT_LINKS:
             return payload
         default:
             return state

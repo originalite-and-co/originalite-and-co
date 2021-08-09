@@ -1,0 +1,23 @@
+.footer {
+  background-color: #000;
+  min-width: 320px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+
+  .title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .link {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+    color: #fff;
+    text-decoration: none;
+  }
+}

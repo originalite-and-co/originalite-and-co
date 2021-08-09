@@ -1,7 +1,7 @@
-const GET_LINKS = 'GET_LINKS';
+const GOT_LINKS = 'footerLinks/gotLinks';
 
 const types = {
-    GET_LINKS
+    GOT_LINKS
 };
 
 export default types;
