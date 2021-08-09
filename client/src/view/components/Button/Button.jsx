@@ -9,11 +9,11 @@ Button.propTypes = {
 }
 
 function Button({
-  onClick, backgroundColor, text, color,
+  onClick, backgroundColor, text, color, type
 }) {
   return (
     <button
-      type="button"
+      type={type}
       className={ButtonStyles.button}
       style={{ backgroundColor, color, }}
       onClick={(event) => onClick(event)}

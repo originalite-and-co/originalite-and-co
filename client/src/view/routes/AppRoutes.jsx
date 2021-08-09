@@ -53,7 +53,6 @@ function AppRoutes() {
 
     return (
         <Switch>
-
             <Route path="/products/search" component={SearchResult}/>
             {staticPageRoutes}
             <Route path="/help" render={() => <p>Loading ...</p>}/>

@@ -12,7 +12,8 @@ const CUSTOMERS_PATH = '/api/customers';
  * @param {String} token - authorization token
  */
 const addTokenToSessionStorage = (token) => {
-  sessionStorage.setItem('token', token);
+  const splitToken = token.token.split(' ')[1]
+  sessionStorage.setItem('token', splitToken);
 };
 
 /**
@@ -62,7 +63,7 @@ const logIn = async (credentials) => {
 
     addTokenToSessionStorage(await response.json());
   } catch (error) {
-    throw generateFetchException('Loggin in', error);
+    throw generateFetchException('Login in', error);
   }
 };
 

@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Box} from "@material-ui/core";
+import Nav from "../../components/Header/Nav/Nav";
+import AuthenticationContent from "./AuthenticationContent/AuthenticationContent";
 
 Authentication.propTypes = {
 
@@ -7,9 +10,10 @@ Authentication.propTypes = {
 
 function Authentication(props) {
     return (
-        <div>
-            Login/Register
-        </div>
+        <Box>
+            <Nav/>
+            <AuthenticationContent/>
+        </Box>
     );
 }
 
