@@ -1,5 +1,5 @@
-import reducers from './index';
-import {footerLinksActions} from "./index";
+import reducers from './reducers';
+import footerLinksActions from "./actions";
 
 describe('testing getLinks reducer', () => {
     const {getLinks} = footerLinksActions;
@@ -12,9 +12,11 @@ describe('testing getLinks reducer', () => {
         }
     ];
 
-    test('getDataAction', () => {
-        const action = getLinks([{title: '', links: [{}, {}, {}]}]);
+    const linkData = [{title: '', links: [{}, {}, {}]}]
 
-        expect(footerLinks(initialState, action)).toStrictEqual([{title: '', links: [{}, {}, {}]}]);
+    test('getDataAction', () => {
+        const action = getLinks(linkData);
+
+        expect(footerLinks(initialState, action)).toStrictEqual(linkData);
     })
 })

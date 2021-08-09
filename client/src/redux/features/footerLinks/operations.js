@@ -1,10 +1,10 @@
-import links from "../../../api/server/links";
-import {footerLinksActions} from "./index";
+import {linkRequests} from "../../../api/server/index.js";
+import footerLinksActions from "./actions";
 
-const {getLinks} = footerLinksActions
+const {getLinks} = footerLinksActions;
 
 const getData = () => dispatch => {
-    links.retrieveLinks()
+    linkRequests.retrieveLinks()
         .then(data => dispatch(getLinks(data)))
 }
 

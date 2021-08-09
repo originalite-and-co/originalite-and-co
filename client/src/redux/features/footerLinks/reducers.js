@@ -1,4 +1,4 @@
-import {footerLinksTypes} from "./index";
+import footerLinksTypes from "./types";
 
 const reducer = (state = [], action) => {
     const {type, payload} = action;
