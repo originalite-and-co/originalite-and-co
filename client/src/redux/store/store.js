@@ -5,12 +5,13 @@ import thunk from "redux-thunk";
 import cartReducer from "./../features/cart/index";
 import isAnyDropdownOpenReducer from '../features/dropdown/index';
 import searchResult from "./../features/searchResult/index";
-
+import footerReducer from "../features/footerLinks/index";
 
 const rootReducer = combineReducers({
     ...cartReducer,
     ...isAnyDropdownOpenReducer,
-    ...searchResult
+    ...searchResult,
+    ...footerReducer
 });
 
 const composeEnhancers = composeWithDevTools(({
