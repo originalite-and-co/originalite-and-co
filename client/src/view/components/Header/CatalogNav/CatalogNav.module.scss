@@ -1,0 +1,91 @@
+@import "./../../../assets/styles/variables";
+
+a {
+  color: #FFFFFF;
+}
+
+.NavItemBtn.active {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.NavItemBtn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.NavItemBtn:hover {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.wrapper {
+  padding-left: 27px;
+  padding-right: 27px;
+}
+
+.catalogNavWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+  padding-bottom: 21px;
+}
+
+.dropdown {
+  height: 100vh;
+  right: 200vw;
+  background-color: #000000;
+  top: 124px;
+}
+
+.dropdownActive{
+  right: 0;
+}
+
+.categoryNav {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.categoryList {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.categoryListItem {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.categoryLink {
+  font-family: Open Sans, sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+
+  &:hover {
+    border-bottom: 1px solid #FFFFFF;
+  }
+}
+
+.categoryLinkActive {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+
+@media screen and (min-width: $min-desktop){
+  .wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 335px;
+  }
+  .dropdown {
+    top: 93px;
+    height: 50vh;
+  }
+}

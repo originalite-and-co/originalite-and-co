@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from "../../components/Header/Header";
 
-Home.propTypes = {};
+Home.propTypes = {
+
+};
 
 function Home(props) {
-    return (
-        <>
-            <div>Home</div>
-        </>
-    );
+  return (
+    <>
+        <Header/>
+        <div>Home</div>
+    </>
+  );
 }
 
 export default Home;
