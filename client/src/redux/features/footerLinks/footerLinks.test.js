@@ -1,11 +1,28 @@
-import getDataReducer from './reducer';
-import {getDataAction} from "./actions";
+import reducers from './index';
+import {actions} from "./index";
 
-describe('testing getData reducer', () => {
-    const initialState = [];
+describe('testing getLinks reducer', () => {
+    const {getLinksAction} = actions;
+    const {footerLinks} = reducers;
+
+    const initialState = [
+        {
+            title: '',
+            links: [{}, {}, {}, {}]
+        },
+        {
+            title: '',
+            links: [{}, {}, {}]
+        },
+        {
+            title: '',
+            links: [{}, {}, {}]
+        }
+    ];
 
     test('getDataAction', () => {
-        const action = getDataAction([{}, {}, {}, {}, {}]);
-        expect(getDataReducer(initialState, action)).toStrictEqual([{}, {}, {}, {}, {}]);
+        const action = getLinksAction([{title: '', links: [{}, {}, {}, {}]}, {title: '', links: [{}, {}, {}]}, {title: '', links: [{}, {}, {}]}]);
+
+        expect(footerLinks(initialState, action)).toStrictEqual([{title: '', links: [{}, {}, {}, {}]}, {title: '', links: [{}, {}, {}]}, {title: '', links: [{}, {}, {}]}]);
     })
 })

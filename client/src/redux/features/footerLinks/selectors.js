@@ -1,4 +1,4 @@
-const footer = state => state.footer;
+const footer = state => state.footerLinks;
 
 const selectors = {
     footer

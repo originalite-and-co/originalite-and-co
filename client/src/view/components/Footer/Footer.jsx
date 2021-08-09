@@ -30,7 +30,6 @@ const useStyles = makeStyles({
     }
 });
 
-
 const Footer = () => {
     const dispatch = useDispatch();
     const links = useSelector(selectors.footer);
@@ -47,10 +46,10 @@ const Footer = () => {
                     <Typography variant="h6" component="h6"
                                 className={classes.title}>{item.title}</Typography>
                 </Box>
-                {item.links.map(item => {
+                {item.links.map((item, index) => {
                     return (
                         <Box textAlign="left" pb="12px">
-                            <Link to={item.url} className={classes.link}>{item.description}</Link>
+                            <Link to={item.url} className={classes.link} key={index}>{item.description}</Link>
                         </Box>
                     )
                 })}
@@ -59,7 +58,7 @@ const Footer = () => {
     })
 
     return (
-        <footer className={classes.root} data-testid='footer'>
+        <footer className={classes.root} data-testid="footer">
             <Container>
                 <Grid container>
                     {footerContent}

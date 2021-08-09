@@ -12,7 +12,8 @@ const getDataThunk = () => dispatch => {
 }
 
 const actions = {
-    getDataThunk
+    getDataThunk,
+    getLinksAction
 };
 
 export default actions;

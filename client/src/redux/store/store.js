@@ -10,7 +10,7 @@ import footerReducer from "../features/footerLinks/index";
 const rootReducer = combineReducers({
     ...cartReducer,
     ...isAnyDropdownOpenReducer,
-    ...searchResult
+    ...searchResult,
     ...footerReducer
 });
 

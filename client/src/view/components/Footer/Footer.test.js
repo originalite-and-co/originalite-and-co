@@ -1,27 +1,31 @@
 import React from "react";
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import Footer from './Footer';
+import '@testing-library/jest-dom/extend-expect';
+import {render} from "@testing-library/react";
+import Footer from './Footer'
+import store from '../../../redux/store/store';
 import {Provider} from "react-redux";
-import store from "../../../redux/store/store";
+import {Router} from "@material-ui/icons";
+import {BrowserRouter} from 'react-router-dom';
 
 const MockFooter = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>
-                <Footer/>
+                <Router>
+                    <Footer/>
+                </Router>
             </Provider>
         </BrowserRouter>
     )
 }
 
-it('renders footerLinks without crashing', () => {
-    render(<MockFooter/>)
-});
+describe('testing footer', () => {
+    test('renders Footer without crashing', () => {
+        render(<MockFooter/>)
+    });
 
-it('should contain footerLinks component', function () {
-    render(<MockFooter/>)
-    const footer = screen.getByTestId('footer');
-    expect(footer).toBeInTheDocument()
-});
-
+    test('should contain root className', () => {
+        const { container } = render(<MockFooter/>)
+        container.querySelector('.makeStyles-root-1')
+    });
+})

@@ -1,6 +1,19 @@
 import {types} from "./index";
 
-const initialState = [];
+const initialState = [
+    {
+        title: '',
+        links: [{}, {}, {}, {}]
+    },
+    {
+        title: '',
+        links: [{}, {}, {}]
+    },
+    {
+        title: '',
+        links: [{}, {}, {}]
+    }
+];
 
 const reducer = (state = initialState, action) => {
     const {type, payload} = action;
@@ -14,7 +27,7 @@ const reducer = (state = initialState, action) => {
 }
 
 const reducers = {
-    footer: reducer,
+    footerLinks: reducer,
 };
 
 export default reducers
