@@ -8,18 +8,21 @@ import {Provider} from "react-redux";
 import ErrorBoundary from "./view/components/ErrorBoundary/ErrorBoundary";
 import Toast from "./view/components/Toast/Toast";
 import './view/assets/styles/index.scss';
+import {CloudinaryContext} from "cloudinary-react";
 
 const errorToast = <Toast
     message="An error has occurred. Please try again later"
     severity="error"
-    />
+/>
 
 ReactDOM.render(
     <React.StrictMode>
         <ErrorBoundary fallback={errorToast}>
             <BrowserRouter>
                 <Provider store={store}>
-                    <App/>
+                    <CloudinaryContext cloudName="originalite-and-co">
+                        <App/>
+                    </CloudinaryContext>
                 </Provider>
             </BrowserRouter>
         </ErrorBoundary>
