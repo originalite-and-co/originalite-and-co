@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
+import { sliderRequests } from '../../../api/server';
 import 'swiper/swiper-bundle.css';
 import './style.scss';
 
@@ -33,7 +34,17 @@ const CarouselList = ({ images }) => {
     ))
   );
 
-  return <Swiper {...swiperListParam}>{slides}</Swiper>;
+  useEffect(async () => {
+    const slides = await sliderRequests.getSlides();
+
+    console.log(slides);
+  }, []);
+
+  return (
+    <div className="eke">
+      <Swiper {...swiperListParam}>{slides}</Swiper>
+    </div>
+  );
 };
 
 export default CarouselList;

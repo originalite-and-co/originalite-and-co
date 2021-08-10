@@ -1,7 +1,7 @@
 import {
   generateHeaders,
   generateResponseException,
-  generateFetchException,
+  generateFetchException
 } from './index';
 
 const CUSTOMERS_PATH = '/api/customers';
@@ -26,7 +26,7 @@ const createCustomer = async (data) => {
     const response = await fetch(CUSTOMERS_PATH, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -53,7 +53,7 @@ const logIn = async (credentials) => {
     const response = await fetch(`${CUSTOMERS_PATH}/login`, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(credentials),
+      body: JSON.stringify(credentials)
     });
 
     if (!response.ok) {
@@ -75,7 +75,7 @@ const retrieveCustomer = async () => {
   try {
     const response = await fetch(`${CUSTOMERS_PATH}/customer`, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -99,7 +99,7 @@ const updateCustomer = async (data) => {
     const response = await fetch(CUSTOMERS_PATH, {
       method: 'PUT',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -126,8 +126,8 @@ const changeCustomerPassword = async (previousPassword, newPassword) => {
       headers: generateHeaders(),
       body: JSON.stringify({
         password: previousPassword,
-        newPassword,
-      }),
+        newPassword
+      })
     });
 
     if (!response.ok) {
@@ -146,7 +146,7 @@ const customers = {
   createCustomer,
   logIn,
   retrieveCustomer,
-  updateCustomer,
+  updateCustomer
 };
 
 export default customers;

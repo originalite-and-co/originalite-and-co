@@ -1,7 +1,7 @@
 import {
   generateFetchException,
   generateHeaders,
-  generateResponseException,
+  generateResponseException
 } from './index';
 
 const SLIDER_PATH = '/api/slider';
@@ -17,7 +17,7 @@ const addSlide = async (data) => {
     const response = await fetch(SLIDER_PATH, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -35,7 +35,7 @@ const updateSlide = async (data, id) => {
     const response = await fetch(`${SLIDER_PATH}/${id}`, {
       method: 'PUT',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -52,7 +52,7 @@ const getSlides = async () => {
   try {
     const response = await fetch(SLIDER_PATH, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -69,7 +69,7 @@ const deleteSlide = async (id) => {
   try {
     const response = await fetch(`${SLIDER_PATH}/${id}`, {
       method: 'DELETE',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -86,7 +86,7 @@ const catalog = {
   addSlide,
   deleteSlide,
   getSlides,
-  updateSlide,
+  updateSlide
 };
 
 export default catalog;

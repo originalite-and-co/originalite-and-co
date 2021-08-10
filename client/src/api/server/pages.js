@@ -1,6 +1,10 @@
-import {generateFetchException, generateHeaders, generateResponseException} from "./index";
+import {
+  generateFetchException,
+  generateHeaders,
+  generateResponseException
+} from './index';
 
-const PAGES_PATH = "/api/pages";
+const PAGES_PATH = '/api/pages';
 
 /**
  *
@@ -13,21 +17,21 @@ const PAGES_PATH = "/api/pages";
  * @returns {Promise<any>}
  */
 const createPage = async (data) => {
-    try {
-        const response = await fetch(PAGES_PATH, {
-            method: "POST",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
+  try {
+    const response = await fetch(PAGES_PATH, {
+      method: 'POST',
+      headers: generateHeaders(),
+      body: JSON.stringify(data)
+    });
 
-        if (!response.ok) {
-            throw generateResponseException("create a page", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("creating a page", error);
+    if (!response.ok) {
+      throw generateResponseException('create a page', response);
     }
+
+    return await response.json();
+  } catch (error) {
+    throw generateFetchException('creating a page', error);
+  }
 };
 
 /**
@@ -36,20 +40,20 @@ const createPage = async (data) => {
  * @returns {Promise<any>}
  */
 const retrieveLink = async (customId) => {
-    try {
-        const response = await fetch(`${PAGES_PATH}/${customId}`, {
-            method: "GET",
-            headers: generateHeaders()
-        });
+  try {
+    const response = await fetch(`${PAGES_PATH}/${customId}`, {
+      method: 'GET',
+      headers: generateHeaders()
+    });
 
-        if (!response.ok) {
-            throw generateResponseException("retrieve a link", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("retrieving a link", error);
+    if (!response.ok) {
+      throw generateResponseException('retrieve a link', response);
     }
+
+    return await response.json();
+  } catch (error) {
+    throw generateFetchException('retrieving a link', error);
+  }
 };
 
 /**
@@ -59,45 +63,45 @@ const retrieveLink = async (customId) => {
  * @returns {Promise<any>}
  */
 const updateLink = async (data, customId) => {
-    try {
-        const response = await fetch(`${PAGES_PATH}/${customId}`, {
-            method: "PUT",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
+  try {
+    const response = await fetch(`${PAGES_PATH}/${customId}`, {
+      method: 'PUT',
+      headers: generateHeaders(),
+      body: JSON.stringify(data)
+    });
 
-        if (!response.ok) {
-            throw generateResponseException("update a link", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("updating a link", error);
+    if (!response.ok) {
+      throw generateResponseException('update a link', response);
     }
+
+    return await response.json();
+  } catch (error) {
+    throw generateFetchException('updating a link', error);
+  }
 };
 
 const deleteLink = async (customId) => {
-    try{
-        const response = await fetch(`${PAGES_PATH}/${customId}`, {
-            method: "DELETE",
-            headers: generateHeaders()
-        });
+  try {
+    const response = await fetch(`${PAGES_PATH}/${customId}`, {
+      method: 'DELETE',
+      headers: generateHeaders()
+    });
 
-        if (!response.ok) {
-            throw generateResponseException("delete a link", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("deleting a link", error);
+    if (!response.ok) {
+      throw generateResponseException('delete a link', response);
     }
-}
+
+    return await response.json();
+  } catch (error) {
+    throw generateFetchException('deleting a link', error);
+  }
+};
 
 const pages = {
-    createPage,
-    retrieveLink,
-    updateLink,
-    deleteLink
+  createPage,
+  retrieveLink,
+  updateLink,
+  deleteLink
 };
 
 export default pages;

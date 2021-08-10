@@ -1,7 +1,7 @@
 import {
   generateFetchException,
   generateHeaders,
-  generateResponseException,
+  generateResponseException
 } from './index';
 
 const PRODUCTS_PATH = '/api/products';
@@ -16,7 +16,7 @@ const createProduct = async (data) => {
     const response = await fetch(PRODUCTS_PATH, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -42,7 +42,7 @@ const searchForProduct = async (data) => {
     const response = await fetch(`${PRODUCTS_PATH}/search`, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -63,7 +63,7 @@ const retrieveProduct = async () => {
   try {
     const response = await fetch(PRODUCTS_PATH, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -85,7 +85,7 @@ const retrieveProductByItemNumber = async (itemNumber) => {
   try {
     const response = await fetch(`${PRODUCTS_PATH}/${itemNumber}`, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -111,7 +111,7 @@ const retrieveByQuery = async (query) => {
   try {
     const response = await fetch(`${PRODUCTS_PATH}/filter?${query}`, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -136,7 +136,7 @@ const updateProduct = async (id, data) => {
     const response = await fetch(`${PRODUCTS_PATH}/${id}`, {
       method: 'PUT',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -155,7 +155,7 @@ const product = {
   retrieveProduct,
   retrieveProductByItemNumber,
   retrieveByQuery,
-  updateProduct,
+  updateProduct
 };
 
 export default product;

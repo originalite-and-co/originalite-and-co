@@ -1,7 +1,7 @@
 import {
   generateFetchException,
   generateHeaders,
-  generateResponseException,
+  generateResponseException
 } from './index';
 
 const CATALOG_PATH = '/api/catalog';
@@ -17,7 +17,7 @@ const createCatalog = async (data) => {
     const response = await fetch(CATALOG_PATH, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -41,7 +41,7 @@ const updateCatalog = async (data) => {
     const response = await fetch(CATALOG_PATH, {
       method: 'PUT',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -64,7 +64,7 @@ const getCatalog = async () => {
   try {
     const response = await fetch(CATALOG_PATH, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -87,7 +87,7 @@ const getCategory = async (id) => {
   try {
     const response = await fetch(`${CATALOG_PATH}/${id}`, {
       method: 'POST',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -110,7 +110,7 @@ const deleteCategory = async (id) => {
   try {
     const response = await fetch(`${CATALOG_PATH}/${id}`, {
       method: 'DELETE',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -128,7 +128,7 @@ const catalog = {
   getCategory,
   getCatalog,
   updateCatalog,
-  createCatalog,
+  createCatalog
 };
 
 export default catalog;

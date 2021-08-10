@@ -1,7 +1,7 @@
 import {
   generateFetchException,
   generateHeaders,
-  generateResponseException,
+  generateResponseException
 } from './index';
 
 const CART_PATH = '/api/cart';
@@ -17,7 +17,7 @@ const createCart = async (data) => {
     const response = await fetch(CART_PATH, {
       method: 'POST',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -41,7 +41,7 @@ const updateCart = async (data) => {
     const response = await fetch(CART_PATH, {
       method: 'PUT',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -65,7 +65,7 @@ const addProductToCart = async (data, id) => {
     const response = await fetch(`${CART_PATH}/${id}`, {
       method: 'PUT',
       headers: generateHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     if (!response.ok) {
@@ -88,7 +88,7 @@ const decreaseProductQuantity = async (id) => {
   try {
     const response = await fetch(`${CART_PATH}/product/${id}`, {
       method: 'DELETE',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -111,7 +111,7 @@ const deleteProductFromCart = async (id) => {
   try {
     const response = await fetch(`${CART_PATH}/${id}`, {
       method: 'DELETE',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -134,7 +134,7 @@ const getCart = async () => {
   try {
     const response = await fetch(CART_PATH, {
       method: 'GET',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -151,7 +151,7 @@ const deleteCart = async () => {
   try {
     const response = await fetch(CART_PATH, {
       method: 'DELETE',
-      headers: generateHeaders(),
+      headers: generateHeaders()
     });
 
     if (!response.ok) {
@@ -171,7 +171,7 @@ const cart = {
   decreaseProductQuantity,
   deleteProductFromCart,
   getCart,
-  deleteCart,
+  deleteCart
 };
 
 export default cart;

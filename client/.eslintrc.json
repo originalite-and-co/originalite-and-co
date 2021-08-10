@@ -4,29 +4,30 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  // "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": 12,
     "sourceType": "module"
-  },
-  "plugins": ["react"],
-  "rules": {
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "never",
-        "objects": "never",
-        "imports": "never",
-        "exports": "never",
-        "functions": "never"
-      }
-    ],
-    "prefer-default-export": 0,
-    "react/prop-types": 0,
-    "no-undef": ["error"],
-    "react/jsx-props-no-spreading": "off"
   }
+  // "plugins": ["react"],
+  // "rules": {
+  //   "comma-dangle": [
+  //     "error",
+  //     {
+  //       "arrays": "never",
+  //       "objects": "never",
+  //       "imports": "never",
+  //       "exports": "never",
+  //       "functions": "never"
+  //     }
+  //   ],
+  //   "prefer-default-export": 0,
+  //   "react/prop-types": 0,
+  //   "no-undef": "off",
+  //   "no-unused-vars": "off",
+  //   "react/jsx-props-no-spreading": "off"
+  // }
 }
