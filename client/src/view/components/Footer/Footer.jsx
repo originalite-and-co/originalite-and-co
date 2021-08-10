@@ -15,24 +15,22 @@ const Footer = () => {
             dispatch(getData())
         }, [dispatch])
 
-        const checkTypeLink = url => {
-            if (url.includes('https')) return true
-        }
+        const checkTypeLink = url => url.includes('https') || url.includes('http')
 
-        const footerContent = links.map((item, index) => {
+        const footerContent = links.map(item => {
             return (
-                <Grid xs={12} sm={4} item key={index}>
+                <Grid xs={12} sm={4} item key={item._id}>
                     <Box textAlign="left" paddingTop={1.5} paddingBottom={2}>
                         <Typography variant="h6" component="h6"
                                     className={FooterStyles.title}>{item.title}</Typography>
                     </Box>
-                    {item.links.map((item, index) => {
+                    {item.links.map(item => {
                         return (
-                            <Box textAlign="left" pb="12px">
+                            <Box textAlign="left" pb="12px" key={item._id}>
                                 {checkTypeLink(item.url) ?
-                                    <a href={item.url} className={FooterStyles.link} key={index}
+                                    <a href={item.url} className={FooterStyles.link}
                                        target="_blank">{item.description}</a> :
-                                    <Link to={item.url} className={FooterStyles.link} key={index}>{item.description}</Link>}
+                                    <Link to={item.url} className={FooterStyles.link}>{item.description}</Link>}
                             </Box>
                         )
                     })}
@@ -41,13 +39,13 @@ const Footer = () => {
         })
 
         return (
-            <footer className={FooterStyles.footer} data-testid="footer">
+            <Box component="footer" className={FooterStyles.footer} data-testid="footer">
                 <Container>
                     <Grid container>
                         {footerContent}
                     </Grid>
                 </Container>
-            </footer>
+            </Box>
         )
     }
 ;
