@@ -4,30 +4,6 @@ a {
   color: #FFFFFF;
 }
 
-.NavItemBtn.active {
-  border-bottom: 1px solid #FFFFFF;
-}
-
-.NavItemBtn {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 12px;
-  line-height: 12px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.NavItemBtn:hover {
-  border-bottom: 1px solid #FFFFFF;
-}
-
-.wrapper {
-  padding-left: 27px;
-  padding-right: 27px;
-}
-
 .catalogNavWrapper {
   display: flex;
   justify-content: space-between;
@@ -47,7 +23,7 @@ a {
 }
 
 .categoryNav {
-  height: 100%;
+  height: 70%;
   overflow-y: auto;
 }
 
@@ -56,6 +32,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-bottom: 40px;
 }
 
 .categoryListItem {

@@ -10,19 +10,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {catalogRequests} from "../../../../api/server";
 import constants from '././.././.././../constants';
 
-import {CatalogNavLink, CatalogNavButton} from './LinkButtonGenerators'
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import {List} from "@material-ui/core";
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../redux/features/dropdown";
+import MainCategoryLink from "../MainCategoryLink/MainCategoryLink";
 
 function CatalogNav() {
     const [catalog, setCatalog] = useState([]);
     const [categoryLinks, setCategoryLinks] = useState([]);
     const [isDropdownActive, setActiveDropdown] = useState(false);
     const [activeLinkId, setActiveLinkId] = useState(null)
-    const [isDesktop, setIsDesktop] = useState();
+    const [isDesktop, setIsDesktop] = useState(false);
 
-    const sizes = useWindowSize()
+    const {width} = useWindowSize()
     const throwError = useAsyncError();
 
     const dispatch = useDispatch();
@@ -46,8 +46,8 @@ function CatalogNav() {
     }, [catalog]), []);
 
     useEffect(() => {
-        sizes.width >= constants.WINDOW_DESKTOP_SIZE ? setIsDesktop(true) : setIsDesktop(false)
-    }, [])
+        setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
+    }, [isDesktop])
 
     const handleCategoryLinkClick = (event) => {
         document.body.classList.remove("lock-scroll");
@@ -62,7 +62,7 @@ function CatalogNav() {
         if (isDropdownActive && !isLinkTheSame && activeLinkId !== null) {
             setTimeout(() => {
                 setActiveDropdown(false);
-            },0)
+            }, 0)
             setTimeout(() => {
                 renderCategoryLinks(linkId);
             }, 0)
@@ -131,23 +131,12 @@ function CatalogNav() {
     const mainCategoryLinks = catalog
         .filter(category => category.parentId === "null")
         .map(category => {
-            return (
-                <Box key={category._id}>
-                    {isDesktop
-                        ?
-                        <CatalogNavLink
-                            pathTo={`/catalog/${category.id}`}
-                            handleHover={(e) => handleMainCategoryLinkAction(e, category.id)}
-                            styles={isDropdownActive ? `${styles.NavItemBtn} active` : styles.NavItemBtn}
-                            text={category.name}/>
-                        :
-                        <CatalogNavButton
-                            onClickFunc={(e) => handleMainCategoryLinkAction(e, category.id)}
-                            styles={isDropdownActive ? `${styles.NavItemBtn} active` : styles.NavItemBtn}
-                            text={category.name}/>
-                    }
-                </Box>
-            )
+            return <MainCategoryLink
+                category={category}
+                onHover={handleMainCategoryLinkAction}
+                isDesktop={isDesktop}
+                isDropdownActive={isDropdownActive}
+                onClick={handleMainCategoryLinkAction}/>
         });
 
     let dropdownContent;
@@ -155,7 +144,7 @@ function CatalogNav() {
         dropdownContent = (
             <Box
                 component="nav"
-                className={`${styles.categoryNav} ${styles.wrapper}`}>
+                className={`${styles.categoryNav} wrapper`}>
                 <List className={styles.categoryList} data-testid="men-list">
                     {categoryLinks}
                 </List>
@@ -164,7 +153,13 @@ function CatalogNav() {
     }
 
     return (
-        <Box className={`${styles.catalogNavWrapper} ${styles.wrapper}`} data-testid="catalog-nav">
+        <List
+            disablePadding
+            className={isDesktop
+            ? styles.catalogNavWrapper
+            : `${styles.catalogNavWrapper} wrapper`}
+             data-testid="catalog-nav"
+        >
             {mainCategoryLinks}
             <HeaderDropdown
                 classNames={{
@@ -173,12 +168,14 @@ function CatalogNav() {
                 }}
                 lockBodyScrolling
                 isActive={isDropdownActive}
-                onLeave={() => {
-                    setActiveDropdown(false)
-                    dispatch(isAnyDropdownOpenActions.closedDropdown())
+                onMouseLeave={() => {
+                    if (isDesktop){
+                        dispatch(isAnyDropdownOpenActions.closedDropdown())
+                        setActiveDropdown(false)
+                    }
                 }}
                 children={dropdownContent}/>
-        </Box>
+        </List>
     );
 }
 
@@ -204,7 +201,7 @@ function getAllChildCategories(catalog, linkId) {
     return result;
 }
 
-function generateCategoryPath ({id, parentId}) {
+function generateCategoryPath({id, parentId}) {
     return id.replace(`${parentId}-`, `${parentId}/`);
 }
 

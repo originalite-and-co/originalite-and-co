@@ -1,0 +1,23 @@
+.navItem {
+  flex: 1;
+}
+
+.navItemBtn.active {
+  border-bottom-color: #FFFFFF;
+}
+
+.navItemBtn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+.navItemBtn:hover {
+  border-bottom: 1px solid #FFFFFF;
+}
