@@ -17,7 +17,7 @@ function Header() {
         sizes.width >= constants.WINDOW_DESKTOP_SIZE
             ? setIsDesktop(true)
             : setIsDesktop(false)
-    }, [])
+    }, [sizes])
 
     const mobileHeader =
         <>

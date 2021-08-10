@@ -25,7 +25,7 @@ function NavItems() {
         sizes.width >= constants.WINDOW_DESKTOP_SIZE
             ? setIsDesktop(true)
             : setIsDesktop(false)
-    }, [])
+    }, [sizes])
 
     useEffect(() => {
         if (!isAnyDropdownOpen) {

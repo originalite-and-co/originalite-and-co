@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Styles from "../Authentication.module.scss";
 import Box from "@material-ui/core/Box";
@@ -7,13 +7,14 @@ import Button from "../../../../components/Button/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import {Form, Formik, Field, va, ErrorMessage} from 'formik'
 import styled from "styled-components";
-import {object,string} from "yup";
-import {FormGroup} from "@material-ui/core";
+import {object, string} from "yup";
+import {FormGroup, Typography} from "@material-ui/core";
 import {customerRequests} from "../../../../../api/server";
+import useAsyncError from "../../../../hooks/useAsyncError";
+import {Link, useHistory} from "react-router-dom";
+import Toast from "../../../../components/Toast/Toast";
 
-LoginPage.propTypes = {
-    
-};
+LoginPage.propTypes = {};
 
 
 const useStyles = makeStyles({
@@ -30,27 +31,41 @@ const initialValues = {
 
 function LoginPage(props) {
     const classes = useStyles()
+    const throwAsyncError = useAsyncError()
+    const history = useHistory()
+    const [loggedIn, setLoggedIn] = useState(false)
 
-    const fn = () => {
-        console.log('hey')
+    const forwardIfAuthorized = async () => {
+        const isAuthorized = await sessionStorage.getItem('token')
+        if (isAuthorized){
+            setTimeout(() => {
+                history.push('/')
+            },1500)
+        }
     }
 
+
     return (
+        <>{loggedIn && <Toast message="Welcome to Originalite, fashionista"/>}
         <Box className={Styles.logInPageWrapper}>
             <p className={Styles.text}>Please enter your account details to log in</p>
             <Formik
                 validationSchema={
                     object({
-                        loginOrEmail: string().email().required(),
-                        password: string().required()
+                        loginOrEmail: string().email().required("Email is a required field"),
+                        password: string().required("Password is a required field")
                     })
                 }
-                initialValues={initialValues} onSubmit={(values, formikHelpers) => {
+                initialValues={initialValues}
+                onSubmit={(values) => {
                     customerRequests.logIn(values)
-                console.log(values);
-                console.log(formikHelpers)
-            }}>
-                {({ values ,errors, touched}) => (
+                        .then(setLoggedIn(true))
+                        .then(forwardIfAuthorized)
+                        .catch(error => throwAsyncError(error))
+                    console.log(values)
+                }}
+            >
+                {({values, errors, touched,isSubmitting,isValidating}) => (
                     <Form>
                         <Box className={Styles.loginGroup}>
                             <FormGroup>
@@ -59,10 +74,10 @@ function LoginPage(props) {
                                        fullWidth
                                        label="E-mail"
                                        className={classes.textField}
-                                       InputLabelProps={{ className: Styles.textFieldLabel, }}
-                                       inputProps={{ className: Styles.textFieldInput, }}
+                                       InputLabelProps={{className: Styles.textFieldLabel,}}
+                                       inputProps={{className: Styles.textFieldInput,}}
                                 />
-                                <ErrorMessage name="loginOrEmail"/>
+                                <ErrorMessage name="loginOrEmail" render={msg => <Typography color="error">{msg}</Typography> }/>
                             </FormGroup>
                             <FormGroup>
                                 <Field name="password" type="password" as={TextField}
@@ -70,21 +85,20 @@ function LoginPage(props) {
                                        fullWidth
                                        label="Password"
                                        className={classes.textField}
-                                       InputLabelProps={{ className: Styles.textFieldLabel, }}
-                                       inputProps={{ className: Styles.textFieldInput, }}
+                                       InputLabelProps={{className: Styles.textFieldLabel,}}
+                                       inputProps={{className: Styles.textFieldInput,}}
                                 />
-                                <ErrorMessage name="password"/>
+                                <ErrorMessage name="password" render={msg => <Typography color="error">{msg}</Typography> }/>
                             </FormGroup>
                         </Box>
                         <Box className={Styles.loginBtn}>
-                            <Button type="submit" text="LOG IN" backgroundColor="#E5E5E5" color="#000000" onClick={fn}/>
+                            <Button disabled={isSubmitting || isValidating} type="submit" text="LOG IN" backgroundColor="#E5E5E5" color="#000000" onClick={()=>{}}/>
                         </Box>
-                        <pre>{JSON.stringify(errors,null,4)}</pre>
-                        <pre>{JSON.stringify(values,null,4)}</pre>
                     </Form>
                 )}
             </Formik>
         </Box>
+        </>
     );
 }
 

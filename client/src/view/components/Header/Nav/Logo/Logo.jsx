@@ -14,7 +14,7 @@ function Logo() {
         sizes.width >= constants.WINDOW_DESKTOP_SIZE
             ? setIsDesktop(true)
             : setIsDesktop(false)
-    }, [])
+    }, [sizes])
 
     return (
     <Box data-testid="logo">

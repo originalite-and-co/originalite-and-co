@@ -47,7 +47,7 @@ function CatalogNav() {
 
     useEffect(() => {
         sizes.width >= constants.WINDOW_DESKTOP_SIZE ? setIsDesktop(true) : setIsDesktop(false)
-    }, [])
+    }, [sizes])
 
     const handleCategoryLinkClick = (event) => {
         document.body.classList.remove("lock-scroll");
