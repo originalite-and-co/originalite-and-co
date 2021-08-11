@@ -42,7 +42,7 @@ const ProductSchema = new Schema(
       type: String
     },
     sizes: {
-      type: String
+      type: Array
     },
     productUrl: {
       type: String
