@@ -11,7 +11,7 @@ const CUSTOMERS_PATH = '/api/customers';
  *
  * @param {String} token - authorization token
  */
-const addTokenToSessionStorage = (token) => {
+const addTokenToSessionStorage = ({ token }) => {
   sessionStorage.setItem('token', token);
 };
 

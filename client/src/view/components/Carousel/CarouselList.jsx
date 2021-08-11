@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
 import { sliderRequests } from '../../../api/server';
@@ -12,6 +12,7 @@ const swiperSlideParam = {
 };
 
 const swiperListParam = {
+  className: 'header__carousel',
   loop: true,
   effect: 'cube',
   pagination: {
@@ -27,21 +28,15 @@ const Image = ({ src, className }) => {
 
 const CarouselList = ({ images }) => {
   const slides = useMemo(() =>
-    images.map(({ src, className }, key) => (
+    images.map(({ imageUrl, className = 'swiper__image' }, key) => (
       <SwiperSlide key={key} {...swiperSlideParam}>
-        <Image src={src} className={className} />
+        <Image src={imageUrl} className={className} />
       </SwiperSlide>
     ))
   );
 
-  useEffect(async () => {
-    const slides = await sliderRequests.getSlides();
-
-    console.log(slides);
-  }, []);
-
   return (
-    <div className="eke">
+    <div className="caroules-wrapper">
       <Swiper {...swiperListParam}>{slides}</Swiper>
     </div>
   );
