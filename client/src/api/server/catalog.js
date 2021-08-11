@@ -58,7 +58,7 @@ const updateCatalog = async (data) => {
  * @returns {Promise<any>}
  */
 
-const getCatalog = async () => {
+const retrieveCatalog = async () => {
   try {
     const response = await fetch(CATALOG_PATH, {
       method: 'GET',
@@ -66,12 +66,12 @@ const getCatalog = async () => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('get catalog', response);
+      throw generateResponseException('retrieve catalog', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('getting catalog', error);
+    throw generateFetchException('retrieving catalog', error);
   }
 };
 
@@ -81,7 +81,7 @@ const getCatalog = async () => {
  * @returns {Promise<any>}
  */
 
-const getCategory = async (id) => {
+const retrieveCategory = async (id) => {
   try {
     const response = await fetch(`${CATALOG_PATH}/${id}`, {
       method: 'POST',
@@ -89,12 +89,12 @@ const getCategory = async (id) => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('get category', response);
+      throw generateResponseException('retrieve category', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('getting category', error);
+    throw generateFetchException('retrieving category', error);
   }
 };
 
@@ -123,8 +123,8 @@ const deleteCategory = async (id) => {
 
 const catalog = {
   deleteCategory,
-  getCategory,
-  getCatalog,
+  retrieveCategory,
+  retrieveCatalog,
   updateCatalog,
   createCatalog,
 };
