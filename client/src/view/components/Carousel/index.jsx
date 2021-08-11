@@ -1,3 +1,3 @@
-import CarouselList from './CarouselList';
+import Carousel from './CarouselList';
 
-export { CarouselList };
+export default Carousel;
