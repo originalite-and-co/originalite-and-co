@@ -11,13 +11,11 @@ import NavItems from "./Nav/NavItems/NavItems";
 
 function Header() {
     const [isDesktop, setIsDesktop] = useState()
-    const sizes = useWindowSize();
+    const {width} = useWindowSize();
 
     useEffect(() => {
-        sizes.width >= constants.WINDOW_DESKTOP_SIZE
-            ? setIsDesktop(true)
-            : setIsDesktop(false)
-    }, [])
+        setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
+    }, [width])
 
     const mobileHeader =
         <>

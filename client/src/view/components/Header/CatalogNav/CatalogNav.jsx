@@ -24,7 +24,7 @@ function CatalogNav() {
     const [activeLinkId, setActiveLinkId] = useState(null)
     const [isDesktop, setIsDesktop] = useState();
 
-    const sizes = useWindowSize()
+    const {width} = useWindowSize()
     const throwError = useAsyncError();
 
     const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function CatalogNav() {
 
     useEffect(() => {
         setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
-    }, [isDesktop])
+    }, [width])
 
     const handleCategoryLinkClick = (event) => {
         document.body.classList.remove("lock-scroll");

@@ -9,13 +9,11 @@ import constants from "../../../constants";
 
 function Nav() {
     const [isDesktop, setIsDesktop] = useState()
-    const sizes = useWindowSize();
+    const {width} = useWindowSize();
 
     useEffect(() => {
-        sizes.width >= constants.WINDOW_DESKTOP_SIZE
-            ? setIsDesktop(true)
-            : setIsDesktop(false)
-    }, [])
+        setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
+    }, [width])
 
     /*Should it be desktop, the Nav component will not be shown in the way it's built here. Instead, the Logo and NavItems will serve as direct children of Header*/
     return (
