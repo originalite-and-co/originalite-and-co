@@ -48,7 +48,7 @@ const updateSlide = async (data, id) => {
   }
 };
 
-const getSlides = async () => {
+const retrieveSlides = async () => {
   try {
     const response = await fetch(SLIDER_PATH, {
       method: 'GET',
@@ -56,12 +56,12 @@ const getSlides = async () => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('get slides', response);
+      throw generateResponseException('retrieve slides', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('getting slides', error);
+    throw generateFetchException('retrieving slides', error);
   }
 };
 
@@ -85,7 +85,7 @@ const deleteSlide = async (id) => {
 const catalog = {
   addSlide,
   deleteSlide,
-  getSlides,
+  retrieveSlides,
   updateSlide,
 };
 
