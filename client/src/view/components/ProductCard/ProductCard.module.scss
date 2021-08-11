@@ -1,0 +1,26 @@
+.productCard {
+  list-style: none;
+}
+.productCardTitle
+{
+  text-transform: uppercase;
+  font-family: Open Sans;
+  font-size: 18px;
+  line-height: 25px;
+}
+.productImage{
+  img{
+    max-width: 100%;
+    margin: 30px 30px 30px 21px;
+  }
+}
+.productCardPrice
+{
+
+  font-family: Open Sans;
+  font-size: 18px;
+  line-height: 25px;
+  color: #847A7A;
+  text-transform: uppercase;
+
+}

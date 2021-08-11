@@ -20,5 +20,8 @@
   "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme",
   "engines": {
     "node": "14.x"
+  },
+  "dependencies": {
+    "swiper": "^6.8.1"
   }
 }
