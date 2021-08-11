@@ -21,12 +21,12 @@ const createCatalog = async (data) => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('create catalog', response);
+      throw generateResponseException('create a catalog', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('creating catalog', error);
+    throw generateFetchException('creating a catalog', error);
   }
 };
 
@@ -45,18 +45,17 @@ const updateCatalog = async (data) => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('update catalog', response);
+      throw generateResponseException('update a catalog', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('updating catalog', error);
+    throw generateFetchException('updating a catalog', error);
   }
 };
 
 /**
  *
- * @param {Object} data
  * @returns {Promise<any>}
  */
 
@@ -68,18 +67,18 @@ const getCatalog = async () => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('get catalog', response);
+      throw generateResponseException('get a catalog', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('getting catalog', error);
+    throw generateFetchException('getting a catalog', error);
   }
 };
 
 /**
  *
- * @param {Object} data
+ * @param {String} id
  * @returns {Promise<any>}
  */
 
@@ -102,7 +101,7 @@ const getCategory = async (id) => {
 
 /**
  *
- * @param {Object} data
+ * @param {String} id
  * @returns {Promise<any>}
  */
 

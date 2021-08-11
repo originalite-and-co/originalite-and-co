@@ -57,3 +57,4 @@ export {default as sliderRequests} from './slider';
 export {default as wishlistRequests} from './wishlist';
 export {default as linkRequests} from './links';
 export {default as pageRequests} from './pages';
+export {default as colorRequests} from './colors';
