@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "cloudinary-react": "^1.7.0",
     "formik": "^2.2.9",
     "history": "^4.10.1",
     "node-sass": "^6.0.1",
