@@ -2,6 +2,11 @@
 
 .header{
   background: #000000;
+  z-index: 20;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
 }
 
 .inner{

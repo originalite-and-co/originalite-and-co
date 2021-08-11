@@ -7,8 +7,8 @@ a {
 .catalogNavWrapper {
   display: flex;
   justify-content: space-between;
-  padding-top: 22px;
-  padding-bottom: 21px;
+  padding-top: 14px!important;
+  padding-bottom: 11px!important;
 }
 
 .dropdown {
@@ -36,8 +36,6 @@ a {
 }
 
 .categoryListItem {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .categoryLink {
@@ -56,13 +54,38 @@ a {
 
 
 @media screen and (min-width: $min-desktop){
-  .wrapper {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: 335px;
-  }
   .dropdown {
     top: 93px;
-    height: 50vh;
+    right: 200vh;
+    height: 64.25vh;
+    opacity: 0;
+  }
+
+  .dropdownActive{
+    right: 0;
+    opacity: 1;
+  }
+
+  .categoryList{
+    height: 100%;
+    align-content: flex-start;
+  }
+
+  .categoryListItem{
+    margin-right: 17%!important;
+  }
+
+  .categoryNav{
+    overflow-y: unset;
+  }
+
+  .categoriesTitle {
+    font-family: Open Sans, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    color: #FFFFFF;
+    margin-bottom: 48px;
+    margin-top: 6vh;
   }
 }
