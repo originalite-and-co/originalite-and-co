@@ -21,8 +21,10 @@ function Nav() {
     return (
         <>
             {!isDesktop && <Box className={NavStyles.nav} data-testid="nav">
-                <Logo/>
-                <NavItems/>
+                <Box className={`${NavStyles.inner} wrapper`}>
+                    <Logo/>
+                    <NavItems/>
+                </Box>
             </Box>}
         </>
 

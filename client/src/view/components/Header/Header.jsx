@@ -34,8 +34,13 @@ function Header() {
 
     return (
         <Box className={HeaderStyles.header}>
-            {!isDesktop && mobileHeader}
-            {isDesktop && desktopHeader}
+            <Box className={isDesktop
+                ? `${HeaderStyles.inner} wrapper`
+                : HeaderStyles.inner}
+            >
+                {!isDesktop && mobileHeader}
+                {isDesktop && desktopHeader}
+            </Box>
         </Box>
     );
 }
