@@ -3,15 +3,17 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import cartReducer from "./../features/cart/index";
-import isAnyDropdownOpenReducer from '../features/dropdown/index';
+import isAnyDropdownOpenReducer from './../features/dropdown/index';
 import searchResult from "./../features/searchResult/index";
-import footerReducer from "../features/footerLinks/index";
+import footerReducer from "./../features/footerLinks/index";
+import filterReducer from "./../features/filters/index";
 
 const rootReducer = combineReducers({
     ...cartReducer,
     ...isAnyDropdownOpenReducer,
     ...searchResult,
-    ...footerReducer
+    ...footerReducer,
+    ...filterReducer
 });
 
 const composeEnhancers = composeWithDevTools(({

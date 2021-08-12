@@ -58,7 +58,7 @@ function AppRoutes() {
             {staticPageRoutes}
             <Route path="/help" render={() => <p>Loading ...</p>}/>
             <Route path="/company" render={() => <p>Loading ...</p>}/>
-            <Route path="/catalog/:productId" component={Product}/>
+            {/*<Route path="/catalog/:category/:productId" component={Product}/>*/}
             <Route path="/catalog" component={Catalog}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>
