@@ -38,7 +38,7 @@ function CatalogNav() {
 
 
     useEffect(useCallback(() => {
-        catalogRequests.getCatalog()
+        catalogRequests.retrieveCatalog()
             .then(
                 data => setCatalog(data),
                 error => throwError(error)
