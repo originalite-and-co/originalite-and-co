@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
 import styles from "./CategoryCard.module.scss"
-const CategoryCard = ({product}) => {
+import {Grid} from "@material-ui/core";
+const CategoryCard = ({product,size}) => {
 
     return (
-        <div className={styles.CategoryCard}>
+        <Grid item xs={size} className={styles.CategoryCard}>
         <div >
             <div><img src={product.img} width="102px"
                 height="127px"  alt="products images"/></div>
             <p>{product.name}</p>
         </div>
-        </div>
+        </Grid>
     )
 }
 
