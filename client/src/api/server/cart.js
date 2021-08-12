@@ -130,7 +130,7 @@ const deleteProductFromCart = async (id) => {
  * @returns {Promise<any>}
  */
 
-const getCart = async () => {
+const retrieveCart = async () => {
   try {
     const response = await fetch(CART_PATH, {
       method: 'GET',
@@ -147,6 +147,10 @@ const getCart = async () => {
   }
 };
 
+/**
+ *
+ * @returns {Promise<any>}
+ */
 const deleteCart = async () => {
   try {
     const response = await fetch(CART_PATH, {
@@ -170,7 +174,7 @@ const cart = {
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  getCart,
+  retrieveCart,
   deleteCart,
 };
 
