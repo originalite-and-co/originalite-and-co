@@ -1,17 +1,23 @@
 
-.CategoryCard
-{
+.CategoryCard {
+  height: 116px;
   font-family: Open Sans;
   font-size: 14px;
   line-height: 19px;
   color: #FFFFFF;
-p{
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 16px;
-  text-transform: uppercase;
-}
+ &:last-child{
+   height: 123px;
+ }
+  img{
+    max-width: 100%;
+  }
+  p {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
 }
 

@@ -6,8 +6,7 @@ const CategoryCard = ({product,size}) => {
     return (
         <Grid item xs={size} className={styles.CategoryCard}>
         <div >
-            <div><img src={product.img} width="102px"
-                height="127px"  alt="products images"/></div>
+            <div><img src={product.img} alt="products images"/></div>
             <p>{product.name}</p>
         </div>
         </Grid>

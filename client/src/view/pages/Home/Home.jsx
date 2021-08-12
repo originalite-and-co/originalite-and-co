@@ -14,18 +14,20 @@ Home.propTypes = {
 
 function Home(props) {
   return (
-    <>
+    <Box
+        // style={{backgroundColor: "black"}}
+    >
         <Header/>
         <div>Home</div>
-        <Footer/>
-        <Box style={{backgroundColor: "black"}} className={"wrapper"} component={"main"} >
+
+        <Box className={"wrapper"} component={"main"} >
             <div>Home</div>
             <CardList />
-            <PopularProductsCarousel/>
+
             <ShopCategories/>
         </Box>
-
-    </>
+        <Footer/>
+    </Box>
   );
 }
 

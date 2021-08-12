@@ -11,7 +11,7 @@
 .productImage{
   img{
     max-width: 100%;
-    margin: 30px 30px 30px 21px;
+    object-fit: cover;
   }
 }
 .productCardPrice

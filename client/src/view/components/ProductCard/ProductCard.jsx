@@ -7,7 +7,7 @@ import {Grid} from "@material-ui/core";
 console.log(product.imageUrls[0]);
   return (
     <Grid item component={"li"} data-testid={"product-card"} className={styles.productCard}>
-            <div className={styles.productImage}><img src={product.imageUrls[0]} alt="products images" width={"150px"} height={"auto"}/></div>
+            <div className={styles.productImage}><img src={product.imageUrls[0]} alt="products images"/></div>
             <p className={styles.productCardTitle}>{product.name}</p>
             <p className={styles.productCardPrice}>{product.currentPrice}</p>
         </Grid>
