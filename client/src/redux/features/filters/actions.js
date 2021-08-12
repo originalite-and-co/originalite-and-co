@@ -14,12 +14,9 @@ const {
  * @returns {{payload: object, type: string}}
  */
 const addFilter = (filter) => {
-    Object.values(filter)
-        .forEach(value => {
-            if (!Array.isArray(value)){
-                throw new Error(`Invalid data type. Expected Object, got ${typeof value}`)
-            }
-        })
+    if (typeof filter !== "object" || filter === null) {
+        throw new Error(`Invalid data type. Expected Object, got ${typeof value}`)
+    }
 
     return {
         type: ADDED_FILTER,
@@ -28,6 +25,8 @@ const addFilter = (filter) => {
 };
 
 /**
+ *This function deletes a filter value in case it's an array.
+ *  If not, use deleteFilter instead
  *
  * @param {String} filterName
  * @param {String} filterValue
@@ -56,7 +55,7 @@ const deleteFilter = (filterName) => ({
  * @returns {{type: string}}
  */
 const deleteAllFilters = () => ({
-   type: DELETED_ALL_FILTERS
+    type: DELETED_ALL_FILTERS
 });
 
 /**

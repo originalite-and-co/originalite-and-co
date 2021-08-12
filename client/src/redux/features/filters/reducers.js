@@ -15,36 +15,69 @@ const {
 } = types;
 
 const reducer = (state = {}, {type, payload}) => {
-        switch (type){
-            case ADDED_FILTER:{
-                return {
-                    ...state,
-                    payload
-                }
-            }
-            case DELETED_FILTER_VALUE:{
-                const stateCopy = {...state};
-                stateCopy[payload.filterName] = stateCopy[payload.filterName]
-                    .filter(value => value !== payload.filterValue);
-                return stateCopy;
-            }
-            case DELETED_FILTER :{
-                const stateCopy = {...state};
-                delete stateCopy[payload];
-                return stateCopy;
-            }
-            case DELETED_ALL_FILTERS:{
-                return {};
-            }
-            case GOT_FILTERS: {
-                return payload;
-            }
-            default: {
-                return state;
-            }
+    switch (type) {
+        case ADDED_FILTER: {
+            return addFilter(state, payload);
         }
+        case DELETED_FILTER_VALUE: {
+            if(!Array.isArray(state[payload.filterName])){
+                throw new Error(
+                    `Invalid data type of filter value.
+                 Expected Array, got ${state[payload.filterName]}`
+                );
+            }
+            return deleteFilterValue(state, payload);
+        }
+        case DELETED_FILTER : {
+            const stateCopy = {...state};
+            delete stateCopy[payload];
+            return stateCopy;
+        }
+        case DELETED_ALL_FILTERS: {
+            return {};
+        }
+        case GOT_FILTERS: {
+            return payload;
+        }
+        default: {
+            return state;
+        }
+    }
 };
 
 export default {
     filters: reducer
+}
+
+function addFilter(state, payload){
+    let stateCopy = {...state}
+    Object.keys(payload)
+        .forEach(key => {
+            if (stateCopy[key]){
+                stateCopy[key] = [...stateCopy[key], payload[key]];
+                return;
+            }
+
+            stateCopy = {
+                ...stateCopy,
+                payload
+            }
+        });
+
+    return stateCopy;
+}
+
+function deleteFilterValue(state, payload) {
+    const stateCopy = {...state};
+    const filterValue = stateCopy[payload.filterName]
+
+    stateCopy[payload.filterName] = filterValue
+        .filter(value => value !== payload.filterValue);
+
+    //can't use a variable here because its value doesn't update
+    if (!stateCopy[payload.filterName].length) {
+        delete stateCopy[payload.filterName];
+    }
+
+    return stateCopy
 }
