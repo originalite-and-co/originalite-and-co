@@ -12,4 +12,4 @@ const defauldCarousel = {
   navigation: true
 };
 
-export { defaultSlide, defauldCarousel };
+export default { defaultSlide, defauldCarousel };
