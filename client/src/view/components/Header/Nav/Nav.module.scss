@@ -1,9 +1,12 @@
 .nav{
-  padding: 14px 0px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  position: relative;
+}
+
+.inner{
   display: flex;
   justify-content: space-between;
-  position: relative;
-  background-color: #000000;
 }
 
 .nav:after{

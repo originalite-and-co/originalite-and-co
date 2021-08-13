@@ -6,7 +6,6 @@ import search from '../icons/search.svg';
 import person from '../icons/person.svg';
 import bag from '../icons/bag.svg';
 import Burger from '../BurgenMenu/Burger';
-import BurgerDropdown from '../BurgerDropdown/BurgerDropdown';
 import {useDispatch, useSelector} from "react-redux";
 import {isAnyDropdownOpenSelectors} from "../../../../../redux/features/dropdown";
 import Search from "../Search/Search";
@@ -19,13 +18,11 @@ function NavItems() {
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
 
     const [isDesktop, setIsDesktop] = useState()
-    const sizes = useWindowSize();
+    const {width} = useWindowSize();
 
     useEffect(() => {
-        sizes.width >= constants.WINDOW_DESKTOP_SIZE
-            ? setIsDesktop(true)
-            : setIsDesktop(false)
-    }, [sizes])
+        setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
+    }, [width])
 
     useEffect(() => {
         if (!isAnyDropdownOpen) {

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import BurgerDropdownStyles from './BurgerDropdown.module.scss';
+import styles from './ListItem.module.scss';
 
 export function ListItem({ text, }) {
   return (
-    <Box className={BurgerDropdownStyles.listItem}>
+    <Box className={styles.listItem}>
       <Link to="/">
-        <Box className={BurgerDropdownStyles.listItemBody}>
+        <Box className={styles.listItemBody}>
           <ExpandMoreIcon fontSize="small" />
-          <li className={BurgerDropdownStyles.listItemText}>{text}</li>
+          <li className={styles.listItemText}>{text}</li>
         </Box>
       </Link>
     </Box>
@@ -20,12 +20,12 @@ export function ListItem({ text, }) {
 
 export function ListItemUpper({ text, }) {
   return (
-    <Box className={BurgerDropdownStyles.listItem}>
+    <Box className={styles.listItem}>
       <Box>
         <Link to="/">
-          <Box className={BurgerDropdownStyles.listItemBody}>
+          <Box className={styles.listItemBody}>
             <ExpandMoreIcon fontSize="small" />
-            <li className={BurgerDropdownStyles.listItemTextUpper}>{text}</li>
+            <li className={styles.listItemTextUpper}>{text}</li>
           </Box>
         </Link>
       </Box>
