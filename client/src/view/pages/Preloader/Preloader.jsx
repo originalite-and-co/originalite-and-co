@@ -11,16 +11,29 @@ function Preloader(props) {
    const [Done, setDone] = useState(undefined);
 
    useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts/1')
+      fetch('https://jsonplaceholder.typicode.com/posts')
          .then((response) => response.json())
          .then((json) => {
+            console.log(json);
             setData(json);
+            setDone(true);
          });
-   }, [])
+   }, []);
 
     return (
        <>
-          <ReactLoading type={bars} color={green} height={'667'} width={'375'} />
+          {
+             !done ? <ReactLoading type={bars} color={green} height={'667'} width={'375'} />
+                :
+                <ul>
+                   {
+                      data.map(post =>
+                         <li key={post.id}>{post.title}</li>
+                      )
+                   }
+
+                </ul>
+          }
         </>
     );
 }
