@@ -1,0 +1,14 @@
+.ContainerPages404 {
+   min-width: 320px;
+   margin: 0 auto;
+   background: #000000;
+ }
+ 
+ @media screen and (min-width: 993px){
+   .ContainerPages404{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-top: 23px;
+   }
+ }
