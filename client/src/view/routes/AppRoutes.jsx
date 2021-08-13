@@ -18,15 +18,17 @@ import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
 
 function AppRoutes() {
-    const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
+    const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
+
     const [staticPages, setStaticPages] = useState([]);
-  
+
     const throwError = useAsyncError();
 
 
     useEffect(() => {
-        setAuthenticated(!!sessionStorage.getItem('token'));
-    }, []);
+        debugger
+        setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
+    }, [sessionStorage.getItem('token'),localStorage.getItem("token"), isAuthenticated]);
 
     useEffect(useCallback(() => {
         pageRequests.retrievePages()
@@ -53,7 +55,6 @@ function AppRoutes() {
 
     return (
         <Switch>
-
             <Route path="/products/search" component={SearchResult}/>
             {staticPageRoutes}
             <Route path="/help" render={() => <p>Loading ...</p>}/>
