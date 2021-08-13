@@ -32,13 +32,13 @@ function AuthenticationContent() {
   }
 
   return (
-    <Box className={Styles.container}>
+    <Box className={Styles.container} data-testid="authentication-content">
       <Box className={Styles.wrapper}>
-        <Box className={Styles.accountBtns}>
-          <button type="button" className={`${loginClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleloginOptionClick}>Log In</button>
-          <button type="button" className={`${signupClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleSignupClick}>Sign Up</button>
+        <Box className={Styles.accountBtns} data-testid="account-btns">
+          <button type="button" className={`${loginClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleloginOptionClick} data-testid='logsign-btns'>Log In</button>
+          <button type="button" className={`${signupClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleSignupClick} data-testid='logsign-btns'>Sign Up</button>
         </Box>
-        <ErrorBoundary fallback={<Toast message={"Wrong Credentials"}/>}>
+        <ErrorBoundary fallback={<Toast message={"Wrong Credentials"} />}>
           {loginClicked && <LoginPage/>}
           {signupClicked && <SignUpPage onClick={handleSignUpClick}/>}
         </ErrorBoundary>

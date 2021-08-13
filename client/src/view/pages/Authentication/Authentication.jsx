@@ -1,18 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useEffect, useState} from 'react';
 import {Box} from "@material-ui/core";
 import Nav from "../../components/Header/Nav/Nav";
 import AuthenticationContent from "./AuthenticationContent/AuthenticationContent";
+import Header from "../../components/Header/Header";
+import useWindowSize from "../../hooks/useWindowSize";
+import constants from "../../constants";
 
-Authentication.propTypes = {
+function Authentication() {
+    const [isDesktop, setIsDesktop] = useState()
+    const sizes = useWindowSize()
 
-};
+    useEffect(() => {
+        sizes.width >= constants.WINDOW_DESKTOP_SIZE
+            ? setIsDesktop(true)
+            : setIsDesktop(false)
+    },[sizes])
 
-function Authentication(props) {
-    return (
-        <Box>
+    const mobileHeader =
+        <>
             <Nav/>
             <AuthenticationContent/>
+        </>
+
+    const desktopHeader =
+        <>
+            <Header/>
+            <AuthenticationContent/>
+        </>
+
+    return (
+        <Box data-testid="authentication">
+            {!isDesktop && mobileHeader}
+            {isDesktop && desktopHeader}
         </Box>
     );
 }
