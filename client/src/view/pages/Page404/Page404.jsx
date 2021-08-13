@@ -29,7 +29,7 @@ function Page404(props) {
                     </div>
                 </div>
                 <div className={stiles.img}>
-                    <img className="" src={img} />
+                    <img className={stiles.img__item} src={img} />
                 </div>
             </div>
         </>
