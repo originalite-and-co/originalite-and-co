@@ -1,30 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
+import Style from './Preloader.module.scss';
 
-
-// Preloader.propTypes = {
-// };
+Preloader.propTypes = {
+};
 
 function Preloader(props) {
 
    const [data, setData] = useState([]);
-   const [Done, setDone] = useState(undefined);
+   const [done, setDone] = useState(undefined);
 
    useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts/1')
-         .then((response) => response.json())
-         .then((json) => {
-            console.log(json);
-            setData(json);
-            setDone(true);
-         });
+         fetch('https://jsonplaceholder.typicode.com/posts')
+            .then((response) => response.json())
+            .then((json) => {
+               console.log(json);
+               setData(json);
+               setDone(true);
+            });
    }, []);
 
     return (
        <>
-          
-             !done ? <ReactLoading type={'bars'} color={'green'} height={100} width={100} />
-          
+          {!done ? (
+            <ReactLoading
+                type={'bars'}
+                color={'bleack'}
+                height={200}
+                width={200}
+            />
+         ) : (
+               <ul>
+               {
+                  data.map(post => (
+                     <li key={post.id}>{post.title}</li>
+                  ))
+               }
+            </ul> 
+            )
+          }
         </>
     );
 }
