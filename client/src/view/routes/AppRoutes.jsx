@@ -26,7 +26,6 @@ function AppRoutes() {
 
 
     useEffect(() => {
-        debugger
         setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
     }, [sessionStorage.getItem('token'),localStorage.getItem("token"), isAuthenticated]);
 
