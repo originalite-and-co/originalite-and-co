@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './StylesNew.scss';
+import stiles from './Page.module.scss';
 
 import img from '../Page404/img/404imeges.jpeg';
 
@@ -12,21 +12,25 @@ Page404.propTypes = {
 function Page404(props) {
     return (
         <>
-            <div className="ContainerPages404">
-                <div className='link'>
-                    <h1>Возможно вы имели ввиду:</h1>
-                        <ul>
-                            <li>Women</li>
-                            <li>Men</li>
-                            <li>Accesory</li>
-                        </ul>
+            <div className={stiles.ContainerPages404}>
+                <div className={stiles.ContainerLeft}>
+                    <div className={stiles.BackMenu}>
+                        <h1>Возможно вы имели ввиду:</h1>
+                            <ul>
+                                <li className={stiles.BackMenu__item}>Women</li>
+                                <li className={stiles.BackMenu__item}>Men</li>
+                                <li className={stiles.BackMenu__item}>Accesory</li>
+                            </ul>
+                    </div>
+                    <div className={stiles.Info}>
+                        <p className={stiles.Info__404}>404</p>
+                        <p className={stiles.Info__item}>Потеряла Насяльника</p>
+                        <b className={stiles.Info__item}>Строаница не найдена</b>
+                    </div>
                 </div>
-                <div className='info'>
-                    <p>404</p>
-                    <p>Потеряла Насяльника</p>
-                    <b>Строаница не найдена</b>
-                </div>
+                <div className={stiles.img}>
                     <img className="" src={img} />
+                </div>
             </div>
         </>
     );
