@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import style from './Preloader.module.scss';
+import Style from './Preloader.module.scss';
 import PropTypes from 'prop-types';
 
 Preloader.propTypes = {
@@ -9,9 +9,9 @@ Preloader.propTypes = {
 function Preloader(props) {
     return (
         <>
-          <div className={style.ContainerPreloader}>
+          <div className={Style.ContainerPreloader}>
              <div class="lds-roller">
-                <div></div>
+                <div>rjrjrrjrjr</div>
                 <div></div>
                 <div></div>
                 <div></div>
