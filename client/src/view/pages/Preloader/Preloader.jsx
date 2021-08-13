@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
 
-import { withStyles } from '@material-ui/core/styles';
-import Style from './Preloader.module.scss';
-import PropTypes from 'prop-types';
-import { green } from '@material-ui/core/colors';
 
 // Preloader.propTypes = {
 // };
