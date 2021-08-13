@@ -51,6 +51,7 @@ function LoginPage() {
 
     const forwardIfAuthorized = async () => {
         const isAuthorized = await sessionStorage.getItem('token')
+
         if (isAuthorized) {
             setTimeout(() => {
                 history.push('/')
