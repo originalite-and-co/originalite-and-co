@@ -18,11 +18,10 @@ import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
 
 function AppRoutes() {
-    // const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
 
     const [staticPages, setStaticPages] = useState([]);
-  
+
     const throwError = useAsyncError();
 
 
