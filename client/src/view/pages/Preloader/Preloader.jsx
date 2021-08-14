@@ -20,25 +20,25 @@ function Preloader(props) {
 
    const [data, setData] = useState([]);
    const [loading, setloading] = useState(undefined);
-   const [complited, setcomplited] = useState(undefined);
+   // const [complited, setcomplited] = useState(undefined);
 
    useEffect(() => {
-      fetch("")
+      fetch("https://jsonplaceholder.typicode.com/posts")
          .then((response) => response.json())
          .then((json) => {
             console.log(json);
             setData(json);
             setloading(true);
 
-            setTimeout(() => {
-               setcomplited(true);
-            }, 1000);
+            // setTimeout(() => {
+            //    setcomplited(true);
+            // }, 1000);
          });
    }, []);
 
    return (
       <>
-         {!completed ? (
+         {!loading ? (
             
             <Lottie options={defaultOptions}
               height={400}
