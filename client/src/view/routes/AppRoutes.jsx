@@ -16,8 +16,14 @@ import SearchResult from "../pages/SearchResult/SearchResult";
 import useAsyncError from "../hooks/useAsyncError";
 import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
+import {authorizationSelectors, authorizeOperations} from "../../redux/features/authorization";
+import {useDispatch, useSelector} from "react-redux";
 
 function AppRoutes() {
+    const dispatch = useDispatch()
+    const authorization = useSelector(authorizationSelectors.authorization)
+    // dispatch(authorizeOperations.authorizeUser())
+
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
 
     const [staticPages, setStaticPages] = useState([]);
@@ -26,9 +32,11 @@ function AppRoutes() {
 
 
     useEffect(() => {
-        debugger
+        dispatch(authorizeOperations.authorizeUser())
         setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
-    }, [sessionStorage.getItem('token'),localStorage.getItem("token"), isAuthenticated]);
+    }, [authorization]);
+
+    // [sessionStorage.getItem('token'),localStorage.getItem("token"), isAuthenticated] - previous dependency
 
     useEffect(useCallback(() => {
         pageRequests.retrievePages()

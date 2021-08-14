@@ -15,6 +15,8 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import {useDispatch} from "react-redux";
+import {authorizeOperations} from "../../../../../redux/features/authorization";
 
 const useStyles = makeStyles({
     textField: {
@@ -38,6 +40,8 @@ const initialValues = {
 }
 
 function LoginPage() {
+    const dispatch = useDispatch()
+
     const classes = useStyles()
     const throwAsyncError = useAsyncError()
     const history = useHistory()
@@ -51,7 +55,7 @@ function LoginPage() {
 
     const forwardIfAuthorized = async () => {
         const isAuthorized = await sessionStorage.getItem('token')
-
+        dispatch(authorizeOperations.authorizeUser())
         if (isAuthorized) {
             setTimeout(() => {
                 history.push('/')

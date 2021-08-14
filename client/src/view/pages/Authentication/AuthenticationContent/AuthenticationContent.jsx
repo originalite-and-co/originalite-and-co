@@ -8,6 +8,7 @@ import Toast from "../../../components/Toast/Toast";
 
 function AuthenticationContent() {
 
+
   const [loginClicked, setLoginClicked] = useState(true);
   const [signupClicked, setSignupClicked] = useState(false);
 
