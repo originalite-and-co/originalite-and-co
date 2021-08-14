@@ -1,0 +1,20 @@
+@import "src/view/assets/styles/variables";
+
+.link {
+  font-family: Josefin Sans, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.breadcrumbs {
+
+}
+
+
+@media (min-width: $desktop) {
+  .link, .separator {
+    color: #C4C4C4;
+  }
+}

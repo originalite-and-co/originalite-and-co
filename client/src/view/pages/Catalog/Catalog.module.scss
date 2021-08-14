@@ -1,10 +1,23 @@
 
+.content {
+  height: 100%;
+  padding-top: 9vh!important;
+}
+
+.filter {
+  height: 100%;
+  background-color: #000000;
+  overflow-y: auto;
+}
+
 .contentInner{
   padding-left: 7vw;
   padding-right: 7vw;
 }
 
 .filterInner{
-  padding-left: 4vw;
-  padding-right: 4vw;
+  padding: 1vh 4vw 2vh;
 }
+
+
+

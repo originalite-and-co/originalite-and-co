@@ -1,5 +1,6 @@
+@import "./src/view/assets/styles/variables";
+
 .root{
-  padding-top: 15.5vh;
   position: relative;
 }
 
@@ -34,34 +35,31 @@
   padding: 0!important;
 }
 
-.AccordionSummaryText{
+.accordionSummaryText{
   text-transform: uppercase;
 }
 
-.AccordionDetails{
+.accordionDetails{
 
 }
 
-.colorButton{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  outline: none;
-  border-radius: 50%;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
+@media (min-width: $desktop) {
+  .content{
+    padding: 3.5vh 0 0 0!important;
+  }
 
-.color{
-  margin: auto;
-  display: block;
-  border: 2px solid #C4C4C4;
-  border-radius: 50%;
-  height: 21px;
-  width: 21px;
-}
+  .accordion, .accordionSummary, .accordionDetails{
+    background-color: #000000!important;
+  }
 
-.colorName{
-  margin-top: .9rem;
+  .accordionSummaryText{
+    font-family: Josefin Sans, sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+
+  .accordionIcon{
+    color: #FFFFFF;
+  }
+
 }

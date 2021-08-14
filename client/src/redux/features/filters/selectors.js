@@ -17,9 +17,12 @@ const getFiltersQuery = state => {
         }, "");
 };
 
+const getSelectedFilter = (state, selectedFilter) => state.filters[selectedFilter];
+
 const selectors = {
     getFilters,
-    getFiltersQuery
+    getFiltersQuery,
+    getSelectedFilter
 };
 
 export default selectors;

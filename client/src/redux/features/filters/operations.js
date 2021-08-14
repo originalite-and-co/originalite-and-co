@@ -2,14 +2,26 @@ import actions from "./actions";
 
 const addFilter = (filter) => (dispatch) => {
     const sessionStorageData = JSON.parse(sessionStorage.getItem("filters")) || {};
-    let newData = {...sessionStorageData, filter}
+    let newData = {...sessionStorageData, ...filter};
+
     Object.keys(filter)
         .forEach(key => {
             if (sessionStorageData[key]) {
-                newData = [...sessionStorageData[key], filter[key]];
+                if (Array.isArray(filter[key])) {
+                    newData = {
+                        ...sessionStorageData,
+                        [key] : [...sessionStorageData[key], ...filter[key]]
+                    };
+                    return
+                }
+
+                newData = {
+                    ...sessionStorageData,
+                    [key] : [...sessionStorageData[key], filter[key]]
+                };
             }
         });
-    sessionStorage.setItem("filters", newData);
+    sessionStorage.setItem("filters", JSON.stringify(newData));
     dispatch(actions.addFilter(filter))
 }
 

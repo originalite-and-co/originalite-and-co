@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
 import {
     Accordion,
@@ -10,23 +10,46 @@ import {
     IconButton,
     Typography
 } from "@material-ui/core";
-import {useRouteMatch} from "react-router-dom";
+import {useHistory, useRouteMatch} from "react-router-dom";
 import {Close, ExpandMore} from "@material-ui/icons";
 
 import classes from "./Filter.module.scss"
-import {colorRequests, sizeRequests} from "../../../../api/server";
+import {catalogRequests, colorRequests, productRequests, sizeRequests} from "../../../../api/server";
 import useAsyncError from "../../../hooks/useAsyncError";
 
 import _ from "lodash";
+import Color from "./Color/Color";
+import {filterOperations, filterSelectors} from "../../../../redux/features/filters";
+import {useDispatch, useSelector} from "react-redux";
+import Size from "./Size/Size";
+import useWindowSize from "../../../hooks/useWindowSize";
+import constants from "../../../constants";
+import FilterBreadcrumbs from "./Breadcrumbs/FilterBreadcrumbs";
+import CategoryNav from "./CategoryNav/CategoryNav";
 
 Filter.propTypes = {};
 
 function Filter(props) {
-    const match = useRouteMatch();
+
     const [colors, setColors] = useState([]);
     const [sizes, setSizes] = useState([]);
+    const [isDesktop, setDesktop] = useState(false);
+    const [category, setCategory] = useState(null);
 
     const throwAsyncError = useAsyncError();
+    const {width} = useWindowSize();
+    const history = useHistory();
+    const {params} = useRouteMatch();
+
+
+    useEffect(() => {
+        catalogRequests.retrieveCategory(params.category)
+            .then(category => setCategory(category));
+    }, []);
+
+    useEffect(() => {
+        setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
+    }, [width])
 
     useEffect(() => {
         colorRequests.retrieveColors()
@@ -44,69 +67,110 @@ function Filter(props) {
             );
     }, []);
 
-
-    const colorList = colors?.map((color) => {
+    const colorList = colors?.map(({_id, name, cssValue}) => {
         return (
-            <Grid
-                item
-                component="li"
-                xs={4}
-            >
-                <button className={classes.colorButton}>
-                    <span className={classes.color} style={{backgroundColor: color.cssValue}}/>
-                    <Typography noWrap className={classes.colorName} component="p">{_.lowerCase(color.name)}</Typography>
-                </button>
-            </Grid>
+            <Color key={_id} name={name} cssValue={cssValue} isDesktop={isDesktop}/>
         );
-    })
+    });
+
+    const sizeList = sizes?.map(({name, _id}) => {
+        return (
+            <Size key={_id} name={name} isDesktop={isDesktop}/>
+        );
+    });
 
     return (
         <Box className={classes.root}>
-            <Typography align="center" className={classes.heading} component="p" variant="body2">
-                Filters
-            </Typography>
-            <IconButton className={classes.closeButton} aria-label="close">
-                <Close/>
-            </IconButton>
-            <Divider className={classes.divider}/>
+            {
+                isDesktop && (
+                    <>
+                        <FilterBreadcrumbs path={history.location.pathname}/>
+                        <CategoryNav parentCategoryId={category?.id} parentCategoryName={category?.name}/>
+                    </>
+                )
+            }
+            {
+                !isDesktop && (
+                    <>
+                        <Typography align="center" className={classes.heading} component="p" variant="body2">
+                            Filters
+                        </Typography>
+                        <IconButton className={classes.closeButton} aria-label="close">
+                            <Close/>
+                        </IconButton>
+                        <Divider className={classes.divider}/>
+                    </>
+                )
+            }
+
             <Box className={`${classes.content} wrapper`}>
-                <Accordion className={classes.accordion}>
-                    <AccordionSummary className={classes.accordionSummary}
-                                      expandIcon={<ExpandMore/>}
+                <Accordion
+                    defaultExpanded={isDesktop}
+                    className={classes.accordion}>
+                    <AccordionSummary
+                        className={classes.accordionSummary}
+                        expandIcon={<ExpandMore className={classes.accordionIcon}/>}
                     >
-                        <Typography className={classes.AccordionSummaryText} component="p" variant="body1">
+                        <Typography
+                            className={classes.accordionSummaryText}
+                            component="p"
+                            variant={isDesktop ? "h6" : "body1"}
+                        >
                             Colors
                         </Typography>
                     </AccordionSummary>
-                    <AccordionDetails className={classes.AccordionDetails}>
-                        <Grid spacing={7} container component="ul" >
+                    <AccordionDetails className={classes.accordionDetails}>
+                        <Grid
+                            spacing={isDesktop ? 5: 7}
+                            container
+                            component="ul"
+                            direction={isDesktop ? "column" : "row"}
+                            wrap={isDesktop? "nowrap" : "wrap"}
+                        >
                             {colorList}
                         </Grid>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion className={classes.accordion}>
+                <Accordion defaultExpanded={isDesktop}
+                           className={classes.accordion}>
                     <AccordionSummary className={classes.accordionSummary}
-                                      expandIcon={<ExpandMore/>}
+                                      expandIcon={<ExpandMore className={classes.accordionIcon}/>}
                     >
-                        <Typography className={classes.AccordionSummaryText} component="p" variant="body1">
+                        <Typography
+                            className={classes.accordionSummaryText}
+                            component="p"
+                            variant={isDesktop ? "h6" : "body1"}
+                        >
                             Sizes
                         </Typography>
                     </AccordionSummary>
-                    <AccordionDetails className={classes.AccordionDetails}>
-                        <Typography>
-                            Some sizes
-                        </Typography>
+                    <AccordionDetails className={classes.accordionDetails}>
+                        <Grid
+                            container
+                            component="ul"
+                            spacing={isDesktop ? 4 : 5}
+                            direction={isDesktop ? "column" : "row"}
+                            wrap={isDesktop? "nowrap" : "wrap"}
+                        >
+                            {sizeList}
+                        </Grid>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion className={classes.accordion}>
+                <Accordion
+                    defaultExpanded={isDesktop}
+                    className={classes.accordion}>
                     <AccordionSummary className={classes.accordionSummary}
-                                      expandIcon={<ExpandMore/>}
+                                      expandIcon={<ExpandMore className={classes.accordionIcon}/>}
                     >
-                        <Typography className={classes.AccordionSummaryText} component="p" variant="body1">
+                        <Typography
+                            className={classes.accordionSummaryText}
+                            component="p"
+                            variant={isDesktop ? "h6" : "body1"}
+                        >
                             Price
                         </Typography>
                     </AccordionSummary>
-                    <AccordionDetails className={classes.AccordionDetails}>
+                    <AccordionDetails className={classes.accordionDetails}>
                         <Typography>
                             Some price
                         </Typography>

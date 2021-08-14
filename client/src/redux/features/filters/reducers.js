@@ -54,13 +54,18 @@ function addFilter(state, payload){
     Object.keys(payload)
         .forEach(key => {
             if (stateCopy[key]){
-                stateCopy[key] = [...stateCopy[key], payload[key]];
+                if(Array.isArray(payload[key])){
+                    stateCopy[key] = [...stateCopy[key], ...payload[key]];
+                    return;
+                }
+
+                stateCopy[key]=[...stateCopy[key], payload[key]];
                 return;
             }
 
             stateCopy = {
                 ...stateCopy,
-                payload
+                ...payload
             }
         });
 

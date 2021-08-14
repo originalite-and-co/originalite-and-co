@@ -10,6 +10,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {catalogRequests} from "../../../../api/server";
 import constants from '././.././.././../constants';
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../redux/features/dropdown";
+import getAllChildCategories from "../../../utils/getAllChildCategories";
+import generateCategoryPath from "../../../utils/generateCategoryPath";
 
 import Box from '@material-ui/core/Box';
 import {Grid, List} from "@material-ui/core";
@@ -209,30 +211,6 @@ function CatalogNav() {
     );
 }
 
-function getAllChildCategories(catalog, linkId) {
-    const dependencies = [linkId];
-    const result = []
-    const catalogCopy = [...catalog]
 
-    const findCategory = () => {
-
-        catalogCopy.forEach((category, index) => {
-            dependencies.forEach(dependency => {
-                if (category.parentId.toLowerCase() === dependency.toLowerCase()) {
-                    dependencies.push(category.id.toLowerCase());
-                    result.push(category);
-                    catalogCopy.splice(index, 1);
-                    findCategory()
-                }
-            });
-        })
-    }
-    findCategory();
-    return result;
-}
-
-function generateCategoryPath({id, parentId}) {
-    return id.replace(`${parentId}-`, `${parentId}/`);
-}
 
 export default CatalogNav;
