@@ -40,9 +40,9 @@ function Preloader(props) {
       <>
          {!loading ? (
             
-            <Lottie options={defaultOptions}
-              height={400}
-              width={400}
+            <Lottie style={{ backgroundColor: "#44014C" }} options={defaultOptions}
+              height={500}
+              width={500}
             />
          ) : (
                <h1>Your Data</h1>
