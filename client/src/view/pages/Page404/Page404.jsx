@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import stiles from './Page.module.scss';
 
 import img from '../Page404/img/404imeges.jpeg';
+
 
 
 import PropTypes from 'prop-types';
@@ -17,7 +19,7 @@ function Page404(props) {
                         <h1>Возможно вы имели ввиду:</h1>
                             <ul>
                                 <li className={stiles.BackMenu__item}>
-                                <link to="/Women">Women:</link>
+                               <Link to="/#"><p>Women:</p></Link>
                         </li>
                         <span>_______________</span>
                                 <li className={stiles.BackMenu__item}>
