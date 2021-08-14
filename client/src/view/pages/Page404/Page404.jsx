@@ -19,15 +19,15 @@ function Page404(props) {
                         <h1>Возможно вы имели ввиду:</h1>
                             <ul>
                                 <li className={stiles.BackMenu__item}>
-                                    <Link to="/Home">Women:</Link>
+                                    <Link className="link text-dark" to="/Home">Women:</Link>
                                 </li>
                             <span>_______________</span>
                                 <li className={stiles.BackMenu__item}>
-                                    Men:
+                                    <Link to="/Home">Men:</Link>
                                 </li>
                             <span>_______________</span>
                                 <li className={stiles.BackMenu__item}>
-                                    Kids:
+                                    <Link to="/Home">Kids:</Link>
                                 </li>
                             <span>_______________</span>
                             </ul>
