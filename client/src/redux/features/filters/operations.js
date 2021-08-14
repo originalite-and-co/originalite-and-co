@@ -1,4 +1,5 @@
 import actions from "./actions";
+import transformQueryIntoObject from "../../../utils/transformQueryIntoObject";
 
 const addFilter = (filter) => (dispatch) => {
     const sessionStorageData = JSON.parse(sessionStorage.getItem("filters")) || {};
@@ -57,10 +58,20 @@ const deleteAllFilters = () => (dispatch) => {
     dispatch(actions.deleteAllFilters());
 };
 
-const getFilters = () => (dispatch, getState) => {
+/**
+ *
+ * @param{Object} [location] - location property from history object;
+ * @returns {(function(*, *): void)|*}
+ */
+const getFilters = (location) => (dispatch, getState) => {
+    let filtersFromQuery;
+
+    if (location && location.search.length) {
+        filtersFromQuery = transformQueryIntoObject(location.search);
+    }
     const {filters} = getState();
     const sessionStorageData = JSON.parse(sessionStorage.getItem("filters"));
-    const data = sessionStorageData || filters || [];
+    const data = filtersFromQuery || sessionStorageData || filters || [];
 
     dispatch(actions.getFilters(data));
 };

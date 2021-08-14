@@ -6,13 +6,13 @@ import {Link} from "react-router-dom";
 
 import _ from "lodash";
 
-import classes from "./FilterBreadcrumbs.module.scss"
+import classes from "./CatalogBreadcrumbs.module.scss"
 
-FilterBreadcrumbs.propTypes = {
+CatalogBreadcrumbs.propTypes = {
     path: PropTypes.string.isRequired,
 };
 
-function FilterBreadcrumbs({path}) {
+function CatalogBreadcrumbs({path}) {
     /**
      * This function generates links judging by the path name
      * @function filter() is here because split creates an empty string as the first element.
@@ -29,13 +29,15 @@ function FilterBreadcrumbs({path}) {
      */
     const links = path.split('/')
         .filter(link => link.length)
-        .map(link => {
+        .map((link, index, array) => {
         const stringIndex = path.indexOf(link)
         const dividerIndex = path.indexOf("/", stringIndex);
         const currentLinkPath = path.slice(0, dividerIndex);
-
+        const isLastOne = array.length === index + 1;
         return (
-            <Link className={classes.link} to={currentLinkPath}>
+            <Link
+                className={ isLastOne ? `${classes.link} ${classes.active}` : classes.link}
+                to={currentLinkPath}>
                 {_.upperFirst(_.lowerCase(link))}
             </Link>
         )
@@ -51,4 +53,4 @@ function FilterBreadcrumbs({path}) {
     );
 }
 
-export default FilterBreadcrumbs;
+export default CatalogBreadcrumbs;

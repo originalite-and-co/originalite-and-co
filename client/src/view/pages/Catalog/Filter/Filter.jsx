@@ -24,7 +24,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Size from "./Size/Size";
 import useWindowSize from "../../../hooks/useWindowSize";
 import constants from "../../../constants";
-import FilterBreadcrumbs from "./Breadcrumbs/FilterBreadcrumbs";
+import CatalogBreadcrumbs from "../Breadcrumbs/CatalogBreadcrumbs";
 import CategoryNav from "./CategoryNav/CategoryNav";
 
 Filter.propTypes = {};
@@ -84,7 +84,7 @@ function Filter(props) {
             {
                 isDesktop && (
                     <>
-                        <FilterBreadcrumbs path={history.location.pathname}/>
+                        <CatalogBreadcrumbs path={history.location.pathname}/>
                         <CategoryNav parentCategoryId={category?.id} parentCategoryName={category?.name}/>
                     </>
                 )

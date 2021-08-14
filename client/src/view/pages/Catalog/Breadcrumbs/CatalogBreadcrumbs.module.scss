@@ -1,0 +1,39 @@
+@import "../../../assets/styles/variables";
+
+.link {
+  font-family: Josefin Sans, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000000;
+  border-bottom: 1px solid transparent;
+
+  &:hover{
+    border-bottom: 1px solid #7f7f7f;
+  }
+}
+
+.link.active{
+  color: #7f7f7f;
+}
+
+.breadcrumbs {
+
+}
+
+
+@media (min-width: $desktop) {
+  .link, .separator {
+    color: #C4C4C4;
+  }
+
+  .link:hover {
+    border-bottom: 1px solid #ffffff;
+  }
+
+
+  .link.active{
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+  }
+}

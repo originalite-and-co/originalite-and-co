@@ -1,7 +1,7 @@
-
+@import "src/view/assets/styles/variables";
 .content {
   height: 100%;
-  padding-top: 9vh!important;
+  padding-top: 124px!important;
 }
 
 .filter {
@@ -11,13 +11,17 @@
 }
 
 .contentInner{
-  padding-left: 7vw;
-  padding-right: 7vw;
+  padding: 2vh 7vw!important;
 }
 
 .filterInner{
   padding: 1vh 4vw 2vh;
 }
 
+@media (min-width:$desktop) {
+  .content {
+    padding-top: 94px!important;
+  }
+}
 
 

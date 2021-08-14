@@ -9,6 +9,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {productRequests} from "../../../api/server";
 import useWindowSize from "../../hooks/useWindowSize";
 import constants from "../../constants";
+import {useHistory} from "react-router-dom";
+
+import _ from "lodash"
+import Products from "./Products/Products";
 
 Catalog.propTypes = {};
 
@@ -20,18 +24,23 @@ function Catalog(props) {
     const [isDesktop, setDesktop] = useState(false);
     const {width} = useWindowSize();
 
+    const {location, replace} = useHistory();
+    const categoryName = location.pathname.split("/").pop()
+    const categoryTitle = _.upperFirst(_.lowerCase(categoryName))
+
     useEffect(() => {
         setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
     }, [width])
 
 
     useEffect(() => {
+        replace(`${location.pathname}?${query}`)
         productRequests.retrieveByQuery(query)
             .then(data => console.log(data));
     }, [query])
 
     useEffect(() => {
-        dispatch(filterOperations.getFilters())
+        dispatch(filterOperations.getFilters(location))
     }, [])
 
     return (
@@ -58,9 +67,7 @@ function Catalog(props) {
                     item
                 >
                     <Box className={classes.contentInner}>
-                        <Typography component="h2" variant="h5">
-                            Category
-                        </Typography>
+                        <Products categoryTitle={categoryTitle}/>
                     </Box>
                 </Grid>
             </Grid>
