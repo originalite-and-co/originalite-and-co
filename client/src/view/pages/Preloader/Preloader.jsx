@@ -39,10 +39,10 @@ function Preloader(props) {
 
    return (
       <>
-         <div className={"styles.ContainerPreloader"}>
+         <div className={styles.ContainerPreloader}>
          {!loading ? (
             
-            <Lottie style={{ backgroundColor: "#44014C" }} options={defaultOptions}
+            <Lottie options={defaultOptions}
               height={500}
               width={500}
             />
