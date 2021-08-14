@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Lottie from "react-lottie";
+import styles from './Preloader.module.scss';
 
 import * as location from './1055-world-locations.json'
 
@@ -38,7 +39,7 @@ function Preloader(props) {
 
    return (
       <>
-         <div className="Style.ContainerPreloader">
+         <div className={"styles.ContainerPreloader"}>
          {!loading ? (
             
             <Lottie style={{ backgroundColor: "#44014C" }} options={defaultOptions}
