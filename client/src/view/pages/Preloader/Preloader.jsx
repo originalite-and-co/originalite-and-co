@@ -47,7 +47,7 @@ function Preloader(props) {
               width={500}
             />
          ) : (
-               <h1>Your Data</h1>
+               <h1></h1>
             )}
             </div>
       </>
