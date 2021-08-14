@@ -38,6 +38,7 @@ function Preloader(props) {
 
    return (
       <>
+         <div className="Style.ContainerPreloader">
          {!loading ? (
             
             <Lottie style={{ backgroundColor: "#44014C" }} options={defaultOptions}
@@ -46,7 +47,8 @@ function Preloader(props) {
             />
          ) : (
                <h1>Your Data</h1>
-        )}
+            )}
+            </div>
       </>
    );
 }
