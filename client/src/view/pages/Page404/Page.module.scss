@@ -3,19 +3,33 @@
    margin: 0 auto;
    display: flex;
    justify-content: space-between;
-   background-color: black;
  }
  
  .BackMenu {
    font-size: 30px;
    margin-top: 15%;
    color: rgb(126, 129, 129);
+   &__title {
+     margin-bottom: 20px;
+   }
    &__item {
      font-size: 20px;
      list-style-type: disc;
    }
  }
-
+a {
+  color:rgb(126, 129, 129);
+}
+.strip {
+  width: 100%;
+  height: 20px;
+  display: inline-flex;
+}
+.item {
+  width: 100%;
+  height: 2px;
+  background-color: rgb(126, 129, 129);
+}
  .Info {
    font-size: 30px;
    margin-top: 15%; 

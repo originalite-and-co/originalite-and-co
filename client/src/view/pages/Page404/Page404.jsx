@@ -16,20 +16,26 @@ function Page404(props) {
         <>
             <div className={stiles.ContainerPages404}>
                     <div className={stiles.BackMenu}>
-                        <h1>Возможно вы имели ввиду:</h1>
+                        <h1 className={stiles.BackMenu__title}>Возможно вы имели ввиду:</h1>
                             <ul>
                                 <li className={stiles.BackMenu__item}>
-                                    <Link className="link text-dark" to="/Home">Women:</Link>
+                                    <Link to="/Women">Women:</Link>
                                 </li>
-                            <span>_______________</span>
+                                    <span className={stiles.strip}>
+                                        <span className={stiles.item}></span>
+                                    </span>
                                 <li className={stiles.BackMenu__item}>
-                                    <Link to="/Home">Men:</Link>
+                                    <Link to="/Men">Men:</Link>
                                 </li>
-                            <span>_______________</span>
+                                    <span className={stiles.strip}>
+                                        <span className={stiles.item}></span>
+                                    </span>
                                 <li className={stiles.BackMenu__item}>
-                                    <Link to="/Home">Kids:</Link>
+                                    <Link to="/Kids">Kids:</Link>
                                 </li>
-                            <span>_______________</span>
+                                    <span className={stiles.strip}>
+                                        <span className={stiles.item}></span>
+                                    </span>
                             </ul>
                     </div>
                     <div className={stiles.Info}>
