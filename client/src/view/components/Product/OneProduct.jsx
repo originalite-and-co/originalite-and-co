@@ -32,13 +32,13 @@ const productOne = {
 
 function OneProduct () {
 
-    // const productId = props.match.params.productId
+    // const itemNo = props.match.params.itemNo
 
     // const [Product, setProduct] = useState([])
 
     // useEffect(() => {
     //     Axios
-    //         .get(`/api/products/products_by_id?id=${productId}&type=single`) //query string строка запроса.Это параметры ключ=значение которые располагаются в request line после указания метода GET
+    //         .get(`/api/products/products_by_id?id=${itemNo}&type=single`) //query string строка запроса.Это параметры ключ=значение которые располагаются в request line после указания метода GET
     //         .then(response => {
     //             setProduct(response.data[0]) // need only one product info
     //         })
