@@ -21,12 +21,12 @@ const createCatalog = async (data) => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('create catalog', response);
+      throw generateResponseException('create a catalog', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('creating catalog', error);
+    throw generateFetchException('creating a catalog', error);
   }
 };
 
@@ -50,7 +50,7 @@ const updateCatalog = async (data) => {
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('updating catalog', error);
+    throw generateFetchException('updating a catalog', error);
   }
 };
 
@@ -66,12 +66,12 @@ const retrieveCatalog = async () => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('retrieve catalog', response);
+      throw generateResponseException('retrieve a catalog', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('retrieving catalog', error);
+    throw generateFetchException('retrieving a catalog', error);
   }
 };
 
@@ -89,12 +89,12 @@ const retrieveCategory = async (id) => {
     });
 
     if (!response.ok) {
-      throw generateResponseException('retrieve category', response);
+      throw generateResponseException('retrieve a category', response);
     }
 
     return await response.json();
   } catch (error) {
-    throw generateFetchException('retrieving category', error);
+    throw generateFetchException('retrieving a category', error);
   }
 };
 
