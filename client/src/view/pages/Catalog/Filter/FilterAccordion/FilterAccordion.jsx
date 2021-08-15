@@ -16,9 +16,9 @@ function FilterAccordion({text, isDesktop, detailsContent}) {
 
     return (
         <Accordion
-            defaultExpanded={isDesktop}
-            expanded={isDesktop}
-            onChange={() => setIsOpen(!isOpen)}
+            // defaultExpanded={isDesktop}
+            // expanded={isDesktop}
+            // onChange={() => setIsOpen(!isOpen)}
             className={classes.accordion}>
             <AccordionSummary
                 className={classes.accordionSummary}
