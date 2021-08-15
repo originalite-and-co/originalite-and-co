@@ -11,15 +11,13 @@ import {
     Typography
 } from "@material-ui/core";
 import {useHistory, useRouteMatch} from "react-router-dom";
-import {Close, ExpandMore} from "@material-ui/icons";
+import {Close} from "@material-ui/icons";
 
 import classes from "./Filter.module.scss"
-import {catalogRequests, colorRequests, productRequests, sizeRequests} from "../../../../api/server";
+import {catalogRequests, colorRequests, sizeRequests} from "../../../../api/server";
 import useAsyncError from "../../../hooks/useAsyncError";
 
-import _ from "lodash";
 import Color from "./Color/Color";
-import {filterOperations, filterSelectors} from "../../../../redux/features/filters";
 import {useDispatch, useSelector} from "react-redux";
 import Size from "./Size/Size";
 import useWindowSize from "../../../hooks/useWindowSize";
@@ -27,6 +25,7 @@ import constants from "../../../constants";
 import CatalogBreadcrumbs from "../Breadcrumbs/CatalogBreadcrumbs";
 import CategoryNav from "./CategoryNav/CategoryNav";
 import {isAnyDropdownOpenActions} from "../../../../redux/features/dropdown";
+import FilterAccordion from "./FilterAccordion/FilterAccordion";
 
 Filter.propTypes = {};
 
@@ -64,7 +63,8 @@ function Filter(props) {
                 data => setColors(data),
                 error => throwAsyncError(error)
             )
-            .then(() => setIsLoaded(true));;
+            .then(() => setIsLoaded(true));
+        ;
     }, []);
 
     useEffect(() => {
@@ -74,7 +74,8 @@ function Filter(props) {
                 data => setSizes(data),
                 error => throwAsyncError(error)
             )
-            .then(() => setIsLoaded(true));;
+            .then(() => setIsLoaded(true));
+        ;
     }, []);
 
     const colorList = colors?.map(({_id, name, cssValue}) => {
@@ -118,78 +119,40 @@ function Filter(props) {
             }
 
             <Box className={`${classes.content} wrapper`}>
-                <Accordion
-                    defaultExpanded={isDesktop}
-                    className={classes.accordion}>
-                    <AccordionSummary
-                        className={classes.accordionSummary}
-                        expandIcon={<ExpandMore className={classes.accordionIcon}/>}
+                <FilterAccordion
+                    isDesktop={isDesktop}
+                    text="Colors"
+                    detailsContent={<Grid
+                        spacing={isDesktop ? 5 : 7}
+                        container
+                        component="ul"
+                        direction={isDesktop ? "column" : "row"}
+                        wrap={isDesktop ? "nowrap" : "wrap"}
                     >
-                        <Typography
-                            className={classes.accordionSummaryText}
-                            component="p"
-                            variant={isDesktop ? "h6" : "body1"}
-                        >
-                            Colors
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.accordionDetails}>
-                        <Grid
-                            spacing={isDesktop ? 5: 7}
-                            container
-                            component="ul"
-                            direction={isDesktop ? "column" : "row"}
-                            wrap={isDesktop? "nowrap" : "wrap"}
-                        >
-                            {colorList}
-                        </Grid>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion defaultExpanded={isDesktop}
-                           className={classes.accordion}>
-                    <AccordionSummary className={classes.accordionSummary}
-                                      expandIcon={<ExpandMore className={classes.accordionIcon}/>}
+                        {colorList}
+                    </Grid>}
+                />
+                <FilterAccordion
+                    isDesktop={isDesktop}
+                    text="Sizes"
+                    detailsContent={<Grid
+                        container
+                        component="ul"
+                        spacing={isDesktop ? 4 : 5}
+                        direction={isDesktop ? "column" : "row"}
+                        wrap={isDesktop ? "nowrap" : "wrap"}
                     >
-                        <Typography
-                            className={classes.accordionSummaryText}
-                            component="p"
-                            variant={isDesktop ? "h6" : "body1"}
-                        >
-                            Sizes
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.accordionDetails}>
-                        <Grid
-                            container
-                            component="ul"
-                            spacing={isDesktop ? 4 : 5}
-                            direction={isDesktop ? "column" : "row"}
-                            wrap={isDesktop? "nowrap" : "wrap"}
-                        >
-                            {sizeList}
-                        </Grid>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion
-                    defaultExpanded={isDesktop}
-                    className={classes.accordion}>
-                    <AccordionSummary className={classes.accordionSummary}
-                                      expandIcon={<ExpandMore className={classes.accordionIcon}/>}
-                    >
-                        <Typography
-                            className={classes.accordionSummaryText}
-                            component="p"
-                            variant={isDesktop ? "h6" : "body1"}
-                        >
-                            Price
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.accordionDetails}>
-                        <Typography>
-                            Some price
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
+                        {sizeList}
+                    </Grid>}
+                />
+                <FilterAccordion
+                    isDesktop={isDesktop}
+                    text={"Price"}
+                    detailsContent={<Typography>
+                        Some price
+                    </Typography>
+                    }
+                />
             </Box>
         </Box>
     );
