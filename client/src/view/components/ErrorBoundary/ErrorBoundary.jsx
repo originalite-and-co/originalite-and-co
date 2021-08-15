@@ -16,12 +16,12 @@ class ErrorBoundary extends Component {
     }
 
     render() {
-        return this.state.hasError ? this.props.fallback : this.props.children
+        return this.state.hasError ? (<>{this.props.fallback}{this.props.children}</>) : this.props.children
     }
 }
 
 ErrorBoundary.propTypes = {
-    children: PropTypes.element.isRequired,
+    // children: PropTypes.element.isRequired,
     fallback: PropTypes.element.isRequired
 }
 

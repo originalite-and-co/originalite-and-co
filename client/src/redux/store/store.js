@@ -6,12 +6,14 @@ import cartReducer from "./../features/cart/index";
 import isAnyDropdownOpenReducer from '../features/dropdown/index';
 import searchResult from "./../features/searchResult/index";
 import footerReducer from "../features/footerLinks/index";
+import authorizationReducer from '../features/authorization/index'
 
 const rootReducer = combineReducers({
     ...cartReducer,
     ...isAnyDropdownOpenReducer,
     ...searchResult,
-    ...footerReducer
+    ...footerReducer,
+    ...authorizationReducer
 });
 
 const composeEnhancers = composeWithDevTools(({

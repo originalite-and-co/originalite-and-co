@@ -16,18 +16,24 @@ import SearchResult from "../pages/SearchResult/SearchResult";
 import useAsyncError from "../hooks/useAsyncError";
 import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
-import CardList from "../components/CardList/CardList";
+import {authorizationSelectors, authorizeOperations} from "../../redux/features/authorization";
+import {useDispatch, useSelector} from "react-redux";
 
 function AppRoutes() {
-    const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
+    const dispatch = useDispatch()
+    const authorization = useSelector(authorizationSelectors.authorization)
+
+    const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
+
     const [staticPages, setStaticPages] = useState([]);
-  
+
     const throwError = useAsyncError();
 
 
     useEffect(() => {
-        setAuthenticated(!!sessionStorage.getItem('token'));
-    }, []);
+        dispatch(authorizeOperations.authorizeUser())
+        setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
+    }, [authorization]);
 
     useEffect(useCallback(() => {
         pageRequests.retrievePages()
@@ -54,7 +60,6 @@ function AppRoutes() {
 
     return (
         <Switch>
-
             <Route path="/products/search" component={SearchResult}/>
             {staticPageRoutes}
             <Route path="/help" render={() => <p>Loading ...</p>}/>
@@ -64,7 +69,6 @@ function AppRoutes() {
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>
             <Route path="/cart" component={Cart}/>
-            <Route path="/cardlist" component={CardList}/>
             <Route path="/auth" component={Authentication}/>
             <Route exact path="/" component={Home}/>
             <Route path="*" component={Page404}/>
