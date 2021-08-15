@@ -17,6 +17,7 @@ import useAsyncError from "../hooks/useAsyncError";
 import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
 
+
 function AppRoutes() {
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
     const [staticPages, setStaticPages] = useState([]);
@@ -66,6 +67,7 @@ function AppRoutes() {
             <Route path="/auth" component={Authentication}/>
             <Route exact path="/" component={Home}/>
             <Route path="*" component={Page404}/>
+
         </Switch>
     );
 

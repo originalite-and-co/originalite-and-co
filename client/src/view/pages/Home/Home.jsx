@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer"
+import ProductPage from "../ProductPage/ProductPage";
 
 Home.propTypes = {
 
@@ -10,9 +11,10 @@ Home.propTypes = {
 function Home(props) {
   return (
     <>
-        <Header/>
-        <div>Home</div>
-        <Footer/>
+        {/*<Header/>*/}
+        {/*<div>Home</div>*/}
+        <ProductPage/>
+        {/*<Footer/>*/}
     </>
   );
 }
