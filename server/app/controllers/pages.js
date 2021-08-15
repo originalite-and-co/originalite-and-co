@@ -101,13 +101,13 @@ exports.getPage = (req, res, next) => {
 };
 
 exports.getPages = (req, res, next) => {
-    Page.find()
-        .then(pages => {
-            res.status(200).send(pages)
-        })
-        .catch(err =>
-            res.status(400).json({
-                message: `Error happened on server: "${err}" `
-            })
-        );
+  Page.find()
+    .then(pages => {
+      res.status(200).send(pages)
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}"`
+      })
+    );
 }
