@@ -1,9 +1,9 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
-import Facebook from '../../icons/facebook.svg';
-import Instagram from '../../icons/instagram.svg';
-import Pinterest from '../../icons/pinterest.svg';
+import Facebook from '../icons/facebook.svg';
+import Instagram from '../icons/instagram.svg';
+import Pinterest from '../icons/pinterest.svg';
 import SocialStyles from './Social.module.scss';
 
 function Social() {
