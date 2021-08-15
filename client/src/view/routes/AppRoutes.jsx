@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import Home from "../pages/Home/Home";
 import Authentication from "../pages/Authentication/Authentication"
 import Page404 from "../pages/Page404/Page404";
+
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Member from "../pages/Member/Member";
 import Checkout from "../pages/Checkout/Checkout";
@@ -71,7 +72,8 @@ function AppRoutes() {
             <Route path="/cart" component={Cart}/>
             <Route path="/auth" component={Authentication}/>
             <Route exact path="/" component={Home}/>
-            <Route path="*" component={Page404}/>
+            <Route path="*" component={Page404} />
+            
         </Switch>
     );
 
