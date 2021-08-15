@@ -11,10 +11,9 @@ Home.propTypes = {
 function Home(props) {
   return (
     <>
-        {/*<Header/>*/}
-        {/*<div>Home</div>*/}
+        <Header/>
         <ProductPage/>
-        {/*<Footer/>*/}
+        <Footer/>
     </>
   );
 }

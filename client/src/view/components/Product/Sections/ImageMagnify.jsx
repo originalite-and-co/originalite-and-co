@@ -25,7 +25,6 @@ export default function ImageMagnify(props) {
                         }
                     }}
                 />
-                {/*<img src={num} width="50%" alt=''/>*/}
             </div>
         ));
 
