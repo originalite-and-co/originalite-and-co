@@ -36,6 +36,7 @@ function CatalogBreadcrumbs({path}) {
         const isLastOne = array.length === index + 1;
         return (
             <Link
+                key={index}
                 className={ isLastOne ? `${classes.link} ${classes.active}` : classes.link}
                 to={currentLinkPath}>
                 {_.upperFirst(_.lowerCase(link))}

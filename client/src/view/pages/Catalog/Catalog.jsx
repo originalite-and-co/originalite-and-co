@@ -36,7 +36,7 @@ function Catalog(props) {
     useEffect(() => {
         replace(`${location.pathname}?${query}`)
         productRequests.retrieveByQuery(query)
-            .then(data => console.log(data));
+            .then(data => data);
     }, [query])
 
     useEffect(() => {

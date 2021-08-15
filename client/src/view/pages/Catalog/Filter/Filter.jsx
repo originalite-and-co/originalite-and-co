@@ -26,6 +26,7 @@ import useWindowSize from "../../../hooks/useWindowSize";
 import constants from "../../../constants";
 import CatalogBreadcrumbs from "../Breadcrumbs/CatalogBreadcrumbs";
 import CategoryNav from "./CategoryNav/CategoryNav";
+import {isAnyDropdownOpenActions} from "../../../../redux/features/dropdown";
 
 Filter.propTypes = {};
 
@@ -35,16 +36,21 @@ function Filter(props) {
     const [sizes, setSizes] = useState([]);
     const [isDesktop, setDesktop] = useState(false);
     const [category, setCategory] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false)
 
     const throwAsyncError = useAsyncError();
     const {width} = useWindowSize();
     const history = useHistory();
     const {params} = useRouteMatch();
 
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
+        setIsLoaded(false)
         catalogRequests.retrieveCategory(params.category)
-            .then(category => setCategory(category));
+            .then(category => setCategory(category))
+            .then(() => setIsLoaded(true));
     }, []);
 
     useEffect(() => {
@@ -52,19 +58,23 @@ function Filter(props) {
     }, [width])
 
     useEffect(() => {
+        setIsLoaded(false)
         colorRequests.retrieveColors()
             .then(
                 data => setColors(data),
                 error => throwAsyncError(error)
-            );
+            )
+            .then(() => setIsLoaded(true));;
     }, []);
 
     useEffect(() => {
+        setIsLoaded(false)
         sizeRequests.retrieveSizes()
             .then(
                 data => setSizes(data),
                 error => throwAsyncError(error)
-            );
+            )
+            .then(() => setIsLoaded(true));;
     }, []);
 
     const colorList = colors?.map(({_id, name, cssValue}) => {
@@ -79,10 +89,14 @@ function Filter(props) {
         );
     });
 
+    const handleCloseBtnClick = event => {
+        dispatch(isAnyDropdownOpenActions.closedDropdown());
+    }
+
     return (
         <Box className={classes.root}>
             {
-                isDesktop && (
+                isDesktop && isLoaded && (
                     <>
                         <CatalogBreadcrumbs path={history.location.pathname}/>
                         <CategoryNav parentCategoryId={category?.id} parentCategoryName={category?.name}/>
@@ -90,12 +104,12 @@ function Filter(props) {
                 )
             }
             {
-                !isDesktop && (
+                !isDesktop && isLoaded && (
                     <>
                         <Typography align="center" className={classes.heading} component="p" variant="body2">
                             Filters
                         </Typography>
-                        <IconButton className={classes.closeButton} aria-label="close">
+                        <IconButton onClick={handleCloseBtnClick} className={classes.closeButton} aria-label="close">
                             <Close/>
                         </IconButton>
                         <Divider className={classes.divider}/>

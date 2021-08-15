@@ -9,12 +9,12 @@
   border-bottom: 1px solid transparent;
 
   &:hover{
-    border-bottom: 1px solid #7f7f7f;
+    border-bottom: 1px solid #000000;
   }
 }
 
 .link.active{
-  color: #7f7f7f;
+  border-bottom: 1px solid #000000;
 }
 
 .breadcrumbs {

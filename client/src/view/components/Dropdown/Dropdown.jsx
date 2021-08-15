@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './HeaderDropdown.module.scss';
+import styles from './Dropdown.module.scss';
 import {List,Box} from '@material-ui/core'
 
-HeaderDropdown.propTypes = {
+Dropdown.propTypes = {
     classNames: PropTypes.shape({
         active: PropTypes.string,
         closed: PropTypes.string
@@ -14,11 +14,11 @@ HeaderDropdown.propTypes = {
     lockBodyScrolling: PropTypes.bool
 };
 
-HeaderDropdown.defaultProps = {
+Dropdown.defaultProps = {
     lockBodyScrolling: false
 }
 
-function HeaderDropdown(
+function Dropdown(
     {
         classNames,
         onMouseLeave,
@@ -45,4 +45,4 @@ function HeaderDropdown(
 }
 
 
-export default HeaderDropdown;
+export default Dropdown;

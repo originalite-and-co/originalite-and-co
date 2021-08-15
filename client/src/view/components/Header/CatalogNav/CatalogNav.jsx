@@ -15,7 +15,7 @@ import generateCategoryPath from "../../../utils/generateCategoryPath";
 
 import Box from '@material-ui/core/Box';
 import {Grid, List} from "@material-ui/core";
-import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
+import Dropdown from "../../Dropdown/Dropdown";
 import MainCategoryLink from "../MainCategoryLink/MainCategoryLink";
 import AllCategories from "../AllCategories/AllCategories";
 
@@ -144,6 +144,7 @@ function CatalogNav() {
         .filter(category => category.parentId === "null")
         .map(category => {
             return <MainCategoryLink
+                key={category._id}
                 category={category}
                 onHover={handleMainCategoryLinkAction}
                 isDesktop={isDesktop}
@@ -193,7 +194,7 @@ function CatalogNav() {
             data-testid="catalog-nav"
         >
             {renderMainCategoryLinks(3)}
-            <HeaderDropdown
+            <Dropdown
                 classNames={{
                     closed: styles.dropdown,
                     active: styles.dropdownActive
