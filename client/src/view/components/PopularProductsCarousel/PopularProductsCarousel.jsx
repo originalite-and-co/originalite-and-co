@@ -10,6 +10,8 @@ import {productRequests} from "../../../api/server";
 import useAsyncError from "../../hooks/useAsyncError";
 import Carousel, {popularProductCard} from "../Carousel";
 import {Typography} from "@material-ui/core";
+import useWindowSize from "../../hooks/useWindowSize";
+import constants from "../../constants";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -18,6 +20,11 @@ const PopularProductsCarousel = () => {
     const {popularProductsCarousel,popularProductsSlide} = popularProductCard;
     const [productList, setProductList] = useState([]);
     const [apiError, setApiError] = useState('');
+    const [isDesktop,setIsDesktop] = useState(false);
+    const {width} = useWindowSize();
+    useEffect(()=>{
+        setIsDesktop(width>=constants.WINDOW_DESKTOP_SIZE)
+    },[width])
     const throwError = useAsyncError();
     useEffect(() => {
         productRequests.retrieveProduct()
@@ -36,9 +43,9 @@ const PopularProductsCarousel = () => {
         <ProductCard product={product} size={12} key={product._id}/>))
     return (
         <div data-testid={"popular-product-carousel"} className={"carousel"}>
-            <Typography>Popular</Typography>
-                <Carousel components={slides}
-                          carouselProps={popularProductsCarousel} slideProps={popularProductsSlide}/>
+            <Typography component={"h4"} variant={"body2"}>Popular Products</Typography>
+                <Carousel slides={slides}
+                    carouselProps={{...popularProductsCarousel, navigation:isDesktop}} slideProps={popularProductsSlide}/>
         </div>)
 }
 

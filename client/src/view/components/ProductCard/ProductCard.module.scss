@@ -1,3 +1,5 @@
+@import "src/view/assets/styles/variables";
+
 .productCard {
   list-style: none;
   width: 100%;
@@ -13,6 +15,7 @@
   line-height: 25px;
 }
 .productImage{
+  height: 70%;
   img{
     max-width: 100%;
     width: 100%;
@@ -31,3 +34,13 @@
   text-transform: uppercase;
 
 }
+
+
+//@media (min-width:$desktop){
+//  .productCard{
+//    height: 545px;
+//  }
+//  .productImage{
+//    height: 475px;
+//    }
+//}
