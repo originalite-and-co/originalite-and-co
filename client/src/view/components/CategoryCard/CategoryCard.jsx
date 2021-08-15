@@ -8,11 +8,10 @@ CategoryCard.propTypes = {
 }
 
 function CategoryCard ({product,size}){
-
     return (
         <Grid item xs={size} className={styles.CategoryCard}>
         <div >
-            <div><img src={product.img} alt="products images"/></div>
+            <div><img style={{maxWidth: "100%"}} src={product.img} alt="products images"/></div>
             <p>{product.name}</p>
         </div>
         </Grid>
