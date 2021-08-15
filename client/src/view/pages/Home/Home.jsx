@@ -1,34 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer"
 import CardList from "../../components/CardList/CardList.jsx";
-import PopularProductsCarousel from "../../components/PopularProductsCarousel/PopularProductsCarousel.jsx";
 import ShopCategories from "../../components/ShopCategories/ShopCategories";
 import {Box} from "@material-ui/core";
+import PopularProductsCarousel from "../../components/PopularProductsCarousel/PopularProductsCarousel";
 
 
-Home.propTypes = {
-
-};
+Home.propTypes = {};
 
 function Home(props) {
-  return (
-    <Box
-        // style={{backgroundColor: "black"}}
-    >
-        <Header/>
-        <div>Home</div>
-
-        <Box className={"wrapper"} component={"main"} >
+    return (
+        <Box
+            // style={{backgroundColor: "black"}}
+        >
+            <Header/>
             <div>Home</div>
-            <CardList />
-
-            <ShopCategories/>
+            <Box className={"wrapper"} component={"main"}>
+                <CardList/>
+               <PopularProductsCarousel/>
+                <ShopCategories/>
+            </Box>
+            <Footer/>
         </Box>
-        <Footer/>
-    </Box>
-  );
+    );
 }
 
 export default Home;

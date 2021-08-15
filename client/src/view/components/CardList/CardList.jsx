@@ -31,12 +31,15 @@ const CardList = () => {
  }
 
     return (
-        <div data-testid={"product-list"} className={styles.cardListCards}>
+        <Grid container direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              spacing={2} data-testid={"product-list"}  className={styles.cardListCards}>
             {
-                productList.map((product) => (<ProductCard product={product} key={product._id}/>))
+                productList.map((product) => (<ProductCard size={6} product={product} key={product._id}/>))
             }
 
-        </div>
+        </Grid>
     );
 
 };
