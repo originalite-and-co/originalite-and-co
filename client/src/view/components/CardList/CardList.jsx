@@ -9,7 +9,6 @@ import {Grid} from "@material-ui/core";
 const CardList = () => {
     const [productList, setProductList] = useState([]);
     const [apiError, setApiError] = useState('');
-    // const products = productRequests.retrieveProduct();
     const throwError = useAsyncError();
     useEffect(()=> {
         productRequests.retrieveProduct()

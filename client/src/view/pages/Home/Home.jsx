@@ -11,13 +11,10 @@ Home.propTypes = {};
 
 function Home(props) {
     return (
-        <Box
-            // style={{backgroundColor: "black"}}
-        >
+        <Box>
             <Header/>
             <div>Home</div>
             <Box className={"wrapper"} component={"main"}>
-                <CardList/>
                <PopularProductsCarousel/>
                 <ShopCategories/>
             </Box>

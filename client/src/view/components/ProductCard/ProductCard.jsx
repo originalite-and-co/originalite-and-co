@@ -2,9 +2,12 @@ import PropTypes from "prop-types";
 import styles from "./ProductCard.module.scss";
 import {Grid} from "@material-ui/core";
 
+ProductCard.propTypes = {
+    product: PropTypes.object.isRequired,
+    size:PropTypes.number.isRequired
+}
+ function ProductCard({product,size}) {
 
- const ProductCard = ({product,size}) => {
-console.log(product.imageUrls[0]);
   return (
     <Grid item component={"li"} data-testid={"product-card"} xs={size} className={styles.productCard}>
             <div className={styles.productImage}><img src={product.imageUrls[0]} alt="products images"/></div>
@@ -14,8 +17,6 @@ console.log(product.imageUrls[0]);
     )
 };
 
-ProductCard.propTypes = {
-    product: PropTypes.object.isRequired
-}
+
 
 export default ProductCard;

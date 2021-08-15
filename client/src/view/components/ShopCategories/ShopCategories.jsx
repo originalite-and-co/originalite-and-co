@@ -34,8 +34,6 @@ const ShopCategories = () => {
         return <CategoryCard size={isLast? 12 : 4} product={product} key={product._id}/>
     }
     )
-
-console.log(useTheme());
     return (
         <div>
             <Typography color={"inherit"} component={"h3"} variant={"body1"} className={styles.shopCategory} >Shop by Category</Typography>

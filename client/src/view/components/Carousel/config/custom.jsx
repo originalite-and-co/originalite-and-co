@@ -11,4 +11,16 @@ const carousel = {
     className: "popularProdCard"
 };
 
-export default { slide, carousel };
+const popularProductsSlide = {
+    className: "popularSlide"
+};
+const popularProductsCarousel = {
+    loop: true,
+    slidesPerView: 3,
+    spaceBetween: 20,
+    pagination: {
+        clickable: true
+    },
+}
+
+export default { slide, carousel,popularProductsCarousel,popularProductsSlide };

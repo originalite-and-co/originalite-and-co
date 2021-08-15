@@ -15,7 +15,7 @@ import {Typography} from "@material-ui/core";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const PopularProductsCarousel = () => {
-    const {slide, carousel} = popularProductCard;
+    const {popularProductsCarousel,popularProductsSlide} = popularProductCard;
     const [productList, setProductList] = useState([]);
     const [apiError, setApiError] = useState('');
     const throwError = useAsyncError();
@@ -33,12 +33,12 @@ const PopularProductsCarousel = () => {
 
     }, [])
     const slides = productList.map((product) => (
-        <ProductCard product={product} key={product._id}/>))
+        <ProductCard product={product} size={12} key={product._id}/>))
     return (
         <div data-testid={"popular-product-carousel"} className={"carousel"}>
             <Typography>Popular</Typography>
                 <Carousel components={slides}
-                          carouselProps={carousel} slideProps={slide}/>
+                          carouselProps={popularProductsCarousel} slideProps={popularProductsSlide}/>
         </div>)
 }
 
