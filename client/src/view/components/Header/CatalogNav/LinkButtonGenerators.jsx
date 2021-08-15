@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Link} from "react-router-dom";
 
-export function CatalogNavLink({pathTo, handleHover, styles, text,onMouseLeave}) {
+export function CatalogNavLink({link, pathTo, styles, text}) {
     return (
-        <Link onMouseEnter={handleHover}
-              className={styles}
-              to={pathTo}
-              onMouseLeave={onMouseLeave}
+        <Link
+            ref={link}
+            className={styles}
+            to={pathTo}
         >
             {text}
         </Link>

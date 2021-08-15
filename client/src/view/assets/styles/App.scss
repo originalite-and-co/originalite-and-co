@@ -6,8 +6,8 @@
   padding-right: 27px;
 }
 
-html, body{
-  min-height: 100vh;
+html, body, #root, #root > div, .App{
+  height: 100%;
 }
 
 .lock-scroll {

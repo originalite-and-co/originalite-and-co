@@ -87,17 +87,17 @@ describe("AppRoutes", () => {
         expect(queryByText(/catalog/i)).toBeInTheDocument();
     });
 
-    test("if it renders product page", () => {
-        const {debug, queryByText} = render(
-            <Router history={history}>
-                <AppRoutes/>
-            </Router>
-        );
-
-        expect(queryByText(/product/i)).toBeNull();
-        history.push("/catalog/12498");
-        expect(queryByText(/product/i)).toBeInTheDocument();
-    });
+    // test("if it renders product page", () => {
+    //     const {debug, queryByText} = render(
+    //         <Router history={history}>
+    //             <AppRoutes/>
+    //         </Router>
+    //     );
+    //
+    //     expect(queryByText(/product/i)).toBeNull();
+    //     history.push("/catalog/12498");
+    //     expect(queryByText(/product/i)).toBeInTheDocument();
+    // });
 
     test("if it doesn't render checkout page without token", () => {
         const {queryByText} = render(
