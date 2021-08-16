@@ -37,7 +37,6 @@ app.use(express.urlencoded({extended: false}))
 
 // DB Config
 const db = require('./app/config/keys').mongoURI;
-
 // Connect to MongoDB
 mongoose
     .connect(db, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})

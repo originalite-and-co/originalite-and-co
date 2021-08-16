@@ -40,25 +40,7 @@
   margin: 0;
 }
 
-// .swiper-button-prev {
-//   background-image: url(../../assets//icons/arrow.svg);
-//   background-repeat: no-repeat;
-//   background-size: 100% auto;
-//   background-position: center;
-//   transform: rotate(180deg);
-// }
-
-// .swiper-button-next {
-//   background-image: url(../../assets//icons/arrow.svg);
-//   background-repeat: no-repeat;
-//   background-size: 100% auto;
-//   background-position: center;
-// }
-
-.swiper-pagination-bullet {
-}
-
-.swiper-button-prev,
-.swiper-button-next {
+.header__carousel .swiper-button-prev,
+.header__carousel .swiper-button-next {
   mix-blend-mode: exclusion;
 }

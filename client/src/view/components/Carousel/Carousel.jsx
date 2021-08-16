@@ -8,10 +8,12 @@ import './style.scss';
 SwiperCore.use([Navigation, Pagination, Thumbs]);
 
 const Carousel = ({ components, slideProps, carouselProps }) => {
-  const slides = useMemo(() =>
-    components.map((component, key) => {
-      return <SwiperSlide children={component} key={key} {...slideProps} />;
-    })
+  const slides = useMemo(
+    () =>
+      components.map((component, key) => {
+        return <SwiperSlide children={component} key={key} {...slideProps} />;
+      }),
+    [components]
   );
 
   return (
