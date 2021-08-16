@@ -1,6 +1,7 @@
 .heading{
   font-family: Open Sans, sans-serif;
   color: #000000;
+  margin-bottom: 1rem;
 }
 
 .filterBtn {
@@ -24,6 +25,9 @@
   margin-right: 4px;
 }
 
+.noItemsAlert{
+  margin-top: 10vh;
+}
 
 .dropdown{
   top: 68px;

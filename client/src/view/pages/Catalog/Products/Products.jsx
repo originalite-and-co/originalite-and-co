@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Box, Typography} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import constants from "../../../constants";
 import useWindowSize from "../../../hooks/useWindowSize";
 import CatalogBreadcrumbs from "../Breadcrumbs/CatalogBreadcrumbs";
@@ -12,10 +12,18 @@ import Dropdown from "../../../components/Dropdown/Dropdown";
 import Filter from "../Filter/Filter";
 import {useDispatch, useSelector} from "react-redux";
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../redux/features/dropdown";
+import ProductCard from "../../../components/ProductCard/ProductCard";
 
-Products.propTypes = {};
+Products.propTypes = {
+    categoryTitle: PropTypes.string.isRequired,
+    products: PropTypes.arrayOf(PropTypes.shape({
+        imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+        name: PropTypes.string.isRequired,
+        currentPrice: PropTypes.number.isRequired,
+    }))
+};
 
-function Products({categoryTitle}) {
+function Products({categoryTitle, products}) {
 
     const [isDesktop, setDesktop] = useState(false);
     const [isDropdownActive, setActiveDropdown] = useState(false)
@@ -27,7 +35,7 @@ function Products({categoryTitle}) {
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
 
     useEffect(() => {
-        if (!isAnyDropdownOpen){
+        if (!isAnyDropdownOpen) {
             setActiveDropdown(false)
         }
     }, [isAnyDropdownOpen])
@@ -36,8 +44,8 @@ function Products({categoryTitle}) {
         setDesktop(width >= constants.WINDOW_DESKTOP_SIZE)
     }, [width]);
 
-    useEffect(useCallback(() =>{
-        if (isDesktop){
+    useEffect(useCallback(() => {
+        if (isDesktop) {
             setActiveDropdown(false)
             dispatch(isAnyDropdownOpenActions.closedDropdown());
         }
@@ -53,6 +61,12 @@ function Products({categoryTitle}) {
         setActiveDropdown(true)
         dispatch(isAnyDropdownOpenActions.openedDropdown());
     }
+
+    const productList = products?.map((product) => {
+        return (
+            <ProductCard product={product} size={isDesktop ? 4 : 6}/>
+        )
+    })
 
     return (
         <>
@@ -77,6 +91,22 @@ function Products({categoryTitle}) {
                     </>
                 )
             }
+            {productList.length ?
+                (
+                    <Grid
+                        container
+                        component="ul"
+                        spacing={6}
+                    >
+                        {productList}
+                    </Grid>
+                ) : (
+                    <Typography className={classes.noItemsAlert} component="p" variant="h3">
+                        There is no items that match such filters
+                    </Typography>
+                )
+            }
+
             <Dropdown
                 isActive={isDropdownActive}
                 classNames={{

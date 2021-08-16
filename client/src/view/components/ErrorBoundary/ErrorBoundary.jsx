@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 class ErrorBoundary extends Component {
     constructor(props) {
         super(props);
-        this.state = {hasError: false, error: null};
+        this.state = {hasError: false};
     }
 
     static getDerivedStateFromError(error) {
-        return {hasError: true, error}
+        return {hasError: true}
     }
 
     componentDidCatch(error, errorInfo) {
@@ -21,8 +21,7 @@ class ErrorBoundary extends Component {
 }
 
 ErrorBoundary.propTypes = {
-    // children: PropTypes.element.isRequired,
     fallback: PropTypes.element.isRequired
 }
 
-export default ErrorBoundary;
+export default React.memo( ErrorBoundary);

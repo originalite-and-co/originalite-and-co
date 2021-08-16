@@ -23,6 +23,7 @@ function Catalog(props) {
     const query = useSelector(filterSelectors.getFiltersQuery);
 
     const [isDesktop, setDesktop] = useState(false);
+    const [products, setProducts] = useState([]);
     const {width} = useWindowSize();
 
     const {location, replace} = useHistory();
@@ -37,7 +38,7 @@ function Catalog(props) {
     useEffect(() => {
         replace(`${location.pathname}?${query}`)
         productRequests.retrieveByQuery(query)
-            .then(data => console.log(data));
+            .then(data => setProducts(data.products));
     }, [query])
 
     useEffect(() => {
@@ -79,7 +80,7 @@ function Catalog(props) {
                     item
                 >
                     <Box className={classes.contentInner}>
-                        <Products categoryTitle={categoryTitle}/>
+                        <Products products={products} categoryTitle={categoryTitle}/>
                     </Box>
                 </Grid>
             </Grid>
