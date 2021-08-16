@@ -7,15 +7,8 @@ describe('ProductCard', (   )=> {
     test('if component renders successfully', () => {
 const products = {imageUrls: [1,2]}
         const {getByTestId} =  render(
-            <ProductCard product={products}/>
+            <ProductCard size={4} product={products}/>
         )
         expect(getByTestId('product-card')).toBeInTheDocument()
-    })
-
-    test('if classname renders properly', ()=> {
-        const {getByTestId} = render(
-            <ProductCard/>
-        )
-        expect(getByTestId('product-card')).toHaveClass('product-card')
     })
 })

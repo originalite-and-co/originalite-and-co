@@ -12,10 +12,4 @@ describe('CardList', ()=> {
         expect(getByTestId('product-list')).toBeInTheDocument()
     })
 
-    test('if classname renders properly', ()=> {
-        const {getByTestId} = render(
-            <CardList/>
-        )
-        expect(getByTestId('product-list')).toHaveClass('card-list__cards')
-    })
 })
