@@ -118,179 +118,12 @@ describe("filter feature", () => {
     });
 
     describe("filter operations", () => {
-        beforeEach(() => {
-            jest.spyOn(window.sessionStorage.__proto__, "getItem");
-            window.sessionStorage.__proto__.getItem = jest.fn();
-
-            jest.spyOn(window.sessionStorage.__proto__, "setItem");
-            window.sessionStorage.__proto__.setItem = jest.fn();
-
-            jest.spyOn(window.JSON, "parse")
-            window.JSON.parse = jest.fn();
-
-            jest.spyOn(window.JSON, "stringify")
-            window.JSON.stringify = jest.fn();
-
-        });
-
-        afterEach(() => {
-            jest.restoreAllMocks()
-        });
-
-        describe("addFilter", () => {
-
-            const MOCK_DATA = {
-                colors: ["red", "green"]
-            };
-
-            test("If it returns a function", () => {
-                expect(
-                    typeof operations.addFilter()
-                ).toBe("function")
-            });
-
-            test("if it calls sessionStorage methods", () => {
-                const dispatch = jest.fn()
-
-                operations.addFilter(MOCK_DATA)(dispatch);
-
-                expect(
-                    sessionStorage.getItem
-                ).toHaveBeenCalled();
-
-                expect(
-                    sessionStorage.setItem
-                ).toHaveBeenCalled()
-
-            });
-
-            test("If it calls dispatch", () => {
-                const dispatch = jest.fn();
-                operations.addFilter(MOCK_DATA)(dispatch);
-
-                expect(
-                    dispatch
-                ).toHaveBeenCalled()
-            })
-        });
-
-
-        describe("deleteFilterValue", () => {
-            test("If it returns a function", () => {
-                expect(
-                    typeof operations.deleteFilterValue("colors", "red")
-                ).toBe("function")
-            });
-
-            test("if it call sessionStorage getItem method", () => {
-                const dispatch = jest.fn();
-
-                operations.deleteFilterValue("colors", "red")(dispatch);
-
-                expect(
-                    sessionStorage.getItem
-                ).toHaveBeenCalled();
-            });
-
-            test("if it calls dispatch", () => {
-                const dispatch = jest.fn();
-
-                operations.deleteFilterValue("colors", "red")(dispatch);
-
-                expect(
-                    dispatch
-                ).toHaveBeenCalled();
-            });
-        });
-
-        describe("deleteFilter", () => {
-            test("if it returns a function", () => {
-                expect(
-                    typeof operations.deleteFilter("colors")
-                ).toBe("function");
-            });
-
-            test("if it calls sessionStorage getItem method", () => {
-                const dispatch = jest.fn();
-                operations.deleteFilter("colors")(dispatch);
-
-                expect(
-                    sessionStorage.getItem
-                ).toHaveBeenCalled();
-            });
-
-            test("If it calls dispatch", () => {
-                const dispatch = jest.fn();
-                operations.deleteFilter("colors")(dispatch);
-
-                expect(
-                    dispatch
-                ).toHaveBeenCalled();
-            });
-        });
-
-        describe("deleteAllFilters", () => {
-            test("If it returns a function", () => {
-                expect(
-                    typeof operations.deleteAllFilters()
-                ).toBe("function");
-            });
-
-            test("If it calls sessionStorage setItem method", () => {
-                const dispatch = jest.fn();
-
-                operations.deleteAllFilters()(dispatch);
-
-                expect(
-                   sessionStorage.setItem
-                ).toHaveBeenCalled();
-            });
-
-            test("If it calls dispatch", () => {
-                const dispatch = jest.fn();
-
-                operations.deleteAllFilters()(dispatch);
-
-                expect(
-                    dispatch
-                ).toHaveBeenCalled();
-            })
-        });
 
         describe("getFilters", () => {
-
             test("If it returns a function", () => {
                 expect(
                     typeof operations.getFilters()
                 ).toBe("function")
-            });
-
-            test("If it calls getState function", () => {
-                const dispatch = jest.fn((obj) => obj);
-                const getState = jest.fn(() => ({
-                    filters: {
-                        colors: ["red"]
-                    }
-                }));
-                operations.getFilters()(dispatch, getState);
-                expect(getState).toHaveBeenCalled();
-            });
-
-            test("If it gets data from sessionStorage", () => {
-                const dispatch = jest.fn((obj) => obj);
-                const getState = jest.fn(() => ({
-                    filters: {
-                        colors: ["red"]
-                    }
-                }));
-
-                const spy = jest.spyOn(window.sessionStorage.__proto__, "getItem");
-                operations.getFilters()(dispatch, getState);
-                expect(
-                    spy
-                ).toHaveBeenCalled()
-
-                spy.mockRestore();
             });
 
             test("If dispatch is called", () => {
@@ -342,7 +175,7 @@ describe("filter feature", () => {
             const {payload} = action;
             const output = {
                 ...state,
-                payload
+                ...payload
             };
 
             expect(
