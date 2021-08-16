@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import styles from './Page.module.scss';
 
-import img from '../Page404/img/404imeges.jpeg';
+import img from '../Page404/img/oops.jpg';
 
 
 
@@ -16,7 +16,7 @@ function Page404(props) {
         <>
             <div className={styles.ContainerPages404}>
                     <div className={styles.BackMenu}>
-                        <h1 className={styles.BackMenu__title}>Возможно вы имели ввиду:</h1>
+                        <h1 className={styles.BackMenu__title}>Maybe you meant:</h1>
                             <ul>
                                 <li className={styles.BackMenu__item}>
                                     <Link to="/Women">Women:</Link>
@@ -40,8 +40,7 @@ function Page404(props) {
                     </div>
                     <div className={styles.Info}>
                         <p className={styles.Info__404}>404</p>
-                        <p className={styles.Info__item}>Потеряла Насяльника</p>
-                        <b className={styles.Info__item__a}>Строаница не найдена</b>
+                        <p className={styles.Info__item}>Page not found</p>
                     </div>
                 <div className={styles.img}>
                     <img className={styles.img__item} src={img} />
