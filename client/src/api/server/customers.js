@@ -65,10 +65,8 @@ const logIn = async (credentials,keepLoggedIn) => {
     }
     const data = await response.json()
 
-    if (keepLoggedIn){
-      addTokenToLocalStorage(data.token)
-    }
-    addTokenToSessionStorage(data.token);
+    keepLoggedIn ? addTokenToLocalStorage(data.token) : addTokenToSessionStorage(data.token);
+
   } catch (error) {
     throw generateFetchException('Login in', error);
   }

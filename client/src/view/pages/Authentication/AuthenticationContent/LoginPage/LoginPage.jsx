@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Styles from "../Authentication.module.scss";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
@@ -15,8 +15,8 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import {useDispatch} from "react-redux";
-import {authorizeOperations} from "../../../../../redux/features/authorization";
+import {useDispatch, useSelector} from "react-redux";
+import {authorizationSelectors, authorizeOperations} from "../../../../../redux/features/authorization";
 
 const useStyles = makeStyles({
     textField: {
@@ -54,9 +54,8 @@ function LoginPage() {
         : <RadioButtonUncheckedIcon fontSize="small" className={classes.radio}/>
 
     const forwardIfAuthorized = async () => {
-        const isAuthorized = await sessionStorage.getItem('token')
-        dispatch(authorizeOperations.authorizeUser())
-        if (isAuthorized) {
+    dispatch(authorizeOperations.authorizeUser())
+        if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
             setTimeout(() => {
                 history.push('/')
             }, 1500)

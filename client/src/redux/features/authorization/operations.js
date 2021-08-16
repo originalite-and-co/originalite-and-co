@@ -8,7 +8,13 @@ const authorizeUser = () => (dispatch) => {
         dispatch(actions.authorizeCustomer(false))
     }
 }
+const loggOutUser = () => (dispatch) => {
+    sessionStorage.removeItem('token')
+    localStorage.removeItem('token')
+    dispatch(actions.loggOutCustomer(false))
+}
 
 export default {
-    authorizeUser
+    authorizeUser,
+    loggOutUser
 }

@@ -22,7 +22,6 @@ import {useDispatch, useSelector} from "react-redux";
 function AppRoutes() {
     const dispatch = useDispatch()
     const authorization = useSelector(authorizationSelectors.authorization)
-    // dispatch(authorizeOperations.authorizeUser())
 
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
 
