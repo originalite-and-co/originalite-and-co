@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import classes from "../Filter.module.scss";
 import {Accordion, AccordionDetails, AccordionSummary, Grid, Typography} from "@material-ui/core";
@@ -11,14 +11,17 @@ FilterAccordion.propTypes = {
 };
 
 function FilterAccordion({text, isDesktop, detailsContent}) {
-    const [isOpen, setIsOpen] = useState(isDesktop)
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        setIsOpen(isDesktop);
+    }, [isDesktop])
 
 
     return (
         <Accordion
-            // defaultExpanded={isDesktop}
-            // expanded={isDesktop}
-            // onChange={() => setIsOpen(!isOpen)}
+            expanded={isOpen}
+            onChange={() => setIsOpen(!isOpen)}
             className={classes.accordion}>
             <AccordionSummary
                 className={classes.accordionSummary}

@@ -4,7 +4,7 @@ import getAllChildCategories from "../../../../utils/getAllChildCategories";
 import {catalogRequests} from "../../../../../api/server";
 import useAsyncError from "../../../../hooks/useAsyncError";
 import generateCategoryPath from "../../../../utils/generateCategoryPath";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Box, List, ListItem, Typography} from "@material-ui/core";
 
 import classes from "./CategoryNav.module.scss"
@@ -32,12 +32,14 @@ function CategoryNav({parentCategoryId, parentCategoryName}) {
     const categoryList = categories?.map(({_id, id, name}) => {
         return (
             <ListItem disableGutters className={classes.listItem} key={_id}>
-                <Link
+                <NavLink
+                    activeClassName={classes.activeLink}
                     className={classes.link}
-                    to={`category/${generateCategoryPath({id, parentId: parentCategoryId})}`}
+                    to={`/catalog/${generateCategoryPath({id, parentId: parentCategoryId})}`}
+                    replace
                 >
                     {name}
-                </Link>
+                </NavLink>
             </ListItem>
         )
     })

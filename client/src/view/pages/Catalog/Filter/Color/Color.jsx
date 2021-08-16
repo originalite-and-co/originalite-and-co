@@ -6,7 +6,7 @@ import classes from "./Color.module.scss";
 import {Grid, Typography} from "@material-ui/core";
 import _ from "lodash";
 import {useDispatch, useSelector} from "react-redux";
-import {filterOperations, filterSelectors} from "../../../../../redux/features/filters";
+import {filterActions, filterSelectors} from "../../../../../redux/features/filters";
 
 Color.propTypes = {
     name: PropTypes.string.isRequired,
@@ -33,11 +33,11 @@ function Color({name, cssValue, isDesktop}) {
     const handleButtonClick = (event) => {
         if (isChecked){
             setChecked(false);
-            dispatch(filterOperations.deleteFilterValue("color", name));
+            dispatch(filterActions.deleteFilterValue("color", name));
             return;
         }
 
-        dispatch(filterOperations.addFilter({color : [name]}));
+        dispatch(filterActions.addFilter({color : [name]}));
         setChecked(true);
     }
 
