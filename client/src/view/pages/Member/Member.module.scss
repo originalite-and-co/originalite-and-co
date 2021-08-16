@@ -1,0 +1,24 @@
+@import "./../../assets/typography/typography";
+
+.container{
+  padding-top: 15vh;
+  height: 100vh;
+}
+.wrapper {
+  margin-top: 25px;
+  padding-left: 27px;
+  padding-right: 27px;
+}
+.tab{
+  font-family: Open Sans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #373737;
+}
+.btnWrapper{
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
