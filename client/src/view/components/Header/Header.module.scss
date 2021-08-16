@@ -1,11 +1,21 @@
+@import "src/view/assets/styles/variables";
+
 .header{
-  min-width: 320px;
-  margin: 0 auto;
   background: #000000;
+  z-index: 20;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
 }
 
-@media screen and (min-width: 993px){
-  .header{
+.inner{
+  margin: 0 auto;
+  min-width: 320px;
+}
+
+@media screen and (min-width: $min-desktop){
+  .inner{
     display: flex;
     justify-content: space-between;
     align-items: center;

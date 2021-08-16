@@ -84,7 +84,7 @@ const retrieveCatalog = async () => {
 const retrieveCategory = async (id) => {
   try {
     const response = await fetch(`${CATALOG_PATH}/${id}`, {
-      method: 'POST',
+      method: 'GET',
       headers: generateHeaders(),
     });
 

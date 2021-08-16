@@ -1,0 +1,11 @@
+@import "src/view/assets/styles/variables";
+
+.content{
+  padding-top: 126px;
+}
+
+@media(min-width:$desktop){
+  .content{
+    padding-top: 95px;
+  }
+}

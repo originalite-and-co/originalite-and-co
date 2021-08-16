@@ -1,0 +1,35 @@
+.root{
+  margin-top: 2.5vh!important;
+}
+
+.heading{
+  font-family: Josefin Sans, sans-serif;
+  font-weight: 600;
+  margin-bottom: 1vh!important;
+  color: #FFFFFF;
+}
+
+.list{
+  padding: 0;
+}
+
+.listItem{
+  margin-bottom: .9vh!important;
+  cursor: pointer;
+}
+
+.link {
+  font-family: Open Sans, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #FFFFFF;
+  border-bottom: 1px solid transparent;
+
+  &:hover{
+    border-bottom: 1px solid #FFFFFF;
+  }
+}
+
+.activeLink {
+  border-bottom: 1px solid #FFFFFF;
+}

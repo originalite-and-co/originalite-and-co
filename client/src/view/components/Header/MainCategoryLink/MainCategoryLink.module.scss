@@ -1,0 +1,34 @@
+@import"./src/view/assets/styles/variables";
+
+.navItem {
+  flex: 1;
+}
+
+.navItemBtn.active {
+  border-bottom-color: #FFFFFF;
+}
+
+.navItemBtn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.navItemBtn:hover {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+@media (min-width: $desktop) {
+  .navItemBtn{
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
