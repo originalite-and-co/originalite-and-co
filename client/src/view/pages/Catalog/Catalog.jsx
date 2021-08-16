@@ -13,6 +13,7 @@ import {useHistory} from "react-router-dom";
 
 import _ from "lodash"
 import Products from "./Products/Products";
+import CatalogBreadcrumbs from "./Breadcrumbs/CatalogBreadcrumbs";
 
 Catalog.propTypes = {};
 
@@ -41,7 +42,7 @@ function Catalog(props) {
 
     useEffect(() => {
         dispatch(filterOperations.getFilters(location))
-    }, [])
+    }, [location.pathname])
 
     return (
         <>
@@ -51,16 +52,27 @@ function Catalog(props) {
                 component="main"
                 className={classes.content}
             >
-                {isDesktop && <Grid
-                    xs={isDesktop ? 3 : 0}
-                    item
-                    component="aside"
-                    className={classes.filter}
-                >
-                    <Box className={classes.filterInner}>
-                        <Filter/>
-                    </Box>
-                </Grid>}
+                {isDesktop && (
+                    <>
+                        <Grid
+                            item
+                            xs={12}
+                            className={`${classes.breadcrumbsContainer} wrapper`}
+                        >
+                            <CatalogBreadcrumbs path={location.pathname}/>
+                        </Grid>
+                        <Grid
+                            xs={isDesktop ? 3 : 0}
+                            item
+                            component="aside"
+                            className={classes.filter}
+                        >
+                            <Box className={classes.filterInner}>
+                                <Filter/>
+                            </Box>
+                        </Grid>
+                    </>
+                )}
                 <Grid
                     xs={isDesktop ? 9 : 12}
                     component="section"

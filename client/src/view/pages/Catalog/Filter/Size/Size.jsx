@@ -4,7 +4,7 @@ import {Grid} from "@material-ui/core";
 import classes from "./Size.module.scss";
 import _ from "lodash";
 import {useDispatch, useSelector} from "react-redux";
-import {filterOperations, filterSelectors} from "../../../../../redux/features/filters";
+import {filterActions, filterSelectors} from "../../../../../redux/features/filters";
 
 Size.propTypes = {
     name: PropTypes.string.isRequired,
@@ -30,11 +30,11 @@ function Size({name, isDesktop}) {
     const handleButtonClick = (event) => {
         if (isChecked){
             setChecked(false);
-            dispatch(filterOperations.deleteFilterValue("sizes", name));
+            dispatch(filterActions.deleteFilterValue("sizes", name));
             return;
         }
 
-        dispatch(filterOperations.addFilter({sizes : [name]}));
+        dispatch(filterActions.addFilter({sizes : [name]}));
         setChecked(true);
     };
 

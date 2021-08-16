@@ -64,7 +64,6 @@ function Filter(props) {
                 error => throwAsyncError(error)
             )
             .then(() => setIsLoaded(true));
-        ;
     }, []);
 
     useEffect(() => {
@@ -75,7 +74,6 @@ function Filter(props) {
                 error => throwAsyncError(error)
             )
             .then(() => setIsLoaded(true));
-        ;
     }, []);
 
     const colorList = colors?.map(({_id, name, cssValue}) => {
@@ -99,7 +97,6 @@ function Filter(props) {
             {
                 isDesktop && isLoaded && (
                     <>
-                        <CatalogBreadcrumbs path={history.location.pathname}/>
                         <CategoryNav parentCategoryId={category?.id} parentCategoryName={category?.name}/>
                     </>
                 )

@@ -31,5 +31,12 @@
   .sizeButton{
     margin: unset;
     color: #ffffff;
+
+    &.active{
+      &::after{
+        background-color: #ffffff;
+      }
+    }
   }
+
 }
