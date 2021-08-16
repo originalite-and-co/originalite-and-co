@@ -1,26 +1,33 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Thumbs, Autoplay } from 'swiper';
+
+import PropTypes from 'prop-types';
 
 import 'swiper/swiper-bundle.css';
-import './style.scss';
 
-SwiperCore.use([Navigation, Pagination, Thumbs]);
+SwiperCore.use([Navigation, Pagination, Thumbs, Autoplay]);
 
 const Carousel = ({ components, slideProps, carouselProps }) => {
   const slides = useMemo(
     () =>
       components.map((component, key) => {
-        return <SwiperSlide children={component} key={key} {...slideProps} />;
+        return (
+          <SwiperSlide key={key} {...slideProps}>
+            <>{component}</>
+          </SwiperSlide>
+        );
       }),
     [components]
   );
 
-  return (
-    <div className="caroules-wrapper">
-      <Swiper {...carouselProps}>{slides}</Swiper>
-    </div>
-  );
+  return <Swiper {...carouselProps}>{slides}</Swiper>;
+};
+
+Carousel.propTypes = {
+  components: PropTypes.array.isRequired,
+  slideProps: PropTypes.object.isRequired,
+  carouselProps: PropTypes.object.isRequired
 };
 
 export default Carousel;
