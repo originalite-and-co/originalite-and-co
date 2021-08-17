@@ -1,26 +1,8 @@
 .ContainerPages404 {
-  max-width: 80%;
-   margin: 0 auto;
-   display: flex;
-   justify-content: space-between;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
  }
- 
- .BackMenu {
-   font-size: 30px;
-   margin-top: 15%;
-   color: rgb(126, 129, 129);
-   &__title {
-     margin-bottom: 20px;
-   }
-   &__item {
-     font-size: 20px;
-     list-style-type: disc;
-   }
-  }
-
-  a {
-    color:rgb(126, 129, 129);
-  }
 
   .strip {
     width: 100%;
@@ -35,8 +17,8 @@
   }
 
   .Info {
-    font-size: 30px;
-    margin-top: 15%; 
+    font-size: 40px;
+    margin-top: 5%; 
   &__404 {
     margin-bottom: 20px;
     font-size: 100px;
