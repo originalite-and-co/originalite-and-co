@@ -4,31 +4,9 @@
  * @returns {{Authorization: (string|null), "Content-Type": string}}
  */
 export const generateHeaders = () => ({
-    'Content-Type': 'application/json',
-    Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
+  'Content-Type': 'application/json',
+  Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
 });
-
-/**
- * This function generates custom exception
- *
- * @param {String} action - verb and noun that describe what action is supposed to have an error
- * @param {Object} response - the fulfilled or rejected promise
- * @param {*} restInfo
- *
- * @returns {Error}
- *
- * @example
- * const retrieveUsers = async () => {
- *     const response = await fetch(something);
- *     if(!response.ok){
- *         throw generateResponseException("retrieve users", response);
- *     }
- * }
- *
- * */
-export const generateResponseException = (action, response, ...restInfo) => {
-    return new Error(`Failed to ${action}, response: ${response.status} ${response.statusText}. ${restInfo}`);
-}
 
 /**
  * This function generates custom exception
@@ -47,18 +25,24 @@ export const generateResponseException = (action, response, ...restInfo) => {
  *
  * @param {String} action - verb(Continuous form) and noun
  * that describe what action is supposed to have an error
- * @param {Error} error - Error object
+ * @param {Error} [error] - Error object
  * @returns {Error}
  */
-export const generateFetchException = (action, error) => new Error(`An error has occurred while ${action}. Error: ${error.message}`);
+export const generateFetchException = (action, error) => {
+  let message = `An error has occurred while ${action}.`;
+  if (error){
+    message += ` Error: ${error.message}`
+  }
+  return new Error(message);
+};
 
-export {default as cartRequests} from './cart';
-export {default as catalogRequests} from './catalog';
-export {default as customerRequests} from './customers';
-export {default as productRequests} from './products';
-export {default as sliderRequests} from './slider';
-export {default as wishlistRequests} from './wishlist';
-export {default as linkRequests} from './links';
-export {default as pageRequests} from './pages';
-export {default as colorRequests} from './colors';
-export {default as sizeRequests} from './sizes';
+export { default as cartRequests } from './cart';
+export { default as catalogRequests } from './catalog';
+export { default as customerRequests } from './customers';
+export { default as productRequests } from './products';
+export { default as sliderRequests } from './slider';
+export { default as wishlistRequests } from './wishlist';
+export { default as linkRequests } from './links';
+export { default as pageRequests } from './pages';
+export { default as colorRequests } from './colors';
+export { default as sizeRequests } from './sizes';
