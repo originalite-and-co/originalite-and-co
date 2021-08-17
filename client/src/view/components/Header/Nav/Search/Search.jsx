@@ -10,7 +10,7 @@ import {useHistory} from "react-router-dom";
 import {productRequests} from "../../../../../api/server";
 
 import Toast from "../../../Toast/Toast";
-import HeaderDropdown from "../../HeaderDropdown/HeaderDropdown";
+import Dropdown from "../../../Dropdown/Dropdown";
 import Button from "../../../Button/Button";
 import {Box, InputAdornment, TextField} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
@@ -35,13 +35,11 @@ function Search(props) {
     const history = useHistory();
 
     const [isDesktop, setIsDesktop] = useState()
-    const sizes = useWindowSize();
+    const {width} = useWindowSize();
 
     useEffect(() => {
-        sizes.width >= constants.WINDOW_DESKTOP_SIZE
-            ? setIsDesktop(true)
-            : setIsDesktop(false)
-    }, [])
+        setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
+    }, [width])
 
     useEffect(() => {
         if (!isAnyDropdownOpen) {
@@ -122,7 +120,7 @@ function Search(props) {
                 <img className={styles.icon} src={search} alt="search icon"/>
                 {isDesktop && <p>Search</p>}
             </Box>
-            <HeaderDropdown
+            <Dropdown
                 lockBodyScrolling
                 classNames={{
                     closed: styles.dropdown,

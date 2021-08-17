@@ -15,6 +15,10 @@ const addTokenToSessionStorage = (token) => {
   sessionStorage.setItem('token', token);
 };
 
+const addTokenToLocalStorage = (token) => {
+  localStorage.setItem('token', token);
+};
+
 /**
  *This function sends POST request to the server and returns the result
  *
@@ -48,7 +52,7 @@ const createCustomer = async (data) => {
  * }
  * @returns {Promise<void>}
  */
-const logIn = async (credentials) => {
+const logIn = async (credentials,keepLoggedIn) => {
   try {
     const response = await fetch(`${CUSTOMERS_PATH}/login`, {
       method: 'POST',
@@ -59,10 +63,14 @@ const logIn = async (credentials) => {
     if (!response.ok) {
       throw generateResponseException('log in', response);
     }
+    const data = await response.json()
 
-    addTokenToSessionStorage(await response.json());
+    if (keepLoggedIn){
+      addTokenToLocalStorage(data.token)
+    }
+    addTokenToSessionStorage(data.token);
   } catch (error) {
-    throw generateFetchException('Loggin in', error);
+    throw generateFetchException('Login in', error);
   }
 };
 

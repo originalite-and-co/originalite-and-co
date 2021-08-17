@@ -5,7 +5,7 @@
  */
 export const generateHeaders = () => ({
     'Content-Type': 'application/json',
-    Authorization: sessionStorage.getItem('token'),
+    Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
 });
 
 /**
@@ -57,3 +57,5 @@ export {default as sliderRequests} from './slider';
 export {default as wishlistRequests} from './wishlist';
 export {default as linkRequests} from './links';
 export {default as pageRequests} from './pages';
+export {default as colorRequests} from './colors';
+export {default as sizeRequests} from './sizes';
