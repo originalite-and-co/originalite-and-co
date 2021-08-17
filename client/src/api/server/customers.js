@@ -1,7 +1,7 @@
 import {
-  generateHeaders,
   generateFetchException,
-} from './index';
+  generateHeaders
+} from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const CUSTOMERS_PATH = '/api/customers';
@@ -39,7 +39,7 @@ const addTokenToLocalStorage = (token) => {
  *This function sends POST request to the server and returns the result
  *
  * @param {Object} data - Object with customer details
- * @returns {Promise<any>} - created customer with _id
+ * @returns {Promise<Object>} - created customer with _id
  */
 const createCustomer = async (data) => {
   return await customerRequests.create(data);
@@ -69,7 +69,7 @@ const logIn = async (credentials, keepLoggedIn) => {
 /**
  * This function retrieves customer information using their token
  *
- * @returns {Promise<any>} - customer
+ * @returns {Promise<Object>} - customer
  */
 const retrieveCustomer = async () => {
   return await customerRequests.retrieve(`${CUSTOMERS_PATH}/customer`);
@@ -79,7 +79,7 @@ const retrieveCustomer = async () => {
  * This function updates customer by their token
  *
  * @param {Object} data - data that should be updated
- * @returns {Promise<any>} - updated customer
+ * @returns {Promise<Object>} - updated customer
  */
 const updateCustomer = async (data) => {
   return await customerRequests.update(data)
@@ -90,7 +90,7 @@ const updateCustomer = async (data) => {
  *
  * @param {String} previousPassword
  * @param {String} newPassword
- * @returns {Promise<*>}
+ * @returns {Promise<Object>}
  */
 const changeCustomerPassword = async (previousPassword, newPassword) => {
   const data = {

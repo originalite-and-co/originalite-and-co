@@ -1,7 +1,7 @@
 import {
   generateFetchException,
-  generateHeaders,
-} from './index';
+  generateHeaders
+} from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const CATALOG_PATH = '/api/catalog';

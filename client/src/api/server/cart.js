@@ -1,7 +1,8 @@
 import {
   generateFetchException,
-  generateHeaders,
-} from './index';
+  generateHeaders
+} from './utils.js';
+
 import ServerApiRequests from './ServerApiRequests';
 
 const CART_PATH = '/api/cart';

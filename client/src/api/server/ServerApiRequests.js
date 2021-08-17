@@ -55,9 +55,9 @@ class ServerApiRequests {
         body: JSON.stringify(body),
       });
 
-      const isJSON = isJSON(response);
+      const isResponseIsJSON = isJSON(response);
 
-      const data = isJSON ? await response.json() : await response.text();
+      const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
         throw {
@@ -89,8 +89,8 @@ class ServerApiRequests {
         headers,
       });
 
-      const isJSON = isJSON(response);
-      const data = isJSON ? await response.json() : await response.text();
+      const isResponseIsJSON = isJSON(response);
+      const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
         throw {
@@ -124,8 +124,8 @@ class ServerApiRequests {
         body: JSON.stringify(body),
       });
 
-      const isJSON = isJSON(response);
-      const data = isJSON ? await response.json() : await response.text();
+      const isResponseIsJSON = isJSON(response);
+      const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
         throw {
@@ -157,8 +157,8 @@ class ServerApiRequests {
         headers,
       });
 
-      const isJSON = isJSON(response);
-      const data = isJSON ? await response.json() : await response.text();
+      const isResponseIsJSON = isJSON(response);
+      const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
         throw {

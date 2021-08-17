@@ -1,4 +1,7 @@
-import {generateFetchException, generateHeaders} from "./index";
+import {
+    generateFetchException,
+    generateHeaders
+} from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const COLORS_PATH = "/api/colors"
@@ -17,7 +20,7 @@ const colorRequests = new ServerApiRequests(COLORS_PATH, headers, exceptions);
 /**
  *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const createColor = async (data) => {
     return await colorRequests.create(data);
@@ -25,7 +28,7 @@ const createColor = async (data) => {
 
 /**
  *
- * @returns {Promise<Array<String>>}
+ * @returns {Promise<Array<Object>>}
  */
 const retrieveColors = async () => {
     return await colorRequests.retrieve();
