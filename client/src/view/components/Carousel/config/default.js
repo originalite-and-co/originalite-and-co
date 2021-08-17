@@ -8,6 +8,9 @@ const carousel = {
   pagination: {
     clickable: true,
   },
+  autoplay: {
+    delay: 5000,
+  },
   navigation: true,
 };
 

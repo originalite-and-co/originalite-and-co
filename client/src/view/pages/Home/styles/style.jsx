@@ -1,57 +1,11 @@
-// .caroules-wrapper {
-//   width: 100%;
-//   display: flex;
-//   height: 50vh;
-//   position: relative;
-// }
-
-// .swiper__slide {
-//   z-index: 1;
-//   display: flex;
-//   height: 100%;
-// }
-
-// .swiper__image {
-//   display: block;
-//   height: 100%;
-//   width: 100%;
-//   object-fit: cover;
-//   object-position: center;
-//   margin: 0;
-// }
-
-// .header__carousel .swiper-pagination {
-//   padding: 20px;
-//   text-align: left;
-// }
-
-// .header__carousel .swiper-pagination-bullet {
-//   box-shadow: 0 0 0 2px #333;
-//   background-color: #fff;
-//   width: 16px;
-//   height: 16px;
-//   margin: 0 10px;
-// }
-
-// .header__carousel .swiper-button-next:after,
-// .header__carousel .swiper-button-prev:after {
-//   z-index: 6;
-//   font-weight: 900;
-//   color: #fff;
-// }
-
-// .header__carousel .swiper-button-prev,
-// .header__carousel .swiper-button-next {
-//   mix-blend-mode: exclusion;
-// }
-
 import { createUseStyles } from 'react-jss';
 
 const styles = {
   caroulesWrapper: {
     width: '100%',
     display: 'flex',
-    height: '70vh',
+    height: 'calc(100vh - 94px)',
+    padding: '94px 0 0 0',
     position: 'relative',
   },
   headerCarousel: {
