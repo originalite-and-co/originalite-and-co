@@ -7,10 +7,10 @@ import {searchResultActions} from "../../../../../redux/features/searchResult";
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../../redux/features/dropdown";
 
 import {useHistory} from "react-router-dom";
-import {productRequests} from "../../../../../api/server";
+import {productRequests} from "../../../../../api/server/index";
 
 import Toast from "../../../Toast/Toast";
-import HeaderDropdown from "../../HeaderDropdown/HeaderDropdown";
+import Dropdown from "../../../Dropdown/Dropdown";
 import Button from "../../../Button/Button";
 import {Box, InputAdornment, TextField} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
@@ -120,7 +120,7 @@ function Search(props) {
                 <img className={styles.icon} src={search} alt="search icon"/>
                 {isDesktop && <p>Search</p>}
             </Box>
-            <HeaderDropdown
+            <Dropdown
                 lockBodyScrolling
                 classNames={{
                     closed: styles.dropdown,

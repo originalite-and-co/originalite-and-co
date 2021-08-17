@@ -1,20 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer"
+import ShopCategories from "../../components/ShopCategories/ShopCategories";
+import {Box} from "@material-ui/core";
+import PopularProductsCarousel from "../../components/PopularProductsCarousel/PopularProductsCarousel";
 
-Home.propTypes = {
+import classes from "./Home.module.scss"
+import { catalogRequests } from '../../../api/server';
 
-};
+Home.propTypes = {};
 
 function Home(props) {
-  return (
-    <>
-        <Header/>
-        <div>Home</div>
-        <Footer/>
-    </>
-  );
+  catalogRequests.retrieveCatalog()
+    .then(data => console.log(data));
+    return (
+        <Box>
+            <Header/>
+            <Box className={`${classes.content} wrapper`} component={"main"}>
+               <PopularProductsCarousel/>
+                <ShopCategories/>
+            </Box>
+            <Footer/>
+        </Box>
+    );
 }
 
 export default Home;

@@ -1,7 +1,21 @@
-import {generateFetchException, generateHeaders, generateResponseException} from "./index";
+import {
+  generateFetchException,
+  generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
-const PAGES_PATH = "/api/pages";
+const PAGES_PATH = '/api/pages';
 
+const headers = generateHeaders();
+
+const exceptions = {
+  create: generateFetchException('creating a page'),
+  retrieve: generateFetchException('retrieving pages'),
+  update: generateFetchException('updating the page'),
+  delete: generateFetchException('deleting the page'),
+};
+
+const pageRequests = new ServerApiRequests(PAGES_PATH, headers, exceptions);
 /**
  *
  * @param {Object} data - {
@@ -10,112 +24,55 @@ const PAGES_PATH = "/api/pages";
  *       "htmlContent": "<h1>Test</h1>",
  *       url: "/test/test"
  * }
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const createPage = async (data) => {
-    try {
-        const response = await fetch(PAGES_PATH, {
-            method: "POST",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("create a page", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("creating a page", error);
-    }
+  return await pageRequests.create(data);
 };
 
+/**
+ *
+ * @returns {Promise<Array<Object>>}
+ */
 const retrievePages = async () => {
-    try {
-        const response = await fetch(PAGES_PATH, {
-            method: "GET",
-            headers: generateHeaders()
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("retrieve pages", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("retrieving pages", error);
-    }
-}
+  return await pageRequests.retrieve();
+};
 
 /**
  *
  * @param {String} customId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const retrievePage = async (customId) => {
-    try {
-        const response = await fetch(`${PAGES_PATH}/${customId}`, {
-            method: "GET",
-            headers: generateHeaders()
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("retrieve a page", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("retrieving a page", error);
-    }
+  const exception = generateFetchException('retrieving a page');
+  return await pageRequests.retrieve(`${PAGES_PATH}/${customId}`, exception);
 };
 
 /**
  *
  * @param {Object} data
  * @param {String} customId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const updatePage = async (data, customId) => {
-    try {
-        const response = await fetch(`${PAGES_PATH}/${customId}`, {
-            method: "PUT",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("update a page", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("updating a page", error);
-    }
+  return await pageRequests.update(data, `${PAGES_PATH}/${customId}`);
 };
 
+/**
+ *
+ * @param {String} customId
+ * @returns {Promise<Object>}
+ */
 const deletePage = async (customId) => {
-    try{
-        const response = await fetch(`${PAGES_PATH}/${customId}`, {
-            method: "DELETE",
-            headers: generateHeaders()
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("delete a page", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("deleting a page", error);
-    }
-}
+  return await pageRequests.delete(`${PAGES_PATH}/${customId}`);
+};
 
 const pages = {
-    createPage,
-    retrievePages,
-    retrievePage,
-    updatePage,
-    deletePage
+  createPage,
+  retrievePages,
+  retrievePage,
+  updatePage,
+  deletePage,
 };
 
 export default pages;

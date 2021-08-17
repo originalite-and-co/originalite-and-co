@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import Home from "../pages/Home/Home";
 import Authentication from "../pages/Authentication/Authentication"
 import Page404 from "../pages/Page404/Page404";
+
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Member from "../pages/Member/Member";
 import Checkout from "../pages/Checkout/Checkout";
@@ -35,8 +36,6 @@ function AppRoutes() {
         setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
     }, [authorization]);
 
-    // [sessionStorage.getItem('token'),localStorage.getItem("token"), isAuthenticated] - previous dependency
-
     useEffect(useCallback(() => {
         pageRequests.retrievePages()
             .then(
@@ -66,14 +65,15 @@ function AppRoutes() {
             {staticPageRoutes}
             <Route path="/help" render={() => <p>Loading ...</p>}/>
             <Route path="/company" render={() => <p>Loading ...</p>}/>
-            <Route path="/catalog/:productId" component={Product}/>
-            <Route path="/catalog" component={Catalog}/>
+            <Route path="/catalog/:category" component={Catalog}/>
+            <Route path="/products/:itemNumber" component={Product}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>
             <Route path="/cart" component={Cart}/>
             <Route path="/auth" component={Authentication}/>
             <Route exact path="/" component={Home}/>
-            <Route path="*" component={Page404}/>
+            <Route path="*" component={Page404} />
+
         </Switch>
     );
 

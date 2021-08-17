@@ -1,0 +1,18 @@
+ .shopCategory
+ {
+   font-family: Open Sans;
+   font-size: 14px;
+   line-height: 19px;
+   color: black; //change to white later
+   font-weight: 400;
+   text-align: left;
+
+ }
+ .categoryWrapper
+ {
+   display: flex;
+   flex-direction: row;
+   align-items: baseline;
+   justify-content: space-between;
+
+ }

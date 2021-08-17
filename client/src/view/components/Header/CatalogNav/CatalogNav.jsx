@@ -10,10 +10,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {catalogRequests} from "../../../../api/server";
 import constants from '././.././.././../constants';
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../redux/features/dropdown";
+import getAllChildCategories from "../../../utils/getAllChildCategories";
+import generateCategoryPath from "../../../utils/generateCategoryPath";
 
 import Box from '@material-ui/core/Box';
 import {Grid, List} from "@material-ui/core";
-import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
+import Dropdown from "../../Dropdown/Dropdown";
 import MainCategoryLink from "../MainCategoryLink/MainCategoryLink";
 import AllCategories from "../AllCategories/AllCategories";
 
@@ -142,6 +144,7 @@ function CatalogNav() {
         .filter(category => category.parentId === "null")
         .map(category => {
             return <MainCategoryLink
+                key={category._id}
                 category={category}
                 onHover={handleMainCategoryLinkAction}
                 isDesktop={isDesktop}
@@ -191,7 +194,7 @@ function CatalogNav() {
             data-testid="catalog-nav"
         >
             {renderMainCategoryLinks(3)}
-            <HeaderDropdown
+            <Dropdown
                 classNames={{
                     closed: styles.dropdown,
                     active: styles.dropdownActive
@@ -209,30 +212,6 @@ function CatalogNav() {
     );
 }
 
-function getAllChildCategories(catalog, linkId) {
-    const dependencies = [linkId];
-    const result = []
-    const catalogCopy = [...catalog]
 
-    const findCategory = () => {
-
-        catalogCopy.forEach((category, index) => {
-            dependencies.forEach(dependency => {
-                if (category.parentId.toLowerCase() === dependency.toLowerCase()) {
-                    dependencies.push(category.id.toLowerCase());
-                    result.push(category);
-                    catalogCopy.splice(index, 1);
-                    findCategory()
-                }
-            });
-        })
-    }
-    findCategory();
-    return result;
-}
-
-function generateCategoryPath({id, parentId}) {
-    return id.replace(`${parentId}-`, `${parentId}/`);
-}
 
 export default CatalogNav;

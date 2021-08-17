@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import Box from '@material-ui/core/Box';
-import HeaderDropdown from "../../HeaderDropdown/HeaderDropdown";
+import Dropdown from "../../../Dropdown/Dropdown";
 import {ListItem, ListItemUpper} from "../BurgerListItem/ListItem";
 import Social from "../Social/Social";
 
@@ -70,7 +70,7 @@ function Burger() {
                     <span className={styles.line}/>
                 </div>
             </Box>
-            <HeaderDropdown
+            <Dropdown
                 classNames={{
                     closed: styles.dropdown,
                     active: styles.dropdownActive,

@@ -1,180 +1,99 @@
 import {
   generateFetchException,
-  generateHeaders,
-  generateResponseException,
-} from './index';
+  generateHeaders
+} from './utils.js';
+
+import ServerApiRequests from './ServerApiRequests';
 
 const CART_PATH = '/api/cart';
 
+const headers = generateHeaders();
+
+const exceptions = {
+  create: generateFetchException("creating a cart"),
+  retrieve: generateFetchException("retrieving a cart"),
+  update: generateFetchException("updating the cart"),
+  delete: generateFetchException("deleting the cart"),
+};
+
+const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
+
 /**
  *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 
 const createCart = async (data) => {
-  try {
-    const response = await fetch(CART_PATH, {
-      method: 'POST',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('create cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('creating cart', error);
-  }
+  return await cartRequests.create(data)
 };
 
 /**
  *
- * @param {Object} data
- * @returns {Promise<any>}
- */
-
-const updateCart = async (data) => {
-  try {
-    const response = await fetch(CART_PATH, {
-      method: 'PUT',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('update cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('updating cart', error);
-  }
-};
-
-/**
- *
- * @param {Object} data
- * @returns {Promise<any>}
- */
-
-const addProductToCart = async (data, id) => {
-  try {
-    const response = await fetch(`${CART_PATH}/${id}`, {
-      method: 'PUT',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('decrease cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('decreasing cart', error);
-  }
-};
-
-/**
- *
- * @param {Object} data
- * @returns {Promise<any>}
- */
-
-const decreaseProductQuantity = async (id) => {
-  try {
-    const response = await fetch(`${CART_PATH}/product/${id}`, {
-      method: 'DELETE',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('decrease cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('decreasing cart', error);
-  }
-};
-
-/**
- *
- * @param {Object} data
- * @returns {Promise<any>}
- */
-
-const deleteProductFromCart = async (id) => {
-  try {
-    const response = await fetch(`${CART_PATH}/${id}`, {
-      method: 'DELETE',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('delete from cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('deletting from cart', error);
-  }
-};
-
-/**
- *
- * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 
 const retrieveCart = async () => {
-  try {
-    const response = await fetch(CART_PATH, {
-      method: 'GET',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('get cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('getting category', error);
-  }
+  return await cartRequests.retrieve();
 };
 
 /**
  *
- * @returns {Promise<any>}
+ * @param {Object} data
+ * @returns {Promise<Object>}
+ */
+
+const updateCart = async (data) => {
+  return await cartRequests.update(data);
+};
+
+/**
+ *
+ * @param {Object} data
+ * @param {String} id
+ * @returns {Promise<Object>}
+ */
+
+const addProductToCart = async (data, id) => {
+  const exception = generateFetchException("adding a product to the cart")
+  return await cartRequests.update(data, `${CART_PATH}/${id}`, exception);
+};
+
+/**
+ *
+ * @param {String} id
+ * @returns {Promise<Object>}
+ */
+
+const decreaseProductQuantity = async (id) => {
+  const exception = generateFetchException("decreasing a product quantity")
+  return await cartRequests.delete(`${CART_PATH}/product/${id}`, exception);
+};
+
+/**
+ * @param {String} id
+ * @returns {Promise<Object>}
+ */
+
+const deleteProductFromCart = async (id) => {
+  const exception = generateFetchException("deleting a product from the cart");
+  return await cartRequests.delete(`${CART_PATH}/${id}`, exception);
+};
+
+/**
+ * @returns {Promise<Object>}
  */
 const deleteCart = async () => {
-  try {
-    const response = await fetch(CART_PATH, {
-      method: 'DELETE',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('delete cart', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('deleting cart', error);
-  }
+  return await cartRequests.delete();
 };
 
 const cart = {
   createCart,
+  retrieveCart,
   updateCart,
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  retrieveCart,
   deleteCart,
 };
 
