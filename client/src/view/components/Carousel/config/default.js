@@ -3,7 +3,6 @@ const slide = {
 };
 
 const carousel = {
-  className: 'header__carousel',
   loop: true,
   effect: 'cube',
   pagination: {

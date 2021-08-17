@@ -4,7 +4,7 @@ import {
   generateResponseException,
 } from './index';
 
-const SLIDER_PATH = '/api/slider';
+const SLIDER_PATH = '/api/slides';
 
 /**
  *

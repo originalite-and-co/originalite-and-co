@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Thumbs, Autoplay } from 'swiper';
 
 import 'swiper/swiper-bundle.css';
-import './style.scss';
 
 SwiperCore.use([Navigation, Pagination, Thumbs, Autoplay]);
 
