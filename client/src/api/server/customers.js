@@ -34,6 +34,7 @@ const createCustomer = async (data) => {
     });
 
     if (!response.ok) {
+      console.log(response);
       throw generateResponseException('create customer', response);
     }
 

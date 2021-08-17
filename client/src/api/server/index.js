@@ -13,6 +13,7 @@ export const generateHeaders = () => ({
  *
  * @param {String} action - verb and noun that describe what action is supposed to have an error
  * @param {Object} response - the fulfilled or rejected promise
+ * @param {*} restInfo
  *
  * @returns {Error}
  *
@@ -25,7 +26,9 @@ export const generateHeaders = () => ({
  * }
  *
  * */
-export const generateResponseException = (action, response) => new Error(`Failed to ${action}, response: ${response.status} ${response.statusText}`);
+export const generateResponseException = (action, response, ...restInfo) => {
+    return new Error(`Failed to ${action}, response: ${response.status} ${response.statusText}. ${restInfo}`);
+}
 
 /**
  * This function generates custom exception
