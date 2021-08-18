@@ -1,13 +1,16 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Tabs} from '@material-ui/core'
+import {Box, Tabs} from '@material-ui/core'
 import {Tab} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles';
 import MyProfile from "../MyProfile/MyProfile";
-import { customerRequests} from "../../../../api/server";
+import {customerRequests, ordersRequests} from "../../../../api/server";
 import useAsyncError from "../../../hooks/useAsyncError";
 import Toast from "../../../components/Toast/Toast";
 MemberTabs.propTypes = {};
+import Styles from './../Member.module.scss'
+import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
+
 const useStyles = makeStyles({
     tab: {
         fontFamily: 'Open Sans, sans-serif',
@@ -22,14 +25,16 @@ const useStyles = makeStyles({
     }
 });
 
-function MemberTabs(props) {
+function MemberTabs() {
     const [customer, setCustomer] = useState()
     const [isDataUpdated, setIsDataUpdated] = useState(false)
     /*is used in MyProfile component, should the data be successfully updated*/
 
     const [value, setValue] = useState(0)
-    const classes = useStyles()
+    const [orders, setOrders] = useState()
 
+    const classes = useStyles()
+    const throwError = useAsyncError();
     const handleChange = (event, newValue) => {
         setValue(newValue)
     }
@@ -42,11 +47,18 @@ function MemberTabs(props) {
             );
     }, [customer,isDataUpdated]), [isDataUpdated]);
 
+    useEffect(() => {
+        ordersRequests.retrieveOrder()
+            .then(
+                data => setOrders(data),
+                error => throwError(error)
+            )
+    },[])
+
     const handleDataUpdate = () => {
         setIsDataUpdated(true)
     }
 
-    console.log(isDataUpdated)
     return (
         <>
             {isDataUpdated && <Toast message="Data has been successfully updated"/>}
@@ -55,12 +67,16 @@ function MemberTabs(props) {
                 <Tab className={classes.tab} label="My Wishlist"/>
                 <Tab className={classes.tab} label="Purchase history"/>
             </Tabs>
-            {value === 0 && typeof customer == 'object' && <MyProfile
-                customer={customer}
-                handleDataUpdate={handleDataUpdate}
-            />}
-            {value === 1 && <p>My Wishlist</p>}
-            {value === 2 && <p>Purchase history</p>}
+            <Box className={Styles.wrapper}>
+                {value === 0 && typeof customer == 'object' && <MyProfile
+                    customer={customer}
+                    handleDataUpdate={handleDataUpdate}
+                />}
+                {value === 1 && <p>My Wishlist</p>}
+                {value === 2 && typeof orders == 'object' && <PurchaseHistory
+                    orders={orders}
+                />}
+            </Box>
         </>
     );
 }

@@ -9,10 +9,11 @@ import Button from "../../../components/Button/Button";
 import useAsyncError from "../../../hooks/useAsyncError";
 import Styles from './../Member.module.scss'
 import {number, object, string} from 'yup'
+
 MyProfile.propTypes = {
-
+    customer: PropTypes.object.isRequired,
+    handleDataUpdate: PropTypes.func.isRequired
 };
-
 
 function MyProfile({customer,handleDataUpdate}) {
     const throwError = useAsyncError();
@@ -28,7 +29,7 @@ function MyProfile({customer,handleDataUpdate}) {
     const phoneRegExp = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
 
     return (
-        <Box className={Styles.wrapper}>
+        <>
         <Formik
             validationSchema={
                 object({
@@ -37,6 +38,9 @@ function MyProfile({customer,handleDataUpdate}) {
                 })
             }
             initialValues={initialValues} onSubmit={(values) => {
+                if (JSON.stringify(values) === JSON.stringify(initialValues)){
+                    return
+                }
             customerRequests.updateCustomer(values)
                 .then(handleDataUpdate())
                 .catch(error => throwError(error))
@@ -98,7 +102,7 @@ function MyProfile({customer,handleDataUpdate}) {
                 </Form>
             )}
         </Formik>
-        </Box>
+        </>
     );
 }
 

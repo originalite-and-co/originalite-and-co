@@ -9,3 +9,4 @@ export { default as linkRequests } from './links';
 export { default as pageRequests } from './pages';
 export { default as colorRequests } from './colors';
 export { default as sizeRequests } from './sizes';
+export { default as ordersRequests } from './orders'
