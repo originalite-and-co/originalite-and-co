@@ -8,18 +8,17 @@ import PopularProductsCarousel from '../../components/PopularProductsCarousel/Po
 
 import Carousel, { defaultCarousel } from '../../components/Carousel';
 import { sliderRequests } from '../../../api/server';
-import CarouselStyle from './styles/style';
 import classes from './Home.module.scss';
 
 function Home() {
-  const PromoCarouselStyle = CarouselStyle();
-  const { slide, carousel } = defaultCarousel;
+  const { slide, carousel, styles } = defaultCarousel;
   const [slides, setSlides] = useState([]);
+  const PromoStyle = styles();
 
   const imagesComp = useMemo(
     () =>
-      slides.map(({ imageUrl }, key) => (
-        <Image key={key} src={imageUrl} className="swiper__image" />
+      slides.map(({ imageUrl, _id }) => (
+        <Image key={_id} src={imageUrl} className="swiper__image" />
       )),
     [slides]
   );
@@ -40,8 +39,8 @@ function Home() {
   return (
     <Box>
       <Header />
-      <Box className={PromoCarouselStyle.caroulesWrapper}>
-        <Box className={PromoCarouselStyle.headerCarousel}>
+      <Box className={PromoStyle.caroulesWrapper}>
+        <Box className={PromoStyle.headerCarousel}>
           <Carousel
             slides={imagesComp}
             slideProps={slide}
