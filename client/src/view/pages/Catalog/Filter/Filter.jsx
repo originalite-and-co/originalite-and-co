@@ -215,8 +215,8 @@ function Filter(props) {
                   const [minPrice, maxPrice] = range.map(String);
                   dispatch(
                     filterActions.addFilter({
-                      minPrice: minPrice + '',
-                      maxPrice: maxPrice + '',
+                      minPrice,
+                      maxPrice,
                     })
                   );
                 }}
