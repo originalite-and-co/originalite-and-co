@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core';
 import PopularProductsCarousel from '../../components/PopularProductsCarousel/PopularProductsCarousel';
 
 import Carousel, { defaultCarousel } from '../../components/Carousel';
-import { sliderRequests } from '../../../api/server';
+import { slideRequests } from '../../../api/server';
 import classes from './Home.module.scss';
 
 function Home() {
@@ -27,7 +27,7 @@ function Home() {
     let isActive = true;
 
     if (isActive) {
-      sliderRequests.retrieveSlides().then(
+      slideRequests.retrieveSlides().then(
         (data) => setSlides(data),
         (error) => console.log(error)
       );
