@@ -1,6 +1,22 @@
-import {generateFetchException, generateHeaders, generateResponseException} from "./index";
+import {
+    generateFetchException,
+    generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
 const SIZES_PATH = "/api/sizes";
+
+const headers = generateHeaders();
+
+const exceptions = {
+    create: generateFetchException("creating a size"),
+    retrieve: generateFetchException("retrieving sizes"),
+    update: generateFetchException("updating the size"),
+    delete: generateFetchException("deleting the size"),
+};
+
+const sizeRequests = new ServerApiRequests(SIZES_PATH, headers, exceptions);
+
 
 /**
  *
@@ -8,21 +24,7 @@ const SIZES_PATH = "/api/sizes";
  * @returns {Promise<Object>}
  */
 const createSize = async (data) => {
-    try {
-        const response = await fetch(SIZES_PATH, {
-            method: "POST",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok){
-            throw generateResponseException("create a size", response);
-        }
-
-        return await response.json()
-    } catch (error) {
-        throw generateFetchException("creating a size", error);
-    }
+    return await sizeRequests.create(data)
 };
 
 /**
@@ -30,20 +32,7 @@ const createSize = async (data) => {
  * @returns {Promise<Array<Object>>}
  */
 const retrieveSizes = async () => {
-    try {
-        const response = await fetch(SIZES_PATH, {
-            method: "GET",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok){
-            throw generateResponseException("retrieve sizes", response);
-        }
-
-        return await response.json()
-    } catch (error) {
-        throw generateFetchException("retrieving sizes", error);
-    }
+    return await sizeRequests.retrieve()
 };
 
 /**
@@ -53,21 +42,7 @@ const retrieveSizes = async () => {
  * @returns {Promise<Object>}
  */
 const updateSize = async (id, data) => {
-    try {
-        const response = await fetch(`${SIZES_PATH}/${id}`, {
-            method: "PUT",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok){
-            throw generateResponseException("update a size", response);
-        }
-
-        return await response.json()
-    } catch (error) {
-        throw generateFetchException("updating a size", error);
-    }
+    return await sizeRequests.update(data, `${SIZES_PATH}/${id}`);
 };
 
 /**
@@ -76,20 +51,7 @@ const updateSize = async (id, data) => {
  * @returns {Promise<any>}
  */
 const deleteSize = async (id) => {
-    try {
-        const response = await fetch(`${SIZES_PATH}/${id}`, {
-            method: "DELETE",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok){
-            throw generateResponseException("delete a size", response);
-        }
-
-        return await response.json()
-    } catch (error) {
-        throw generateFetchException("deleting a size", error);
-    }
+    return await sizeRequests.delete(`${SIZES_PATH}/${id}`);
 };
 
 const sizes = {
