@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Image from '../../components/Image';
-import CardList from '../../components/CardList/CardList.jsx';
 import ShopCategories from '../../components/ShopCategories/ShopCategories';
 import { Box } from '@material-ui/core';
 import PopularProductsCarousel from '../../components/PopularProductsCarousel/PopularProductsCarousel';
