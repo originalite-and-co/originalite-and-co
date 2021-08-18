@@ -1,158 +1,87 @@
 import {
   generateFetchException,
-  generateHeaders,
-  generateResponseException,
-} from './index';
+  generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
 const PRODUCTS_PATH = '/api/products';
 
+const headers = generateHeaders();
+
+const exceptions = {
+  create: generateFetchException("creating a product"),
+  retrieve: generateFetchException("retrieving products"),
+  update: generateFetchException("updating the product"),
+  delete: generateFetchException("deleting the product"),
+};
+
+const productRequests = new ServerApiRequests(PRODUCTS_PATH, headers, exceptions);
+
 /**
- * This function creates product
+ *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const createProduct = async (data) => {
-  try {
-    const response = await fetch(PRODUCTS_PATH, {
-      method: 'POST',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('create product', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('creating product', error);
-  }
+  return await productRequests.create(data);
 };
 
 /**
- * This function returns a found product card
  *
  * @param {Object} data - {
  *     query: "Some query "
  * }
- * @returns {Promise<any>}
+ * @returns {Promise<Array<Object>>}
  */
 const searchForProduct = async (data) => {
-  try {
-    const response = await fetch(`${PRODUCTS_PATH}/search`, {
-      method: 'POST',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('search for a product', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('searching for a product', error);
-  }
+  const exception = generateFetchException('searching for a product');
+  return await productRequests.create(data, `${PRODUCTS_PATH}/search`, exception);
 };
 
 /**
- * This function returns a collection(array) of products
- * @returns {Promise<any>}
+ *
+ * @returns {Promise<Array<Object>>}
  */
-const retrieveProduct = async () => {
-  try {
-    const response = await fetch(PRODUCTS_PATH, {
-      method: 'GET',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('retrieve product', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('retrieving product', error);
-  }
+const retrieveProducts = async () => {
+  return await productRequests.retrieve();
 };
 
 /**
  *This function returns one product that has the same itemNo prop as it was passed
  * @param {String} itemNumber
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const retrieveProductByItemNumber = async (itemNumber) => {
-  try {
-    const response = await fetch(`${PRODUCTS_PATH}/${itemNumber}`, {
-      method: 'GET',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException(
-        'retrieve product by item number',
-        response
-      );
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('retrieving product by item number', error);
-  }
+  const exception = generateFetchException('retrieving the product by item number');
+  return await productRequests.retrieve(`${PRODUCTS_PATH}/${itemNumber}`, exception);
 };
 
 /**
  *
  * @param {String} query - query in form "property=value&property2=value"
- * @returns {Promise<any>}
+ * @returns {Promise<Array<Object>>}
  */
 
 const retrieveByQuery = async (query) => {
-  try {
-    const response = await fetch(`${PRODUCTS_PATH}/filter?${query}`, {
-      method: 'GET',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('retrieve product by query', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('retrieving product by query', error);
-  }
+  const exception = generateFetchException('retrieving products by query');
+  return await productRequests.retrieve(`${PRODUCTS_PATH}/filter?${query}`, exception)
 };
 
 /**
  * This function updates product and returns new version of it
  *
  * @param {String} id - product id
- * @param data - data that needs to be updated
- * @returns {Promise<any>}
+ * @param {Object} data - data that needs to be updated
+ * @returns {Promise<Object>}
  */
 const updateProduct = async (id, data) => {
-  try {
-    const response = await fetch(`${PRODUCTS_PATH}/${id}`, {
-      method: 'PUT',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('update product', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('updating product', error);
-  }
+  return await productRequests.update(data, `${PRODUCTS_PATH}/${id}`)
 };
 
 const product = {
   createProduct,
   searchForProduct,
-  retrieveProduct,
+  retrieveProducts,
   retrieveProductByItemNumber,
   retrieveByQuery,
   updateProduct,

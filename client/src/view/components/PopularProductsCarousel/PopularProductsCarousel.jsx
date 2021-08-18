@@ -27,7 +27,7 @@ const PopularProductsCarousel = () => {
     },[width])
     const throwError = useAsyncError();
     useEffect(() => {
-        productRequests.retrieveProduct()
+        productRequests.retrieveProducts()
             .then(
                 res => setProductList(res),
                 error => {

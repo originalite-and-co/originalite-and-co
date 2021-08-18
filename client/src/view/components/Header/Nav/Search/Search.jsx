@@ -7,7 +7,7 @@ import {searchResultActions} from "../../../../../redux/features/searchResult";
 import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../../redux/features/dropdown";
 
 import {useHistory} from "react-router-dom";
-import {productRequests} from "../../../../../api/server";
+import {productRequests} from "../../../../../api/server/index";
 
 import Toast from "../../../Toast/Toast";
 import Dropdown from "../../../Dropdown/Dropdown";

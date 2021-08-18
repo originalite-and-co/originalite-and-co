@@ -1,49 +1,37 @@
-import {generateFetchException, generateHeaders, generateResponseException} from "./index";
+import {
+    generateFetchException,
+    generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
 const COLORS_PATH = "/api/colors"
+
+const headers = generateHeaders();
+
+const exceptions = {
+    create: generateFetchException("creating a color"),
+    retrieve: generateFetchException("retrieving colors"),
+    update: generateFetchException("updating the color"),
+    delete: generateFetchException("deleting the color"),
+};
+
+const colorRequests = new ServerApiRequests(COLORS_PATH, headers, exceptions);
 
 /**
  *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const createColor = async (data) => {
-    try {
-        const response = await fetch(COLORS_PATH,{
-            method: "POST",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok){
-            throw generateResponseException("create a color", response);
-        }
-
-        return await response.json();
-    } catch (error){
-        generateFetchException("creating a color", error);
-    }
+    return await colorRequests.create(data);
 };
 
 /**
  *
- * @returns {Promise<Array<String>>}
+ * @returns {Promise<Array<Object>>}
  */
 const retrieveColors = async () => {
-    try{
-        const response = await fetch(COLORS_PATH,{
-            method: "GET",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok){
-            throw generateResponseException("retrieve colors", response);
-        }
-
-        return await response.json();
-    } catch (error){
-        generateFetchException("retrieving colors", error);
-    }
+    return await colorRequests.retrieve();
 };
 
 /**
@@ -53,43 +41,16 @@ const retrieveColors = async () => {
  * @returns {Promise<Object>}
  */
 const updateColor = async (id, data) => {
-    try{
-        const response = await fetch(`${COLORS_PATH}/${id}`,{
-            method: "PUT",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok){
-            throw generateResponseException("update a color", response);
-        }
-
-        return await response.json();
-    } catch(error){
-        throw generateFetchException("updating a color", error);
-    }
+    return await colorRequests.update(data, `${COLORS_PATH}/${id}`)
 };
 
 /**
  *
  * @param {String} id
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const deleteColor = async (id) => {
-    try{
-        const response = await fetch(`${COLORS_PATH}/${id}`,{
-            method: "DELETE",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok){
-            throw generateResponseException("delete a color", response);
-        }
-
-        return await response.json();
-    } catch(error){
-        throw generateFetchException("deleting a color", error);
-    }
+    return await colorRequests.delete(`${COLORS_PATH}/${id}`);
 };
 
 const colors = {
