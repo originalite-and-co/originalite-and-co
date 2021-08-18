@@ -1,116 +1,66 @@
-import {generateFetchException, generateHeaders, generateResponseException} from "./index";
+import {
+    generateFetchException,
+    generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
 const LINKS_PATH = "/api/links";
 
+const headers = generateHeaders();
+
+const exceptions = {
+    create: generateFetchException("creating a link"),
+    retrieve: generateFetchException("retrieving links"),
+    update: generateFetchException("updating the link"),
+    delete: generateFetchException("deleting the link"),
+};
+
+const linkRequests = new ServerApiRequests(LINKS_PATH, headers, exceptions);
+
 /**
  *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const createLinks = async (data) => {
-    try {
-        const response = await fetch(LINKS_PATH, {
-            method: "POST",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("create links", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("creating links", error);
-    }
+    return await linkRequests.create(data);
 };
 
 /**
- * @returns {Promise<any>}
+ * @returns {Promise<Array<Object>>}
  */
 const retrieveLinks = async () => {
-    try {
-        const response = await fetch(LINKS_PATH, {
-            method: "GET",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("retrieve links", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("retrieving links", error)
-    }
+    return await linkRequests.retrieve();
 };
 
 /**
  *
  * @param {String} linkId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const retrieveLinkById = async (linkId) => {
-    try {
-        const response = await fetch(`${LINKS_PATH}/${linkId}`, {
-            method: "GET",
-            headers: generateHeaders()
-        });
-        if (!response.ok) {
-            throw generateResponseException("retrieve link by id", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("retrieving link by id", error)
-    }
+    const exception = generateFetchException("retrieving the link by id")
+    return await linkRequests.retrieve(`${LINKS_PATH}/${linkId}`, exception);
 };
 
 /**
  *
  * @param {Object} data
  * @param {String} linkId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const updateLink = async (data, linkId) => {
-    try {
-        const response = await fetch(`${LINKS_PATH}/${linkId}`, {
-            method: "PUT",
-            headers: generateHeaders(),
-            body: JSON.stringify(data),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("update a link", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("updating a link", error);
-    }
+    return await linkRequests.update(data, `${LINKS_PATH}/${linkId}`);
 };
 
 /**
  *
  * @param {String} linkId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const deleteLink = async (linkId) => {
-    try {
-        const response = await fetch(`${LINKS_PATH}/${linkId}`, {
-            method: "DELETE",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("delete a link", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("deleting a link", error);
-    }
-}
+    return await linkRequests.delete(`${LINKS_PATH}/${linkId}`);
+};
 
 const links = {
     createLinks,

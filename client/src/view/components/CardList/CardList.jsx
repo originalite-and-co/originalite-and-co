@@ -11,7 +11,7 @@ const CardList = () => {
     const [apiError, setApiError] = useState('');
     const throwError = useAsyncError();
     useEffect(()=> {
-        productRequests.retrieveProduct()
+        productRequests.retrieveProducts()
         .then(
             res => setProductList(res),
             error => {
