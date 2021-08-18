@@ -20,6 +20,7 @@ import styles from "./Search.module.scss";
 import useWindowSize from "../../../../hooks/useWindowSize";
 import constants from "../../../../constants";
 import NavItemsStyles from "../NavItems/NavItems.module.scss";
+import { useTheme } from '@material-ui/styles';
 
 Search.propTypes = {};
 
@@ -28,6 +29,8 @@ function Search(props) {
     const [searchResult, setSearchResult] = useState([]);
     const [isLoaded, setLoaded] = useState(false);
     const [isDropdownActive, setActiveDropdown] = useState(false);
+
+    console.log(useTheme());
 
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
     const dispatch = useDispatch()
@@ -102,10 +105,14 @@ function Search(props) {
     const dropdownContent = <>
         <Box className={`${styles.textFieldWrapper} wrapper`}>
             <TextField
+              color="primary"
                 value={searchValue}
                 onChange={handleInputChange}
                 fullWidth
                 label="Search for item"
+                inputProps={{
+                    className: styles.input
+                }}
             />
         </Box>
         <Box className={styles.btnWrapper}>
