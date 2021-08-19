@@ -10,20 +10,24 @@ import useAsyncError from '../../hooks/useAsyncError';
 
 import _ from 'lodash';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from "./SearchResultStyles.js";
+
+const useStyles = makeStyles(generateStyles)
 
 function SearchResult() {
   const [products, setProducts] = useState([]);
-  const [isLoaded, setLoaded] = useState(false);
   const searchResult = useSelector(searchResultSelectors.getSearchResult);
   const throwAsyncError = useAsyncError();
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const classes = useStyles();
+
   const query = history.location.search
     .slice(Number(history.location.search.indexOf('=')) + 1);
 
   if (searchResult.length && !products.length) {
-    setLoaded(false);
     setProducts(searchResult);
   }
 
@@ -32,7 +36,6 @@ function SearchResult() {
       .then(
         data => {
           setProducts(data);
-          setLoaded(true);
           if (data.length) {
             dispatch(searchResultActions.setSearchResult(data));
           }
@@ -41,34 +44,36 @@ function SearchResult() {
       );
   }
 
-
-  if (!isLoaded) {
-    return <p>Loading ...</p>;
-  }
-
   const productList = products.map(product => {
     return (
-      <ProductCard key={product._id} product={product} size={4}/>
+      <ProductCard key={product._id} product={product} size={6}/>
     );
   });
+
   return (
     <>
       <Header />
-      <Box component='main'>
-        <Box sx={{
-          fontSize: '48px',
-          color: 'red',
-          margin: '20px',
-        }} component='section'>
-          <Typography component='h3' variant='h5'>
+      <Box component='main' className={`${classes.content} wrapper`}>
+        <Box component='section'>
+          <Typography
+            component='h3'
+            variant='h5'
+            color="textSecondary"
+            className={classes.heading}
+          >
             {_.upperFirst(query)}
           </Typography>
-          <Grid
-            container
-            component="ul"
-          >
+          <Box className={classes.grid}>
             {productList}
-          </Grid>
+          </Box>
+          {/*<Grid*/}
+          {/*  container*/}
+          {/*  component="ul"*/}
+          {/*  direction="row"*/}
+          {/*  alignItems="flex-start"*/}
+          {/*  justifyContent="space-between"*/}
+          {/*>*/}
+          {/*</Grid>*/}
         </Box>
       </Box>
 

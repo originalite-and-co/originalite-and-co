@@ -1,5 +1,29 @@
 @import "./../../../../assets/styles/variables";
-@import "src/view/assets/typography/typography";
+
+.informationToast {
+  bottom: 10vh!important;
+}
+
+.textFieldWrapper{
+  margin-top: 76px;
+  margin-bottom: 131px;
+  position: relative;
+}
+
+.error{
+  margin-top: 1rem;
+  color: #ff0000;
+}
+
+.input{
+  color: #000000!important;
+}
+
+.btnWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .imageWrapper{
   padding-right: 30px;
@@ -7,7 +31,7 @@
 }
 
 .dropdown{
-  top: 67px;
+  top: 65px;
   right: 200vw;
   background-color: #FFFFFF;
   height: 100%;
@@ -17,26 +41,14 @@
   right: 0;
 }
 
-.textFieldWrapper{
-  margin-top: 76px;
-  margin-bottom: 131px;
-  position: relative;
-
-}
 .closeIcon{
   position: absolute;
   top: 24px;
-  right: 0px;
-}
-.btnWrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  right: 0;
 }
 
-.input{
-  color: #000000;
-}
+
+
 
 @media screen and (min-width: $min-desktop){
   .imageWrapper{
@@ -49,9 +61,44 @@
     line-height: 16px;
     color: #E2DFDF;
   }
-  .dropdown{
-    top: 95px;
+
+  .textFieldWrapper{
+    margin-top: 7vh;
+    margin-bottom: 10vh;
   }
+
+  .form{
+    display: block;
+    width: 43vw;
+    margin: 0 auto;
+  }
+  .dropdown{
+    top: 94px;
+    height: 40vh;
+
+    & *{
+      z-index: inherit;
+    }
+  }
+
+  .dropdownActive::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #fff;
+    z-index:9;
+    opacity: .5!important;
+  }
+
+  .dropdownInner{
+    background-color: #ffffff;
+
+    opacity: 1;
+  }
+
   .icon{
     margin-right: 5px;
   }
