@@ -16,12 +16,11 @@ const carousel = {
   navigation: true,
 };
 
-const styles = makeStyles({
-  caroulesWrapper: {
+const useStyles = makeStyles({
+  carouselWrapper: {
     width: '100%',
     display: 'flex',
     height: 'calc(100vh - 94px)',
-    padding: '94px 0 0 0',
     position: 'relative',
   },
   headerCarousel: {
@@ -72,4 +71,4 @@ const styles = makeStyles({
   },
 });
 
-export default { slide, carousel, styles };
+export default { slide, carousel, useStyles };
