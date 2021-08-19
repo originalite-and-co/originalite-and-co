@@ -211,7 +211,7 @@ function Filter(props) {
             <>
               <PrettoSlider
                 defaultValue={[0, 100]}
-                onChange={(_, range) => {
+                onChangeCommitted={(_, range) => {
                   const [minPrice, maxPrice] = range.map(String);
                   dispatch(
                     filterActions.addFilter({
