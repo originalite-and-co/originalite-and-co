@@ -62,8 +62,12 @@ function LoginPage() {
     <RadioButtonUncheckedIcon fontSize="small" className={classes.radio} />
   );
 
+  const {authorizeUser} = authorizeOperations
+
   const forwardIfAuthorized = async () => {
-    dispatch(authorizeOperations.authorizeUser());
+
+    dispatch(authorizeUser());
+
     if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
       setTimeout(() => {
         history.push('/');

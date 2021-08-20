@@ -6,6 +6,7 @@ import ServerApiRequests from './ServerApiRequests';
 
 const CUSTOMERS_PATH = '/api/customers';
 
+// debugger
 const headers = generateHeaders();
 
 const exceptions = {
@@ -14,6 +15,7 @@ const exceptions = {
   update: generateFetchException('updating the customer'),
   delete: generateFetchException('deleting the customer'),
 };
+console.log(headers)
 
 const customerRequests = new ServerApiRequests(CUSTOMERS_PATH, headers, exceptions);
 

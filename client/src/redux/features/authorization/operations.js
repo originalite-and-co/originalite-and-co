@@ -1,17 +1,19 @@
 import actions from './actions'
 
+const {logInCustomer, loggOutCustomer, doNotAuthorize} = actions
+
 const authorizeUser = () => (dispatch) => {
     const isAuthorized = sessionStorage.getItem('token') || localStorage.getItem('token')
     if (isAuthorized){
-        dispatch(actions.authorizeCustomer(true))
+        dispatch(logInCustomer())
     } else {
-        dispatch(actions.authorizeCustomer(false))
+        dispatch(doNotAuthorize())
     }
 }
 const loggOutUser = () => (dispatch) => {
     sessionStorage.removeItem('token')
     localStorage.removeItem('token')
-    dispatch(actions.loggOutCustomer(false))
+    dispatch(loggOutCustomer())
 }
 
 export default {

@@ -8,6 +8,7 @@ const ORDERS_PATH = '/api/orders';
 
 const headers = generateHeaders()
 
+
 const exceptions = {
     create: generateFetchException('creating the order'),
     retrieve: generateFetchException('retrieving the order'),

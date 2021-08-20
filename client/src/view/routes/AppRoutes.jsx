@@ -23,7 +23,6 @@ import {useDispatch, useSelector} from "react-redux";
 function AppRoutes() {
     const dispatch = useDispatch()
     const authorization = useSelector(authorizationSelectors.authorization)
-
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
 
     const [staticPages, setStaticPages] = useState([]);
@@ -34,7 +33,8 @@ function AppRoutes() {
     useEffect(() => {
         dispatch(authorizeOperations.authorizeUser())
         setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
-    }, [authorization]);
+    }, [authorization,isAuthenticated]);
+
 
     useEffect(useCallback(() => {
         pageRequests.retrievePages()

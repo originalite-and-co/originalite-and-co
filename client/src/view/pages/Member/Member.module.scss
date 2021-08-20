@@ -1,8 +1,12 @@
 @import "./../../assets/typography/typography";
+@import "./../../assets/styles/variables";
 
 .container{
   padding-top: 15vh;
   height: 100vh;
+}
+.test{
+  color: black !important;
 }
 .wrapper {
   margin-top: 25px;
@@ -21,4 +25,11 @@
   margin-top: 25px;
   display: flex;
   justify-content: center;
+}
+
+@media (min-width: $min-desktop) {
+  .wrapper {
+    max-width: 60vw;
+    margin: 0 auto;
+  }
 }

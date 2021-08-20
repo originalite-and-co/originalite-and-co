@@ -3,19 +3,19 @@ import authorizationActions from './actions';
 
 
 describe('authorization reducer', () => {
-    const {authorizeCustomer, loggOutCustomer} = authorizationActions;
+    const {loggOutCustomer, logInCustomer} = authorizationActions;
     const { authorization } = authorizationReducer;
 
     const initialState = false;
 
     test('authorizeCustomer', () => {
-        const action = authorizeCustomer(true)
+        const action = logInCustomer()
 
         expect(authorization(initialState,action)).toStrictEqual(true)
     })
 
     test('loggOutCustomer', () => {
-        const action = authorizeCustomer(false)
+        const action = loggOutCustomer()
 
         expect(authorization(initialState,action)).toStrictEqual(false)
     })

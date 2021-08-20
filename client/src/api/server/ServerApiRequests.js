@@ -80,8 +80,9 @@ class ServerApiRequests {
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
   async retrieve(path, exception) {
+    // debugger
     const currentPath = path || this.path.retrieve || this.path;
-    const headers = this.headers.retrieve || this.headers;
+    const headers = this.headers || this.headers.retrieve;
     const currentException = exception|| this.fetchException.retrieve || this.fetchException;
     try {
       const response = await fetch(currentPath, {
