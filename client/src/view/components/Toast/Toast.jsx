@@ -27,12 +27,13 @@ Toast.defaultProps = {
  * @param {String} severity - the severity of the alert. This defines the color and icon used.
  * @param {String} variant - the variant to use.
  * @param {Object} anchorOrigin - The anchor of the Snackbar
+ * @param {String} className - className of the Snackbar component
  *
  * @returns {JSX.Element}
  * @constructor
  */
 
-function Toast({message, autoHideDuration, severity, variant, anchorOrigin}) {
+function Toast({message, autoHideDuration, severity, variant, anchorOrigin, className}) {
     const [isOpen, setOpen] = useState(true);
 
     const handleClose = (event, reason) => {
@@ -44,7 +45,7 @@ function Toast({message, autoHideDuration, severity, variant, anchorOrigin}) {
     }
 
     return (
-        <Snackbar open={isOpen} onClose={handleClose} anchorOrigin={anchorOrigin} autoHideDuration={autoHideDuration} >
+        <Snackbar className={className} open={isOpen} onClose={handleClose} anchorOrigin={anchorOrigin} autoHideDuration={autoHideDuration} >
             <MuiAlert
                 action={<CloseIcon data-testid="error-toast-close-icon" onClick={handleClose}/>}
                 onClose={handleClose}

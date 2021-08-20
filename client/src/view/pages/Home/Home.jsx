@@ -1,28 +1,35 @@
-import React, {useEffect, useState} from 'react';
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer"
-import ShopCategories from "../../components/ShopCategories/ShopCategories";
-import {Box} from "@material-ui/core";
-import PopularProductsCarousel from "../../components/PopularProductsCarousel/PopularProductsCarousel";
+import React from 'react';
 
-import classes from "./Home.module.scss"
-import { catalogRequests } from '../../../api/server';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import PopularProductsCarousel from './PopularProductsCarousel/PopularProductsCarousel';
+import ShopCategories from './ShopCategories/ShopCategories';
+import PromoCarousel from './PromoCarousel/PromoCarousel';
 
-Home.propTypes = {};
 
-function Home(props) {
-  catalogRequests.retrieveCatalog()
-    .then(data => console.log(data));
-    return (
-        <Box>
-            <Header/>
-            <Box className={`${classes.content} wrapper`} component={"main"}>
-               <PopularProductsCarousel/>
-                <ShopCategories/>
-            </Box>
-            <Footer/>
+import { Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
+
+
+function Home() {
+
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.root}>
+      <Header />
+      <Box className={classes.content} component={'main'}>
+        <PromoCarousel />
+        <Box className={`${classes.sectionWrapper} wrapper`}>
+          <PopularProductsCarousel />
+          <ShopCategories />
         </Box>
-    );
+      </Box>
+      <Footer />
+    </Box>
+  );
 }
 
 export default Home;

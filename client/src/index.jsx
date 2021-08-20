@@ -8,28 +8,27 @@ import { Provider } from 'react-redux';
 import ErrorBoundary from './view/components/ErrorBoundary/ErrorBoundary';
 import Toast from './view/components/Toast/Toast';
 import './view/assets/styles/index.scss';
-import * as cloudinaryReact from 'cloudinary-react';
+import { CloudinaryContext } from 'cloudinary-react';
+import CustomThemeProvider from './view/HOC/CustomThemeProvider/CustomThemeProvider';
 
-const errorToast = (
-  <Toast
-    message="An error has occurred. Please try again later"
-    severity="error"
-  />
-);
+const errorToast = <Toast
+  message='An error has occurred. Please try again later'
+  severity='error'
+/>;
 
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary fallback={errorToast}>
       <BrowserRouter>
         <Provider store={store}>
-          <cloudinaryReact.CloudinaryContext cloudName="originalite-and-co">
+          <CloudinaryContext cloudName='originalite-and-co'>
             <App />
-          </cloudinaryReact.CloudinaryContext>
+          </CloudinaryContext>
         </Provider>
       </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
