@@ -5,6 +5,7 @@ import CardList from "../../components/CardList/CardList.jsx";
 import ShopCategories from "../../components/ShopCategories/ShopCategories";
 import {Box} from "@material-ui/core";
 import PopularProductsCarousel from "../../components/PopularProductsCarousel/PopularProductsCarousel";
+import ShopStepper from "../../components/ShopStepper/ShopStepper";
 
 
 Home.propTypes = {};
@@ -14,6 +15,7 @@ function Home(props) {
         <Box>
             <Header/>
             <div>Home</div>
+            <ShopStepper/>
             <Box className={"wrapper"} component={"main"}>
                <PopularProductsCarousel/>
                 <ShopCategories/>
