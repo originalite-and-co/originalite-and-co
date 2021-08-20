@@ -53,7 +53,7 @@ function Catalog(props) {
 
   useEffect(() => {
     replace(`${location.pathname}?${query}`);
-    productRequests.retrieveByQuery(query)
+    productRequests.retrieveByQuery(`${query}categories=${categoryName.toLowerCase()}&perPage=4,startPage=1`)
       .then(data => {
         setProducts(data);
       });
