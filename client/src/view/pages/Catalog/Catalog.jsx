@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@material-ui/core';
 import classes from './Catalog.module.scss';
@@ -17,11 +17,20 @@ import CatalogBreadcrumbs from './Breadcrumbs/CatalogBreadcrumbs';
 
 Catalog.propTypes = {};
 
+
+function numberOfProductsGenerator(init) {
+  let number = init;
+  return function* (step) {
+    while (true) {
+      yield number += step;
+    }
+  };
+}
+
 function Catalog(props) {
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState([]);
-  const [productsToRender, setProductsToRender] = useState([]);
-  const [numberOfProducts, setNumberOfProducts] = useState(null)
+  const [numberOfProducts, setNumberOfProducts] = useState(1);
 
   const dispatch = useDispatch();
   const query = useSelector(filterSelectors.getFiltersQuery);
@@ -32,28 +41,29 @@ function Catalog(props) {
   const categoryName = location.pathname.split('/').pop();
   const categoryTitle = _.upperFirst(_.lowerCase(categoryName));
 
+  let generator = () => numberOfProductsGenerator(numberOfProducts);
+  const test = generator(1);
+  // console.log(test.next().value);
+
+
   useEffect(() => {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
   }, [width]);
 
-  function* numberOfProductsGenerator(init, step, maxValue) {
-    let number = init;
-    while (number <= maxValue) {
-      yield number += step;
-    }
-  }
-
-  useEffect(() => {
-    if (productsQuantity && !numberOfProducts){
-      setNumberOfProducts(numberOfProductsGenerator(2, 2, productsQuantity));
-      setProductsToRender(products.slice(0, 2));
-    }
-  }, [productsQuantity]);
+  const categoryID = location.pathname
+    .split('/')
+    .filter(category => category && category !== 'catalog')
+    .join('-');
 
 
   useEffect(() => {
     replace(`${location.pathname}?${query}`);
-    productRequests.retrieveByQuery(`${query}categories=${categoryName.toLowerCase()}&perPage=4,startPage=1`)
+
+    const requestQuery = query ?
+      `${query}&categories=${categoryID}&perPage=${numberOfProducts}` :
+      `categories=${categoryID}}&perPage=${numberOfProducts}`;
+
+    productRequests.retrieveByQuery(requestQuery)
       .then(data => {
         setProducts(data);
       });
@@ -64,14 +74,10 @@ function Catalog(props) {
   }, [location.pathname]);
 
   const loadMoreProducts = () => {
-      if (numberOfProducts) {
-        debugger
-        const test = products.slice(0, numberOfProducts.next().value);
-        console.log(test);
-        setProductsToRender(test);
-      }
+    debugger
+    console.log(test.next().value);
+    return test.next().value;
   };
-
 
   return (
     <>
@@ -109,7 +115,7 @@ function Catalog(props) {
         >
           <Box className={classes.contentInner}>
             <Products
-              products={productsToRender}
+              products={products}
               categoryTitle={categoryTitle}
               loadMoreProducts={loadMoreProducts}
             />

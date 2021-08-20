@@ -93,7 +93,7 @@ function Products({ categoryTitle, products, loadMoreProducts }) {
           </>
         )
       }
-      {productList.length ?
+      {productList?.length ?
         (
           <Grid
             id='productListContainer'
