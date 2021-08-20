@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './ProductCard.module.scss';
 import { Grid, Typography, Box } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
@@ -15,6 +15,7 @@ function ProductCard({ product, size }) {
   const [isDesktop, setDesktop] = useState(false);
 
   const { width } = useWindowSize();
+  const { path } = useRouteMatch();
 
   useEffect(() => {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
@@ -27,7 +28,7 @@ function ProductCard({ product, size }) {
           <img src={product.imageUrls[0]} alt='products images' />
         </div>
         <Typography
-          color='primary'
+          color={path === "/" ? "textPrimary" : 'textSecondary'}
           component='p'
           variant={isDesktop ? 'h6' : 'body2'}
           className={styles.productCardTitle}
@@ -44,7 +45,7 @@ function ProductCard({ product, size }) {
       </Link>
     </Box>
   );
-};
+}
 
 
 export default ProductCard;
