@@ -5,29 +5,35 @@ import OneProductInfo from "./Sections/OneProductInfo";
 import ImageMagnify from "./Sections/ImageMagnify";
 import OneProductStyles from "./OneProduct.module.scss";
 
-const productOne = {
-        enabled: true,
-        imageUrls: [
-        "image1.jpg",
-        "image2.jpg",
-        "image3.jpg",
+
+const productOne =
+    {
+        "enabled": true,
+        "imageUrls": [
+            "https://res.cloudinary.com/originalite-and-co/image/upload/v1629374957/benjamin-rascoe-Z7b2Px6yT40-unsplash_jzhfue.jpg",
+            "https://res.cloudinary.com/originalite-and-co/image/upload/v1629374957/benjamin-rascoe-Eav5V0COmQ4-unsplash_yvc00e.jpg",
+            "https://res.cloudinary.com/originalite-and-co/image/upload/v1629374956/benjamin-rascoe-Ci_fZ5cL9Jo-unsplash_apbp39.jpg",
         ],
-        quantity: 156,
-        _id: 1,
-        name: "Product 1",
-        currentPrice: 100,
-        previousPrice: 250,
-        categories: "men",
-        color: ["red", "blue", "black"],
-        sizes: ["L", "M", "S"],
-        productUrl: "/men",
-        brand: "braaaand",
-        myCustomParam: "some string or json for custom param",
-        itemNo: 291759,
-        date: "2019-10-14T12:00:39.679Z",
-        __v: 0,
-        description: "dfjkdfjkdjfkdjkdjfk"
-}
+        "quantity": 156,
+        "_id": "5da463678cca382250dd7bc7",
+        "name": "Product 1",
+        "currentPrice": 100,
+        "previousPrice": 250,
+        "categories": "men",
+        "color": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L"],
+        "productUrl": "/men",
+        "brand": "braaaand",
+        "myCustomParam": "some string or json for custom param",
+        "itemNo": "291759",
+        "date": "2019-10-14T12:00:39.679Z",
+        "__v": 0,
+        "oneMoreCustomParam": {
+            "description": "blablabla",
+            "rate": 4.8,
+            "likes": 20
+        }
+    }
 
 
 function OneProduct () {
@@ -45,21 +51,16 @@ function OneProduct () {
     //
     // }, [])
 
-    // setProduct(productOne)
-
     return (
         <section className={OneProductStyles.container}>
             <div className={OneProductStyles.main}>
                 <ImageMagnify detail={productOne}/>
-                <OneProductInfo detail={productOne}/>
+                <OneProductInfo detail={productOne} />
             </div>
             <div>
-                <h3>COMPLETE YOUR LOOK</h3>
+                <h3>Recently viewed products</h3>
                 <div className={OneProductStyles.images}>
-                    <img src="image1.jpg"alt=""/>
-                    <img src="image2.jpg" alt=""/>
-                    <img src="image3.jpg" alt=""/>
-                    <img src="image1.jpg" alt=""/>
+
                 </div>
             </div>
         </section>

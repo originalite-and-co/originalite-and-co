@@ -10,7 +10,6 @@
 }
 
 .slider{
-
   width: 800px;
   height: 500px;
 }
@@ -56,38 +55,77 @@
 
   button {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: none;
     display: inline;
     margin-right: 30px;
   }
 
+  .active {
+    width: 35px;
+    height: 35px;
+  }
+
 }
 
 .sizes {
-  color: #000000;
-  font-size: 18px;
-  line-height: 25px;
-  cursor: pointer;
 
-  :hover {
-    text-decoration: underline;
+  li {
+    border: 2px solid black;
+    padding: 7px;
+    margin-right: 5px;
+    color: #000000;
+    font-size: 18px;
+    line-height: 25px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  li:hover {
+    border: 3px solid black;
+  }
+
+  .active {
+    background: #000000;
+    color: #FFFFFF;
+  }
+
+  .disabled {
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
+
+
 
 .button {
   font-size: 20px;
   text-transform: uppercase;
-  background: #000000;
-  color: #FFFFFF;
+  background: #FFFFFF;
+  text-align: center;
   cursor: pointer;
   margin-top: 60px;
-  padding: 18px 70px;
-  border: none;
   margin-bottom: 200px;
+  color: black;
+  padding: 18px 70px;
+  border: 3px solid black;
 }
+
+.active_button {
+  background: #000000;
+  color: #FFFFFF;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 60px;
+  margin-bottom: 200px;
+  padding: 18px 70px;
+  border: 3px solid black;
+}
+
 
 .images {
   margin-top: 11px;

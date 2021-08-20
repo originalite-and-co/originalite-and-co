@@ -14,13 +14,13 @@ export default function ImageMagnify(props) {
                         smallImage: {
                             isFluidWidth: false,
                             src: num,
-                            width: 400,
+                            width: 600,
                             height: 500,
                             // sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                         },
                         largeImage: {
                             src: num,
-                            width: 600,
+                            width: 800,
                             height: 800
                         }
                     }}

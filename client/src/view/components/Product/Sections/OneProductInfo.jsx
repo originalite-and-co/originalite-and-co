@@ -1,40 +1,68 @@
-import React from 'react'
+import React, {useState} from 'react'
 import OneProductStyles from '../OneProduct.module.scss'
+
 
 function OneProductInfo(props) {
 
-    return (
+    const [isActiveColor, setActiveColor] = useState(null);
+    const [activeSize, setActiveSize] = useState(null)
 
+    const availableSizes = ["S", "M", "L", "XL"]
+    const {sizes, name, currentPrice, itemNo, color, oneMoreCustomParam} = props.detail
+
+    const onSelectSize = (index) => {
+        setActiveSize(index)
+    }
+
+    const onSelectColor = (index) => {
+        setActiveColor(index)
+    }
+
+    return (
         <div className={OneProductStyles.info}>
             <div className={OneProductStyles.row}>
-                <h2>{props.detail.name}</h2>
-                <span>{props.detail.currentPrice} $</span>
+                <h2>{name}</h2>
+                <span>{currentPrice} $</span>
             </div>
-            <span className={OneProductStyles.itemNo}>{props.detail.itemNo}</span>
+            <span className={OneProductStyles.itemNo}>{itemNo}</span>
             <h3>Color</h3>
             <div className={OneProductStyles.color}>
                 {
-                    props.detail.color.map(item => (
+                    color && color.map((item, index) => (
                         <>
-                            <button style={{background: item}}></button>
+                            <button
+                                type='radio'
+                                key={`${item}_${index}`}
+                                style={{background: item}}
+                                className={isActiveColor === index ? OneProductStyles.active : ''}
+                                onClick={() => onSelectColor(index)}>
+                            </button>
                         </>
 
                         )
                     )
                 }
             </div>
-
             <h3>Details</h3>
-            <p>{props.detail.description}</p>
+            <p>{oneMoreCustomParam.description}</p>
             <h3>Size</h3>
             <div className={OneProductStyles.sizes}>
-                {
-                    props.detail.sizes.map(item => (
-                        <span> {item}, </span>
-                    ))
-                }
+                <ul>
+                    {availableSizes.map((item, index) => (
+                        <li
+                            key={item}
+                            onClick={() => onSelectSize(index)}
+                            className={
+                                !sizes.includes(item) ? OneProductStyles.disabled : "" ||
+                                activeSize === index ? OneProductStyles.active : ''}>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
             </div>
-            <button className={OneProductStyles.button}>Add to cart</button>
+            <button className={activeSize !== null ? OneProductStyles.active_button : OneProductStyles.button}>
+                Add to cart
+            </button>
         </div>
     )
 }
