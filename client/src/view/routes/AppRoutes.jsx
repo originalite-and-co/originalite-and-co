@@ -63,9 +63,8 @@ function AppRoutes() {
         <Switch>
             <Route path="/products/search" component={SearchResult}/>
             {staticPageRoutes}
-            <Route path="/help" render={() => <p>Loading ...</p>}/>
-            <Route path="/company" render={() => <p>Loading ...</p>}/>
             <Route path="/catalog/:category" component={Catalog}/>
+            <Route path="/catalog" component={Catalog}/>
             <Route path="/products/:itemNumber" component={Product}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>

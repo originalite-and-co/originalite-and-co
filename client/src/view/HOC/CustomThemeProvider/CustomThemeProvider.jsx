@@ -28,6 +28,10 @@ function CustomThemeProvider({ children }) {
         main: "#000000",
         contrastText: "#FFFFFF"
       },
+      secondary: {
+        main: "#FFFFFF" ,
+        contrastText: "#000000",
+      },
       text: {
         primary: "#FFFFFF",
         secondary: "#000000"
