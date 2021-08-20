@@ -4,18 +4,21 @@ import { Box, Grid, Typography } from '@material-ui/core';
 
 CategoryCard.propTypes = {
   product: PropTypes.object.isRequired,
-  size: PropTypes.number.isRequired,
 };
 
-function CategoryCard({ product, size }) {
-  const {img, name} = product;
+function CategoryCard({ product, gridArea }) {
+  const { img, name } = product;
   return (
-    <Grid component='li' item xs={size} className={styles.categoryCard}>
-      <Box component="picture" className={styles.imageWrapper}>
+    <Box sx={{
+      gridArea: gridArea,
+    }}
+         className={styles.categoryCard}
+    >
+      <Box component='picture' className={styles.imageWrapper}>
         <img src={img} alt={name} />
       </Box>
-      <Typography component="p" variant='h5'>{name}</Typography>
-    </Grid>
+      <Typography component='p' variant='h5'>{name}</Typography>
+    </Box>
   );
 }
 

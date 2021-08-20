@@ -1,22 +1,29 @@
 @import "src/view/assets/styles/variables";
 
 .productCard {
-  list-style: none;
-  width: 100%;
   height: 100%;
-
+  width: 100%;
 }
 
-.productCardTitle
-{
-  text-transform: uppercase;
-  font-family: Open Sans;
+.link{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.productCardTitle {
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 25px;
+  text-transform: uppercase;
 }
-.productImage{
-  height: 70%;
-  img{
+
+.productImage {
+  height: 85%;
+  width: 100%;
+
+  img {
     max-width: 100%;
     width: 100%;
     height: 100%;
@@ -24,23 +31,17 @@
     object-fit: cover;
   }
 }
-.productCardPrice
-{
 
-  font-family: Open Sans;
-  font-size: 18px;
-  line-height: 25px;
+.productCardPrice {
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
   color: #847A7A;
   text-transform: uppercase;
-
 }
 
 
-//@media (min-width:$desktop){
-//  .productCard{
-//    height: 545px;
-//  }
-//  .productImage{
-//    height: 475px;
-//    }
-//}
+@media (min-width:$desktop){
+  .productCard{
+    height: 546px;
+  }
+}

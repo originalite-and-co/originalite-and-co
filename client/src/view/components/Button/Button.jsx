@@ -3,9 +3,13 @@ import ButtonStyles from './Button.module.scss';
 import propTypes from 'prop-types'
 
 Button.propTypes = {
-  onClick: propTypes.func.isRequired,
+  onClick: propTypes.func,
   backgroundColor: propTypes.string,
   text: propTypes.string
+}
+
+Button.defaultProps = {
+  onClick: () => null
 }
 
 function Button({
