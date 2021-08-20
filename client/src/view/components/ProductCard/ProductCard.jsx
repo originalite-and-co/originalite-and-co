@@ -22,13 +22,16 @@ function ProductCard({ product, size }) {
   }, [width]);
 
   return (
-    <Box className={styles.productCard}>
+    <Box
+      data-testid='product-card'
+      className={styles.productCard}
+    >
       <Link to={`/products/${product.itemNo}`} className={styles.link}>
         <div className={styles.productImage}>
           <img src={product.imageUrls[0]} alt='products images' />
         </div>
         <Typography
-          color={path === "/" ? "textPrimary" : 'textSecondary'}
+          color={path === '/' ? 'textPrimary' : 'textSecondary'}
           component='p'
           variant={isDesktop ? 'h6' : 'body2'}
           className={styles.productCardTitle}
@@ -36,8 +39,8 @@ function ProductCard({ product, size }) {
           {product.name}
         </Typography>
         <Typography
-          component="p"
-          variant={isDesktop ? 'h6': 'body2'}
+          component='p'
+          variant={isDesktop ? 'h6' : 'body2'}
           className={styles.productCardPrice}
         >
           {`${product.currentPrice} $`}
