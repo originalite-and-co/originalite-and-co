@@ -3,18 +3,21 @@ import {BrowserRouter} from "react-router-dom";
 import store from "../../../../redux/store/store";
 import MyProfile from "./MyProfile";
 import {Provider} from "react-redux";
-
+import CustomThemeProvider from "../../../HOC/CustomThemeProvider/CustomThemeProvider";
+import React from "react";
 
 const customer = {name: "Derek", lastName: "Chesora"}
 const fn = jest.fn()
 
 const MyProfileTest = () => {
     return (
+        <CustomThemeProvider>
         <BrowserRouter>
             <Provider store={store}>
                 <MyProfile customer={customer} handleDataUpdate={fn}/>
             </Provider>
         </BrowserRouter>
+        </CustomThemeProvider>
     )
 }
 

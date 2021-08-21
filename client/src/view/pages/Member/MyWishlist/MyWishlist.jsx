@@ -26,7 +26,7 @@ function MyWishlist({wishlist}) {
     const wishListProducts = wishlist.products
 
     const wishlistList = wishListProducts.map(wish => (
-            <Box className={classes.purchaseItem}>
+            <Box key={Math.floor(Math.random() * 100000)} className={classes.purchaseItem}>
                 <Box className={classes.imageAndInfo}>
                     <Box>
                         <img className={classes.purchaseItemImg} src={wish.imageUrls[0]} alt="item"/>

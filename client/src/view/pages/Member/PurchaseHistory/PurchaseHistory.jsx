@@ -15,7 +15,7 @@ function PurchaseHistory({orders}) {
     const ordersArray = orders.map(order => order.products)
     const productsArray = ordersArray.map(orderProduct => orderProduct[0].product)
     const productsList = productsArray.map(product => (
-        <ListItem key={Math.floor(Math.random() * 10000)} className={classes.purchaseItem}>
+        <ListItem key={Math.floor(Math.random() * 100000)} className={classes.purchaseItem}>
             <Box>
                 <img className={classes.purchaseItemImg} src={product.imageUrls[0]} alt="purchased item"/>
             </Box>

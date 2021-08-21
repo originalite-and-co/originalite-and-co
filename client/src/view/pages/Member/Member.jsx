@@ -12,23 +12,12 @@ Member.propTypes = {
 };
 
 
-function Member(props) {
-    const throwError = useAsyncError();
-    const [orders, setOrders] = useState()
-
-    useEffect(() => {
-        ordersRequests.retrieveOrder()
-            .then(
-                data => setOrders(data),
-                error => throwError(error)
-            )
-    },[])
-
+function Member() {
     return (
         <div>
             <Header/>
             <Box className={Styles.container}>
-                <MemberTabs orders={orders}/>
+                <MemberTabs/>
             </Box>
         </div>
     );

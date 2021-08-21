@@ -15,7 +15,6 @@ const exceptions = {
   update: generateFetchException('updating the customer'),
   delete: generateFetchException('deleting the customer'),
 };
-console.log(headers)
 
 const customerRequests = new ServerApiRequests(CUSTOMERS_PATH, headers, exceptions);
 
@@ -59,7 +58,7 @@ const createCustomer = async (data) => {
  */
 const logIn = async (credentials, keepLoggedIn) => {
   const exception = generateFetchException('logging in');
-  const data = await customerRequests.create(credentials, `${CUSTOMERS_PATH}/login`, exception);
+  const data = await customerRequests.create(credentials, `${CUSTOMERS_PATH}/login`, generateHeaders(), exception);
 
   if (keepLoggedIn) {
     addTokenToLocalStorage(data.token);
@@ -74,7 +73,7 @@ const logIn = async (credentials, keepLoggedIn) => {
  * @returns {Promise<Object>} - customer
  */
 const retrieveCustomer = async () => {
-  return await customerRequests.retrieve(`${CUSTOMERS_PATH}/customer`);
+  return await customerRequests.retrieve(`${CUSTOMERS_PATH}/customer`,generateHeaders());
 };
 
 /**
@@ -84,7 +83,7 @@ const retrieveCustomer = async () => {
  * @returns {Promise<Object>} - updated customer
  */
 const updateCustomer = async (data) => {
-  return await customerRequests.update(data)
+  return await customerRequests.update(data, `${CUSTOMERS_PATH}`,generateHeaders())
 };
 
 /**

@@ -3,6 +3,7 @@ import {BrowserRouter} from "react-router-dom";
 import store from './../../../../redux/store/store'
 import PurchaseHistory from "./PurchaseHistory";
 import {Provider} from "react-redux";
+import CustomThemeProvider from "../../../HOC/CustomThemeProvider/CustomThemeProvider";
 
 const orders = [
     {
@@ -78,11 +79,13 @@ const orders = [
 
 const PurchaseHistoryTest = () => {
     return (
+        <CustomThemeProvider>
         <BrowserRouter>
             <Provider store={store}>
                 <PurchaseHistory orders={orders}/>
             </Provider>
         </BrowserRouter>
+        </CustomThemeProvider>
     )
 }
 

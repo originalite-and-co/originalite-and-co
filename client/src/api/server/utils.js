@@ -4,18 +4,11 @@
  * @returns {{Authorization: (string|null), "Content-Type": string}}
  */
 
-// const generateHeaders = () => ({
-//   'Content-Type': 'application/json',
-//   Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
-// });
+const generateHeaders = () => ({
+  'Content-Type': 'application/json',
+  Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
+});
 
-const generateHeaders = function (){
-  debugger
-  return({
-    'Content-Type': 'application/json',
-    Authorization: sessionStorage.getItem('token') || localStorage.getItem('token')
-  })
-}
 
 /**
  * This function generates custom exception

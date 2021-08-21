@@ -29,13 +29,13 @@ const useStyles = makeStyles({
     }
 });
 
-function MemberTabs({orders}) {
+function MemberTabs() {
     const [customer, setCustomer] = useState()
     const [isDataUpdated, setIsDataUpdated] = useState(false)
     /*is used in MyProfile component, should the data be successfully updated*/
 
     const [value, setValue] = useState(0)
-    // const [orders, setOrders] = useState()
+    const [orders, setOrders] = useState()
 
     const [wishlist, setWishlist] = useState()
 
@@ -53,13 +53,13 @@ function MemberTabs({orders}) {
             );
     }, [customer,isDataUpdated]), [isDataUpdated]);
 
-    // useEffect(() => {
-    //     ordersRequests.retrieveOrder()
-    //         .then(
-    //             data => setOrders(data),
-    //             error => throwError(error)
-    //         )
-    // },[])
+    useEffect(() => {
+        ordersRequests.retrieveOrder()
+            .then(
+                data => setOrders(data),
+                error => throwError(error)
+            )
+    },[])
 
     useEffect(() => {
         wishlistRequests.retrieveWishlist().
@@ -75,7 +75,7 @@ function MemberTabs({orders}) {
 
     return (
         <>
-            {isDataUpdated && <Toast message="Data has been successfully updated"/>}
+            {isDataUpdated && <Toast severity="success" variant="filled" message="Data has been successfully updated"/>}
             <Tabs value={value} onChange={handleChange} centered={true}>
                 <Tab className={classes.tab} label="My Profile"/>
                 <Tab className={classes.tab} label="My Wishlist"/>

@@ -98,7 +98,7 @@ function LoginPage() {
 
   return (
     <>
-      {loggedIn && <Toast message="Welcome to Originalite, fashionista" />}
+      {loggedIn && <Toast severity="success" variant="filled" message="Welcome to Originalite, fashionista" />}
       <Box className={Styles.logInPageWrapper} data-testid="login-page">
         <p className={Styles.text}>
           Please enter your account details to log in

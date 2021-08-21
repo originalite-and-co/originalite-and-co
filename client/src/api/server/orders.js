@@ -33,7 +33,7 @@ const createOrder = async (orderDetails) => {
  * @returns {Promise<Array>} - customer orders
  */
 const retrieveOrder = async () => {
-    return await orderRequests.retrieve(`${ORDERS_PATH}`)
+    return await orderRequests.retrieve(`${ORDERS_PATH}`, generateHeaders())
 }
 
 const orders = {

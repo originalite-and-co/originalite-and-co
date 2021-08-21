@@ -41,17 +41,18 @@ class ServerApiRequests {
    *
    * @param {Object} body - data that should be sent
    * @param {String} [path] - request url
+   * @param {Object} [headers] - request headers
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async create(body, path, exception) {
+  async create(body, path,headers, exception) {
     const currentPath = path || this.path.create || this.path;
-    const headers = this.headers.create || this.headers;
+    const currentHeaders = headers || this.headers.create || this.headers;
     const currentException = exception || this.fetchException.create || this.fetchException;
     try {
       const response = await fetch(currentPath, {
         method: 'POST',
-        headers,
+        headers: currentHeaders,
         body: JSON.stringify(body),
       });
 
@@ -76,18 +77,18 @@ class ServerApiRequests {
 
   /**
    * @param {String} [path] - request url
+   * @param {Object} [headers] - request headers
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async retrieve(path, exception) {
-    // debugger
+  async retrieve(path,headers, exception) {
     const currentPath = path || this.path.retrieve || this.path;
-    const headers = this.headers || this.headers.retrieve;
+    const currentHeaders = headers || this.headers.retrieve || this.headers;
     const currentException = exception|| this.fetchException.retrieve || this.fetchException;
     try {
       const response = await fetch(currentPath, {
         method: 'GET',
-        headers,
+        headers: currentHeaders,
       });
 
       const isResponseIsJSON = isJSON(response);
@@ -111,17 +112,18 @@ class ServerApiRequests {
   /**
    * @param {Object} body - data that should be updated
    * @param {String} [path] - request url
+   * @param {Object} [headers] - request headers
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async update (body, path, exception){
+  async update (body, path,headers, exception){
     const currentPath = path || this.path.update || this.path;
-    const headers = this.headers.update || this.headers;
+    const currentHeaders = headers || this.headers.update || this.headers;
     const currentException = exception || this.fetchException.update || this.fetchException;
     try {
       const response = await fetch(currentPath, {
         method: 'PUT',
-        headers,
+        headers: currentHeaders,
         body: JSON.stringify(body),
       });
 
@@ -145,17 +147,18 @@ class ServerApiRequests {
 
   /**
    * @param {String} [path] - request url
+   * @param {Object} [headers] - request headers
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async delete (path, exception){
+  async delete (path,headers, exception){
     const currentPath = path || this.path.delete || this.path;
-    const headers = this.headers.delete || this.headers;
+    const currentHeaders = headers || this.headers.delete || this.headers;
     const currentException = exception || this.fetchException.delete || this.fetchException;
     try {
       const response = await fetch(currentPath, {
         method: 'DELETE',
-        headers,
+        headers: currentHeaders,
       });
 
       const isResponseIsJSON = isJSON(response);
