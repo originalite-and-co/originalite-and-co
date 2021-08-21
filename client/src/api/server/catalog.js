@@ -1,132 +1,80 @@
 import {
   generateFetchException,
-  generateHeaders,
-  generateResponseException,
-} from './index';
+  generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
 const CATALOG_PATH = '/api/catalog';
 
+const headers = generateHeaders();
+
+const exceptions = {
+  create: generateFetchException("creating a category"),
+  retrieve: generateFetchException("retrieving a catalog"),
+  update: generateFetchException("updating a catalog"),
+  delete: generateFetchException("deleting a catalog"),
+};
+
+const catalogRequests = new ServerApiRequests(CATALOG_PATH, headers, exceptions);
+
 /**
  *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 
-const createCatalog = async (data) => {
-  try {
-    const response = await fetch(CATALOG_PATH, {
-      method: 'POST',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
+const createCategory = async (data) => {
+ return await catalogRequests.create(data);
+};
 
-    if (!response.ok) {
-      throw generateResponseException('create catalog', response);
-    }
 
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('creating catalog', error);
-  }
+/**
+ *
+ * @returns {Promise<Array<Object>>}
+ */
+
+const retrieveCatalog = async () => {
+  return await catalogRequests.retrieve()
 };
 
 /**
  *
+ * @param {String} id
+ * @returns {Promise<Object>}
+ */
+
+const retrieveCategory = async (id) => {
+  const exception = generateFetchException("retrieving a category");
+  return await catalogRequests.retrieve(`${CATALOG_PATH}/${id}`, exception);
+};
+
+
+/**
+ *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 
 const updateCatalog = async (data) => {
-  try {
-    const response = await fetch(CATALOG_PATH, {
-      method: 'PUT',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('update catalog', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('updating catalog', error);
-  }
-};
-
-/**
- * @returns {Promise<any>}
- */
-
-const getCatalog = async () => {
-  try {
-    const response = await fetch(CATALOG_PATH, {
-      method: 'GET',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('get catalog', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('getting catalog', error);
-  }
+  return await catalogRequests.update(data);
 };
 
 /**
  *
  * @param {String} id
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
-
-const getCategory = async (id) => {
-  try {
-    const response = await fetch(`${CATALOG_PATH}/${id}`, {
-      method: 'POST',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('get category', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('getting category', error);
-  }
-};
-
-/**
- *
- * @param {String} id
- * @returns {Promise<any>}
- */
-
 const deleteCategory = async (id) => {
-  try {
-    const response = await fetch(`${CATALOG_PATH}/${id}`, {
-      method: 'DELETE',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('delete category', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('deleting category', error);
-  }
+  const exception = generateFetchException("deleting a category");
+  return await catalogRequests.delete(`${CATALOG_PATH}/${id}`, exception);
 };
 
 const catalog = {
-  deleteCategory,
-  getCategory,
-  getCatalog,
+  createCategory,
+  retrieveCatalog,
+  retrieveCategory,
   updateCatalog,
-  createCatalog,
+  deleteCategory,
 };
 
 export default catalog;

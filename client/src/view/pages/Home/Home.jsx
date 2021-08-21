@@ -1,18 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
-Home.propTypes = {
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import PopularProductsCarousel from './PopularProductsCarousel/PopularProductsCarousel';
+import ShopCategories from './ShopCategories/ShopCategories';
+import PromoCarousel from './PromoCarousel/PromoCarousel';
 
-};
 
-function Home(props) {
+import { Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
+
+
+function Home() {
+
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
+
   return (
-    <>
-        <Header/>
-        <Footer/>
-    </>
+    <Box className={classes.root}>
+      <Header />
+      <Box className={classes.content} component={'main'}>
+        <PromoCarousel />
+        <Box className={`${classes.sectionWrapper} wrapper`}>
+          <PopularProductsCarousel />
+          <ShopCategories />
+        </Box>
+      </Box>
+      <Footer />
+    </Box>
   );
 }
 

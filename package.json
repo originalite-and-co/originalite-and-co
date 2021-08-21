@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test --prefix client",
+    "test": "npm run test --prefix client -- --coverage",
     "build": "npm install --prefix client && npm install --prefix server && npm run build --prefix client && rm -rf server/public/* && cp -a client/build/. server/public",
     "start": "npm run start --prefix server"
   },
@@ -17,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/originalite-and-co/originalite-and-co/issues"
   },
-  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme",
-  "engines": {
-    "node": "14.x"
-  }
+  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme"
 }

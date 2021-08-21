@@ -1,0 +1,56 @@
+@import "src/view/assets/styles/variables";
+
+.categoryCard {
+  font-size: 14px;
+  line-height: 19px;
+  color: #FFFFFF;
+
+  &:last-child{
+    overflow: hidden;
+
+    img{
+    height: unset;
+    }
+  }
+
+  p {
+    font-family: Open Sans,sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.imageWrapper {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  img{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: $tablet) {
+  .categoryCard {
+    height: 25vh;
+
+    &:last-child {
+      height: 26vh;
+    }
+  }
+}
+
+
+@media (min-width: $desktop){
+  .categoryCard {
+    height: 46vh;
+
+    &:last-child {
+      height: 45vh;
+    }
+  }
+}

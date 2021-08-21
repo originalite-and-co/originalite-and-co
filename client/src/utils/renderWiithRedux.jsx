@@ -1,5 +1,5 @@
-const {render} = require("@testing-library/react");
 import {Provider} from "react-redux";
+import {render} from '@testing-library/react';
 
 const renderWithRedux = (component, store) => {
     return{

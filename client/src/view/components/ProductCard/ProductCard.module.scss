@@ -1,0 +1,47 @@
+@import "src/view/assets/styles/variables";
+
+.productCard {
+  height: 100%;
+  width: 100%;
+}
+
+.link{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.productCardTitle {
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.productImage {
+  height: 85%;
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}
+
+.productCardPrice {
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
+  color: #847A7A;
+  text-transform: uppercase;
+}
+
+
+@media (min-width:$desktop){
+  .productCard{
+    height: 546px;
+  }
+}
