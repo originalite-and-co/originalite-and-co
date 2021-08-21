@@ -49,7 +49,7 @@ function Color({name, cssValue, isDesktop}) {
             xs={isDesktop ? 12 : 4}
             className={classes.listItem}
         >
-            <button onClick={handleButtonClick} className={classes.colorButton}>
+            <button onClick={handleButtonClick} data-testid="color-button" className={classes.colorButton}>
                 <span className={classes.color} style={{backgroundColor: cssValue}}/>
                 <Typography
                     noWrap
