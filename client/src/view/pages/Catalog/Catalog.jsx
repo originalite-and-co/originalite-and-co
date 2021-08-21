@@ -16,8 +16,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterOperations, filterSelectors } from '../../../redux/features/filters';
 import { catalogRequests, productRequests } from '../../../api/server';
 
-import classes from './Catalog.module.scss';
 import { Box, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
 
@@ -52,6 +52,9 @@ function Catalog(props) {
   const { width } = useWindowSize();
   const { location, replace } = useHistory();
   const throwAsyncError = useAsyncError();
+
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
 
   const categoryID = location.pathname
     .split('/')

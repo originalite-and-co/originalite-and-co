@@ -11,7 +11,7 @@ const generateStyles = ({ breakpoints, palette }) => ({
     paddingTop: '1rem!important',
 
     [breakpoints.up('desktop')]: {
-      padding: "1vh 4vw",
+      padding: '1vh 4vw',
       borderTop: `1px solid ${palette.primary.main}`,
       backgroundColor: palette.primary.main,
     },
@@ -38,8 +38,8 @@ const generateStyles = ({ breakpoints, palette }) => ({
     padding: '0 7vw!important',
 
     [breakpoints.up('desktop')]: {
-      padding: "5vw 7vw!important"
-    }
+      padding: '5vw 7vw!important',
+    },
 
   },
 
