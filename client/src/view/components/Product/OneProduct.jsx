@@ -5,7 +5,6 @@ import OneProductInfo from "./Sections/OneProductInfo";
 import ImageMagnify from "./Sections/ImageMagnify";
 import OneProductStyles from "./OneProduct.module.scss";
 
-
 const productOne =
     {
         "enabled": true,
@@ -21,7 +20,7 @@ const productOne =
         "previousPrice": 250,
         "categories": "men",
         "color": ["red", "blue", "yellow"],
-        "sizes": ["S", "M", "L"],
+        "sizes": ["S", "M"],
         "productUrl": "/men",
         "brand": "braaaand",
         "myCustomParam": "some string or json for custom param",
@@ -60,7 +59,6 @@ function OneProduct () {
             <div>
                 <h3>Recently viewed products</h3>
                 <div className={OneProductStyles.images}>
-
                 </div>
             </div>
         </section>

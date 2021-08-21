@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -9,9 +12,15 @@
   justify-content: space-between;
 }
 
-.slider{
-  width: 800px;
-  height: 500px;
+.slider {
+  width: 550px;
+  box-sizing: border-box;
+
+  button {
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+  }
 }
 
 .info {

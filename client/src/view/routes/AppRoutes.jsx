@@ -16,12 +16,13 @@ import SearchResult from "../pages/SearchResult/SearchResult";
 import useAsyncError from "../hooks/useAsyncError";
 import {linkRequests, pageRequests} from "../../api/server";
 import StaticPage from "../components/StaticPage/StaticPage";
+import ProductPage from "../pages/ProductPage/ProductPage";
 
 
 function AppRoutes() {
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token'));
     const [staticPages, setStaticPages] = useState([]);
-  
+
     const throwError = useAsyncError();
 
 
@@ -60,6 +61,7 @@ function AppRoutes() {
             <Route path="/help" render={() => <p>Loading ...</p>}/>
             <Route path="/company" render={() => <p>Loading ...</p>}/>
             <Route path="/catalog/:productId" component={Product}/>
+            <Route path="/products/:itemNumber" component={ProductPage}/>
             <Route path="/catalog" component={Catalog}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>
