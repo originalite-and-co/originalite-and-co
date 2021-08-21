@@ -41,7 +41,7 @@ const generateStyles = ({ mixins, palette, breakpoints }) => ({
 
     [breakpoints.up('desktop')]: {
       gridAutoRows: 'minmax(500px, 38vw)',
-      gridGap: '9vw 7.2vw',
+      gridGap: '7.5vw 7.2vw',
 
     },
 
@@ -52,6 +52,12 @@ const generateStyles = ({ mixins, palette, breakpoints }) => ({
     left: '50%',
     transform: 'translate(-50%, 0)',
   },
+  productsLoader: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  }
 });
 
 export default generateStyles;

@@ -23,10 +23,12 @@ Products.propTypes = {
     name: PropTypes.string.isRequired,
     currentPrice: PropTypes.number.isRequired,
   })),
+  productsQuantity: PropTypes.number.isRequired,
   loadMoreProducts: PropTypes.func.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
 };
 
-function Products({ categoryTitle, products, productsQuantity, loadMoreProducts }) {
+function Products({ categoryTitle, products, productsQuantity, loadMoreProducts, isLoaded }) {
 
   const [isDesktop, setDesktop] = useState(false);
   const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -89,7 +91,7 @@ function Products({ categoryTitle, products, productsQuantity, loadMoreProducts 
       {
         !isDesktop && (
           <>
-            <CatalogBreadcrumbs path={location.pathname} />
+            {/*<CatalogBreadcrumbs path={location.pathname} />*/}
             <button onClick={handleButtonClick} className={classes.filterBtn}>
               <FilterIcon viewBox='0 0 32 32' className={classes.filterIcon} />
               Filters
@@ -110,9 +112,14 @@ function Products({ categoryTitle, products, productsQuantity, loadMoreProducts 
             {productList}
           </InfiniteScroll>
         ) : (
-          <Typography className={classes.noItemsAlert} component='p' variant='h3'>
-            There is no items that match such filters
-          </Typography>
+          isLoaded ?
+            (
+              <Typography className={classes.noItemsAlert} component='p' variant='h3'>
+                There is no items that match such filters
+              </Typography>
+            ) : (
+              <CircularProgress className={classes.productsLoader} color='primary' />
+            )
         )
       }
 

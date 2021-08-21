@@ -1,5 +1,9 @@
 @import "src/view/assets/styles/variables";
 
+.breadcrumbsContainer{
+  padding-top: 1rem!important;
+}
+
 .content {
   height: 100%;
   padding-top: 124px !important;
@@ -13,8 +17,9 @@
   background-color: #000000;
 }
 
-.contentInner {
-  padding: 2vh 7vw !important;
+.productListWrapper {
+  position: relative;
+  padding: 0 7vw!important;
 }
 
 .filterContentWrapper {
@@ -31,6 +36,10 @@
 @media (min-width: $desktop) {
   .content {
     padding-top: 94px !important;
+  }
+
+  .productListWrapper {
+    padding: 5vw 7vw 0!important;
   }
 
   .breadcrumbsContainer {

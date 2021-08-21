@@ -35,6 +35,7 @@ function Catalog(props) {
   const [{ products, productsQuantity }, setProducts] = useState({});
   const [numberOfProducts, setNumberOfProducts] = useState(2);
   const [categoryName, setCategoryName] = useState("");
+  const [isLoaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
   const query = useSelector(filterSelectors.getFiltersQuery);
@@ -68,10 +69,13 @@ function Catalog(props) {
     const requestQuery = query ?
       `${query}&categories=${categoryID}&perPage=${numberOfProducts}` :
       `categories=${categoryID}&perPage=${numberOfProducts}`;
-
+    setLoaded(false)
     productRequests.retrieveByQuery(requestQuery)
       .then(
-        data => setProducts(data),
+        data => {
+          setProducts(data)
+          setLoaded(true)
+        },
         error => throwAsyncError(error)
         );
   }, [query, numberOfProducts, location.pathname]);
@@ -92,7 +96,10 @@ function Catalog(props) {
         className={classes.content}
       >
 
-        <Box className={classes.breadcrumbsContainer}>
+        <Box
+          className={isDesktop ?
+            classes.breadcrumbsContainer :
+            `${classes.breadcrumbsContainer} wrapper`}>
             <CatalogBreadcrumbs categoryName={categoryName} path={location.pathname} />
         </Box>
 
@@ -118,8 +125,9 @@ function Catalog(props) {
             component='section'
             item
           >
-            <Box className={classes.contentInner}>
+            <Box className={classes.productListWrapper}>
               <Products
+                isLoaded={isLoaded}
                 products={products}
                 productsQuantity={productsQuantity}
                 categoryTitle={categoryName}
