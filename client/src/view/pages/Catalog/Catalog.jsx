@@ -1,56 +1,68 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Grid, Typography } from '@material-ui/core';
-import classes from './Catalog.module.scss';
-import Filter from './Filter/Filter';
-import Header from '../../components/Header/Header';
-import { filterOperations, filterSelectors } from '../../../redux/features/filters';
-import { useDispatch, useSelector } from 'react-redux';
-import { catalogRequests, productRequests } from '../../../api/server';
-import useWindowSize from '../../hooks/useWindowSize';
-import constants from '../../constants';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import _ from 'lodash';
+
+import Header from '../../components/Header/Header';
 import Products from './Products/Products';
 import CatalogBreadcrumbs from './Breadcrumbs/CatalogBreadcrumbs';
-import { useTheme } from '@material-ui/styles';
 import Footer from '../../components/Footer/Footer';
+import Filter from './Filter/Filter';
+
+import constants from '../../constants';
+import useWindowSize from '../../hooks/useWindowSize';
+import { useHistory } from 'react-router-dom';
 import useAsyncError from '../../hooks/useAsyncError';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { filterOperations, filterSelectors } from '../../../redux/features/filters';
+import { catalogRequests, productRequests } from '../../../api/server';
+
+import classes from './Catalog.module.scss';
+import { Box, Grid } from '@material-ui/core';
+import generateStyles from './styles';
+
 
 Catalog.propTypes = {};
 
-
-function numberOfProductsGenerator(init) {
-  let number = init;
+/***
+ * Closure is used to create protected variable
+ *
+ * @param {Number} initialValue
+ * @returns {(function(Number, Number): Generator<*, void, *>)|*}
+ */
+function numberOfProductsGenerator(initialValue) {
+  let number = initialValue;
   return function* (step, maxLength) {
-    while (true) {
+    while (number <= maxLength) {
       yield number += step;
     }
   };
 }
 
 function Catalog(props) {
+
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
-  const [numberOfProducts, setNumberOfProducts] = useState(2);
-  const [categoryName, setCategoryName] = useState("");
+  const [numberOfProducts, setNumberOfProducts] = useState(4);
+  const [categoryName, setCategoryName] = useState('');
   const [isLoaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
   const query = useSelector(filterSelectors.getFiltersQuery);
-  const throwAsyncError = useAsyncError();
 
   const { width } = useWindowSize();
   const { location, replace } = useHistory();
+  const throwAsyncError = useAsyncError();
 
   const categoryID = location.pathname
     .split('/')
     .filter(category => category && category !== 'catalog')
     .join('-');
 
-  const generator = numberOfProductsGenerator(numberOfProducts);
-  const test = generator(2, productsQuantity);
+  /**
+   * useMemo hooks are used to prevent re-renders
+   */
+  let generator = useMemo(() => numberOfProductsGenerator(numberOfProducts), []);
+  generator = useMemo(() => generator(numberOfProducts, productsQuantity), [productsQuantity]);
 
   useEffect(() => {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
@@ -60,32 +72,41 @@ function Catalog(props) {
     catalogRequests.retrieveCategory(categoryID)
       .then(
         data => setCategoryName(data.name),
-        error => throwAsyncError(error)
-      )
-  }, [location, categoryID])
+        error => throwAsyncError(error),
+      );
+  }, [location, categoryID]);
 
   useEffect(() => {
+    /**
+     * replace method is used to store all the filters and other data in the url
+     */
     replace(`${location.pathname}?${query}`);
+
+    const additionInfoQuery = `categories=${categoryID}&perPage=${numberOfProducts}`;
     const requestQuery = query ?
-      `${query}&categories=${categoryID}&perPage=${numberOfProducts}` :
-      `categories=${categoryID}&perPage=${numberOfProducts}`;
-    setLoaded(false)
+      `${query}&${additionInfoQuery}` :
+      additionInfoQuery;
+
+    setLoaded(false);
     productRequests.retrieveByQuery(requestQuery)
       .then(
         data => {
-          setProducts(data)
-          setLoaded(true)
+          setProducts(data);
+          setLoaded(true);
         },
-        error => throwAsyncError(error)
-        );
+        error => throwAsyncError(error),
+      );
   }, [query, numberOfProducts, location.pathname]);
 
   useEffect(() => {
     dispatch(filterOperations.getFilters(location));
   }, [location.pathname]);
 
+  /**
+   * this function increases the number of products that should be requested
+   */
   const loadMoreProducts = () => {
-    setNumberOfProducts(test.next().value);
+    setNumberOfProducts(generator.next().value);
   };
 
   return (
@@ -99,27 +120,32 @@ function Catalog(props) {
         <Box
           className={isDesktop ?
             classes.breadcrumbsContainer :
-            `${classes.breadcrumbsContainer} wrapper`}>
-            <CatalogBreadcrumbs categoryName={categoryName} path={location.pathname} />
+            `${classes.breadcrumbsContainer} wrapper`}
+        >
+          <CatalogBreadcrumbs categoryName={categoryName} path={location.pathname} />
         </Box>
 
         <Grid container>
-          {isDesktop && (
-            <>
-              <Grid
-                xs={isDesktop ? 3 : 0}
-                item
-                component='aside'
-                className={classes.filter}
-              >
-                <Box className={classes.filterContentWrapper}>
-                  <Box className={classes.filterContentInner}>
-                    <Filter />
+
+          {
+            isDesktop && (
+              <>
+                <Grid
+                  xs={isDesktop ? 3 : 0}
+                  item
+                  component='aside'
+                  className={classes.filter}
+                >
+                  <Box className={classes.filterContentWrapper}>
+                    <Box className={classes.filterContentInner}>
+                      <Filter />
+                    </Box>
                   </Box>
-                </Box>
-              </Grid>
-            </>
-          )}
+                </Grid>
+              </>
+            )
+          }
+
           <Grid
             xs={isDesktop ? 9 : 12}
             component='section'
@@ -137,7 +163,7 @@ function Catalog(props) {
           </Grid>
         </Grid>
       </Box>
-      <Footer/>
+      <Footer />
     </>
   );
 }

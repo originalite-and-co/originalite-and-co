@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import classes from "./Color.module.scss";
-
 import {Grid, Typography} from "@material-ui/core";
+
 import _ from "lodash";
 import {useDispatch, useSelector} from "react-redux";
 import {filterActions, filterSelectors} from "../../../../../redux/features/filters";
@@ -15,6 +15,7 @@ Color.propTypes = {
 };
 
 function Color({name, cssValue, isDesktop}) {
+
     const [isChecked, setChecked] = useState(false);
 
     const dispatch = useDispatch();
