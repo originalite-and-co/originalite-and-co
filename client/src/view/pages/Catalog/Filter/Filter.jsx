@@ -104,7 +104,7 @@ function Filter(props) {
             {
                 !isDesktop && isLoaded && (
                     <>
-                        <Typography align="center" className={classes.heading} component="p" variant="body2">
+                        <Typography align="center" color="textSecondary" className={classes.heading} component="p" variant="body2">
                             Filters
                         </Typography>
                         <IconButton onClick={handleCloseBtnClick} className={classes.closeButton} aria-label="close">

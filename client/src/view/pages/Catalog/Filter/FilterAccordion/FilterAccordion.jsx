@@ -31,6 +31,7 @@ function FilterAccordion({text, isDesktop, detailsContent}) {
                     className={classes.accordionSummaryText}
                     component="p"
                     variant={isDesktop ? "h6" : "body1"}
+                    color={isDesktop ? "textPrimary": "textSecondary"}
                 >
                     {text}
                 </Typography>

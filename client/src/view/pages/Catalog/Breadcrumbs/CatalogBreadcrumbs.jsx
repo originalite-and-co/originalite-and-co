@@ -12,7 +12,7 @@ CatalogBreadcrumbs.propTypes = {
     path: PropTypes.string.isRequired,
 };
 
-function CatalogBreadcrumbs({path}) {
+function CatalogBreadcrumbs({path, categoryName}) {
     /**
      * This function generates links judging by the path name
      * @function filter() is here because split creates an empty string as the first element.
@@ -39,7 +39,7 @@ function CatalogBreadcrumbs({path}) {
                 key={index}
                 className={ isLastOne ? `${classes.link} ${classes.active}` : classes.link}
                 to={currentLinkPath}>
-                {_.upperFirst(_.lowerCase(link))}
+                {isLastOne ? categoryName :_.upperFirst(_.lowerCase(link))}
             </Link>
         )
     })

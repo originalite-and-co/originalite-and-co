@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import { createTheme, useTheme } from '@material-ui/core';
 
-CustomThemeProvider.propTypes = {
-
-};
+CustomThemeProvider.propTypes = {};
 
 function CustomThemeProvider({ children }) {
   const theme = useTheme();
-  const {breakpoints} = theme;
+  const { breakpoints } = theme;
   const customTheme = createTheme({
     ...theme,
+    mixins: {
+      resetButtonStyles: () => ({
+        outline: 'none',
+        border: 'none',
+        backgroundColor: 'transparent',
+        cursor: 'pointer',
+      }),
+    },
     breakpoints: {
-      keys: [...breakpoints.keys, "mobile", "tablet","minDesktop", "desktop", "largeScreens"],
-      values :{
+      keys: [...breakpoints.keys, 'mobile', 'tablet', 'minDesktop', 'desktop', 'largeScreens'],
+      values: {
         ...breakpoints.values,
         mobile: 320,
         tablet: 481,
@@ -23,23 +29,23 @@ function CustomThemeProvider({ children }) {
         largeScreens: 1200,
       },
     },
-    palette:{
+    palette: {
       primary: {
-        main: "#000000",
-        contrastText: "#FFFFFF"
+        main: '#000000',
+        contrastText: '#FFFFFF',
       },
       secondary: {
-        main: "#FFFFFF" ,
-        contrastText: "#000000",
+        main: '#FFFFFF',
+        contrastText: '#000000',
       },
       text: {
-        primary: "#FFFFFF",
-        secondary: "#000000"
-      }
+        primary: '#FFFFFF',
+        secondary: '#000000',
+      },
     },
-    typography:{
-      fontFamily: `"Open Sans", "Josefin Sans", sans-serif`
-    }
+    typography: {
+      fontFamily: `"Open Sans", "Josefin Sans", sans-serif`,
+    },
   });
 
   return (

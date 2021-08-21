@@ -1,27 +1,36 @@
 @import "src/view/assets/styles/variables";
+
 .content {
   height: 100%;
-  padding-top: 124px!important;
+  padding-top: 124px !important;
 }
 
 .filter {
-  height: 100%;
+  position: sticky;
+  top: 94px;
+  left: 0;
+  max-height: 100vh;
   background-color: #000000;
-  overflow-y: auto;
 }
 
-.contentInner{
-  padding: 2vh 7vw!important;
+.contentInner {
+  padding: 2vh 7vw !important;
 }
 
-.filterInner{
-  padding: 1vh 4vw 2vh;
+.filterContentWrapper {
+  height: auto;
+  max-height: 100%;
+  overflow: hidden scroll;
+}
+
+.filterContentInner {
+  padding: 1vh 4vw 10vh;
 }
 
 
-@media (min-width:$desktop) {
+@media (min-width: $desktop) {
   .content {
-    padding-top: 94px!important;
+    padding-top: 94px !important;
   }
 
   .breadcrumbsContainer {

@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography } from '@material-ui/core';
+import { CircularProgress, Grid, Typography } from '@material-ui/core';
 import constants from '../../../constants';
 import useWindowSize from '../../../hooks/useWindowSize';
 import CatalogBreadcrumbs from '../Breadcrumbs/CatalogBreadcrumbs';
 import { useHistory } from 'react-router-dom';
 import FilterIcon from '../../../assets/icons/Filter';
 
-import classes from './Products.module.scss';
 import Dropdown from '../../../components/Dropdown/Dropdown';
 import Filter from '../Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { isAnyDropdownOpenActions, isAnyDropdownOpenSelectors } from '../../../../redux/features/dropdown';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import generateStyles from './styles';
 
 Products.propTypes = {
   categoryTitle: PropTypes.string.isRequired,
@@ -25,7 +26,7 @@ Products.propTypes = {
   loadMoreProducts: PropTypes.func.isRequired,
 };
 
-function Products({ categoryTitle, products, loadMoreProducts }) {
+function Products({ categoryTitle, products, productsQuantity, loadMoreProducts }) {
 
   const [isDesktop, setDesktop] = useState(false);
   const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -35,6 +36,9 @@ function Products({ categoryTitle, products, loadMoreProducts }) {
   const dispatch = useDispatch();
 
   const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
+
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
 
   useEffect(() => {
     if (!isAnyDropdownOpen) {
@@ -66,7 +70,7 @@ function Products({ categoryTitle, products, loadMoreProducts }) {
 
   const productList = products?.map((product) => {
     return (
-      <ProductCard product={product} size={isDesktop ? 4 : 6} />
+      <ProductCard product={product} />
     );
   });
 
@@ -95,25 +99,16 @@ function Products({ categoryTitle, products, loadMoreProducts }) {
       }
       {productList?.length ?
         (
-          <Grid
-            id='productListContainer'
-            container
-            component='ul'
-            spacing={6}
+          <InfiniteScroll
+            next={loadMoreProducts}
+            hasMore={products.length < productsQuantity}
+            className={classes.productListWrapper}
+            loader={<CircularProgress className={classes.loader} color='primary' />}
+            dataLength={products.length}
           >
 
-            <InfiniteScroll
-              next={loadMoreProducts}
-              hasMore={true}
-              loader={<p>Loading ...</p>}
-              dataLength={products.length}
-              scrollableTarget='productListContainer'
-            >
-
-              {productList}
-            </InfiniteScroll>
-          </Grid>
-
+            {productList}
+          </InfiniteScroll>
         ) : (
           <Typography className={classes.noItemsAlert} component='p' variant='h3'>
             There is no items that match such filters

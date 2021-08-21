@@ -8,7 +8,6 @@ import constants from '../../constants';
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
-  size: PropTypes.number.isRequired,
 };
 
 function ProductCard({ product, size }) {

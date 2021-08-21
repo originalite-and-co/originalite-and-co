@@ -43,6 +43,7 @@ function Size({name, isDesktop}) {
             item
             component="li"
             xs={isDesktop ? 12: 3}
+            className={classes.listItem}
         >
             <button
                 onClick={handleButtonClick}

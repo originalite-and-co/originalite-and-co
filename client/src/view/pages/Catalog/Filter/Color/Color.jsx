@@ -46,6 +46,7 @@ function Color({name, cssValue, isDesktop}) {
             item
             component="li"
             xs={isDesktop ? 12 : 4}
+            className={classes.listItem}
         >
             <button onClick={handleButtonClick} className={classes.colorButton}>
                 <span className={classes.color} style={{backgroundColor: cssValue}}/>
