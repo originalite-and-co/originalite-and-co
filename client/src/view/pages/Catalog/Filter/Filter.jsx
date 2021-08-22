@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Color from './Color/Color';
 import Size from './Size/Size';
+import Price from './Price';
 import FilterAccordion from './FilterAccordion/FilterAccordion';
 import CategoryNav from './CategoryNav/CategoryNav';
 
@@ -22,47 +23,7 @@ import { Box, Divider, Grid, IconButton, Typography } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import classes from './Filter.module.scss';
 
-import { withStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import { filterActions } from '../../../../redux/features/filters';
-
-Filter.propTypes = {};
-
-const PrettoSlider = withStyles({
-  root: {
-    color: '#52af77',
-    height: 8,
-  },
-  valueLabel: {
-    left: -13,
-    top: -35,
-    '& *': {
-      background: '#fff',
-      color: '#000',
-      fontWeight: 'bold',
-    },
-  },
-  thumb: {
-    height: 24,
-    width: 6,
-    backgroundColor: '#fff',
-    borderRadius: 0,
-    marginTop: -10,
-    marginLeft: -2,
-  },
-  track: {
-    backgroundColor: '#fff',
-    height: 4,
-    borderRadius: 4,
-  },
-  rail: {
-    backgroundColor: '#333',
-    height: 2,
-    borderRadius: 4,
-  },
-})(Slider);
-
-function Filter(props) {
+function Filter() {
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [isDesktop, setDesktop] = useState(false);
@@ -189,25 +150,8 @@ function Filter(props) {
         />
         <FilterAccordion
           isDesktop={isDesktop}
-          text={'Price'}
-          detailsContent={
-            <>
-              <PrettoSlider
-                defaultValue={[0, 100]}
-                onChangeCommitted={(_, range) => {
-                  const [minPrice, maxPrice] = range.map(String);
-                  dispatch(
-                    filterActions.addFilter({
-                      minPrice,
-                      maxPrice,
-                    })
-                  );
-                }}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-              />
-            </>
-          }
+          text="Price"
+          detailsContent={<Price />}
         />
       </Box>
     </Box>
