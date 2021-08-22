@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Box} from "@material-ui/core";
+import { Box, Typography } from '@material-ui/core';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import {makeStyles} from "@material-ui/styles";
 import Button from "../../../components/Button/Button";
@@ -23,6 +23,9 @@ function MyWishlist({wishlist}) {
         setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
     }, [width])
 
+    if (!wishlist){
+        return <Typography component="h3" variant="body1">Your wishlist is empty</Typography>
+    }
     const wishListProducts = wishlist.products
 
     const wishlistList = wishListProducts.map(wish => (

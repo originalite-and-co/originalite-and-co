@@ -39,7 +39,7 @@ function AuthenticationContent() {
           <button type="button" className={`${loginClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleloginOptionClick} data-testid='logsign-btns'>Log In</button>
           <button type="button" className={`${signupClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleSignupClick} data-testid='logsign-btns'>Sign Up</button>
         </Box>
-        <ErrorBoundary fallback={<Toast message={"Wrong Credentials"} />}>
+        <ErrorBoundary renderChildren fallback={<Toast severity="error" variant="filled" message={"Wrong Credentials"} />}>
           {loginClicked && <LoginPage/>}
           {signupClicked && <SignUpPage onClick={handleSignUpClick}/>}
         </ErrorBoundary>

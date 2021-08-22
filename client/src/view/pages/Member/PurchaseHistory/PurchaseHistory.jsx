@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Box, List, ListItem} from "@material-ui/core";
+import { Box, List, ListItem, Typography } from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 
 PurchaseHistory.propTypes = {
@@ -11,6 +11,10 @@ const useStyles = makeStyles(generateStyles);
 
 function PurchaseHistory({orders}) {
     const classes = useStyles()
+
+    if (!orders.length){
+        return <Typography component="h3" variant="body1">No Purchases were found</Typography>
+    }
 
     const ordersArray = orders.map(order => order.products)
     const productsArray = ordersArray.map(orderProduct => orderProduct[0].product)
