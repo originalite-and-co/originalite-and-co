@@ -6,13 +6,18 @@ import { filterActions } from '../../../../../redux/features/filters/index';
 
 import usePriceStyle from './style';
 
+const PriceSlider = usePriceStyle(Slider);
+
 const PriceFilter = () => {
+  const min = 0;
+  const max = 10000;
   const dispatch = useDispatch();
-  const PriceSlider = usePriceStyle(Slider);
 
   return (
     <PriceSlider
-      defaultValue={[0, 10000]}
+      min={min}
+      max={max}
+      defaultValue={[min, max]}
       onChangeCommitted={(_, range) => {
         const [minPrice, maxPrice] = range.map(String);
         dispatch(
