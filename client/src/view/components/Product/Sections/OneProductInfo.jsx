@@ -1,15 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import OneProductStyles from '../OneProduct.module.scss'
-import {sizeRequests} from "../../../../api/server";
 
 
 function OneProductInfo({availableSizes, detail}) {
 
     // const [isActiveColor, setActiveColor] = useState(null);
     const [activeSize, setActiveSize] = useState(null)
-
-
-    // const availableSizes = ["s", "m", "l", "xl", "xxl", "xxxl"]
 
     const {sizes, name, currentPrice, itemNo, color} = detail
 

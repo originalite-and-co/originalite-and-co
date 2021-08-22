@@ -21,10 +21,19 @@ function ProductCard({ product, size }) {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
   }, [width]);
 
+  const handleClick = () => {
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('recentlyViewed'))
+    if (dataFromLocalStorage?.length === 10) {
+      dataFromLocalStorage.shift()
+    }
+    const data = [...dataFromLocalStorage, product.itemNo]
+  }
+
   return (
     <Box
       data-testid='product-card'
       className={styles.productCard}
+      onClick={handleClick}
     >
       <Link to={`/products/${product.itemNo}`} className={styles.link}>
         <div className={styles.productImage}>

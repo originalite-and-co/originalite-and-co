@@ -1,38 +1,28 @@
 import React from "react";
-import ReactImageMagnify from "react-image-magnify";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import OneProductStyles from "../OneProduct.module.scss";
 
 export default function ImageMagnify(props) {
-    const renderSlides = () =>
-        props.detail.imageUrls.map(num => (
-            <div>
-                <ReactImageMagnify
-                    {...{
-                        smallImage: {
-                            isFluidWidth: false,
-                            src: num,
-                            width: 550,
-                            height: 550,
-                            // sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
-                        },
-                        largeImage: {
-                            src: num,
-                            width: 550,
-                            height: 550
-                        }
-                    }}
-                />
-            </div>
-        ));
+    // const renderSlides = () =>
+    //     props.detail.imageUrls.map(num => (
+    //         <div>
+    //             <img src={num} alt=""/>
+    //         </div>
+    //     ));
 
     return (
         <div className="App">
-            <Slider dots={true} infinite={true} speed={1000} slidesToScroll={1} arrows={true} slidesToShow={1} className={OneProductStyles.slider}>
-                {renderSlides()}
-            </Slider>
+            {/*<Slider dots={true} infinite={true} speed={1000} slidesToScroll={1} arrows={true} slidesToShow={1} className={OneProductStyles.slider}>*/}
+            {/*    {renderSlides()}*/}
+            {/*</Slider>*/}
+
+            {props.detail.imageUrls.map(num => (
+                <div>
+                    <img src={num} alt=""/>
+                </div>
+            ))}
         </div>
     );
 }

@@ -2,19 +2,33 @@
 @import "~slick-carousel/slick/slick-theme.css";
 @import "src/view/assets/styles/variables";
 
+.main{
+  display: block;
+  margin-top: 200px;
+}
+
+.slider {
+  width: 183px;
+  height: 294px;
+
+  button {
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+  }
+}
 
 
 @media (min-width: $desktop) {
 
   .main{
     display: flex;
-    margin-top: 100px;
-    justify-content: space-between;
+    margin-top: 200px;
+    justify-content: space-around;
   }
 
   .slider {
-    width: 550px;
-    box-sizing: border-box;
+    width: 400px;
 
     button {
       background-color: black;
@@ -107,8 +121,6 @@
       pointer-events: none;
     }
   }
-
-
 
   .button {
     font-size: 20px;
