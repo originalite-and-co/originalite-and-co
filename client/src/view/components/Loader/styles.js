@@ -13,6 +13,7 @@ const generateStyles = (theme, size) => {
   return {
     root: {
       position: 'relative',
+      zIndex: 1000,
     },
     loader: {},
     containerFixed: {
