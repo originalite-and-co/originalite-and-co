@@ -1,39 +1,31 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+
+import Color from './Color/Color';
+import Size from './Size/Size';
+import FilterAccordion from './FilterAccordion/FilterAccordion';
+import CategoryNav from './CategoryNav/CategoryNav';
+
+import { catalogRequests, colorRequests, sizeRequests } from '../../../../api/server';
+import useAsyncError from '../../../hooks/useAsyncError';
+import useWindowSize from '../../../hooks/useWindowSize';
+import constants from '../../../constants';
+
+import { useDispatch } from 'react-redux';
+import { isAnyDropdownOpenActions } from '../../../../redux/features/dropdown';
+import { useRouteMatch } from 'react-router-dom';
+
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Divider,
   Grid,
   IconButton,
   Typography,
 } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import classes from './Filter.module.scss';
 
 import { withStyles } from '@material-ui/core/styles';
-import { useHistory, useRouteMatch } from 'react-router-dom';
-import { Close } from '@material-ui/icons';
-
-import classes from './Filter.module.scss';
-import {
-  catalogRequests,
-  colorRequests,
-  sizeRequests,
-} from '../../../../api/server';
-import useAsyncError from '../../../hooks/useAsyncError';
-
-import Color from './Color/Color';
-import { useDispatch, useSelector } from 'react-redux';
-import Size from './Size/Size';
-import useWindowSize from '../../../hooks/useWindowSize';
-import constants from '../../../constants';
-import CatalogBreadcrumbs from '../Breadcrumbs/CatalogBreadcrumbs';
-import CategoryNav from './CategoryNav/CategoryNav';
-import { isAnyDropdownOpenActions } from '../../../../redux/features/dropdown';
-import FilterAccordion from './FilterAccordion/FilterAccordion';
 import Slider from '@material-ui/core/Slider';
-import { filterActions } from '../../../../redux/features/filters/index';
 
 Filter.propTypes = {};
 
@@ -72,6 +64,7 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 function Filter(props) {
+
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [isDesktop, setDesktop] = useState(false);
@@ -80,16 +73,15 @@ function Filter(props) {
 
   const throwAsyncError = useAsyncError();
   const { width } = useWindowSize();
-  const history = useHistory();
   const { params } = useRouteMatch();
 
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     setIsLoaded(false);
-    catalogRequests
-      .retrieveCategory(params.category)
-      .then((category) => setCategory(category))
+    catalogRequests.retrieveCategory(params.category)
+      .then(category => setCategory(category))
       .then(() => setIsLoaded(true));
   }, []);
 
@@ -99,22 +91,20 @@ function Filter(props) {
 
   useEffect(() => {
     setIsLoaded(false);
-    colorRequests
-      .retrieveColors()
+    colorRequests.retrieveColors()
       .then(
-        (data) => setColors(data),
-        (error) => throwAsyncError(error)
+        data => setColors(data),
+        error => throwAsyncError(error),
       )
       .then(() => setIsLoaded(true));
   }, []);
 
   useEffect(() => {
     setIsLoaded(false);
-    sizeRequests
-      .retrieveSizes()
+    sizeRequests.retrieveSizes()
       .then(
-        (data) => setSizes(data),
-        (error) => throwAsyncError(error)
+        data => setSizes(data),
+        error => throwAsyncError(error),
       )
       .then(() => setIsLoaded(true));
   }, []);
@@ -126,86 +116,69 @@ function Filter(props) {
   });
 
   const sizeList = sizes?.map(({ name, _id }) => {
-    return <Size key={_id} name={name} isDesktop={isDesktop} />;
+    return (
+      <Size key={_id} name={name} isDesktop={isDesktop} />
+    );
   });
 
-  const handleCloseBtnClick = (event) => {
+  const handleCloseBtnClick = event => {
     dispatch(isAnyDropdownOpenActions.closedDropdown());
   };
 
-  const [value, setValue] = React.useState([20, 37]);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  function valuetext(value) {
-    return `${value}°C`;
-  }
   return (
     <Box className={classes.root}>
-      {isDesktop && isLoaded && (
-        <>
-          <CategoryNav
-            parentCategoryId={category?.id}
-            parentCategoryName={category?.name}
-          />
-        </>
-      )}
-      {!isDesktop && isLoaded && (
-        <>
-          <Typography
-            align="center"
-            className={classes.heading}
-            component="p"
-            variant="body2"
-          >
-            Filters
-          </Typography>
-          <IconButton
-            onClick={handleCloseBtnClick}
-            className={classes.closeButton}
-            aria-label="close"
-          >
-            <Close />
-          </IconButton>
-          <Divider className={classes.divider} />
-        </>
-      )}
+      {
+        isDesktop && isLoaded && (
+          <>
+            <CategoryNav parentCategoryId={category?.id} parentCategoryName={category?.name} />
+          </>
+        )
+      }
+
+      {
+        !isDesktop && isLoaded && (
+          <>
+            <Typography align='center' color='textSecondary' className={classes.heading} component='p' variant='body2'>
+              Filters
+            </Typography>
+            <IconButton onClick={handleCloseBtnClick} className={classes.closeButton} aria-label='close'>
+              <Close />
+            </IconButton>
+            <Divider className={classes.divider} />
+          </>
+        )
+      }
 
       <Box className={`${classes.content} wrapper`}>
         <FilterAccordion
           isDesktop={isDesktop}
-          text="Colors"
-          detailsContent={
-            <Grid
-              spacing={isDesktop ? 5 : 7}
-              container
-              component="ul"
-              direction={isDesktop ? 'column' : 'row'}
-              wrap={isDesktop ? 'nowrap' : 'wrap'}
-            >
-              {colorList}
-            </Grid>
-          }
+          text='Colors'
+          detailsContent={<Grid
+            spacing={isDesktop ? 5 : 7}
+            container
+            component='ul'
+            direction={isDesktop ? 'column' : 'row'}
+            wrap={isDesktop ? 'nowrap' : 'wrap'}
+          >
+            {colorList}
+          </Grid>}
         />
         <FilterAccordion
           isDesktop={isDesktop}
-          text="Sizes"
-          detailsContent={
-            <Grid
-              container
-              component="ul"
-              spacing={isDesktop ? 4 : 5}
-              direction={isDesktop ? 'column' : 'row'}
-              wrap={isDesktop ? 'nowrap' : 'wrap'}
-            >
-              {sizeList}
-            </Grid>
-          }
+          text='Sizes'
+          detailsContent={<Grid
+            container
+            component='ul'
+            spacing={isDesktop ? 4 : 5}
+            direction={isDesktop ? 'column' : 'row'}
+            wrap={isDesktop ? 'nowrap' : 'wrap'}
+          >
+            {sizeList}
+          </Grid>}
         />
         <FilterAccordion
           isDesktop={isDesktop}
-          text="Price"
+          text={'Price'}
           detailsContent={
             <>
               <PrettoSlider
@@ -216,11 +189,11 @@ function Filter(props) {
                     filterActions.addFilter({
                       minPrice,
                       maxPrice,
-                    })
+                    }),
                   );
                 }}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
+                valueLabelDisplay='auto'
+                aria-labelledby='range-slider'
                 getAriaValueText={valuetext}
               />
             </>
