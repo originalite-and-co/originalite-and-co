@@ -22,11 +22,15 @@ function ProductCard({ product, size }) {
   }, [width]);
 
   const handleClick = () => {
-    const dataFromLocalStorage = JSON.parse(localStorage.getItem('recentlyViewed'))
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('recentlyViewed'));
     if (dataFromLocalStorage?.length === 10) {
       dataFromLocalStorage.shift()
     }
-    const data = [...dataFromLocalStorage, product.itemNo]
+    let data = [product.itemNo];
+    if(Array.isArray(dataFromLocalStorage)){
+      data = [...dataFromLocalStorage, product.itemNo];
+    }
+    localStorage.setItem("recentlyViewed",JSON.stringify(data));
   }
 
   return (
