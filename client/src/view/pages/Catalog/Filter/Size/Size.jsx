@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react';
+
 import PropTypes from 'prop-types';
+
 import {Grid} from "@material-ui/core";
 import classes from "./Size.module.scss";
+
 import _ from "lodash";
+
 import {useDispatch, useSelector} from "react-redux";
 import {filterActions, filterSelectors} from "../../../../../redux/features/filters";
 
@@ -12,6 +16,7 @@ Size.propTypes = {
 };
 
 function Size({name, isDesktop}) {
+
     const [isChecked, setChecked] = useState(false);
 
     const dispatch = useDispatch();
@@ -43,6 +48,7 @@ function Size({name, isDesktop}) {
             item
             component="li"
             xs={isDesktop ? 12: 3}
+            className={classes.listItem}
         >
             <button
                 onClick={handleButtonClick}

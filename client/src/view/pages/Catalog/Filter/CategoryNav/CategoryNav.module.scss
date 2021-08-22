@@ -16,6 +16,13 @@
 .listItem{
   margin-bottom: .9vh!important;
   cursor: pointer;
+
+  &:hover {
+
+    a {
+      border-bottom: 1px solid #FFFFFF;
+    }
+  }
 }
 
 .link {
@@ -24,10 +31,6 @@
   line-height: 22px;
   color: #FFFFFF;
   border-bottom: 1px solid transparent;
-
-  &:hover{
-    border-bottom: 1px solid #FFFFFF;
-  }
 }
 
 .activeLink {

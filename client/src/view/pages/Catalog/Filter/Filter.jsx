@@ -1,27 +1,27 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Box, Divider, Grid, IconButton, Typography } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 
-import { useHistory, useRouteMatch } from 'react-router-dom';
-import { Close } from '@material-ui/icons';
+import Color from './Color/Color';
+import Size from './Size/Size';
+import PriceFilter from './Price';
+import FilterAccordion from './FilterAccordion/FilterAccordion';
+import CategoryNav from './CategoryNav/CategoryNav';
 
-import classes from './Filter.module.scss';
 import {
   catalogRequests,
   colorRequests,
   sizeRequests,
 } from '../../../../api/server';
 import useAsyncError from '../../../hooks/useAsyncError';
-
-import Color from './Color/Color';
-import { useDispatch } from 'react-redux';
-import Size from './Size/Size';
 import useWindowSize from '../../../hooks/useWindowSize';
 import constants from '../../../constants';
-import CategoryNav from './CategoryNav/CategoryNav';
-import { isAnyDropdownOpenActions } from '../../../../redux/features/dropdown';
-import FilterAccordion from './FilterAccordion/FilterAccordion';
 
-import PriceFilter from './Price';
+import { useDispatch } from 'react-redux';
+import { isAnyDropdownOpenActions } from '../../../../redux/features/dropdown';
+import { useRouteMatch } from 'react-router-dom';
+
+import { Box, Divider, Grid, IconButton, Typography } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import classes from './Filter.module.scss';
 
 Filter.propTypes = {};
 
@@ -34,7 +34,6 @@ function Filter(props) {
 
   const throwAsyncError = useAsyncError();
   const { width } = useWindowSize();
-  const history = useHistory();
   const { params } = useRouteMatch();
 
   const dispatch = useDispatch();
@@ -97,10 +96,12 @@ function Filter(props) {
           />
         </>
       )}
+
       {!isDesktop && isLoaded && (
         <>
           <Typography
             align="center"
+            color="textSecondary"
             className={classes.heading}
             component="p"
             variant="body2"

@@ -1,145 +1,83 @@
-import {generateFetchException, generateHeaders, generateResponseException} from "./index";
+import {
+  generateFetchException,
+  generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
-const WISHLIST_PATH = "/api/wishlist";
+const WISHLIST_PATH = '/api/wishlist';
+
+const headers = generateHeaders();
+
+const exceptions = {
+  create: generateFetchException('creating a wishlist'),
+  retrieve: generateFetchException('retrieving the wishlist'),
+  update: generateFetchException('updating the wishlist'),
+  delete: generateFetchException('deleting the wishlist'),
+};
+
+const wishlistRequests = new ServerApiRequests(WISHLIST_PATH, headers, exceptions);
 
 /**
  *
  * @param {Object} data
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const createWishlist = async (data) => {
-    try {
-        const response = await fetch(WISHLIST_PATH, {
-            method: "POST",
-            headers: generateHeaders(),
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("create a wishlist", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("creating a wishlist", error);
-    }
+  return await wishlistRequests.create(data);
 };
 
 /**
  *
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const retrieveWishlist = async () => {
-    try {
-        const response = await fetch(WISHLIST_PATH, {
-            method: "GET",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("retrieve a wishlist", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("retrieving a wishlist", error);
-    }
+  return await wishlistRequests.retrieve(null,generateHeaders());
 };
 
 /**
  *
- * @param data
- * @returns {Promise<void>}
+ * @param {Object} data
+ * @returns {Promise<Object>}
  */
 const updateWishlist = async (data) => {
-    try {
-        const response = await fetch(WISHLIST_PATH, {
-            method: "PUT",
-            headers: generateHeaders(),
-            body: JSON.stringify(data),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("upate a wishlist", response)
-        }
-
-    } catch (error) {
-        throw generateFetchException("updating a wishlist", error);
-    }
+  return await wishlistRequests.update(data);
 };
 
 /**
  *
  * @param {String} productId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const addProductToWishlist = async (productId) => {
-    try {
-        const response = await fetch(`${WISHLIST_PATH}/${productId}`, {
-            method: "PUT",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("add product to a wishlist", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("updating a wishlist", error);
-    }
+  const exception = generateFetchException('adding a product to the wishlist');
+  return await wishlistRequests.update(null, `${WISHLIST_PATH}/${productId}`, exception);
 };
 
 /**
  *
  * @param {String} productId
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const deleteProductFromWishlist = async (productId) => {
-    try {
-        const response = await fetch(`${WISHLIST_PATH}/${productId}`, {
-            method: "DELETE",
-            headers: generateHeaders()
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("delete product from a wishlist", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("deleting product from a wishlist", error);
-    }
+  const exception = generateFetchException('deleting a product from the wishlist');
+  return await wishlistRequests.delete(`${WISHLIST_PATH}/${productId}`, exception);
 };
 
 /**
  *
- * @returns {Promise<any>}
+ * @returns {Promise<Object>}
  */
 const deleteWishlist = async () => {
-    try {
-        const response = await fetch(WISHLIST_PATH, {
-            method: "DELETE",
-            headers: generateHeaders(),
-        });
-
-        if (!response.ok) {
-            throw generateResponseException("delete a wishlist", response);
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw generateFetchException("deleting a wishlist", error);
-    }
-}
+  return await wishlistRequests.delete();
+};
 
 const wishlist = {
-    createWishlist,
-    retrieveWishlist,
-    updateWishlist,
-    addProductToWishlist,
-    deleteProductFromWishlist,
-    deleteWishlist,
+  createWishlist,
+  retrieveWishlist,
+  updateWishlist,
+  addProductToWishlist,
+  deleteProductFromWishlist,
+  deleteWishlist,
 };
 
 export default wishlist;

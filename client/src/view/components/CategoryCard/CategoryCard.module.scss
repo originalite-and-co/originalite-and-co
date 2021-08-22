@@ -1,24 +1,20 @@
+@import "src/view/assets/styles/variables";
 
-.CategoryCard {
-
-  height: 116px;
-  font-family: Open Sans;
+.categoryCard {
   font-size: 14px;
   line-height: 19px;
   color: #FFFFFF;
- &:last-child{
-   height: 123px;
- }
-  img{
-    max-width: 100%;
-    width: 100%;
-    height: 100%;
-    display: block;
 
+  &:last-child{
+    overflow: hidden;
+
+    img{
+    height: unset;
+    }
   }
+
   p {
-    font-family: Open Sans;
-    font-style: normal;
+    font-family: Open Sans,sans-serif;
     font-weight: bold;
     font-size: 12px;
     line-height: 16px;
@@ -26,3 +22,14 @@
   }
 }
 
+.imageWrapper {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  img{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

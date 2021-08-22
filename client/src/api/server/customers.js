@@ -1,10 +1,22 @@
 import {
-  generateHeaders,
-  generateResponseException,
   generateFetchException,
-} from './index';
+  generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
 const CUSTOMERS_PATH = '/api/customers';
+
+// debugger
+const headers = generateHeaders();
+
+const exceptions = {
+  create: generateFetchException('creating a customer'),
+  retrieve: generateFetchException('retrieving the customer'),
+  update: generateFetchException('updating the customer'),
+  delete: generateFetchException('deleting the customer'),
+};
+
+const customerRequests = new ServerApiRequests(CUSTOMERS_PATH, headers, exceptions);
 
 /**
  * This function adds token to the sessionStorage
@@ -15,6 +27,11 @@ const addTokenToSessionStorage = (token) => {
   sessionStorage.setItem('token', token);
 };
 
+/**
+ * This function adds token to the localStorage
+ *
+ * @param {String} token  - authorization token
+ */
 const addTokenToLocalStorage = (token) => {
   localStorage.setItem('token', token);
 };
@@ -23,24 +40,10 @@ const addTokenToLocalStorage = (token) => {
  *This function sends POST request to the server and returns the result
  *
  * @param {Object} data - Object with customer details
- * @returns {Promise<any>} - created customer with _id
+ * @returns {Promise<Object>} - created customer with _id
  */
 const createCustomer = async (data) => {
-  try {
-    const response = await fetch(CUSTOMERS_PATH, {
-      method: 'POST',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('create customer', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('creating customer', error);
-  }
+  return await customerRequests.create(data);
 };
 
 /**
@@ -50,74 +53,37 @@ const createCustomer = async (data) => {
  *     loginOrEmail: String,
  *     password: String
  * }
- * @returns {Promise<void>}
+ *
+ * @param {boolean} keepLoggedIn
  */
-const logIn = async (credentials,keepLoggedIn) => {
-  try {
-    const response = await fetch(`${CUSTOMERS_PATH}/login`, {
-      method: 'POST',
-      headers: generateHeaders(),
-      body: JSON.stringify(credentials),
-    });
+const logIn = async (credentials, keepLoggedIn) => {
+  const exception = generateFetchException('logging in');
+  const data = await customerRequests.create(credentials, `${CUSTOMERS_PATH}/login`, generateHeaders(), exception);
 
-    if (!response.ok) {
-      throw generateResponseException('log in', response);
-    }
-    const data = await response.json()
-
-    if (keepLoggedIn){
-      addTokenToLocalStorage(data.token)
-    }
-    addTokenToSessionStorage(data.token);
-  } catch (error) {
-    throw generateFetchException('Login in', error);
+  if (keepLoggedIn) {
+    addTokenToLocalStorage(data.token);
+    return;
   }
+  addTokenToSessionStorage(data.token);
 };
 
 /**
  * This function retrieves customer information using their token
  *
- * @returns {Promise<any>} - customer
+ * @returns {Promise<Object>} - customer
  */
 const retrieveCustomer = async () => {
-  try {
-    const response = await fetch(`${CUSTOMERS_PATH}/customer`, {
-      method: 'GET',
-      headers: generateHeaders(),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('retrieve customer', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('retrieving customer', error);
-  }
+  return await customerRequests.retrieve(`${CUSTOMERS_PATH}/customer`,generateHeaders());
 };
 
 /**
  * This function updates customer by their token
  *
  * @param {Object} data - data that should be updated
- * @returns {Promise<any>} - updated customer
+ * @returns {Promise<Object>} - updated customer
  */
 const updateCustomer = async (data) => {
-  try {
-    const response = await fetch(CUSTOMERS_PATH, {
-      method: 'PUT',
-      headers: generateHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw generateResponseException('update customer', response);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw generateFetchException('updating customer', error);
-  }
+  return await customerRequests.update(data, `${CUSTOMERS_PATH}`,generateHeaders())
 };
 
 /**
@@ -125,35 +91,23 @@ const updateCustomer = async (data) => {
  *
  * @param {String} previousPassword
  * @param {String} newPassword
- * @returns {Promise<*>}
+ * @returns {Promise<Object>}
  */
 const changeCustomerPassword = async (previousPassword, newPassword) => {
-  try {
-    const response = await fetch(`${CUSTOMERS_PATH}/password`, {
-      method: 'PUT',
-      headers: generateHeaders(),
-      body: JSON.stringify({
-        password: previousPassword,
-        newPassword,
-      }),
-    });
+  const data = {
+    password: previousPassword,
+    newPassword
+  };
 
-    if (!response.ok) {
-      throw generateResponseException('change customer password', response);
-    }
-
-    const obj = await response.json();
-    return obj.customer;
-  } catch (error) {
-    throw generateFetchException('changing customer password', error);
-  }
+  const exception = generateFetchException('changing the customer password');
+  return await customerRequests.update(data,`${CUSTOMERS_PATH}/password`,exception )
 };
 
 const customers = {
-  changeCustomerPassword,
   createCustomer,
   logIn,
   retrieveCustomer,
+  changeCustomerPassword,
   updateCustomer,
 };
 

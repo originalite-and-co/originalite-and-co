@@ -1,20 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import CardList from '../../components/CardList/CardList.jsx';
-import ShopCategories from '../../components/ShopCategories/ShopCategories';
+import PopularProductsCarousel from './PopularProductsCarousel/PopularProductsCarousel';
+import ShopCategories from './ShopCategories/ShopCategories';
+import PromoCarousel from './PromoCarousel/PromoCarousel';
+
+
 import { Box } from '@material-ui/core';
-import PopularProductsCarousel from '../../components/PopularProductsCarousel/PopularProductsCarousel';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
 
-import classes from './Home.module.scss';
 
-function Home(props) {
+function Home() {
+
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
+
   return (
-    <Box>
+    <Box className={classes.root}>
       <Header />
-      <Box className={`${classes.content} wrapper`} component={'main'}>
-        <PopularProductsCarousel />
-        <ShopCategories />
+      <Box className={classes.content} component={'main'}>
+        <PromoCarousel />
+        <Box className={`${classes.sectionWrapper} wrapper`}>
+          <PopularProductsCarousel />
+          <ShopCategories />
+        </Box>
       </Box>
       <Footer />
     </Box>

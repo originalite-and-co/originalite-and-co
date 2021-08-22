@@ -12,6 +12,8 @@ import {isAnyDropdownOpenActions, isAnyDropdownOpenSelectors} from "../../../../
 
 function Burger() {
     const [isDropdownActive, setActiveDropdown] = useState(false);
+    // const [isBurgerClicked, setIsBurgerClicked] = useState(false);
+
     const dispatch = useDispatch();
     const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
 
@@ -65,9 +67,9 @@ function Burger() {
         <>
             <Box className={styles.container}>
                 <div onClick={handleBurgerIconClick} className={styles.wrapper}>
-                    <span className={styles.line}/>
-                    <span className={styles.middleLine}/>
-                    <span className={styles.line}/>
+                    <span className={isDropdownActive ? styles.topLineClicked : styles.line}/>
+                    <span className={isDropdownActive ? styles.middleLineClicked : styles.middleLine}/>
+                    <span className={isDropdownActive ? styles.bottomLineClicked : styles.line}/>
                 </div>
             </Box>
             <Dropdown
