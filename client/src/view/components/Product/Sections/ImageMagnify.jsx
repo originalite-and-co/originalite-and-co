@@ -1,5 +1,4 @@
 import React from "react";
-import ReactImageMagnify from "react-image-magnify";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,22 +8,7 @@ export default function ImageMagnify(props) {
     const renderSlides = () =>
         props.detail.imageUrls.map(num => (
             <div>
-                <ReactImageMagnify
-                    {...{
-                        smallImage: {
-                            isFluidWidth: false,
-                            src: num,
-                            width: 600,
-                            height: 500,
-                            // sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
-                        },
-                        largeImage: {
-                            src: num,
-                            width: 800,
-                            height: 800
-                        }
-                    }}
-                />
+                <img src={num} alt=""/>
             </div>
         ));
 
