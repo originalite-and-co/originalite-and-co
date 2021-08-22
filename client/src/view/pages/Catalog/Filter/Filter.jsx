@@ -24,8 +24,7 @@ import classes from './Filter.module.scss';
 
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-
-import { filterActions } from '../../../../redux/features/filters/index';
+import { filterActions } from '../../../../redux/features/filters';
 
 Filter.propTypes = {};
 
