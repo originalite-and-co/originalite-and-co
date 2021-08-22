@@ -26,6 +26,7 @@ import classes from './Filter.module.scss';
 
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import { filterActions } from '../../../../redux/features/filters';
 
 Filter.propTypes = {};
 
@@ -194,7 +195,6 @@ function Filter(props) {
                 }}
                 valueLabelDisplay='auto'
                 aria-labelledby='range-slider'
-                getAriaValueText={valuetext}
               />
             </>
           }
