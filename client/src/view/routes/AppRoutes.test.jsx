@@ -5,7 +5,9 @@ import AppRoutes from './AppRoutes';
 import renderWithProjectProviders from '../../utils/renderWithProjectProviders';
 import store from '../../redux/store/store';
 
-jest.mock('../pages/Authentication/Authentication.jsx', () => () => <p>Authentication</p>);
+jest.mock('../pages/Authentication/Authentication.jsx', () => () => (
+  <p>Authentication</p>
+));
 jest.mock('../pages/Cart/Cart.jsx', () => () => <p>Cart</p>);
 jest.mock('../pages/Catalog/Catalog.jsx', () => () => <p>Catalog</p>);
 jest.mock('../pages/Checkout/Checkout.jsx', () => () => <p>Checkout</p>);
@@ -13,7 +15,6 @@ jest.mock('../pages/Home/Home.jsx', () => () => <p>Home</p>);
 jest.mock('../pages/Member/Member.jsx', () => () => <p>Member</p>);
 jest.mock('../pages/Page404/Page404.jsx', () => () => <p>404</p>);
 jest.mock('../pages/Product/Product.jsx', () => () => <p>Product</p>);
-
 
 /**
  * Regular expression is used to check if component includes written text.
@@ -33,15 +34,19 @@ describe('AppRoutes', () => {
 
   test('if it renders home page', () => {
     const { getByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(getByText(/home/i)).toBeInTheDocument();
   });
 
-  test('if it renders authentication page when pathname is \'/auth/login\' ', () => {
+  test("if it renders authentication page when pathname is '/auth/login' ", () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(queryByText(/authentication/i)).toBeNull();
@@ -49,9 +54,11 @@ describe('AppRoutes', () => {
     expect(queryByText(/authentication/i)).toBeInTheDocument();
   });
 
-  test('if it renders authentication page when pathname is \'/auth/register\' ', () => {
+  test("if it renders authentication page when pathname is '/auth/register' ", () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(queryByText(/authentication/i)).toBeNull();
@@ -61,7 +68,9 @@ describe('AppRoutes', () => {
 
   test('if it renders cart page ', () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(queryByText(/cart/i)).toBeNull();
@@ -71,7 +80,9 @@ describe('AppRoutes', () => {
 
   test('if it renders catalog page ', () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(queryByText(/catalog/i)).toBeNull();
@@ -81,7 +92,9 @@ describe('AppRoutes', () => {
 
   test('if it renders product page', () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />,store, history
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(queryByText(/product/i)).toBeNull();
@@ -89,9 +102,11 @@ describe('AppRoutes', () => {
     expect(queryByText(/product/i)).toBeInTheDocument();
   });
 
-  test('if it doesn\'t render checkout page without token', () => {
+  test("if it doesn't render checkout page without token", () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(sessionStorage.getItem('token')).toBeNull();
@@ -108,7 +123,9 @@ describe('AppRoutes', () => {
     sessionStorage.setItem('token', tokenValue);
 
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(sessionStorage.getItem('token')).toMatch(tokenValue);
@@ -120,9 +137,11 @@ describe('AppRoutes', () => {
     expect(queryByText(/authentication/i)).toBeNull();
   });
 
-  test('If it doesn\'t render member page without token', () => {
+  test("If it doesn't render member page without token", () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(sessionStorage.getItem('token')).toBeNull();
@@ -139,7 +158,9 @@ describe('AppRoutes', () => {
     sessionStorage.setItem('token', tokenValue);
 
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(sessionStorage.getItem('token')).toMatch(tokenValue);
@@ -151,9 +172,11 @@ describe('AppRoutes', () => {
     expect(queryByText(/authentication/i)).toBeNull();
   });
 
-  test('if it renders Page404 when the pathname doesn\'t match any Route', () => {
+  test("if it renders Page404 when the pathname doesn't match any Route", () => {
     const { queryByText } = renderWithProjectProviders(
-      <AppRoutes />, store, history,
+      <AppRoutes />,
+      store,
+      history
     );
 
     expect(queryByText(/404/i)).toBeNull();
