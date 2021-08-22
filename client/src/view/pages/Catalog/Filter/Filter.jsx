@@ -1,17 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Divider,
-  Grid,
-  IconButton,
-  Typography,
-} from '@material-ui/core';
+import { Box, Divider, Grid, IconButton, Typography } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Close } from '@material-ui/icons';
 
@@ -24,16 +13,13 @@ import {
 import useAsyncError from '../../../hooks/useAsyncError';
 
 import Color from './Color/Color';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Size from './Size/Size';
 import useWindowSize from '../../../hooks/useWindowSize';
 import constants from '../../../constants';
-import CatalogBreadcrumbs from '../Breadcrumbs/CatalogBreadcrumbs';
 import CategoryNav from './CategoryNav/CategoryNav';
 import { isAnyDropdownOpenActions } from '../../../../redux/features/dropdown';
 import FilterAccordion from './FilterAccordion/FilterAccordion';
-import Slider from '@material-ui/core/Slider';
-import { filterActions } from '../../../../redux/features/filters/index';
 
 import PriceFilter from './Price';
 
