@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from "../../components/Header/Header";
+import Styles from './Member.module.scss'
+import {Box} from "@material-ui/core";
+import MemberTabs from "./MemberTabs/MemberTabs";
 
 Member.propTypes = {
 
 };
 
-function Member(props) {
+
+function Member() {
     return (
         <div>
-            Profile/purchase history/favourites
+            <Header/>
+            <Box className={Styles.container}>
+                <MemberTabs/>
+            </Box>
         </div>
     );
 }

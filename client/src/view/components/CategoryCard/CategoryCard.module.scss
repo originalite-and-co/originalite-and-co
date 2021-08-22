@@ -33,24 +33,3 @@
     height: 100%;
   }
 }
-
-@media (min-width: $tablet) {
-  .categoryCard {
-    height: 25vh;
-
-    &:last-child {
-      height: 26vh;
-    }
-  }
-}
-
-
-@media (min-width: $desktop){
-  .categoryCard {
-    height: 46vh;
-
-    &:last-child {
-      height: 45vh;
-    }
-  }
-}

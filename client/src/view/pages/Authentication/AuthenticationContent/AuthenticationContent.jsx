@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Styles from './Authentication.module.scss';
 import LoginPage from "./LoginPage/LoginPage";
 import SignUpPage from "./SignUpPage/SignUpPage";
-import ErrorBoundary from "../../../components/ErrorBoundary/ErrorBoundary";
+import ErrorBoundary from "../../../HOC/ErrorBoundary/ErrorBoundary";
 import Toast from "../../../components/Toast/Toast";
 
 function AuthenticationContent() {
@@ -39,7 +39,7 @@ function AuthenticationContent() {
           <button type="button" className={`${loginClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleloginOptionClick} data-testid='logsign-btns'>Log In</button>
           <button type="button" className={`${signupClicked && Styles.active} ${Styles.logInSignUp}`} onClick={handleSignupClick} data-testid='logsign-btns'>Sign Up</button>
         </Box>
-        <ErrorBoundary fallback={<Toast message={"Wrong Credentials"} />}>
+        <ErrorBoundary renderChildren fallback={<Toast severity="error" variant="filled" message={"Wrong Credentials"} />}>
           {loginClicked && <LoginPage/>}
           {signupClicked && <SignUpPage onClick={handleSignUpClick}/>}
         </ErrorBoundary>

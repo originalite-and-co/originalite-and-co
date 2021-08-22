@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from "../../components/Header/Header";
+import OneProduct from '../../components/Product/OneProduct'
 
-Cart.propTypes = {
+Product.propTypes = {
 
 };
 
-function Cart(props) {
+function Product() {
     return (
-        <div>
-            Cart
-        </div>
+        <>
+            <Header/>
+            <OneProduct/>
+        </>
     );
 }
 
-export default Cart;
+export default Product;
