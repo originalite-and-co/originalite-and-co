@@ -9,6 +9,7 @@ const generateHeaders = () => ({
   Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
 });
 
+
 /**
  * This function generates custom exception
  *

@@ -33,7 +33,6 @@
   }
 }
 
-
 .colorName.active {
 
   &::after {
@@ -42,6 +41,15 @@
 }
 
 @media (min-width: $desktop) {
+  .listItem {
+    &:hover {
+
+      p::after {
+        background-color: #FFFFFF;
+      }
+    }
+  }
+
   .colorButton{
     flex-direction: row;
 

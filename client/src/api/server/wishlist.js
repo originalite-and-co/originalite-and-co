@@ -31,7 +31,7 @@ const createWishlist = async (data) => {
  * @returns {Promise<Object>}
  */
 const retrieveWishlist = async () => {
-  return await wishlistRequests.retrieve();
+  return await wishlistRequests.retrieve(null,generateHeaders());
 };
 
 /**

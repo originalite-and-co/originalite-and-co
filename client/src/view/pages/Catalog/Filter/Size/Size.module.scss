@@ -1,5 +1,7 @@
 @import "src/view/assets/styles/variables";
 
+
+
 .sizeButton{
   outline: none;
   border: none;
@@ -28,6 +30,13 @@
 }
 
 @media (min-width: $desktop){
+  .listItem{
+    &:hover{
+      button::after{
+        background-color: #ffffff;
+      }
+    }
+  }
   .sizeButton{
     margin: unset;
     color: #ffffff;

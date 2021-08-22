@@ -6,13 +6,17 @@ import {Link} from "react-router-dom";
 
 import _ from "lodash";
 
-import classes from "./CatalogBreadcrumbs.module.scss"
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
 
 CatalogBreadcrumbs.propTypes = {
     path: PropTypes.string.isRequired,
 };
 
-function CatalogBreadcrumbs({path}) {
+function CatalogBreadcrumbs({path, categoryName}) {
+    const useStyles = makeStyles(generateStyles);
+    const classes = useStyles();
+
     /**
      * This function generates links judging by the path name
      * @function filter() is here because split creates an empty string as the first element.
@@ -37,15 +41,15 @@ function CatalogBreadcrumbs({path}) {
         return (
             <Link
                 key={index}
-                className={ isLastOne ? `${classes.link} ${classes.active}` : classes.link}
+                className={ isLastOne ? `${classes.link} active` : classes.link}
                 to={currentLinkPath}>
-                {_.upperFirst(_.lowerCase(link))}
+                {isLastOne ? categoryName :_.upperFirst(_.lowerCase(link))}
             </Link>
         )
     })
 
     return (
-        <Breadcrumbs className={classes.breadcrumbs} separator={<NavigateNext className={classes.separator} fontSize="small"/>}>
+        <Breadcrumbs separator={<NavigateNext className={classes.separator} fontSize="small"/>}>
             <Link className={classes.link} to="/">
                 Home
             </Link>
