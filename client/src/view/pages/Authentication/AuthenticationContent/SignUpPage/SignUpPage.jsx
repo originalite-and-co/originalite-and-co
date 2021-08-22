@@ -48,7 +48,7 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   firstName: yup.string().required().label('first name'),
   lastName: yup.string().required().label('last name'),
-  login: yup.string().min(4).required().label('login'),
+  login: yup.string().min(8).required().label('login'),
   email: yup.string().email().required().label('email'),
   password: yup.string().min(8).required().label('password'),
   mobile: yup
