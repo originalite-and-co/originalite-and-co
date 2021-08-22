@@ -93,6 +93,7 @@ function Search(props) {
 
 
   const informationToast = useMemo(() => <Toast
+    variant="filled"
     className={styles.informationToast}
     message='No items have been found '
   />, []);
