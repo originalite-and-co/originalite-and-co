@@ -25,7 +25,6 @@ import ProductPage from "../pages/ProductPage/ProductPage";
 function AppRoutes() {
     const dispatch = useDispatch()
     const authorization = useSelector(authorizationSelectors.authorization)
-
     const [isAuthenticated, setAuthenticated] = useState(!!sessionStorage.getItem('token') || !!localStorage.getItem("token"));
 
     const [staticPages, setStaticPages] = useState([]);
@@ -36,7 +35,8 @@ function AppRoutes() {
     useEffect(() => {
         dispatch(authorizeOperations.authorizeUser())
         setAuthenticated(!!sessionStorage.getItem('token') || !!localStorage.getItem("token") );
-    }, [authorization]);
+    }, [authorization,isAuthenticated]);
+
 
     useEffect(useCallback(() => {
         pageRequests.retrievePages()
