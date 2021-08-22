@@ -74,7 +74,6 @@ const PrettoSlider = withStyles({
 function Filter(props) {
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
-  // const [price, setPrice] = useState([0, 100]);
   const [isDesktop, setDesktop] = useState(false);
   const [category, setCategory] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
