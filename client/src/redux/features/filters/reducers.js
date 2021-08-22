@@ -49,7 +49,7 @@ export default {
   filters: reducer,
 };
 
-function addFilterQQ(state, payload) {
+function addFilter(state, payload) {
   let stateCopy = { ...state };
   Object.keys(payload).forEach((key) => {
     if (stateCopy[key]) {

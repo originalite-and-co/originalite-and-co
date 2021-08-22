@@ -14,7 +14,6 @@ const {
  * @returns {{payload: object, type: string}}
  */
 const addFilter = (filter) => {
-  console.log(filter);
   if (typeof filter !== 'object' || filter === null) {
     throw new Error(`Invalid data type. Expected Object, got ${typeof value}`);
   }

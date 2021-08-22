@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Close } from '@material-ui/icons';
 
@@ -35,46 +35,13 @@ import FilterAccordion from './FilterAccordion/FilterAccordion';
 import Slider from '@material-ui/core/Slider';
 import { filterActions } from '../../../../redux/features/filters/index';
 
-Filter.propTypes = {};
+import PriceFilter from './Price';
 
-const PrettoSlider = withStyles({
-  root: {
-    color: '#52af77',
-    height: 8,
-  },
-  valueLabel: {
-    left: -13,
-    top: -35,
-    '& *': {
-      background: '#fff',
-      color: '#000',
-      fontWeight: 'bold',
-    },
-  },
-  thumb: {
-    height: 24,
-    width: 6,
-    backgroundColor: '#fff',
-    borderRadius: 0,
-    marginTop: -10,
-    marginLeft: -2,
-  },
-  track: {
-    backgroundColor: '#fff',
-    height: 4,
-    borderRadius: 4,
-  },
-  rail: {
-    backgroundColor: '#333',
-    height: 2,
-    borderRadius: 4,
-  },
-})(Slider);
+Filter.propTypes = {};
 
 function Filter(props) {
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
-  // const [price, setPrice] = useState([0, 100]);
   const [isDesktop, setDesktop] = useState(false);
   const [category, setCategory] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -134,14 +101,6 @@ function Filter(props) {
     dispatch(isAnyDropdownOpenActions.closedDropdown());
   };
 
-  const [value, setValue] = React.useState([20, 37]);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  function valuetext(value) {
-    return `${value}°C`;
-  }
   return (
     <Box className={classes.root}>
       {isDesktop && isLoaded && (
@@ -207,25 +166,7 @@ function Filter(props) {
         <FilterAccordion
           isDesktop={isDesktop}
           text="Price"
-          detailsContent={
-            <>
-              <PrettoSlider
-                defaultValue={[0, 100]}
-                onChangeCommitted={(_, range) => {
-                  const [minPrice, maxPrice] = range.map(String);
-                  dispatch(
-                    filterActions.addFilter({
-                      minPrice,
-                      maxPrice,
-                    })
-                  );
-                }}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                getAriaValueText={valuetext}
-              />
-            </>
-          }
+          detailsContent={<PriceFilter />}
         />
       </Box>
     </Box>
