@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Styles from './Authentication.module.scss';
 import LoginPage from "./LoginPage/LoginPage";
 import SignUpPage from "./SignUpPage/SignUpPage";
-import ErrorBoundary from "../../../components/ErrorBoundary/ErrorBoundary";
+import ErrorBoundary from "../../../HOC/ErrorBoundary/ErrorBoundary";
 import Toast from "../../../components/Toast/Toast";
 
 function AuthenticationContent() {

@@ -16,20 +16,30 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return this.props.fallback;
+    const { props, state } = this;
+    if (state.hasError) {
+
+      return props.renderChildren ? (
+        <>
+          {props.children}
+          {props.fallback}
+        </>
+      ) : props.fallback;
     }
 
-    return this.props.children;
+    return props.children;
   }
 
-  // return this.state.hasError ? (<>{this.props.fallback}{this.props.children}</>) : this.props.children
 }
 
 
 ErrorBoundary.propTypes = {
   fallback: PropTypes.element.isRequired,
+  renderChildren: PropTypes.bool,
+};
+
+ErrorBoundary.defaultProps = {
+  renderChildren: false,
 };
 
 export default React.memo(ErrorBoundary);

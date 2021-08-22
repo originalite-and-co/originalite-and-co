@@ -1,6 +1,6 @@
 import Toast from '../view/components/Toast/Toast';
 import React from 'react';
-import ErrorBoundary from '../view/components/ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../view/HOC/ErrorBoundary/ErrorBoundary';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { CloudinaryContext } from 'cloudinary-react';
