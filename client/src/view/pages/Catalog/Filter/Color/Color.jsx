@@ -1,65 +1,69 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import classes from "./Color.module.scss";
+import classes from './Color.module.scss';
 
-import {Grid, Typography} from "@material-ui/core";
-import _ from "lodash";
-import {useDispatch, useSelector} from "react-redux";
-import {filterActions, filterSelectors} from "../../../../../redux/features/filters";
+import { Grid, Typography } from '@material-ui/core';
+import _ from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  filterActions,
+  filterSelectors,
+} from '../../../../../redux/features/filters';
 
 Color.propTypes = {
-    name: PropTypes.string.isRequired,
-    cssValue: PropTypes.string.isRequired,
-    isDesktop: PropTypes.bool.isRequired
+  name: PropTypes.string.isRequired,
+  cssValue: PropTypes.string.isRequired,
+  isDesktop: PropTypes.bool.isRequired,
 };
 
-function Color({name, cssValue, isDesktop}) {
-    const [isChecked, setChecked] = useState(false);
+function Color({ name, cssValue, isDesktop }) {
+  const [isChecked, setChecked] = useState(false);
 
-    const dispatch = useDispatch();
-    const colors = useSelector((state) =>
-        filterSelectors.getSelectedFilter(state, "color"));
+  const dispatch = useDispatch();
+  const colors = useSelector((state) =>
+    filterSelectors.getSelectedFilter(state, 'color')
+  );
 
-    useEffect(() => {
-        if (Array.isArray(colors)) {
-            setChecked(colors.some(color => color === name));
-            return;
-        }
-
-        setChecked(colors === name);
-    }, [colors]);
-
-    const handleButtonClick = (event) => {
-        if (isChecked){
-            setChecked(false);
-            dispatch(filterActions.deleteFilterValue("color", name));
-            return;
-        }
-
-        dispatch(filterActions.addFilter({color : [name]}));
-        setChecked(true);
+  useEffect(() => {
+    if (Array.isArray(colors)) {
+      setChecked(colors.some((color) => color === name));
+      return;
     }
 
-    return (
-        <Grid
-            item
-            component="li"
-            xs={isDesktop ? 12 : 4}
+    setChecked(colors === name);
+  }, [colors]);
+
+  const handleButtonClick = (event) => {
+    if (isChecked) {
+      setChecked(false);
+      dispatch(filterActions.deleteFilterValue('color', name));
+      return;
+    }
+
+    dispatch(filterActions.addFilter({ color: [name] }));
+    setChecked(true);
+  };
+
+  return (
+    <Grid item component="li" xs={isDesktop ? 12 : 4}>
+      <button onClick={handleButtonClick} className={classes.colorButton}>
+        <span className={classes.color} style={{ backgroundColor: cssValue }} />
+        <Typography
+          noWrap
+          className={
+            isChecked
+              ? `${classes.colorName} ${classes.active}`
+              : classes.colorName
+          }
+          component="p"
+          variant="body1"
         >
-            <button onClick={handleButtonClick} className={classes.colorButton}>
-                <span className={classes.color} style={{backgroundColor: cssValue}}/>
-                <Typography
-                    noWrap
-                    className={isChecked? `${classes.colorName} ${classes.active}` : classes.colorName}
-                    component="p"
-                    variant="body1"
-                >
-                    {_.lowerCase(name)}
-                </Typography>
-            </button>
-        </Grid>
-    );
+          {_.lowerCase(name)}
+        </Typography>
+      </button>
+    </Grid>
+  );
 }
 
 export default Color;
