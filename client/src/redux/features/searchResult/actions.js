@@ -1,9 +1,6 @@
-import types from "./types";
+import types from './types';
 
-const {
-    SET_SEARCH_RESULT,
-    DELETE_SEARCH_RESULT
-} = types;
+const { SET_SEARCH_RESULT, DELETE_SEARCH_RESULT } = types;
 
 /**
  *
@@ -11,8 +8,8 @@ const {
  * @returns {{payload: array, type: string}}
  */
 const setSearchResult = (data) => ({
-    type: SET_SEARCH_RESULT,
-    payload: data,
+  type: SET_SEARCH_RESULT,
+  payload: data
 });
 
 /**
@@ -20,12 +17,12 @@ const setSearchResult = (data) => ({
  * @returns {{type: string}}
  */
 const deleteSearchResult = () => ({
-    type: DELETE_SEARCH_RESULT,
+  type: DELETE_SEARCH_RESULT
 });
 
 const actions = {
-    setSearchResult,
-    deleteSearchResult
+  setSearchResult,
+  deleteSearchResult
 };
 
 export default actions;

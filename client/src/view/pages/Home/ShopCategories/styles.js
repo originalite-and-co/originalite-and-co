@@ -3,7 +3,7 @@ const generateStyles = ({ breakpoints }) => ({
   heading: {
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
-    marginBottom: "1rem",
+    marginBottom: '1rem'
   },
   categoryWrapper: {
     display: 'grid',
@@ -15,11 +15,10 @@ const generateStyles = ({ breakpoints }) => ({
 "outwear outwear outwear"
 `,
 
-    [breakpoints.up("desktop")]: {
-      gridTemplateRows: '33vw 32vw',
+    [breakpoints.up('desktop')]: {
+      gridTemplateRows: '33vw 32vw'
     }
-
-  },
+  }
 });
 
 export default generateStyles;

@@ -1,7 +1,7 @@
-const getSearchResult = state=> state.searchResult;
+const getSearchResult = (state) => state.searchResult;
 
-const selectors ={
-    getSearchResult,
+const selectors = {
+  getSearchResult
 };
 
 export default selectors;

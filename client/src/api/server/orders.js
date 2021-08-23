@@ -1,22 +1,18 @@
-import {
-    generateFetchException,
-    generateHeaders
-} from './utils.js';
+import { generateFetchException, generateHeaders } from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const ORDERS_PATH = '/api/orders';
 
-const headers = generateHeaders()
-
+const headers = generateHeaders();
 
 const exceptions = {
-    create: generateFetchException('creating the order'),
-    retrieve: generateFetchException('retrieving the order'),
-    update: generateFetchException('updating the order'),
-    delete: generateFetchException('deleting the order'),
-}
+  create: generateFetchException('creating the order'),
+  retrieve: generateFetchException('retrieving the order'),
+  update: generateFetchException('updating the order'),
+  delete: generateFetchException('deleting the order')
+};
 
-const orderRequests = new ServerApiRequests(ORDERS_PATH,headers,exceptions);
+const orderRequests = new ServerApiRequests(ORDERS_PATH, headers, exceptions);
 
 /**
  *
@@ -25,20 +21,20 @@ const orderRequests = new ServerApiRequests(ORDERS_PATH,headers,exceptions);
  */
 
 const createOrder = async (orderDetails) => {
-    return await orderRequests.create(orderDetails)
-}
+  return await orderRequests.create(orderDetails);
+};
 
 /**
  *
  * @returns {Promise<Array>} - customer orders
  */
 const retrieveOrder = async () => {
-    return await orderRequests.retrieve(`${ORDERS_PATH}`, generateHeaders())
-}
+  return await orderRequests.retrieve(`${ORDERS_PATH}`, generateHeaders());
+};
 
 const orders = {
-    createOrder,
-    retrieveOrder
-}
+  createOrder,
+  retrieveOrder
+};
 
-export default orders
+export default orders;
