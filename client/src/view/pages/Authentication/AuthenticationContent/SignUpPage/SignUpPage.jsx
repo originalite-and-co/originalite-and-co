@@ -6,13 +6,13 @@ import TextField from '@material-ui/core/TextField';
 import Button from '../../../../components/Button/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup } from '@material-ui/core';
+import { FormGroup, Typography } from '@material-ui/core';
 import { customerRequests } from '../../../../../api/server';
 import useAsyncError from '../../../../hooks/useAsyncError';
 import { useHistory } from 'react-router-dom';
 import Toast from '../../../../components/Toast/Toast';
 import * as yup from 'yup';
-import { Typography } from '@material-ui/core';
+
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
@@ -21,14 +21,14 @@ SignUpPage.propTypes = {};
 const useStyles = makeStyles({
   textField: {
     borderBottom: '1px solid white',
-    color: '#FFFFFF !important',
+    color: '#FFFFFF !important'
   },
   visibilityBtn: {
     color: '#FFFFFF !important',
     position: 'absolute',
     top: '30%',
-    right: 0,
-  },
+    right: 0
+  }
 });
 
 const phoneRegExp =
@@ -42,7 +42,7 @@ const initialValues = {
   password: '',
   mobile: '',
   birthdate: '',
-  gender: '',
+  gender: ''
 };
 
 const validationSchema = yup.object().shape({
@@ -57,7 +57,7 @@ const validationSchema = yup.object().shape({
     .required()
     .label('mobile'),
   birthdate: yup.string().required().label('birthday'),
-  gender: yup.string().required().label('gender'),
+  gender: yup.string().required().label('gender')
 });
 
 function SignUpPage({ onClick }) {

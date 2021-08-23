@@ -6,35 +6,35 @@ import { filterActions } from '../../../../../redux/features/filters';
 import userEvent from '@testing-library/user-event';
 
 const DATA = {
-  name: "black",
-  cssValue: "#000000",
+  name: 'black',
+  cssValue: '#000000',
   isDesktop: true
-}
-describe("Color", () => {
-  test("smoke", () => {
-    const {getByText} = renderWithRedux(
+};
+describe('Color', () => {
+  test('smoke', () => {
+    const { getByText } = renderWithRedux(
       <CustomThemeProvider>
-        <Color {...DATA}/>
+        <Color {...DATA} />
       </CustomThemeProvider>,
       store
-    )
+    );
 
     expect(getByText(DATA.name)).toBeInTheDocument();
   });
 
   test('If it calls filterActions function ', () => {
     filterActions.addFilter = jest.fn(() => ({
-      type: "test",
+      type: 'test'
     }));
-    const {getByTestId} = renderWithRedux(
+    const { getByTestId } = renderWithRedux(
       <CustomThemeProvider>
-        <Color {...DATA}/>
+        <Color {...DATA} />
       </CustomThemeProvider>,
       store
     );
 
-    const button = getByTestId("color-button");
+    const button = getByTestId('color-button');
     userEvent.click(button);
-    expect(filterActions.addFilter).toHaveBeenCalled()
-  })
+    expect(filterActions.addFilter).toHaveBeenCalled();
+  });
 });

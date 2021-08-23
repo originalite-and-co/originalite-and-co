@@ -6,14 +6,11 @@ import PopularProductsCarousel from './PopularProductsCarousel/PopularProductsCa
 import ShopCategories from './ShopCategories/ShopCategories';
 import PromoCarousel from './PromoCarousel/PromoCarousel';
 
-
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
-
 function Home() {
-
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
 

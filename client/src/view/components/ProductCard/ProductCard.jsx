@@ -7,7 +7,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
 
 ProductCard.propTypes = {
-  product: PropTypes.object.isRequired,
+  product: PropTypes.object.isRequired
 };
 
 function ProductCard({ product, size }) {
@@ -21,37 +21,39 @@ function ProductCard({ product, size }) {
   }, [width]);
 
   const handleClick = () => {
-    const dataFromLocalStorage = JSON.parse(localStorage.getItem('recentlyViewed'));
+    const dataFromLocalStorage = JSON.parse(
+      localStorage.getItem('recentlyViewed')
+    );
     if (dataFromLocalStorage?.length === 10) {
-      dataFromLocalStorage.shift()
+      dataFromLocalStorage.shift();
     }
     let data = [product.itemNo];
-    if(Array.isArray(dataFromLocalStorage)){
+    if (Array.isArray(dataFromLocalStorage)) {
       data = [...dataFromLocalStorage, product.itemNo];
     }
-    localStorage.setItem("recentlyViewed",JSON.stringify(data));
-  }
+    localStorage.setItem('recentlyViewed', JSON.stringify(data));
+  };
 
   return (
     <Box
-      data-testid='product-card'
+      data-testid="product-card"
       className={styles.productCard}
       onClick={handleClick}
     >
       <Link to={`/products/${product.itemNo}`} className={styles.link}>
         <div className={styles.productImage}>
-          <img src={product.imageUrls[0]} alt='products images' />
+          <img src={product.imageUrls[0]} alt="products images" />
         </div>
         <Typography
           color={path === '/' ? 'textPrimary' : 'textSecondary'}
-          component='p'
+          component="p"
           variant={isDesktop ? 'h6' : 'body2'}
           className={styles.productCardTitle}
         >
           {product.name}
         </Typography>
         <Typography
-          component='p'
+          component="p"
           variant={isDesktop ? 'h6' : 'body2'}
           className={styles.productCardPrice}
         >
@@ -61,6 +63,5 @@ function ProductCard({ product, size }) {
     </Box>
   );
 }
-
 
 export default ProductCard;

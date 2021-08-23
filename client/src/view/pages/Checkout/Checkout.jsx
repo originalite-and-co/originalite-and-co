@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-Checkout.propTypes = {
-    
-};
+Checkout.propTypes = {};
 
 function Checkout(props) {
-    return (
-        <div>Checkout</div>
-    );
+  return <div>Checkout</div>;
 }
 
 export default Checkout;

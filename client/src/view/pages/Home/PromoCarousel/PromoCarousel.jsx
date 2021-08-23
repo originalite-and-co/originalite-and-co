@@ -5,9 +5,7 @@ import Image from '../../../components/Image';
 import { slideRequests } from '../../../../api/server';
 import { Box } from '@material-ui/core';
 
-PromoCarousel.propTypes = {
-
-};
+PromoCarousel.propTypes = {};
 
 function PromoCarousel(props) {
   const { slide, carousel, useStyles } = defaultCarousel;

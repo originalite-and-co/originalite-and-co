@@ -6,7 +6,10 @@ import constants from '../../../../constants';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { searchResultActions } from '../../../../../redux/features/searchResult';
-import { isAnyDropdownOpenActions, isAnyDropdownOpenSelectors } from '../../../../../redux/features/dropdown';
+import {
+  isAnyDropdownOpenActions,
+  isAnyDropdownOpenSelectors
+} from '../../../../../redux/features/dropdown';
 
 import { useHistory } from 'react-router-dom';
 import { productRequests } from '../../../../../api/server/index';
@@ -30,7 +33,9 @@ function Search(props) {
   const [isDropdownActive, setActiveDropdown] = useState(false);
   const [isDesktop, setIsDesktop] = useState();
 
-  const isAnyDropdownOpen = useSelector(isAnyDropdownOpenSelectors.getIsAnyDropdownOpen);
+  const isAnyDropdownOpen = useSelector(
+    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
+  );
   const dispatch = useDispatch();
 
   const throwAsyncError = useAsyncError();
@@ -75,75 +80,81 @@ function Search(props) {
 
   const handleSubmit = (values, actions) => {
     setLoaded(false);
-    productRequests.searchForProduct(values.search)
-      .then(
-        data => {
-          setSearchResult(data);
-          setLoaded(true);
-          const query = values.search.split(' ').join('-')
-          if (data.length) {
-            dispatch(searchResultActions.setSearchResult(data));
-            history.push(`/products/search?query=${query}`);
-            setActiveDropdown(false);
-            dispatch(isAnyDropdownOpenActions.closedDropdown());
-          }
-        },
-        error => throwAsyncError(error),
-      );
+    productRequests.searchForProduct(values.search).then(
+      (data) => {
+        setSearchResult(data);
+        setLoaded(true);
+        const query = values.search.split(' ').join('-');
+        if (data.length) {
+          dispatch(searchResultActions.setSearchResult(data));
+          history.push(`/products/search?query=${query}`);
+          setActiveDropdown(false);
+          dispatch(isAnyDropdownOpenActions.closedDropdown());
+        }
+      },
+      (error) => throwAsyncError(error)
+    );
   };
 
-
-  const informationToast = useMemo(() => <Toast
-    variant="filled"
-    className={styles.informationToast}
-    message='No items have been found '
-  />, []);
+  const informationToast = useMemo(
+    () => (
+      <Toast
+        variant="filled"
+        className={styles.informationToast}
+        message="No items have been found "
+      />
+    ),
+    []
+  );
 
   const dropdownContent = (
     <>
       <Formik
         initialValues={{
-          search: '',
+          search: ''
         }}
         validationSchema={Yup.object().shape({
-          search: Yup
-            .string()
-            .min(2, 'It\'s required to type at least two characters')
-            .required('Fill in this field, please'),
-
+          search: Yup.string()
+            .min(2, "It's required to type at least two characters")
+            .required('Fill in this field, please')
         })}
         onSubmit={handleSubmit}
       >
-        {(
-          {
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-          }) => {
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched
+        }) => {
           return (
             <form onSubmit={handleSubmit} className={styles.form}>
-
               <Box className={`${styles.textFieldWrapper} wrapper`}>
                 <TextField
-                  color='primary'
+                  color="primary"
                   value={values.search}
                   fullWidth
-                  label='Search for item'
+                  label="Search for item"
                   inputProps={{
                     onChange: handleChange,
                     onBlur: handleBlur,
                     name: 'search',
-                    className: styles.input,
+                    className: styles.input
                   }}
                 />
 
-                {errors.search && touched.search && <p className={styles.error}>{errors.search}</p>}
+                {errors.search && touched.search && (
+                  <p className={styles.error}>{errors.search}</p>
+                )}
               </Box>
               <Box className={styles.btnWrapper}>
-                <Button text='search' type='submit' backgroundColor='#000000' color='#FFFFFF' />
+                <Button
+                  text="search"
+                  type="submit"
+                  backgroundColor="#000000"
+                  color="#FFFFFF"
+                />
               </Box>
             </form>
           );
@@ -155,15 +166,19 @@ function Search(props) {
 
   return (
     <>
-      <Box onClick={handleIconClick} className={styles.imageWrapper} data-testid='nav-item-search'>
-        <img className={styles.icon} src={search} alt='search icon' />
+      <Box
+        onClick={handleIconClick}
+        className={styles.imageWrapper}
+        data-testid="nav-item-search"
+      >
+        <img className={styles.icon} src={search} alt="search icon" />
         {isDesktop && <p>Search</p>}
       </Box>
       <Dropdown
         lockBodyScrolling
         classNames={{
           closed: styles.dropdown,
-          active: styles.dropdownActive,
+          active: styles.dropdownActive
         }}
         isActive={isDropdownActive}
         children={dropdownContent}

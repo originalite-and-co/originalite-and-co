@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {Snackbar} from "@material-ui/core";
+import { Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import CloseIcon from '@material-ui/icons/Close';
 Toast.propTypes = {
-    message: PropTypes.string.isRequired,
-    autoHideDuration: PropTypes.number,
-    severity: PropTypes.oneOf(["success", "error", "info", "warning"]),
-    variant: PropTypes.oneOf(["filled", "outlined", "standard"]),
-    anchorOrigin: PropTypes.exact({
-        horizontal: PropTypes.oneOf(["center", "left", "right"]),
-        vertical: PropTypes.oneOf(["bottom", "up"])
-    })
+  message: PropTypes.string.isRequired,
+  autoHideDuration: PropTypes.number,
+  severity: PropTypes.oneOf(['success', 'error', 'info', 'warning']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  anchorOrigin: PropTypes.exact({
+    horizontal: PropTypes.oneOf(['center', 'left', 'right']),
+    vertical: PropTypes.oneOf(['bottom', 'up'])
+  })
 };
 
 Toast.defaultProps = {
-    autoHideDuration: 6000,
-    severity: "info",
-    variant: "outlined",
+  autoHideDuration: 6000,
+  severity: 'info',
+  variant: 'outlined'
 };
 
 /**
@@ -33,29 +33,47 @@ Toast.defaultProps = {
  * @constructor
  */
 
-function Toast({message, autoHideDuration, severity, variant, anchorOrigin, className}) {
-    const [isOpen, setOpen] = useState(true);
+function Toast({
+  message,
+  autoHideDuration,
+  severity,
+  variant,
+  anchorOrigin,
+  className
+}) {
+  const [isOpen, setOpen] = useState(true);
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false)
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
     }
 
-    return (
-        <Snackbar className={className} open={isOpen} onClose={handleClose} anchorOrigin={anchorOrigin} autoHideDuration={autoHideDuration} >
-            <MuiAlert
-                action={<CloseIcon data-testid="error-toast-close-icon" onClick={handleClose}/>}
-                onClose={handleClose}
-                variant={variant}
-                severity={severity}
-            >
-                {message}
-            </MuiAlert>
-        </Snackbar>
-    );
+    setOpen(false);
+  };
+
+  return (
+    <Snackbar
+      className={className}
+      open={isOpen}
+      onClose={handleClose}
+      anchorOrigin={anchorOrigin}
+      autoHideDuration={autoHideDuration}
+    >
+      <MuiAlert
+        action={
+          <CloseIcon
+            data-testid="error-toast-close-icon"
+            onClick={handleClose}
+          />
+        }
+        onClose={handleClose}
+        variant={variant}
+        severity={severity}
+      >
+        {message}
+      </MuiAlert>
+    </Snackbar>
+  );
 }
 
 export default Toast;
