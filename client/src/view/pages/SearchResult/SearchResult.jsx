@@ -32,7 +32,7 @@ function SearchResult() {
   }
 
   if (!searchResult.length && !products.length) {
-    productRequests.searchForProduct({ query })
+    productRequests.searchForProduct(_.lowerCase(query))
       .then(
         data => {
           setProducts(data);
@@ -61,19 +61,11 @@ function SearchResult() {
             color="textSecondary"
             className={classes.heading}
           >
-            {_.upperFirst(query)}
+            {_.upperFirst(_.lowerCase(query))}
           </Typography>
           <Box className={classes.grid}>
             {productList}
           </Box>
-          {/*<Grid*/}
-          {/*  container*/}
-          {/*  component="ul"*/}
-          {/*  direction="row"*/}
-          {/*  alignItems="flex-start"*/}
-          {/*  justifyContent="space-between"*/}
-          {/*>*/}
-          {/*</Grid>*/}
         </Box>
       </Box>
 
