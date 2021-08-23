@@ -123,7 +123,7 @@ function Products({ categoryTitle, products, productsQuantity, loadMoreProducts,
             isLoaded ?
               (
                 <Typography className={classes.noItemsAlert} component='p' variant='h3'>
-                  There is no items that match such filters
+                  There are no items that match such filters
                 </Typography>
               ) : (
                 <CircularProgress className={classes.productsLoader} color='primary' />
