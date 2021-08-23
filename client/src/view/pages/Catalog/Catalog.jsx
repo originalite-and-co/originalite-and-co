@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react';
 
-import Header from '../../components/Header/Header'
-import Products from './Products/Products'
-import CatalogBreadcrumbs from './Breadcrumbs/CatalogBreadcrumbs'
-import Footer from '../../components/Footer/Footer'
-import Filter from './Filter/Filter'
+import Header from '../../components/Header/Header';
+import Products from './Products/Products';
+import CatalogBreadcrumbs from './Breadcrumbs/CatalogBreadcrumbs';
+import Footer from '../../components/Footer/Footer';
+import Filter from './Filter/Filter';
 
-import constants from '../../constants'
-import useWindowSize from '../../hooks/useWindowSize'
-import { useHistory } from 'react-router-dom'
-import useAsyncError from '../../hooks/useAsyncError'
+import constants from '../../constants';
+import useWindowSize from '../../hooks/useWindowSize';
+import { useHistory } from 'react-router-dom';
+import useAsyncError from '../../hooks/useAsyncError';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -18,10 +18,9 @@ import {
 } from '../../../redux/features/filters';
 import { catalogRequests, productRequests } from '../../../api/server';
 
-import { Box, Grid } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import generateStyles from './styles'
-
+import { Box, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
 
 /***
  * Closure is used to create protected variable
@@ -33,7 +32,7 @@ function numberOfProductsGenerator(initialValue) {
   let number = initialValue;
   return function* (step, maxLength) {
     while (number <= maxLength) {
-      yield (number += step)
+      yield (number += step);
     }
   };
 }
