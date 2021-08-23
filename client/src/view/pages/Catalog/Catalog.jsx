@@ -66,6 +66,7 @@ function Catalog() {
     () => numberOfProductsGenerator(numberOfProducts),
     []
   );
+
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
     [productsQuantity]
