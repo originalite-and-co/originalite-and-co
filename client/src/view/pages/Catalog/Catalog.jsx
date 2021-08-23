@@ -18,9 +18,9 @@ import {
 } from '../../../redux/features/filters';
 import { catalogRequests, productRequests } from '../../../api/server';
 
-import { Box, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import generateStyles from './styles';
+import { Box, Grid } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import generateStyles from './styles'
 
 
 /***
