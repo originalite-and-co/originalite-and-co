@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './ProductCard.module.scss';
-import { Grid, Typography, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
@@ -10,7 +10,7 @@ ProductCard.propTypes = {
   product: PropTypes.object.isRequired
 };
 
-function ProductCard({ product, size }) {
+function ProductCard({ product }) {
   const [isDesktop, setDesktop] = useState(false);
 
   const { width } = useWindowSize();

@@ -40,17 +40,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.{js,jsx} --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "npm run lint",
-      "git add"
-    ]
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -80,5 +69,16 @@
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run lint",
+      "git add"
+    ]
+  }
 }
