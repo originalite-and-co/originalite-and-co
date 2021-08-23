@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Header from '../../components/Header/Header';
 import Products from './Products/Products';
@@ -39,7 +39,7 @@ function numberOfProductsGenerator(initialValue) {
   };
 }
 
-function Catalog(props) {
+function Catalog() {
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
   const [numberOfProducts, setNumberOfProducts] = useState(4);
@@ -70,7 +70,7 @@ function Catalog(props) {
   );
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
-    [productsQuantity]
+    [generator, numberOfProducts, productsQuantity]
   );
 
   useEffect(() => {
@@ -82,7 +82,7 @@ function Catalog(props) {
       (data) => setCategoryName(data.name),
       (error) => throwAsyncError(error)
     );
-  }, [location, categoryID]);
+  }, [location, categoryID, throwAsyncError]);
 
   useEffect(() => {
     /**
@@ -103,11 +103,18 @@ function Catalog(props) {
       },
       (error) => throwAsyncError(error)
     );
-  }, [query, numberOfProducts, location.pathname]);
+  }, [
+    query,
+    numberOfProducts,
+    location.pathname,
+    replace,
+    categoryID,
+    throwAsyncError
+  ]);
 
   useEffect(() => {
     dispatch(filterOperations.getFilters(location));
-  }, [location.pathname]);
+  }, [dispatch, location, location.pathname]);
 
   /**
    * this function increases the number of products that should be requested
