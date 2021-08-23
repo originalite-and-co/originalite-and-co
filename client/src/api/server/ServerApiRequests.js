@@ -45,7 +45,7 @@ class ServerApiRequests {
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async create(body, path,headers, exception) {
+  async create(body, path, exception, headers) {
     const currentPath = path || this.path.create || this.path;
     const currentHeaders = headers || this.headers.create || this.headers;
     const currentException = exception || this.fetchException.create || this.fetchException;
@@ -61,9 +61,10 @@ class ServerApiRequests {
       const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
+        const readableData = createReadableData(data);
         throw {
           ...currentException,
-          message: data,
+          message: readableData,
           status: response.status,
           statusText: response.statusText,
         };
@@ -81,7 +82,7 @@ class ServerApiRequests {
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async retrieve(path,headers, exception) {
+  async retrieve(path, exception,headers) {
     const currentPath = path || this.path.retrieve || this.path;
     const currentHeaders = headers || this.headers.retrieve || this.headers;
     const currentException = exception|| this.fetchException.retrieve || this.fetchException;
@@ -95,9 +96,10 @@ class ServerApiRequests {
       const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
+        const readableData = createReadableData(data);
         throw {
           ...currentException,
-          message: data,
+          message: readableData,
           status: response.status,
           statusText: response.statusText,
         };
@@ -116,7 +118,7 @@ class ServerApiRequests {
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async update (body, path,headers, exception){
+  async update (body, path, exception, headers){
     const currentPath = path || this.path.update || this.path;
     const currentHeaders = headers || this.headers.update || this.headers;
     const currentException = exception || this.fetchException.update || this.fetchException;
@@ -131,9 +133,10 @@ class ServerApiRequests {
       const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
+        const readableData = createReadableData(data);
         throw {
           ...currentException,
-          message: data,
+          message: readableData,
           status: response.status,
           statusText: response.statusText,
         };
@@ -151,7 +154,7 @@ class ServerApiRequests {
    * @param {Error} [exception] - exception that will be thrown in catch block
    * @returns {Promise<Object|Array|string|{statusText: string, message: (any|string), status: number}>}
    */
-  async delete (path,headers, exception){
+  async delete (path, exception,headers){
     const currentPath = path || this.path.delete || this.path;
     const currentHeaders = headers || this.headers.delete || this.headers;
     const currentException = exception || this.fetchException.delete || this.fetchException;
@@ -165,9 +168,10 @@ class ServerApiRequests {
       const data = isResponseIsJSON ? await response.json() : await response.text();
 
       if (!response.ok) {
+        const readableData = createReadableData(data);
         throw {
           ...currentException,
-          message: data,
+          message: readableData,
           status: response.status,
           statusText: response.statusText,
         };
@@ -178,6 +182,17 @@ class ServerApiRequests {
       throw error || currentException;
     }
   }
+}
+
+function createReadableData (data) {
+  if (typeof data === "object" && data !== null){
+    return Object.values(data).join(".")
+  }
+
+  if (Array.isArray(data)){
+    return data.join(".");
+  }
+  return data;
 }
 
 export default ServerApiRequests;

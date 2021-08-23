@@ -75,14 +75,15 @@ function Search(props) {
 
   const handleSubmit = (values, actions) => {
     setLoaded(false);
-    productRequests.searchForProduct({ query: values.search })
+    productRequests.searchForProduct(values.search)
       .then(
         data => {
           setSearchResult(data);
           setLoaded(true);
+          const query = values.search.split(' ').join('-')
           if (data.length) {
             dispatch(searchResultActions.setSearchResult(data));
-            history.push(`/products/search?query=${values.search}`);
+            history.push(`/products/search?query=${query}`);
             setActiveDropdown(false);
             dispatch(isAnyDropdownOpenActions.closedDropdown());
           }
