@@ -1,6 +1,6 @@
 const generateStyles = ({ mixins, palette, breakpoints }) => ({
   heading: {
-    marginBottom: '1rem',
+    marginBottom: '1rem'
   },
   filterBtn: {
     ...mixins.resetButtonStyles(),
@@ -10,25 +10,25 @@ const generateStyles = ({ mixins, palette, breakpoints }) => ({
     lineHeight: '1',
     color: palette.text.secondary,
     marginTop: '2vh',
-    padding: 0,
+    padding: 0
   },
   filterIcon: {
     position: 'relative',
     bottom: '4px',
-    marginRight: '4px',
+    marginRight: '4px'
   },
   noItemsAlert: {
-    marginTop: '10vh',
+    marginTop: '10vh'
   },
   dropdown: {
     top: '68px',
     left: '-200vw',
     bottom: 0,
     zIndex: 22,
-    backgroundColor: palette.secondary.main,
+    backgroundColor: palette.secondary.main
   },
   dropdownActive: {
-    left: 0,
+    left: 0
   },
   productListWrapper: {
     position: 'relative',
@@ -41,22 +41,20 @@ const generateStyles = ({ mixins, palette, breakpoints }) => ({
 
     [breakpoints.up('desktop')]: {
       gridAutoRows: 'minmax(500px, 38vw)',
-      gridGap: '7.5vw 7.2vw',
-
-    },
-
+      gridGap: '7.5vw 7.2vw'
+    }
   },
   loader: {
     position: 'absolute',
     bottom: '1vh',
     left: '50%',
-    transform: 'translate(-50%, 0)',
+    transform: 'translate(-50%, 0)'
   },
   productsLoader: {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -50%)'
   }
 });
 

@@ -1,7 +1,4 @@
-import {
-  generateFetchException,
-  generateHeaders
-} from './utils.js';
+import { generateFetchException, generateHeaders } from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const WISHLIST_PATH = '/api/wishlist';
@@ -12,10 +9,14 @@ const exceptions = {
   create: generateFetchException('creating a wishlist'),
   retrieve: generateFetchException('retrieving the wishlist'),
   update: generateFetchException('updating the wishlist'),
-  delete: generateFetchException('deleting the wishlist'),
+  delete: generateFetchException('deleting the wishlist')
 };
 
-const wishlistRequests = new ServerApiRequests(WISHLIST_PATH, headers, exceptions);
+const wishlistRequests = new ServerApiRequests(
+  WISHLIST_PATH,
+  headers,
+  exceptions
+);
 
 /**
  *
@@ -31,7 +32,7 @@ const createWishlist = async (data) => {
  * @returns {Promise<Object>}
  */
 const retrieveWishlist = async () => {
-  return await wishlistRequests.retrieve(null,generateHeaders());
+  return await wishlistRequests.retrieve(null, generateHeaders());
 };
 
 /**
@@ -50,7 +51,11 @@ const updateWishlist = async (data) => {
  */
 const addProductToWishlist = async (productId) => {
   const exception = generateFetchException('adding a product to the wishlist');
-  return await wishlistRequests.update(null, `${WISHLIST_PATH}/${productId}`, exception);
+  return await wishlistRequests.update(
+    null,
+    `${WISHLIST_PATH}/${productId}`,
+    exception
+  );
 };
 
 /**
@@ -59,8 +64,13 @@ const addProductToWishlist = async (productId) => {
  * @returns {Promise<Object>}
  */
 const deleteProductFromWishlist = async (productId) => {
-  const exception = generateFetchException('deleting a product from the wishlist');
-  return await wishlistRequests.delete(`${WISHLIST_PATH}/${productId}`, exception);
+  const exception = generateFetchException(
+    'deleting a product from the wishlist'
+  );
+  return await wishlistRequests.delete(
+    `${WISHLIST_PATH}/${productId}`,
+    exception
+  );
 };
 
 /**
@@ -77,7 +87,7 @@ const wishlist = {
   updateWishlist,
   addProductToWishlist,
   deleteProductFromWishlist,
-  deleteWishlist,
+  deleteWishlist
 };
 
 export default wishlist;

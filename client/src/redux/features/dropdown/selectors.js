@@ -1,7 +1,7 @@
-const getIsAnyDropdownOpen = state => state.isAnyDropdownOpen;
+const getIsAnyDropdownOpen = (state) => state.isAnyDropdownOpen;
 
 const selectors = {
-    getIsAnyDropdownOpen,
-}
+  getIsAnyDropdownOpen
+};
 
 export default selectors;
