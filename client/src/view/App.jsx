@@ -13,7 +13,7 @@ function App() {
       <AppRoutes />
     </CustomThemeProvider>
 
-  );
+  )
 }
 
-export default App;
+export default App
