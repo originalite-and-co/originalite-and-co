@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {

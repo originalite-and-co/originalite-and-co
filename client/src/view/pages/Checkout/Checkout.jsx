@@ -1,8 +1,12 @@
 import React from 'react';
-import Home from '../../pages/Home/Home';
+import { Stepper } from '../../components/Stepper';
 
 function Checkout() {
-  return <div></div>;
+  return (
+    <>
+      <Stepper />
+    </>
+  );
 }
 
 export default Checkout;

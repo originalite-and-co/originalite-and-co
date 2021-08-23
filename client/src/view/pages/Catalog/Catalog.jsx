@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Header from '../../components/Header/Header';
 import Products from './Products/Products';
@@ -22,8 +22,6 @@ import { Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
-Catalog.propTypes = {};
-
 /***
  * Closure is used to create protected variable
  *
@@ -39,7 +37,7 @@ function numberOfProductsGenerator(initialValue) {
   };
 }
 
-function Catalog(props) {
+function Catalog() {
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
   const [numberOfProducts, setNumberOfProducts] = useState(4);
@@ -70,7 +68,7 @@ function Catalog(props) {
   );
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
-    [productsQuantity]
+    [generator, numberOfProducts, productsQuantity]
   );
 
   useEffect(() => {

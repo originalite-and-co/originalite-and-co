@@ -59,29 +59,17 @@ function MyWishlist({ wishlist }) {
         {isDesktop ? (
           <Button
             color="#FFFFFF"
-            onClick={() => {
-              console.log('add to cart');
-            }}
+            onClick={() => {}}
             backgroundColor="#000000"
             text="ADD TO CART"
             type="button"
           />
         ) : (
-          <button
-            className={classes.cartBtn}
-            onClick={() => {
-              console.log('add to cart');
-            }}
-          >
+          <button className={classes.cartBtn} onClick={() => {}}>
             add to {<LocalMallIcon />}
           </button>
         )}
-        <button
-          className={classes.removeBtn}
-          onClick={() => {
-            console.log('remove from cart');
-          }}
-        >
+        <button className={classes.removeBtn} onClick={() => {}}>
           remove
         </button>
       </Box>

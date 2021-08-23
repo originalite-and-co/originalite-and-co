@@ -15,7 +15,7 @@ import SearchResult from '../pages/SearchResult/SearchResult';
 import Product from '../pages/Product/Product';
 
 import useAsyncError from '../hooks/useAsyncError';
-import { linkRequests, pageRequests } from '../../api/server';
+import { pageRequests } from '../../api/server';
 import StaticPage from '../components/StaticPage/StaticPage';
 import {
   authorizationSelectors,
@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function AppRoutes() {
   const dispatch = useDispatch();
+
   const authorization = useSelector(authorizationSelectors.authorization);
   const [isAuthenticated, setAuthenticated] = useState(
     !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
