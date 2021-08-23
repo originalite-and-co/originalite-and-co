@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,37 +7,37 @@
   position: relative;
   width: 14px;
 }
-.container{
+.container {
   display: block;
 }
-.line{
+.line {
   width: 14px;
   height: 1px;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
 }
-.topLineClicked{
+.topLineClicked {
   transform: rotate(45deg);
   width: 16px;
   height: 1px;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   top: 5px;
   position: absolute;
 }
-.bottomLineClicked{
+.bottomLineClicked {
   transform: rotate(-45deg);
   width: 16px;
   height: 1px;
   top: 5px;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   position: absolute;
 }
-.middleLineClicked{
+.middleLineClicked {
   display: none;
 }
-.middleLine{
+.middleLine {
   width: 8px;
   height: 1px;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
 }
 
 .dropdown {
@@ -52,7 +52,7 @@
   left: 0;
 }
 
-.text{
+.text {
   font-family: Open Sans, sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -60,25 +60,25 @@
   line-height: 19px;
 }
 
-.auth{
+.auth {
   display: flex;
   justify-content: flex-start;
   margin-top: 40px;
   position: relative;
 }
 
-.auth:after{
-  content: '';
+.auth:after {
+  content: "";
   position: absolute;
   top: 39px;
   width: 270px;
   height: 1px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
-.btn{
+.btn {
   border: none;
   background: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: Open Sans, sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -87,10 +87,9 @@
   cursor: pointer;
 }
 
-.list{
+.list {
   margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-

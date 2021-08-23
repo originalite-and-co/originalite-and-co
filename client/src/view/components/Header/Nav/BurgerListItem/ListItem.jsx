@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import styles from './ListItem.module.scss';
 
-export function ListItem({ text, }) {
+export function ListItem({ text }) {
   return (
     <Box className={styles.listItem}>
       <Link to="/">
@@ -18,7 +18,7 @@ export function ListItem({ text, }) {
   );
 }
 
-export function ListItemUpper({ text, }) {
+export function ListItemUpper({ text }) {
   return (
     <Box className={styles.listItem}>
       <Box>
@@ -34,8 +34,8 @@ export function ListItemUpper({ text, }) {
 }
 
 ListItem.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
 ListItemUpper.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };

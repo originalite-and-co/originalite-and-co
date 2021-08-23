@@ -1,65 +1,65 @@
 @import "./src/view/assets/styles/variables";
 
-.root{
+.root {
   position: relative;
 }
 
 .heading {
-  padding-top: 1.2rem!important;
-  padding-bottom: 0.8rem!important;
+  padding-top: 1.2rem !important;
+  padding-bottom: 0.8rem !important;
 }
 
-.closeButton{
-  position: absolute!important;
-  top: 1.2rem!important;
-  right: 0.8rem!important;
-  padding: 0!important;
+.closeButton {
+  position: absolute !important;
+  top: 1.2rem !important;
+  right: 0.8rem !important;
+  padding: 0 !important;
 }
 
-.divider{
+.divider {
 }
 
-.content{
+.content {
   padding-top: 6vh;
 }
 
-.accordion{
-  box-shadow: unset!important;
+.accordion {
+  box-shadow: unset !important;
 
-  &::before{
-    content: unset!important;
+  &::before {
+    content: unset !important;
   }
 }
 
-.accordionSummary{
-  padding: 0!important;
+.accordionSummary {
+  padding: 0 !important;
 }
 
-.accordionSummaryText{
+.accordionSummaryText {
   text-transform: uppercase;
 }
 
-.accordionDetails{
-
+.accordionDetails {
 }
 
 @media (min-width: $desktop) {
-  .content{
-    padding: 3.5vh 0 0 0!important;
+  .content {
+    padding: 3.5vh 0 0 0 !important;
   }
 
-  .accordion, .accordionSummary, .accordionDetails{
-    background-color: #000000!important;
+  .accordion,
+  .accordionSummary,
+  .accordionDetails {
+    background-color: #000000 !important;
   }
 
-  .accordionSummaryText{
+  .accordionSummaryText {
     font-family: Josefin Sans, sans-serif;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
-  .accordionIcon{
-    color: #FFFFFF;
+  .accordionIcon {
+    color: #ffffff;
   }
-
 }

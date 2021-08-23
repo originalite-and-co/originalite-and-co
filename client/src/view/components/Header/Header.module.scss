@@ -1,6 +1,6 @@
 @import "src/view/assets/styles/variables";
 
-.header{
+.header {
   background: #000000;
   z-index: 20;
   position: fixed;
@@ -9,13 +9,13 @@
   width: 100%;
 }
 
-.inner{
+.inner {
   margin: 0 auto;
   min-width: 320px;
 }
 
-@media screen and (min-width: $min-desktop){
-  .inner{
+@media screen and (min-width: $min-desktop) {
+  .inner {
     display: flex;
     justify-content: space-between;
     align-items: center;

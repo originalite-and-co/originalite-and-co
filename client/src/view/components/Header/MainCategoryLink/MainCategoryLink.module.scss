@@ -1,20 +1,20 @@
-@import"./src/view/assets/styles/variables";
+@import "./src/view/assets/styles/variables";
 
 .navItem {
   flex: 1;
 }
 
 .navItemBtn.active {
-  border-bottom-color: #FFFFFF;
+  border-bottom-color: #ffffff;
 }
 
 .navItemBtn {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-size: 12px;
   line-height: 12px;
   margin: 0 auto;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   background: none;
   cursor: pointer;
@@ -23,11 +23,11 @@
 }
 
 .navItemBtn:hover {
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #ffffff;
 }
 
 @media (min-width: $desktop) {
-  .navItemBtn{
+  .navItemBtn {
     font-size: 20px;
     line-height: 20px;
   }

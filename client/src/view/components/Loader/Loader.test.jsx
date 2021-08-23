@@ -4,13 +4,13 @@ import Loader from './Loader';
 
 describe('Loader', () => {
   test('smoke', () => {
-    const {getByTestId} = render(
+    const { getByTestId } = render(
       <CustomThemeProvider>
         <Loader />
-      </CustomThemeProvider>,
+      </CustomThemeProvider>
     );
 
-    expect(getByTestId("loaderContainer")).toBeInTheDocument();
-    expect(getByTestId("loader")).toBeInTheDocument();
+    expect(getByTestId('loaderContainer')).toBeInTheDocument();
+    expect(getByTestId('loader')).toBeInTheDocument();
   });
 });

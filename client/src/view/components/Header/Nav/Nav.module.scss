@@ -1,20 +1,20 @@
-.nav{
+.nav {
   padding-top: 14px;
   padding-bottom: 14px;
   position: relative;
   background-color: #000000;
 }
 
-.inner{
+.inner {
   display: flex;
   justify-content: space-between;
 }
 
-.nav:after{
+.nav:after {
   content: "";
   width: 100%;
   height: 1px;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   position: absolute;
   bottom: 0;
 }

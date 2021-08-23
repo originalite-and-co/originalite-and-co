@@ -18,28 +18,27 @@ class ErrorBoundary extends Component {
   render() {
     const { props, state } = this;
     if (state.hasError) {
-
       return props.renderChildren ? (
         <>
           {props.children}
           {props.fallback}
         </>
-      ) : props.fallback;
+      ) : (
+        props.fallback
+      );
     }
 
     return props.children;
   }
-
 }
-
 
 ErrorBoundary.propTypes = {
   fallback: PropTypes.element.isRequired,
-  renderChildren: PropTypes.bool,
+  renderChildren: PropTypes.bool
 };
 
 ErrorBoundary.defaultProps = {
-  renderChildren: false,
+  renderChildren: false
 };
 
 export default React.memo(ErrorBoundary);

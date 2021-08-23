@@ -1,4 +1,4 @@
-import React,  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CategoryCard from '../../../components/CategoryCard/CategoryCard';
 
@@ -18,41 +18,36 @@ const ShopCategories = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    catalogRequests.retrieveCatalog()
-      .then(
-        res => setCategoryList(res.splice(0, 4)),
-        error => throwError(error),
-      );
+    catalogRequests.retrieveCatalog().then(
+      (res) => setCategoryList(res.splice(0, 4)),
+      (error) => throwError(error)
+    );
   }, []);
 
-  const gridArea = ["men", "women", "kids", "outwear"];
+  const gridArea = ['men', 'women', 'kids', 'outwear'];
   const list = categoryList.map((product, index) => {
     return (
       <CategoryCard
         gridArea={gridArea[index]}
         product={product}
-        key={product._id} />
+        key={product._id}
+      />
     );
   });
 
   return (
     <Box className={classes.root}>
       <Typography
-        color='textPrimary'
-        component='h3'
-        variant='body2'
+        color="textPrimary"
+        component="h3"
+        variant="body2"
         className={classes.heading}
       >
         Shop by Category
       </Typography>
-      <Box
-        className={classes.categoryWrapper}
-      >
-        {list}
-      </Box>
+      <Box className={classes.categoryWrapper}>{list}</Box>
     </Box>
   );
-
 };
 
 export default ShopCategories;

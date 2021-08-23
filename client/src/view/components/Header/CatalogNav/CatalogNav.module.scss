@@ -1,14 +1,14 @@
 @import "./../../../assets/styles/variables";
 
 a {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .catalogNavWrapper {
   display: flex;
   justify-content: space-between;
-  padding-top: 14px!important;
-  padding-bottom: 11px!important;
+  padding-top: 14px !important;
+  padding-bottom: 11px !important;
   z-index: 10;
 }
 
@@ -19,7 +19,7 @@ a {
   top: 124px;
 }
 
-.dropdownActive{
+.dropdownActive {
   right: 0;
 }
 
@@ -45,16 +45,15 @@ a {
   line-height: 25px;
 
   &:hover {
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #ffffff;
   }
 }
 
 .categoryLinkActive {
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #ffffff;
 }
 
-
-@media screen and (min-width: $min-desktop){
+@media screen and (min-width: $min-desktop) {
   .dropdown {
     top: 93px;
     right: 200vh;
@@ -62,21 +61,21 @@ a {
     opacity: 0;
   }
 
-  .dropdownActive{
+  .dropdownActive {
     right: 0;
     opacity: 1;
   }
 
-  .categoryList{
+  .categoryList {
     height: 100%;
     align-content: flex-start;
   }
 
-  .categoryListItem{
-    margin-right: 17%!important;
+  .categoryListItem {
+    margin-right: 17% !important;
   }
 
-  .categoryNav{
+  .categoryNav {
     overflow-y: unset;
   }
 
@@ -85,7 +84,7 @@ a {
     font-weight: 600;
     font-size: 20px;
     line-height: 27px;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-bottom: 48px;
     margin-top: 6vh;
   }

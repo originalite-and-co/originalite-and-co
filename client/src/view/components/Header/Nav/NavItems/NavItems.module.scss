@@ -1,26 +1,25 @@
 @import "./../../../../assets/styles/variables";
 @import "src/view/assets/typography/typography";
 
-
-.navItemsGroup{
+.navItemsGroup {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.navItem{
+.navItem {
   padding-right: 30px;
   position: relative;
 }
-img{
+img {
   cursor: pointer;
 }
 
-@media screen and (min-width: $min-desktop){
-  .navItemsGroup{
+@media screen and (min-width: $min-desktop) {
+  .navItemsGroup {
     width: 335px;
     justify-content: space-between;
   }
-  .imageWrapper{
+  .imageWrapper {
     padding-right: 0;
     cursor: pointer;
     display: flex;
@@ -29,13 +28,13 @@ img{
     font-family: Josefin Sans, sans-serif;
     font-size: 16px;
     line-height: 16px;
-    color: #E2DFDF;
+    color: #e2dfdf;
     max-width: 125px;
   }
-  .icon{
+  .icon {
     padding-right: 5px;
   }
-  .navItem{
+  .navItem {
     padding-right: 0;
   }
 }

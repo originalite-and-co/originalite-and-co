@@ -2,7 +2,7 @@
 @import "~slick-carousel/slick/slick-theme.css";
 @import "src/view/assets/styles/variables";
 
-.main{
+.main {
   display: block;
   margin-top: 200px;
 }
@@ -18,10 +18,8 @@
   }
 }
 
-
 @media (min-width: $desktop) {
-
-  .main{
+  .main {
     display: flex;
     margin-top: 200px;
     justify-content: space-around;
@@ -38,7 +36,7 @@
   }
 
   .info {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 
     h3 {
       font-weight: bold;
@@ -60,7 +58,8 @@
       margin-right: 180px;
     }
 
-    h2, span {
+    h2,
+    span {
       font-weight: bold;
       font-size: 24px;
       line-height: 33px;
@@ -71,11 +70,10 @@
   .itemNo {
     font-size: 14px;
     line-height: 19px;
-    color: #847A7A;
+    color: #847a7a;
   }
 
   .color {
-
     button {
       cursor: pointer;
       width: 30px;
@@ -90,11 +88,9 @@
       width: 35px;
       height: 35px;
     }
-
   }
 
   .sizes {
-
     li {
       border: 3px solid black;
       padding: 7px;
@@ -113,7 +109,7 @@
 
     .active {
       background: #000000;
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
     .disabled {
@@ -125,7 +121,7 @@
   .button {
     font-size: 20px;
     text-transform: uppercase;
-    background: #FFFFFF;
+    background: #ffffff;
     text-align: center;
     cursor: pointer;
     margin-top: 60px;
@@ -137,7 +133,7 @@
 
   .active_button {
     background: #000000;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 20px;
     text-transform: uppercase;
     text-align: center;
@@ -148,7 +144,6 @@
     border: 3px solid black;
   }
 
-
   .images {
     margin-top: 11px;
     margin-bottom: 180px;
@@ -157,4 +152,3 @@
     height: 200px;
   }
 }
-

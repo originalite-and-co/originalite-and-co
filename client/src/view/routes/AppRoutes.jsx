@@ -19,7 +19,7 @@ import { linkRequests, pageRequests } from '../../api/server';
 import StaticPage from '../components/StaticPage/StaticPage';
 import {
   authorizationSelectors,
-  authorizeOperations,
+  authorizeOperations
 } from '../../redux/features/authorization';
 import { useDispatch, useSelector } from 'react-redux';
 

@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '../../../../components/Button/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { Form, Formik, Field, va, ErrorMessage } from 'formik';
+import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { FormGroup, Typography } from '@material-ui/core';
 import { customerRequests } from '../../../../../api/server';
@@ -16,34 +16,32 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import { useDispatch } from 'react-redux';
-import {
-  authorizeOperations,
-} from '../../../../../redux/features/authorization';
+import { authorizeOperations } from '../../../../../redux/features/authorization';
 
 const useStyles = makeStyles({
   textField: {
     borderBottom: '1px solid white',
-    color: '#FFFFFF !important',
+    color: '#FFFFFF !important'
   },
   radio: {
-    color: '#FFFFFF !important',
+    color: '#FFFFFF !important'
   },
   visibilityBtn: {
     color: '#FFFFFF !important',
     position: 'absolute',
     top: '30%',
-    right: 0,
-  },
+    right: 0
+  }
 });
 
 const initialValues = {
   loginOrEmail: '',
-  password: '',
+  password: ''
 };
 
 const validationSchema = yup.object().shape({
   loginOrEmail: yup.string().email().label('email'),
-  password: yup.string().label('password'),
+  password: yup.string().label('password')
 });
 
 function LoginPage() {
@@ -62,10 +60,9 @@ function LoginPage() {
     <RadioButtonUncheckedIcon fontSize="small" className={classes.radio} />
   );
 
-  const {authorizeUser} = authorizeOperations
+  const { authorizeUser } = authorizeOperations;
 
   const forwardIfAuthorized = async () => {
-
     dispatch(authorizeUser());
 
     if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
@@ -98,7 +95,13 @@ function LoginPage() {
 
   return (
     <>
-      {loggedIn && <Toast severity="success" variant="filled" message="Welcome to Originalite, fashionista" />}
+      {loggedIn && (
+        <Toast
+          severity="success"
+          variant="filled"
+          message="Welcome to Originalite, fashionista"
+        />
+      )}
       <Box className={Styles.logInPageWrapper} data-testid="login-page">
         <p className={Styles.text}>
           Please enter your account details to log in
