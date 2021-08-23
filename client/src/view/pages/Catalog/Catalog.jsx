@@ -1,15 +1,15 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import Header from '../../components/Header/Header';
-import Products from './Products/Products';
-import CatalogBreadcrumbs from './Breadcrumbs/CatalogBreadcrumbs';
-import Footer from '../../components/Footer/Footer';
-import Filter from './Filter/Filter';
+import Header from '../../components/Header/Header'
+import Products from './Products/Products'
+import CatalogBreadcrumbs from './Breadcrumbs/CatalogBreadcrumbs'
+import Footer from '../../components/Footer/Footer'
+import Filter from './Filter/Filter'
 
-import constants from '../../constants';
-import useWindowSize from '../../hooks/useWindowSize';
-import { useHistory } from 'react-router-dom';
-import useAsyncError from '../../hooks/useAsyncError';
+import constants from '../../constants'
+import useWindowSize from '../../hooks/useWindowSize'
+import { useHistory } from 'react-router-dom'
+import useAsyncError from '../../hooks/useAsyncError'
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -39,7 +39,7 @@ function numberOfProductsGenerator(initialValue) {
   };
 }
 
-function Catalog() {
+function Catalog(props) {
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
   const [numberOfProducts, setNumberOfProducts] = useState(4);
@@ -70,7 +70,7 @@ function Catalog() {
   );
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
-    [generator, numberOfProducts, productsQuantity]
+    [productsQuantity]
   );
 
   useEffect(() => {
@@ -82,7 +82,7 @@ function Catalog() {
       (data) => setCategoryName(data.name),
       (error) => throwAsyncError(error)
     );
-  }, [location, categoryID, throwAsyncError]);
+  }, [location, categoryID]);
 
   useEffect(() => {
     /**
@@ -103,18 +103,11 @@ function Catalog() {
       },
       (error) => throwAsyncError(error)
     );
-  }, [
-    query,
-    numberOfProducts,
-    location.pathname,
-    replace,
-    categoryID,
-    throwAsyncError
-  ]);
+  }, [query, numberOfProducts, location.pathname]);
 
   useEffect(() => {
     dispatch(filterOperations.getFilters(location));
-  }, [dispatch, location, location.pathname]);
+  }, [location.pathname]);
 
   /**
    * this function increases the number of products that should be requested
