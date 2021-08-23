@@ -1,16 +1,15 @@
-
 const reducer = (state = [], action) => {
-    const {type, payload} = action;
+  const { type, payload } = action;
 
-    if (type === ""){
-        return state;
-    } else{
-        return state;
-    }
-}
-
-const reducers = {
-    cart: reducer,
+  if (type === '') {
+    return state;
+  } else {
+    return state;
+  }
 };
 
-export default reducers
+const reducers = {
+  cart: reducer
+};
+
+export default reducers;

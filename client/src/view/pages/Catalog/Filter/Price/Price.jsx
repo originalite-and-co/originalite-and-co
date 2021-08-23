@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import Slider from '@material-ui/core/Slider';
 import { filterActions } from '../../../../../redux/features/filters/index';
 
-import usePriceStyle from './style';
+import PriceStyle from './style';
 
-const PriceSlider = usePriceStyle(Slider);
+const PriceSlider = PriceStyle(Slider);
 
 const PriceFilter = () => {
   const min = 0;
@@ -23,7 +23,7 @@ const PriceFilter = () => {
         dispatch(
           filterActions.addFilter({
             minPrice,
-            maxPrice,
+            maxPrice
           })
         );
       }}

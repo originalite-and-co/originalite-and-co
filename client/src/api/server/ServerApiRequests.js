@@ -54,7 +54,7 @@ class ServerApiRequests {
       const response = await fetch(currentPath, {
         method: 'POST',
         headers: currentHeaders,
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       });
 
       const isResponseIsJSON = isJSON(response);
@@ -69,7 +69,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -93,7 +93,7 @@ class ServerApiRequests {
     try {
       const response = await fetch(currentPath, {
         method: 'GET',
-        headers: currentHeaders,
+        headers: currentHeaders
       });
 
       const isResponseIsJSON = isJSON(response);
@@ -107,7 +107,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -133,7 +133,7 @@ class ServerApiRequests {
       const response = await fetch(currentPath, {
         method: 'PUT',
         headers: currentHeaders,
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       });
 
       const isResponseIsJSON = isJSON(response);
@@ -147,7 +147,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -171,7 +171,7 @@ class ServerApiRequests {
     try {
       const response = await fetch(currentPath, {
         method: 'DELETE',
-        headers: currentHeaders,
+        headers: currentHeaders
       });
 
       const isResponseIsJSON = isJSON(response);
@@ -185,7 +185,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 

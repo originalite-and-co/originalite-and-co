@@ -11,7 +11,7 @@ const {
   DELETED_FILTER_VALUE,
   DELETED_FILTER,
   DELETED_ALL_FILTERS,
-  GOT_FILTERS,
+  GOT_FILTERS
 } = types;
 
 const reducer = (state = {}, { type, payload }) => {
@@ -46,7 +46,7 @@ const reducer = (state = {}, { type, payload }) => {
 };
 
 export default {
-  filters: reducer,
+  filters: reducer
 };
 
 function addFilter(state, payload) {
@@ -63,7 +63,7 @@ function addFilter(state, payload) {
 
     stateCopy = {
       ...stateCopy,
-      ...payload,
+      ...payload
     };
   });
 

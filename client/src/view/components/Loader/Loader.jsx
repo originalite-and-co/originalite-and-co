@@ -10,14 +10,14 @@ Loader.propTypes = {
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   className: PropTypes.shape({
     container: PropTypes.string,
-    loader: PropTypes.string,
+    loader: PropTypes.string
   }),
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   thickness: PropTypes.number,
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
   position: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']),
-    vertical: PropTypes.oneOf(['center', 'top', 'bottom']),
+    vertical: PropTypes.oneOf(['center', 'top', 'bottom'])
   }),
   value: PropTypes.number
 };
@@ -31,8 +31,8 @@ Loader.defaultProps = {
   variant: 'indeterminate',
   position: {
     horizontal: 'center',
-    vertical: 'center',
-  },
+    vertical: 'center'
+  }
 };
 
 /**
@@ -48,23 +48,20 @@ Loader.defaultProps = {
  * @returns {JSX.Element}
  * @constructor
  */
-function Loader(
-  {
-    fixed,
-    color,
-    className,
-    size,
-    thickness,
-    variant,
-    position,
-    value
-  }) {
-
+function Loader({
+  fixed,
+  color,
+  className,
+  size,
+  thickness,
+  variant,
+  position,
+  value
+}) {
   const useStyles = makeStyles((theme) => generateStyles(theme, size));
   const classes = useStyles();
 
   const { container = '', loader = '' } = className;
-
 
   let containerClassName = `${classes.root} ${container}`;
   let loaderClassName = `${classes.loader} ${loader}`;
@@ -93,7 +90,6 @@ function Loader(
       }
     }
   }
-
 
   return (
     <Box className={containerClassName} data-testid="loaderContainer">

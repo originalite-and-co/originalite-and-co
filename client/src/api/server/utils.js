@@ -6,9 +6,9 @@
 
 const generateHeaders = () => ({
   'Content-Type': 'application/json',
-  Authorization: sessionStorage.getItem('token') || localStorage.getItem('token'),
+  Authorization:
+    sessionStorage.getItem('token') || localStorage.getItem('token')
 });
-
 
 /**
  * This function generates custom exception
@@ -39,4 +39,3 @@ const generateFetchException = (action, error) => {
 };
 
 export { generateFetchException, generateHeaders };
-

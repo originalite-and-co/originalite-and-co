@@ -1,14 +1,14 @@
-import footerLinksTypes from "./types";
+import footerLinksTypes from './types';
 
-const {GOT_LINKS} = footerLinksTypes;
+const { GOT_LINKS } = footerLinksTypes;
 
-const getLinks = data => ({
-    type: GOT_LINKS,
-    payload: data
-})
+const getLinks = (data) => ({
+  type: GOT_LINKS,
+  payload: data
+});
 
 const actions = {
-    getLinks
+  getLinks
 };
 
 export default actions;
