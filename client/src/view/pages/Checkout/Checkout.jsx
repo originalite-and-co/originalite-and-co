@@ -1,14 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Home from '../../pages/Home/Home';
 
-Checkout.propTypes = {
-    
-};
+let x;
+console.log('kek');
 
-function Checkout(props) {
-    return (
-        <div>Checkout</div>
-    );
+function Checkout() {
+  return (
+    <div>
+      <Home />
+    </div>
+  );
 }
 
 export default Checkout;
