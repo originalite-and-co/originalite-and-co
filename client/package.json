@@ -38,14 +38,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix ./src/**/*.{js,jsx}",
-    "precommit": "lint-staged"
+    "lint": "eslint --fix ./src/**/*.{js,jsx}"
   },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,css,jss,scss}": [
-      "npm run lint",
-      "git add"
-    ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
   },
   "eslintConfig": {
     "extends": [
