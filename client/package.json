@@ -71,7 +71,7 @@
     "prettier": "^2.3.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
+    "src/**/*.{js,jsx,json}": [
       "npm run lint",
       "git add"
     ]
