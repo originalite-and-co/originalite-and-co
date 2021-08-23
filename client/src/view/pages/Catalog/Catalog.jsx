@@ -95,6 +95,7 @@ function Catalog() {
       : additionInfoQuery;
 
     setLoaded(false);
+
     productRequests.retrieveByQuery(requestQuery).then(
       (data) => {
         setProducts(data);
