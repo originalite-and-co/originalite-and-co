@@ -6,19 +6,26 @@ import { Redirect, Route } from 'react-router-dom';
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired
 };
 
 function PrivateRoute({
-  component: Component, isAuthenticated, path, ...rest
+  component: Component,
+  isAuthenticated,
+  path,
+  ...rest
 }) {
   return (
     <Route
       path={path}
       {...rest}
-      render={(renderProps) => (isAuthenticated
-        ? <Component {...renderProps} />
-        : <Redirect to="/auth/login" />)}
+      render={(renderProps) =>
+        isAuthenticated ? (
+          <Component {...renderProps} />
+        ) : (
+          <Redirect to="/auth/login" />
+        )
+      }
     />
   );
 }
