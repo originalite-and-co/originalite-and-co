@@ -71,4 +71,6 @@ const useStyles = makeStyles({
   }
 });
 
-export default { slide, carousel, useStyles };
+const defaultConf = { slide, carousel, useStyles };
+
+export default defaultConf;

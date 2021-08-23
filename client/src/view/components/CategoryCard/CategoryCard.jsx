@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './CategoryCard.module.scss';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 CategoryCard.propTypes = {
   product: PropTypes.object.isRequired

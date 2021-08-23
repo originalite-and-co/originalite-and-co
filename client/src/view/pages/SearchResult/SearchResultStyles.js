@@ -1,4 +1,4 @@
-const generateStyles = (theme) => ({
+const generateStyles = () => ({
   content: {
     paddingTop: '120px'
   },

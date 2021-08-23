@@ -37,9 +37,11 @@ const popularProductsCarousel = {
   }
 };
 
-export default {
+const custom = {
   slide,
   carousel,
   popularProductsCarousel,
   popularProductsSlide
 };
+
+export default custom;

@@ -1,19 +1,15 @@
-import React from 'react'
-import './assets/styles/App.scss'
+import React from 'react';
+import './assets/styles/App.scss';
 
-import AppRoutes from './routes/AppRoutes'
-import { useTheme } from '@material-ui/styles'
-import CustomThemeProvider from './HOC/CustomThemeProvider/CustomThemeProvider'
+import AppRoutes from './routes/AppRoutes';
+import CustomThemeProvider from './HOC/CustomThemeProvider/CustomThemeProvider';
 
 function App() {
-  
   return (
-  
-  <CustomThemeProvider>
+    <CustomThemeProvider>
       <AppRoutes />
     </CustomThemeProvider>
-
-  )
+  );
 }
 
-export default App
+export default App;
