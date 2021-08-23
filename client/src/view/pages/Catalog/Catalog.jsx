@@ -33,7 +33,7 @@ function numberOfProductsGenerator(initialValue) {
   let number = initialValue;
   return function* (step, maxLength) {
     while (number <= maxLength) {
-      yield (number += step);
+      yield (number += step)
     }
   };
 }
