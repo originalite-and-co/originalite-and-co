@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import OneProductInfo from "./Sections/OneProductInfo";
-import ImageMagnify from "./Sections/ImageMagnify";
-import OneProductStyles from "./OneProduct.module.scss";
+import ProductInfo from "./Sections/ProductInfo";
+import ProductImageSlider from "./Sections/ProductImageSlider";
+import ProductStyles from "./Product.module.scss";
 import {useRouteMatch} from "react-router-dom";
 import {productRequests, sizeRequests} from "../../../api/server";
 import useAsyncError from "../../hooks/useAsyncError";
-import sizes from "../../../api/server/sizes";
+import ViewedProducts from "./Sections/ViewedProducts";
 
-
-function OneProduct() {
+function Product() {
 
     const [product, setProduct] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [availableSizes, setAvailableSizes] = useState([])
 
-    const {params} = useRouteMatch()
+    const {params, url} = useRouteMatch()
+
     const itemNumber = params.itemNumber
 
     const throwAsyncError = useAsyncError()
@@ -37,22 +37,19 @@ function OneProduct() {
                         setIsLoaded(true)
                     },
                     error => throwAsyncError(error))
-        }, []
+        }, [url]
     )
 
     return isLoaded ? (
         <section className='wrapper'>
-            <div className={OneProductStyles.main}>
-                <ImageMagnify detail={product}/>
-                <OneProductInfo detail={product} availableSizes={availableSizes}/>
+            <div className={ProductStyles.main}>
+                <ProductImageSlider detail={product}/>
+                <ProductInfo detail={product} availableSizes={availableSizes}/>
             </div>
-            <div>
-                <h3>Recently viewed products</h3>
-                <div className={OneProductStyles.images}>
-                </div>
-            </div>
+            <h3 className={ProductStyles.viewed_title}>Recently viewed products</h3>
+            <ViewedProducts activeProductNumber={itemNumber}/>
         </section>
     ) : <p>Loading...</p>;
 }
 
-export default OneProduct;
+export default Product;

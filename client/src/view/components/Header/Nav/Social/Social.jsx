@@ -8,26 +8,26 @@ import SocialStyles from './Social.module.scss';
 
 function Social() {
   return (
-    <Box className={SocialStyles.social} data-testid="social">
-      <h3 className={SocialStyles.socialText}>follow us</h3>
-      <Box className={SocialStyles.socialGroup}>
-        <Box>
-          <Link to="/">
-            <img src={Facebook} alt="Facebook" />
-          </Link>
-        </Box>
-        <Box>
-          <Link to="/">
-            <img src={Instagram} alt="Instagram" />
-          </Link>
-        </Box>
-        <Box>
-          <Link to="/">
-            <img src={Pinterest} alt="Pinterest" />
-          </Link>
+      <Box className={SocialStyles.social} data-testid="social">
+        <h3 className={SocialStyles.socialText}>follow us</h3>
+        <Box className={SocialStyles.socialGroup}>
+          <Box>
+            <Link to="/">
+              <img src={Facebook} alt="Facebook" />
+            </Link>
+          </Box>
+          <Box>
+            <Link to="/">
+              <img src={Instagram} alt="Instagram" />
+            </Link>
+          </Box>
+          <Box>
+            <Link to="/">
+              <img src={Pinterest} alt="Pinterest" />
+            </Link>
+          </Box>
         </Box>
       </Box>
-    </Box>
   );
 }
 

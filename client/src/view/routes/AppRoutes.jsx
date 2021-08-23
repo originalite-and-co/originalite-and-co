@@ -11,7 +11,6 @@ import Member from "../pages/Member/Member";
 import Checkout from "../pages/Checkout/Checkout";
 import Catalog from "../pages/Catalog/Catalog";
 import Cart from "../pages/Cart/Cart";
-import Product from "../pages/Product/Product";
 import SearchResult from "../pages/SearchResult/SearchResult";
 
 import useAsyncError from "../hooks/useAsyncError";

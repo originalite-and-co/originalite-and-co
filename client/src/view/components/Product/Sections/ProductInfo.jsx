@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import OneProductStyles from '../OneProduct.module.scss'
+import OneProductStyles from '../Product.module.scss'
 
 
-function OneProductInfo({availableSizes, detail}) {
+
+function ProductInfo({availableSizes, detail}) {
 
     // const [isActiveColor, setActiveColor] = useState(null);
     const [activeSize, setActiveSize] = useState(null)
@@ -45,8 +46,8 @@ function OneProductInfo({availableSizes, detail}) {
             {/*</div>*/}
             <h3>Details</h3>
             <h3>Size</h3>
-            <div className={OneProductStyles.sizes}>
-                <ul>
+            <div >
+                <ul className={OneProductStyles.sizes}>
                     {availableSizes.map((item, index) => (
                         <li
                             key={item}
@@ -59,11 +60,13 @@ function OneProductInfo({availableSizes, detail}) {
                     ))}
                 </ul>
             </div>
-            <button className={activeSize !== null ? OneProductStyles.active_button : OneProductStyles.button}>
-                Add to cart
-            </button>
+            <div className={OneProductStyles.button_addToCart}>
+                <button className={activeSize !== null ? OneProductStyles.active : OneProductStyles.button}>
+                    Add to cart
+                </button>
+            </div>
         </div>
     )
 }
 
-export default OneProductInfo
+export default ProductInfo
