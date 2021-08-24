@@ -7,6 +7,7 @@ import getAllChildCategories from "../../../../utils/getAllChildCategories";
 import {makeStyles} from "@material-ui/styles";
 import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@material-ui/core";
 import generateCategoryPath from "../../../../utils/generateCategoryPath";
+import {generateStyles} from './ListItemStyle'
 
 export function ListItemUpper({text, category, catalog}) {
     const useStyles = makeStyles(generateStyles);
@@ -48,28 +49,6 @@ export function ListItemUpper({text, category, catalog}) {
             </Box>
         </Box>
     );
-}
-
-function generateStyles() {
-    return {
-        accordion: {
-            backgroundColor: '#000000',
-            flexDirection: 'row-reverse',
-            paddingBottom: '0px'
-        },
-        accordionSummary: {
-            flexDirection: 'row-reverse',
-            paddingBottom: '0px'
-        },
-        accordionDetails: {
-            padding: '0 32px 16px'
-        },
-        listItemBody: {
-            display: "flex",
-            alignItems: "center"
-        },
-
-    }
 }
 
 ListItemUpper.propTypes = {
