@@ -1,16 +1,16 @@
-import { generateFetchException, generateHeaders } from './utils.js';
+import { generateFetchException, generateHeaders } from "./utils.js";
 
-import ServerApiRequests from './ServerApiRequests';
+import ServerApiRequests from "./ServerApiRequests";
 
-const CART_PATH = '/api/cart';
+const CART_PATH = "/api/cart";
 
 const headers = generateHeaders();
 
 const exceptions = {
-  create: generateFetchException('creating a cart'),
-  retrieve: generateFetchException('retrieving a cart'),
-  update: generateFetchException('updating the cart'),
-  delete: generateFetchException('deleting the cart')
+  create: generateFetchException("creating a cart"),
+  retrieve: generateFetchException("retrieving a cart"),
+  update: generateFetchException("updating the cart"),
+  delete: generateFetchException("deleting the cart"),
 };
 
 const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
@@ -31,7 +31,7 @@ const createCart = async (data) => {
  */
 
 const retrieveCart = async () => {
-  return await cartRequests.retrieve();
+  return await cartRequests.retrieve(undefined, undefined, generateHeaders());
 };
 
 /**
@@ -46,14 +46,13 @@ const updateCart = async (data) => {
 
 /**
  *
- * @param {Object} data
  * @param {String} id
  * @returns {Promise<Object>}
  */
 
-const addProductToCart = async (data, id) => {
-  const exception = generateFetchException('adding a product to the cart');
-  return await cartRequests.update(data, `${CART_PATH}/${id}`, exception);
+const addProductToCart = async (id) => {
+  const exception = generateFetchException("adding a product to the cart");
+  return await cartRequests.update(null, `${CART_PATH}/${id}`, exception);
 };
 
 /**
@@ -63,7 +62,7 @@ const addProductToCart = async (data, id) => {
  */
 
 const decreaseProductQuantity = async (id) => {
-  const exception = generateFetchException('decreasing a product quantity');
+  const exception = generateFetchException("decreasing a product quantity");
   return await cartRequests.delete(`${CART_PATH}/product/${id}`, exception);
 };
 
@@ -73,7 +72,7 @@ const decreaseProductQuantity = async (id) => {
  */
 
 const deleteProductFromCart = async (id) => {
-  const exception = generateFetchException('deleting a product from the cart');
+  const exception = generateFetchException("deleting a product from the cart");
   return await cartRequests.delete(`${CART_PATH}/${id}`, exception);
 };
 
@@ -91,7 +90,7 @@ const cart = {
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart
+  deleteCart,
 };
 
 export default cart;

@@ -1,36 +1,36 @@
 {
   "extends": [
-    "eslint:recommended",
-    "react-app",
-    "plugin:prettier/recommended",
-    "plugin:import/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings"
+//    "eslint:recommended",
+//    "react-app",
+//    "plugin:prettier/recommended",
+//    "plugin:import/recommended",
+//    "plugin:import/errors",
+//    "plugin:import/warnings"
   ],
   "rules": {
-    "no-console": "warn",
-    "no-unused-vars": [
-      "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-    ],
-    "prettier/prettier": [
-      "warn",
-      {
-        "singleQuote": true,
-        "semi": true,
-        "trailingComma": "none",
-        "endOfLine": "auto"
-      }
-    ]
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
-    }
+//    "no-console": "warn",
+//    "no-unused-vars": [
+//      "warn",
+//      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+//    ],
+//    "prettier/prettier": [
+//      "warn",
+//      {
+//        "singleQuote": true,
+//        "semi": true,
+//        "trailingComma": "none",
+//        "endOfLine": "auto"
+//      }
+//    ]
+//  },
+//  "settings": {
+//    "import/resolver": {
+//      "node": {
+//        "extensions": [
+//          ".js",
+//          ".jsx"
+//        ]
+//      }
+//    }
   }
 }
