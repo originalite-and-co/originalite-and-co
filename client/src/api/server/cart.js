@@ -17,7 +17,7 @@ const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
 
 /**
  *
- * @param {Object} data
+ * @param {Object} [data]
  * @returns {Promise<Object>}
  */
 
