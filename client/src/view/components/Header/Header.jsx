@@ -20,7 +20,7 @@ function Header() {
     const mobileHeader =
         <>
             <Nav/>
-            <CatalogNav/>
+            {/*<CatalogNav/>*/}
         </>
 
     const desktopHeader =

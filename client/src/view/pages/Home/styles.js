@@ -3,7 +3,7 @@ const generateStyles = ({ palette, breakpoints }) => ({
     backgroundColor: palette.primary.main,
   },
   content: {
-    paddingTop: '126px',
+    paddingTop: '68px',
     paddingBottom: "4vh",
 
     [breakpoints.up('desktop')]: {

@@ -1,8 +1,7 @@
 import React, {useEffect, useState, useCallback} from 'react';
 
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styles from './CatalogNav.module.scss';
-import mainCategoryLinkStyles from "../MainCategoryLink/MainCategoryLink.module.scss"
 
 import useWindowSize from "../../../hooks/useWindowSize";
 import useAsyncError from "../../../hooks/useAsyncError";
@@ -79,6 +78,7 @@ function CatalogNav() {
             setTimeout(() => {
                 setActiveDropdown(true);
             }, 0)
+            debugger
             setActiveLinkId(linkId)
         }
 
@@ -109,11 +109,7 @@ function CatalogNav() {
                 setActiveLinkId(linkId)
             })
         }
-
-        // setActiveDropdown(!isDropdownActive)
-        // setActiveLinkId(linkId)
     }
-
 
     const renderCategoryLinks = (linkId) => {
         const categories = getAllChildCategories(catalog, linkId)
@@ -138,7 +134,6 @@ function CatalogNav() {
             );
         }));
     }
-
 
     const mainCategoryLinks = catalog
         .filter(category => category.parentId === "null")
