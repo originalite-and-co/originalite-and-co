@@ -1,7 +1,4 @@
-import {
-  generateFetchException,
-  generateHeaders
-} from './utils.js';
+import { generateFetchException, generateHeaders } from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const SLIDES_PATH = '/api/slides';
@@ -12,7 +9,7 @@ const exceptions = {
   create: generateFetchException('creating a slide'),
   retrieve: generateFetchException('retrieving slides'),
   update: generateFetchException('updating the slide'),
-  delete: generateFetchException('deleting the slide'),
+  delete: generateFetchException('deleting the slide')
 };
 
 const slideRequest = new ServerApiRequests(SLIDES_PATH, headers, exceptions);
@@ -58,7 +55,7 @@ const slides = {
   addSlide,
   retrieveSlides,
   updateSlide,
-  deleteSlide,
+  deleteSlide
 };
 
 export default slides;

@@ -1,7 +1,7 @@
-const footer = state => state.footerLinks;
+const footer = (state) => state.footerLinks;
 
 const selectors = {
-    footer
+  footer
 };
 
 export default selectors;
