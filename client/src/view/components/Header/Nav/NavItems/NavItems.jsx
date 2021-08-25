@@ -37,7 +37,7 @@ function NavItems() {
         <Box className={classes.navItemsGroup} data-testid="navItems">
             <Search/>
             <Box className={classes.navItem}>
-                <Link to="/member">
+                <Link to="/member/profile">
                     <Box component="div" className={classes.imageWrapper}>
                         <img className={classes.icon} src={person} alt="person"/>
                         {isDesktop && <p>My account</p>}

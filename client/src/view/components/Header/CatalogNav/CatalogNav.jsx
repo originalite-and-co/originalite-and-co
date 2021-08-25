@@ -1,8 +1,10 @@
 import React, {useEffect, useState, useCallback} from 'react';
 
 import {NavLink} from 'react-router-dom';
-import styles from './CatalogNav.module.scss';
 
+import {makeStyles} from "@material-ui/styles";
+import {generateStyles} from "./styles";
+import Styles from './Styles.module.scss'
 import useWindowSize from "../../../hooks/useWindowSize";
 import useAsyncError from "../../../hooks/useAsyncError";
 import {useDispatch, useSelector} from "react-redux";
@@ -19,6 +21,9 @@ import MainCategoryLink from "../MainCategoryLink/MainCategoryLink";
 import AllCategories from "../AllCategories/AllCategories";
 
 function CatalogNav() {
+    const useStyles = makeStyles(generateStyles);
+    const classes = useStyles();
+
     const [catalog, setCatalog] = useState([]);
     const [categoryLinks, setCategoryLinks] = useState([]);
     const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -65,7 +70,7 @@ function CatalogNav() {
         if (isDropdownActive && !isLinkTheSame && activeLinkId !== null) {
             setTimeout(() => {
                 setActiveDropdown(false);
-            },0)
+            }, 0)
             setTimeout(() => {
                 renderCategoryLinks(linkId);
             }, 0)
@@ -118,18 +123,18 @@ function CatalogNav() {
                 <Grid
                     item
                     key={category._id}
-                    className={styles.categoryListItem}
+                    className={classes.categoryListItem}
                     component="li"
                     xs={2}
                 >
-                    <NavLink
-                        to={`/catalog/${generateCategoryPath(category)}`}
-                        className={styles.categoryLink}
-                        activeClassName={styles.categoryLinkActive}
-                        onClick={handleCategoryLinkClick}
-                    >
-                        {category.name}
-                    </NavLink>
+                        <NavLink
+                            to={`/catalog/${generateCategoryPath(category)}`}
+                            className={Styles.categoryLink}
+                            activeClassName={classes.categoryLinkActive}
+                            onClick={handleCategoryLinkClick}
+                        >
+                            {category.name}
+                        </NavLink>
                 </Grid>
             );
         }));
@@ -152,12 +157,12 @@ function CatalogNav() {
         dropdownContent = (
             <Box
                 component="nav"
-                className={`${styles.categoryNav} wrapper`}>
-                {isDesktop && <p className={styles.categoriesTitle}>Categories</p>}
+                className={`${classes.categoryNav} wrapper`}>
+                {isDesktop && <p className={classes.categoriesTitle}>Categories</p>}
                 <Grid
                     container
                     component="ul"
-                    className={styles.categoryList}
+                    className={classes.categoryList}
                     data-testid="dropdown-content"
                     direction="column"
                     alignItems="flex-start"
@@ -171,7 +176,7 @@ function CatalogNav() {
     }
 
     const renderMainCategoryLinks = (numberOfLinks) => {
-        if (mainCategoryLinks.length > numberOfLinks){
+        if (mainCategoryLinks.length > numberOfLinks) {
             const mainCategoryLinksCopy = [...mainCategoryLinks];
             mainCategoryLinksCopy.splice(numberOfLinks, Infinity, <AllCategories/>);
             return mainCategoryLinksCopy;
@@ -184,15 +189,15 @@ function CatalogNav() {
         <List
             disablePadding
             className={isDesktop
-                ? styles.catalogNavWrapper
-                : `${styles.catalogNavWrapper} wrapper`}
+                ? classes.catalogNavWrapper
+                : `${classes.catalogNavWrapper} wrapper`}
             data-testid="catalog-nav"
         >
             {renderMainCategoryLinks(3)}
             <Dropdown
                 classNames={{
-                    closed: styles.dropdown,
-                    active: styles.dropdownActive
+                    closed: classes.dropdown,
+                    active: classes.dropdownActive
                 }}
                 lockBodyScrolling
                 isActive={isDropdownActive}
@@ -206,7 +211,6 @@ function CatalogNav() {
         </List>
     );
 }
-
 
 
 export default CatalogNav;

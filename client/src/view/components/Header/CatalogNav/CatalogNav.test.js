@@ -6,11 +6,13 @@ import React, {useState} from "react";
 import Box from "@material-ui/core/Box";
 import {CatalogNavButton, CatalogNavLink} from "./LinkButtonGenerators";
 import CatalogNav from "./CatalogNav";
+import CustomThemeProvider from "../../../HOC/CustomThemeProvider/CustomThemeProvider";
 
 const MockCatalogItem = () => {
   const isDesktop = true
   const fn = jest.fn();
   return (
+      <CustomThemeProvider>
       <BrowserRouter>
         <Provider store={store}>
           <Box>
@@ -28,15 +30,18 @@ const MockCatalogItem = () => {
           </Box>
         </Provider>
       </BrowserRouter>
+      </CustomThemeProvider>
   )
 }
 const MockCatalog = () => {
   return (
+      <CustomThemeProvider>
       <BrowserRouter>
         <Provider store={store}>
           <CatalogNav/>
         </Provider>
       </BrowserRouter>
+      </CustomThemeProvider>
   )
 }
 

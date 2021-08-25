@@ -5,14 +5,17 @@ import {BrowserRouter} from "react-router-dom";
 import store from './../../../../../redux/store/store';
 import search from "../icons/search.svg";
 import React from "react";
+import CustomThemeProvider from "../../../../HOC/CustomThemeProvider/CustomThemeProvider";
 
 const MockNavItems = () => {
     return (
+        <CustomThemeProvider>
         <BrowserRouter>
             <Provider store={store}>
                 <NavItems/>
             </Provider>
         </BrowserRouter>
+        </CustomThemeProvider>
     )
 }
 

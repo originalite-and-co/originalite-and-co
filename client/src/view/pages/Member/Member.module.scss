@@ -28,6 +28,9 @@
 }
 
 @media (min-width: $min-desktop) {
+  .container{
+    padding-top: 12vh;
+  }
   .wrapper {
     max-width: 60vw;
     margin: 0 auto;

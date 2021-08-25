@@ -12,6 +12,7 @@ MemberTabs.propTypes = {};
 import Styles from './../Member.module.scss'
 import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
 import MyWishlist from "../MyWishlist/MyWishlist";
+import {useHistory, useRouteMatch} from "react-router-dom";
 
 const useStyles = makeStyles({
     tab: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
         marginTop: "20px"
     },
     '&:selected': {
-    color: '#1890ff !important'
+        color: '#1890ff !important'
     }
 });
 
@@ -33,24 +34,29 @@ function MemberTabs() {
     const [isDataUpdated, setIsDataUpdated] = useState(false)
     /*is used in MyProfile component, should the data be successfully updated*/
 
-    const [value, setValue] = useState(0)
     const [orders, setOrders] = useState()
-
+    const {params,url} = useRouteMatch()
     const [wishlist, setWishlist] = useState()
 
     const classes = useStyles()
     const throwError = useAsyncError();
+
+    const {replace} = useHistory()
+
+    const [value, setValue] = useState("profile")
     const handleChange = (event, newValue) => {
+        const pageUrl = url.replace(params.section, newValue)
+        replace(pageUrl)
         setValue(newValue)
     }
 
-    useEffect(useCallback( () => {
+    useEffect(useCallback(() => {
         customerRequests.retrieveCustomer()
             .then(
                 data => setCustomer(data),
                 error => throwError(error)
             );
-    }, [customer,isDataUpdated]), [isDataUpdated]);
+    }, [customer, isDataUpdated]), [isDataUpdated]);
 
     useEffect(() => {
         ordersRequests.retrieveOrder()
@@ -58,15 +64,21 @@ function MemberTabs() {
                 data => setOrders(data),
                 error => throwError(error)
             )
-    },[])
+    }, [])
 
     useEffect(() => {
-        wishlistRequests.retrieveWishlist().
-        then(
+        wishlistRequests.retrieveWishlist().then(
             data => setWishlist(data),
             error => throwError(error)
         )
-    },[])
+    }, [])
+
+    useEffect(() => {
+        if (!params.section){
+            return
+        }
+        setValue(params.section)
+    }, [params?.section])
 
     const handleDataUpdate = () => {
         setIsDataUpdated(true)
@@ -76,19 +88,19 @@ function MemberTabs() {
         <>
             {isDataUpdated && <Toast severity="success" variant="filled" message="Data has been successfully updated"/>}
             <Tabs value={value} onChange={handleChange} centered={true}>
-                <Tab className={classes.tab} label="My Profile"/>
-                <Tab className={classes.tab} label="My Wishlist"/>
-                <Tab className={classes.tab} label="Purchase history"/>
+                <Tab className={classes.tab} value="profile" label="My Profile"/>
+                <Tab className={classes.tab} value="wishlist" label="My Wishlist"/>
+                <Tab className={classes.tab} value="purchaseHistory" label="Purchase history"/>
             </Tabs>
             <Box className={`${Styles.wrapper} inner`}>
-                {value === 0 && typeof customer == 'object' && <MyProfile
+                {value === "profile" && typeof customer == 'object' && <MyProfile
                     customer={customer}
                     handleDataUpdate={handleDataUpdate}
                 />}
-                {value === 1 && typeof wishlist == 'object' && <MyWishlist
+                {value === "wishlist" && typeof wishlist == 'object' && <MyWishlist
                     wishlist={wishlist}
                 />}
-                {value === 2 && typeof orders == 'object' && <PurchaseHistory
+                {value === "purchaseHistory" && typeof orders == 'object' && <PurchaseHistory
                     orders={orders}
                 />}
             </Box>

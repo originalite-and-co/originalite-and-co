@@ -109,6 +109,9 @@ select:-webkit-autofill:focus {
 }
 
 @media (min-width: $min-desktop) {
+  .container{
+    padding-top: 15vh;
+  }
   .wrapper{
     max-width: 50vw;
     margin: 0 auto;

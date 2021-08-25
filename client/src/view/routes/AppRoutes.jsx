@@ -67,7 +67,7 @@ function AppRoutes() {
             <Route path="/catalog" component={Catalog}/>
             <Route path="/products/:itemNumber" component={Product}/>
             <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
-            <PrivateRoute isAuthenticated={isAuthenticated} path="/member" component={Member}/>
+            <PrivateRoute isAuthenticated={isAuthenticated} path="/member/:section" component={Member}/>
             <Route path="/cart" component={Cart}/>
             <Route path="/auth" component={Authentication}/>
             <Route exact path="/" component={Home}/>

@@ -4,14 +4,17 @@ import store from "../../../../../redux/store/store";
 import React from "react";
 import Search from "./Search";
 import {render} from "@testing-library/react";
+import CustomThemeProvider from "../../../../HOC/CustomThemeProvider/CustomThemeProvider";
 
 const TestSearch = () => {
     return (
+        <CustomThemeProvider>
         <BrowserRouter>
             <Provider store={store}>
                 <Search/>
             </Provider>
         </BrowserRouter>
+        </CustomThemeProvider>
     )
 }
 

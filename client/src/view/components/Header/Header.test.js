@@ -6,6 +6,7 @@ import store from "../../../redux/store/store";
 import React from "react";
 import Nav from "./Nav/Nav";
 import CatalogNav from "./CatalogNav/CatalogNav";
+import CustomThemeProvider from "../../HOC/CustomThemeProvider/CustomThemeProvider";
 
 const mobileHeader =
     <>
@@ -15,21 +16,25 @@ const mobileHeader =
 
 const MockHeader = () => {
   return (
-      <BrowserRouter>
-        <Provider store={store}>
-          <Header/>
-        </Provider>
-      </BrowserRouter>
+      <CustomThemeProvider>
+          <BrowserRouter>
+              <Provider store={store}>
+                  <Header/>
+              </Provider>
+          </BrowserRouter>
+      </CustomThemeProvider>
   )
 }
 
 const MobileHeader = () => {
     return (
+        <CustomThemeProvider>
         <BrowserRouter>
             <Provider store={store}>
                 {mobileHeader}
             </Provider>
         </BrowserRouter>
+        </CustomThemeProvider>
     )
 }
 
