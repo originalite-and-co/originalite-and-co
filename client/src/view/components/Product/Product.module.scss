@@ -62,11 +62,12 @@
     border: 2px solid black;
     width: 30px;
     height: 30px;
+    line-height: 30px;
+    text-align: center;
     cursor: pointer;
     margin-top: 10px;
     margin-right: 5px;
     display: inline-block;
-    text-align: center;
   }
 
   li:hover {
@@ -91,14 +92,14 @@
   .button {
     font-size: 15px;
     text-transform: uppercase;
-    background: #e0d9d9;
+    background: #f3eeee;
     text-align: center;
     cursor: pointer;
     margin-top: 50px;
     margin-bottom: 100px;
     color: black;
     padding: 18px 100px;
-    border: 2px solid black;
+    border: 2px solid grey;
   }
 
   .active {
@@ -193,13 +194,13 @@
 
     li {
       border: 2px solid black;
-      padding: 7px;
       margin-right: 5px;
+      margin-top: 10px;
       font-size: 18px;
-      line-height: 25px;
       cursor: pointer;
       display: inline-block;
       text-align: center;
+      line-height: 30px;
     }
 
     li:hover {
@@ -221,7 +222,7 @@
   .button {
     font-size: 20px;
     text-transform: uppercase;
-    background: #d7cece;
+    background: #f3eeee;
     text-align: center;
     cursor: pointer;
     margin-top: 60px;
@@ -239,8 +240,8 @@
       cursor: pointer;
       margin-top: 60px;
       margin-bottom: 200px;
-      padding: 18px 70px;
-      border: 3px solid black;
+      padding: 18px 100px;
+      border: 3px solid grey;
     }
   }
 

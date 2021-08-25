@@ -11,9 +11,8 @@ export default function ProductImageSlider(props) {
 
     const renderSlides = useMemo(
         () =>
-
             props.detail.imageUrls.map(( item, id ) => (
-                    <Image key={id} src={item}  className="swiper__image" />
+                <Image key={id} src={item}  className="swiper__image" />
             )),
         [props.detail.imageUrls]
     );
@@ -21,13 +20,12 @@ export default function ProductImageSlider(props) {
     return (
         <Box className={ProductStyles.wrapper_carousel_product}>
             <Box className={classes.headerCarousel}>
-                    <Carousel
-                        slides={renderSlides}
-                        slideProps={slideProduct}
-                        carouselProps={carouselProduct}
-                    />
+                <Carousel
+                    slides={renderSlides}
+                    slideProps={slideProduct}
+                    carouselProps={carouselProduct}
+                />
             </Box>
         </Box>
     );
 }
-
