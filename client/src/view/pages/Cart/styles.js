@@ -1,6 +1,10 @@
-const generateStyles = ({ palette }) => ({
+const generateStyles = ({ palette, breakpoints }) => ({
   root: {
     paddingTop: "120px",
+
+    [breakpoints.up("desktop")]: {
+      paddingTop: "94px",
+    },
   },
   inner: {
     paddingTop: "1.5rem",
@@ -12,22 +16,42 @@ const generateStyles = ({ palette }) => ({
   },
   divider: {
     backgroundColor: palette.primary.main,
+
+    [breakpoints.up("desktop")]: {
+      display: "none",
+    },
+  },
+  productList: {
+    marginBottom: "10vw",
+    paddingBottom: "4vw",
+    paddingTop: "4vw",
+
+    [breakpoints.up("desktop")]: {
+      marginRight: "3.5vw",
+      marginBottom: "12vw",
+    },
   },
   loaderContainer: {
+    flex: 1,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
-  noItemsAlert: {
-    marginTop: "4vw",
-    marginBottom: "4vw",
-  },
+  noItemsAlert: {},
   summaryContainer: {
-    marginTop: "15vw",
+    marginTop: "5vw",
+
+    [breakpoints.up("desktop")]: {
+      marginTop: 0,
+    },
   },
   summary: {
     backgroundColor: "#c4c4c433",
     padding: "7vw 10vw",
+
+    [breakpoints.up("desktop")]: {
+      padding: "2.7vw",
+    },
   },
   summaryHeading: {
     fontWeight: 700,
@@ -53,6 +77,7 @@ const generateStyles = ({ palette }) => ({
     width: "100%",
     paddingTop: "17px!important",
     paddingBottom: "15px!important",
+    borderRadius: "unset",
   },
 });
 
