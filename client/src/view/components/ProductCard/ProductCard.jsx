@@ -8,6 +8,7 @@ import constants from '../../constants';
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
+  size: PropTypes.number.isRequired,
 };
 
 function ProductCard({ product, size }) {
@@ -25,9 +26,9 @@ function ProductCard({ product, size }) {
     if (dataFromLocalStorage?.length === 10) {
       dataFromLocalStorage.shift()
     }
-    let data = [product.itemNo];
+    let data = [product];
     if(Array.isArray(dataFromLocalStorage)){
-      data = [...dataFromLocalStorage, product.itemNo];
+      dataFromLocalStorage.some(item => item.itemNo === product.itemNo) ? data = [...dataFromLocalStorage] : data = [...dataFromLocalStorage, product]
     }
     localStorage.setItem("recentlyViewed",JSON.stringify(data));
   }
