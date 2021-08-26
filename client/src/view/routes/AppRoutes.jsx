@@ -22,6 +22,8 @@ import {
   authorizeOperations,
 } from "../../redux/features/authorization";
 import { useDispatch, useSelector } from "react-redux";
+import ProductPage from "../pages/ProductPage/ProductPage";
+
 
 function AppRoutes() {
   const dispatch = useDispatch();
@@ -80,28 +82,23 @@ function AppRoutes() {
     });
   }
 
-  return (
-    <Switch>
-      <Route path="/products/search" component={SearchResult} />
-      {staticPageRoutes}
-      <Route path="/catalog/:category" component={Catalog} />
-      <Route path="/products/:itemNumber" component={Product} />
-      <PrivateRoute
-        isAuthenticated={isAuthenticated}
-        path="/checkout"
-        component={Checkout}
-      />
-      <PrivateRoute
-        isAuthenticated={isAuthenticated}
-        path="/member"
-        component={Member}
-      />
-      <Route path="/cart" component={Cart} />
-      <Route path="/auth" component={Authentication} />
-      <Route exact path="/" component={Home} />
-      <Route path="*" component={Page404} />
-    </Switch>
-  );
+    return (
+        <Switch>
+            <Route path="/products/search" component={SearchResult}/>
+            {staticPageRoutes}
+            <Route path="/catalog/:category" component={Catalog}/>
+            <Route path="/catalog" component={Catalog}/>
+            <Route path="/products/:itemNumber" component={ProductPage}/>
+            <PrivateRoute isAuthenticated={isAuthenticated} path="/checkout" component={Checkout}/>
+            <PrivateRoute isAuthenticated={isAuthenticated} path="/member/:section" component={Member}/>
+            <Route path="/cart" component={Cart}/>
+            <Route path="/auth" component={Authentication}/>
+            <Route exact path="/" component={Home}/>
+            <Route path="*" component={Page404} />
+
+        </Switch>
+    );
+
 }
 
 export default AppRoutes;

@@ -1,19 +1,23 @@
-import { render, screen } from '@testing-library/react';
-import NavItems from './NavItems';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import {render,screen,userEvent, fireEvent} from "@testing-library/react";
+import NavItems from "./NavItems";
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 import store from './../../../../../redux/store/store';
-import React from 'react';
+import search from "../icons/search.svg";
+import React from "react";
+import CustomThemeProvider from "../../../../HOC/CustomThemeProvider/CustomThemeProvider";
 
 const MockNavItems = () => {
-  return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <NavItems />
-      </Provider>
-    </BrowserRouter>
-  );
-};
+    return (
+        <CustomThemeProvider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <NavItems/>
+            </Provider>
+        </BrowserRouter>
+        </CustomThemeProvider>
+    )
+}
 
 describe('navitems', () => {
   test('should contain three images', function () {
