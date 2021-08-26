@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { cartOperations, cartSelectors } from "../../../redux/features/cart";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,13 +7,16 @@ import {
 } from "../../../redux/features/authorization";
 import useAsyncError from "../../hooks/useAsyncError";
 import Header from "../../components/Header/Header";
-import { Box, Button, Divider, Grid, Typography } from "@material-ui/core";
+import { Box, Divider, Grid, Typography } from "@material-ui/core";
 import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/Loader/Loader";
 import { makeStyles } from "@material-ui/styles";
 import generateStyles from "./styles";
 import useWindowSize from "../../hooks/useWindowSize";
 import constants from "../../constants";
+import Summary from "./Summary/Summary";
+import CartItem from "./CartItem/CartItem";
+import { productRequests } from "../../../api/server";
 
 Cart.propTypes = {};
 
@@ -23,6 +26,7 @@ function Cart(props) {
   const { width } = useWindowSize();
   const [isLoaded, setLoaded] = useState(false);
   const [isDesktop, setDesktop] = useState(width >= WINDOW_DESKTOP_SIZE);
+  const [products, setProducts] = useState([]);
 
   const dispatch = useDispatch();
   const isUserAuthorized = useSelector(authorizationSelectors.authorization);
@@ -36,6 +40,27 @@ function Cart(props) {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
   }, [width]);
 
+  useEffect(
+    useCallback(() => {
+      setLoaded(false);
+      const itemNumbers = cart.map((item) => item.itemNo);
+      productRequests.retrieveProductsByItemNumbers(itemNumbers).then(
+        (response) => {
+          const products = response.map((item) => {
+            const { cartQuantity } = cart.find(
+              (cartItem) => cartItem.itemNo === item.itemNo
+            );
+            return { ...item, cartQuantity };
+          });
+          setProducts(products);
+          setLoaded(true);
+        },
+        (error) => throwAsyncError(error)
+      );
+    }, [cart]),
+    [cart]
+  );
+
   useEffect(() => {
     setLoaded(false);
     dispatch(authorizeOperations.authorizeUser());
@@ -48,6 +73,10 @@ function Cart(props) {
         }
       });
   }, [isUserAuthorized]);
+
+  const productList = products?.map(({ cardQuantity, itemNo }) => {
+    return <CartItem key={itemNo} cardQuantity={cardQuantity} />;
+  });
   return (
     <>
       <Header />
@@ -83,7 +112,7 @@ function Cart(props) {
               {!isLoaded && !cart.length && (
                 <Loader className={{ container: classes.loaderContainer }} />
               )}
-              {isLoaded && cart.length > 0 && <p>Cart items</p>}
+              {isLoaded && cart.length > 0 && productList}
             </Grid>
 
             <Grid
@@ -91,76 +120,7 @@ function Cart(props) {
               className={classes.summaryContainer}
               xs={isDesktop ? 3 : 12}
             >
-              <Box className={classes.summary}>
-                <Typography
-                  className={classes.summaryHeading}
-                  component="h3"
-                  variant="body1"
-                  color="textSecondary"
-                >
-                  Summary
-                </Typography>
-                <Box>
-                  <Box className={classes.summaryContent}>
-                    <Typography
-                      component="p"
-                      variant="body1"
-                      color="textSecondary"
-                    >
-                      Order value:
-                    </Typography>
-                    <Typography
-                      component="p"
-                      variant="body1"
-                      color="textSecondary"
-                    >
-                      100$
-                    </Typography>
-                  </Box>
-                  <Box className={classes.summaryContent}>
-                    <Typography
-                      component="p"
-                      variant="body1"
-                      color="textSecondary"
-                    >
-                      Delivery:
-                    </Typography>
-                    <Typography
-                      component="p"
-                      variant="body1"
-                      color="textSecondary"
-                    >
-                      FREE
-                    </Typography>
-                  </Box>
-                  <Box
-                    className={`${classes.summaryContent} ${classes.summaryTotal}`}
-                  >
-                    <Typography
-                      component="p"
-                      variant="body1"
-                      color="textSecondary"
-                    >
-                      Total:
-                    </Typography>
-                    <Typography
-                      component="p"
-                      variant="body1"
-                      color="textSecondary"
-                    >
-                      200$
-                    </Typography>
-                  </Box>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="primary"
-                    className={classes.checkoutBtn}
-                  >
-                    Checkout
-                  </Button>
-                </Box>
-              </Box>
+              <Summary />
             </Grid>
           </Grid>
         </Box>

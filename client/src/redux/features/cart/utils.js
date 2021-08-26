@@ -9,6 +9,7 @@ const createCartFromResponse = (response) => {
   return response?.products?.map(({ cartQuantity, product }) => ({
     cartQuantity,
     _id: product._id,
+    itemNo: product.itemNo,
   }));
 };
 
@@ -36,10 +37,11 @@ const concatCartFromDbWithCurrentOne = (currentCart, cartFromDB) => {
  */
 const updateApiCart = async (cart) => {
   const data = {};
-  data.products = cart.map(({ cartQuantity, _id }) => {
+  data.products = cart.map(({ cartQuantity, _id, itemNo }) => {
     return {
       product: _id,
       cartQuantity,
+      itemNo,
     };
   });
   await cartRequests.updateCart(data);
