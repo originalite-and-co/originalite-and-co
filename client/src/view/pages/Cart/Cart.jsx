@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cartOperations, cartSelectors } from "../../../redux/features/cart";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -24,13 +24,13 @@ const { WINDOW_DESKTOP_SIZE } = constants;
 
 function Cart(props) {
   const { width } = useWindowSize();
-  const [isLoaded, setLoaded] = useState(false);
   const [isDesktop, setDesktop] = useState(width >= WINDOW_DESKTOP_SIZE);
+  const [isLoaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
 
-  const dispatch = useDispatch();
   const isUserAuthorized = useSelector(authorizationSelectors.authorization);
   const cart = useSelector(cartSelectors.getCart);
+  const dispatch = useDispatch();
 
   const throwAsyncError = useAsyncError();
   const useStyles = makeStyles(generateStyles);
@@ -40,26 +40,40 @@ function Cart(props) {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
   }, [width]);
 
-  useEffect(
-    useCallback(() => {
-      setLoaded(false);
-      const itemNumbers = cart.map((item) => item.itemNo);
-      productRequests.retrieveProductsByItemNumbers(itemNumbers).then(
-        (response) => {
-          const products = response.map((item) => {
-            const { cartQuantity } = cart.find(
-              (cartItem) => cartItem.itemNo === item.itemNo
-            );
-            return { ...item, cartQuantity };
-          });
-          setProducts(products);
-          setLoaded(true);
-        },
-        (error) => throwAsyncError(error)
-      );
-    }, [cart]),
-    [cart]
-  );
+  useEffect(() => {
+    setLoaded(false);
+    if (!cart.length) return;
+
+    let itemNumbers = cart.map((item) => item.itemNo);
+    itemNumbers = [...new Set(itemNumbers)];
+
+    productRequests.retrieveProductsByItemNumbers(itemNumbers).then(
+      (response) => {
+        const products = cart.map((cartItem) => {
+          const { color, quantity, currentPrice, name, enabled, imageUrls } =
+            response.find(({ itemNo }) => {
+              return itemNo === cartItem.itemNo;
+            });
+
+          return {
+            color,
+            quantity,
+            currentPrice,
+            name,
+            enabled,
+            imageUrls,
+            itemNo: cartItem.itemNo,
+            _id: cartItem._id,
+            cartQuantity: cartItem.cartQuantity,
+            chosenSize: cartItem.chosenSize,
+          };
+        });
+        setProducts(products);
+        setLoaded(true);
+      },
+      (error) => throwAsyncError(error)
+    );
+  }, [cart]);
 
   useEffect(() => {
     setLoaded(false);
@@ -74,9 +88,35 @@ function Cart(props) {
       });
   }, [isUserAuthorized]);
 
-  const productList = products?.map(({ cardQuantity, itemNo }) => {
-    return <CartItem key={itemNo} cardQuantity={cardQuantity} />;
-  });
+  const productList = products?.map(
+    ({
+      cartQuantity,
+      itemNo,
+      color,
+      quantity,
+      currentPrice,
+      name,
+      enabled,
+      imageUrls,
+      _id,
+      chosenSize,
+    }) => {
+      return (
+        <CartItem
+          key={itemNo}
+          cartQuantity={cartQuantity}
+          itemNo={itemNo}
+          color={color}
+          maxQuantity={quantity}
+          currentPrice={currentPrice}
+          name={name}
+          enabled={enabled}
+          imageUrls={imageUrls}
+          size={chosenSize}
+        />
+      );
+    }
+  );
   return (
     <>
       <Header />
