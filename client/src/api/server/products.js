@@ -1,15 +1,15 @@
-import { generateFetchException, generateHeaders } from './utils.js';
-import ServerApiRequests from './ServerApiRequests';
+import { generateFetchException, generateHeaders } from "./utils.js";
+import ServerApiRequests from "./ServerApiRequests";
 
-const PRODUCTS_PATH = '/api/products';
+const PRODUCTS_PATH = "/api/products";
 
 const headers = generateHeaders();
 
 const exceptions = {
-  create: generateFetchException('creating a product'),
-  retrieve: generateFetchException('retrieving products'),
-  update: generateFetchException('updating the product'),
-  delete: generateFetchException('deleting the product')
+  create: generateFetchException("creating a product"),
+  retrieve: generateFetchException("retrieving products"),
+  update: generateFetchException("updating the product"),
+  delete: generateFetchException("deleting the product"),
 };
 
 const productRequests = new ServerApiRequests(
@@ -33,7 +33,7 @@ const createProduct = async (data) => {
  * @returns {Promise<Array<Object>>}
  */
 const searchForProduct = async (query) => {
-  const exception = generateFetchException('searching for a product');
+  const exception = generateFetchException("searching for a product");
   return await productRequests.create(
     { query },
     `${PRODUCTS_PATH}/search`,
@@ -56,7 +56,7 @@ const retrieveProducts = async () => {
  */
 const retrieveProductByItemNumber = async (itemNumber) => {
   const exception = generateFetchException(
-    'retrieving the product by item number'
+    "retrieving the product by item number"
   );
   return await productRequests.retrieve(
     `${PRODUCTS_PATH}/${itemNumber}`,
@@ -66,12 +66,35 @@ const retrieveProductByItemNumber = async (itemNumber) => {
 
 /**
  *
+ * @param {Array<Number>} itemNumbersArray - an array of product numbers
+ * @returns {Promise<unknown[]>}
+ */
+const retrieveProductsByItemNumbers = async (itemNumbersArray) => {
+  const paths = itemNumbersArray.map((itemNo) => `${PRODUCTS_PATH}/${itemNo}`);
+  const headers = generateHeaders();
+  const requests = paths.map((path) => {
+    return fetch(path, {
+      method: "GET",
+      headers,
+    });
+  });
+
+  const responses = await Promise.all(requests);
+  let result = [];
+  responses.forEach(async (item) => {
+    result.push(await item.json());
+  });
+  return result;
+};
+
+/**
+ *
  * @param {String} query - query in form "property=value&property2=value"
  * @returns {Promise<Array<Object>>}
  */
 
 const retrieveByQuery = async (query) => {
-  const exception = generateFetchException('retrieving products by query');
+  const exception = generateFetchException("retrieving products by query");
   return await productRequests.retrieve(
     `${PRODUCTS_PATH}/filter?${query}`,
     exception
@@ -94,8 +117,9 @@ const product = {
   searchForProduct,
   retrieveProducts,
   retrieveProductByItemNumber,
+  retrieveProductsByItemNumbers,
   retrieveByQuery,
-  updateProduct
+  updateProduct,
 };
 
 export default product;
