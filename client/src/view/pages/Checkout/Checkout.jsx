@@ -3,22 +3,20 @@ import { Stepper, Step } from '../../components/Stepper';
 
 function Checkout() {
   return (
-    <>
-      <Stepper initialValues={{}}>
-        <Step>
-          <p>kek</p>
-        </Step>
-        <Step>
-          <p>kek1</p>
-        </Step>
-        <Step>
-          <p>kek2</p>
-        </Step>
-        <Step>
-          <p>kek3</p>
-        </Step>
-      </Stepper>
-    </>
+    <Stepper initialValues={{}} onSubmit={() => {}}>
+      <Step>
+        <p>kek</p>
+      </Step>
+      <Step>
+        <p>kek1</p>
+      </Step>
+      <Step>
+        <p>kek2</p>
+      </Step>
+      <Step>
+        <p>kek3</p>
+      </Step>
+    </Stepper>
   );
 }
 
