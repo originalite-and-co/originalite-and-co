@@ -6,8 +6,9 @@ import { cartRequests } from "../../../api/server";
  * @returns {Array<Object>}
  */
 const createCartFromResponse = (response) => {
-  return response?.products?.map(({ cartQuantity, product }) => ({
+  return response?.products?.map(({ cartQuantity, product, chosenSize }) => ({
     cartQuantity,
+    chosenSize,
     _id: product._id,
     itemNo: product.itemNo,
   }));
