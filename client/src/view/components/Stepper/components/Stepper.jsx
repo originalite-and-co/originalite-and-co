@@ -1,10 +1,5 @@
 import React from 'react';
 
 export default function HorizontalLinearStepper() {
-  
-  return (
-    <div>
-     kek
-    </div>
-  );
+  return <div>kek</div>;
 }

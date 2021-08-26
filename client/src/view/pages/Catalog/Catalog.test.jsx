@@ -7,6 +7,6 @@ describe('Catalog', () => {
   test('Smoke', () => {
     const history = createBrowserHistory();
 
-    const {} = renderWithProjectProviders(<Catalog />, store, history);
+    renderWithProjectProviders(<Catalog />, store, history);
   });
 });

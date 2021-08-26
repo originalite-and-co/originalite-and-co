@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run test --prefix client -- --coverage",
     "build": "npm install --prefix client && npm install --prefix server && npm run build --prefix client && rm -rf server/public/* && cp -a client/build/. server/public",
-    "start": "npm run start --prefix server"
+    "start": "npm run start --prefix server",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
