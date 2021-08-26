@@ -8,11 +8,12 @@ import Nav from "./Nav/Nav";
 import CatalogNav from "./CatalogNav/CatalogNav";
 import CustomThemeProvider from "../../HOC/CustomThemeProvider/CustomThemeProvider";
 
-const mobileHeader =
-    <>
-        <Nav/>
-        <CatalogNav/>
-    </>
+const mobileHeader = (
+  <>
+    <Nav />
+    <CatalogNav />
+  </>
+);
 
 const MockHeader = () => {
   return (
@@ -38,20 +39,20 @@ const MobileHeader = () => {
     )
 }
 
-describe("Header component", () => {
-    test('renders Header without crashing', () => {
-        render(<MockHeader/>)
-    });
+describe('Header component', () => {
+  test('renders Header without crashing', () => {
+    render(<MockHeader />);
+  });
 
-    test('should contain nav component', function () {
-        render(<MockHeader/>)
-        const nav = screen.getByTestId('catalog-nav');
-        expect(nav).toBeInTheDocument()
-    });
+  test('should contain nav component', function () {
+    render(<MockHeader />);
+    const nav = screen.getByTestId('catalog-nav');
+    expect(nav).toBeInTheDocument();
+  });
 
-    test('should contain catalog-nav component', function () {
-        render(<MobileHeader/>)
-        const catalogNav = screen.getByTestId('catalog-nav')
-        expect(catalogNav).toBeInTheDocument()
-    });
-})
+  test('should contain catalog-nav component', function () {
+    render(<MobileHeader />);
+    const catalogNav = screen.getByTestId('catalog-nav');
+    expect(catalogNav).toBeInTheDocument();
+  });
+});

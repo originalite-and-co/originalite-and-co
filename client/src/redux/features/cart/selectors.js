@@ -1,7 +1,7 @@
-const cart = state => state.cart;
+const getCart = (state) => state.cart;
 
 const selectors = {
-    cart
+  getCart,
 };
 
 export default selectors;

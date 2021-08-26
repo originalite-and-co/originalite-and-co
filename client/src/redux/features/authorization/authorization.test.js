@@ -9,15 +9,14 @@ describe('authorization reducer', () => {
     const initialState = false;
 
     test('authorizeCustomer', () => {
-        const action = logInCustomer()
+        const action = logInCustomer();
 
-        expect(authorization(initialState,action)).toStrictEqual(true)
-    })
+        expect(authorization(initialState,action)).toStrictEqual(true);
+    });
 
     test('loggOutCustomer', () => {
-        const action = loggOutCustomer()
+        const action = loggOutCustomer();
 
-        expect(authorization(initialState,action)).toStrictEqual(false)
-    })
-
-})
+        expect(authorization(initialState,action)).toStrictEqual(false);
+    });
+});

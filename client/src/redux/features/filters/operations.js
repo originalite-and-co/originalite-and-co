@@ -1,5 +1,5 @@
-import actions from "./actions";
-import transformQueryIntoObject from "../../../utils/transformQueryIntoObject";
+import actions from './actions';
+import transformQueryIntoObject from '../../../utils/transformQueryIntoObject';
 
 /**
  *
@@ -7,19 +7,18 @@ import transformQueryIntoObject from "../../../utils/transformQueryIntoObject";
  * @returns {(function(*, *): void)|*}
  */
 const getFilters = (location) => (dispatch, getState) => {
-    let filtersFromQuery;
+  let filtersFromQuery;
 
-    if (location && location.search.length) {
-        filtersFromQuery = transformQueryIntoObject(location.search);
-    }
-    const data = filtersFromQuery || [];
+  if (location && location.search.length) {
+    filtersFromQuery = transformQueryIntoObject(location.search);
+  }
+  const data = filtersFromQuery || [];
 
-    dispatch(actions.getFilters(data));
+  dispatch(actions.getFilters(data));
 };
 
-
 const operations = {
-    getFilters,
+  getFilters
 };
 
 export default operations;

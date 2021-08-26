@@ -77,29 +77,31 @@ function Search(props) {
         }
     };
 
-    const handleSubmit = (values, actions) => {
-        setLoaded(false);
-        productRequests.searchForProduct({query: values.search})
-            .then(
-                data => {
-                    setSearchResult(data);
-                    setLoaded(true);
-                    if (data.length) {
-                        dispatch(searchResultActions.setSearchResult(data));
-                        history.push(`/products/search?query=${values.search}`);
-                        setActiveDropdown(false);
-                        dispatch(isAnyDropdownOpenActions.closedDropdown());
-                    }
-                },
-                error => throwAsyncError(error),
-            );
-    };
+  const handleSubmit = (values, actions) => {
+    setLoaded(false);
+    productRequests.searchForProduct(values.search)
+      .then(
+        data => {
+          setSearchResult(data);
+          setLoaded(true);
+          const query = values.search.split(' ').join('-')
+          if (data.length) {
+            dispatch(searchResultActions.setSearchResult(data));
+            history.push(`/products/search?query=${query}`);
+            setActiveDropdown(false);
+            dispatch(isAnyDropdownOpenActions.closedDropdown());
+          }
+        },
+        error => throwAsyncError(error),
+      );
+  };
 
 
-    const informationToast = useMemo(() => <Toast
-        className={classes.informationToast}
-        message='No items have been found '
-    />, []);
+  const informationToast = useMemo(() => <Toast
+    variant="filled"
+    className={styles.informationToast}
+    message='No items have been found '
+  />, []);
 
     const dropdownContent = (
         <>

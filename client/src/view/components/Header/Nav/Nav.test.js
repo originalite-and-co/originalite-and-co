@@ -20,5 +20,5 @@ const MockNav = () => {
 }
 
 test('should render Nav component', function () {
-  render(<MockNav/>)
+  render(<MockNav />);
 });

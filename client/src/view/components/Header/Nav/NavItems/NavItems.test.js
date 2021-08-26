@@ -19,17 +19,14 @@ const MockNavItems = () => {
     )
 }
 
-describe("navitems", () => {
-    test('should contain three images', function () {
-        render(<MockNavItems/>)
-        const search = screen.getByAltText('search icon');
-        const person = screen.getByAltText('person');
-        const bag = screen.getByAltText('bag');
-        expect(search).toBeInTheDocument()
-        expect(person).toBeInTheDocument()
-        expect(bag).toBeInTheDocument()
-    });
-
-})
-
-
+describe('navitems', () => {
+  test('should contain three images', function () {
+    render(<MockNavItems />);
+    const search = screen.getByAltText(/search/);
+    const person = screen.getByAltText(/person/);
+    const bag = screen.getByAltText(/bag/);
+    expect(search).toBeInTheDocument();
+    expect(person).toBeInTheDocument();
+    expect(bag).toBeInTheDocument();
+  });
+});

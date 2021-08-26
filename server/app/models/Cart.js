@@ -6,23 +6,26 @@ const CartSchema = new Schema(
     customerId: {
       type: Schema.Types.ObjectId,
       ref: "customers",
-      required: true
+      required: true,
     },
     products: [
       {
         product: {
           type: Schema.Types.ObjectId,
-          ref: "products"
+          ref: "products",
         },
         cartQuantity: {
-          type: Number
-        }
-      }
+          type: Number,
+        },
+        chosenSize: {
+          type: String,
+        },
+      },
     ],
     date: {
       type: Date,
-      default: Date.now
-    }
+      default: Date.now,
+    },
   },
   { strict: false }
 );

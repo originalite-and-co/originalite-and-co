@@ -18,17 +18,16 @@ const MockLogo = () => {
   )
 }
 
-describe("Logo component", () => {
-    test('should have an alt text', function () {
-        render(<MockLogo/>)
-        const altText = screen.getByAltText('Logo')
-        expect(altText).toBeInTheDocument()
-    });
+describe('Logo component', () => {
+  test('should have an alt text', function () {
+    render(<MockLogo />);
+    const altText = screen.getByAltText('Logo');
+    expect(altText).toBeInTheDocument();
+  });
 
-    test('should be a link', function () {
-        render(<MockLogo/>)
-        const link = screen.getByRole('link')
-        expect(link).toBeInTheDocument()
-    });
-})
-
+  test('should be a link', function () {
+    render(<MockLogo />);
+    const link = screen.getByRole('link');
+    expect(link).toBeInTheDocument();
+  });
+});

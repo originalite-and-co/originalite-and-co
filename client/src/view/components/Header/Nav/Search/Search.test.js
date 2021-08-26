@@ -18,6 +18,6 @@ const TestSearch = () => {
     )
 }
 
-test("Search component", () => {
-    render(<TestSearch/>)
-})
+test('Search component', () => {
+  render(<TestSearch />);
+});

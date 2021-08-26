@@ -1,19 +1,19 @@
-import footerLinksTypes from "./types";
+import footerLinksTypes from './types';
 
 const reducer = (state = [], action) => {
-    const {type, payload} = action;
-    const {GOT_LINKS} = footerLinksTypes;
+  const { type, payload } = action;
+  const { GOT_LINKS } = footerLinksTypes;
 
-    switch (type) {
-        case GOT_LINKS:
-            return payload
-        default:
-            return state
-    }
-}
-
-const reducers = {
-    footerLinks: reducer,
+  switch (type) {
+    case GOT_LINKS:
+      return payload;
+    default:
+      return state;
+  }
 };
 
-export default reducers
+const reducers = {
+  footerLinks: reducer
+};
+
+export default reducers;

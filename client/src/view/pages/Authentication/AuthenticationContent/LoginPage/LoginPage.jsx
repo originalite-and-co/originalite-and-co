@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import Styles from '../Authentication.module.scss';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import Button from '../../../../components/Button/Button';
-import {makeStyles} from '@material-ui/core/styles';
-import {Form, Formik, Field, va, ErrorMessage} from 'formik';
-import * as yup from 'yup';
-import {FormGroup, Typography} from '@material-ui/core';
-import {customerRequests} from '../../../../../api/server';
-import useAsyncError from '../../../../hooks/useAsyncError';
-import {useHistory} from 'react-router-dom';
-import Toast from '../../../../components/Toast/Toast';
+import Styles from "../Authentication.module.scss";
+import Box from "@material-ui/core/Box";
+import TextField from "@material-ui/core/TextField";
+import Button from "../../../../components/Button/Button";
+import {makeStyles} from "@material-ui/core/styles";
+import {Form, Formik, Field, va, ErrorMessage} from 'formik'
+import {object, string} from "yup";
+import {FormGroup, Typography} from "@material-ui/core";
+import {customerRequests} from "../../../../../api/server";
+import useAsyncError from "../../../../hooks/useAsyncError";
+import {useHistory} from "react-router-dom";
+import Toast from "../../../../components/Toast/Toast";
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -37,32 +37,32 @@ const useStyles = makeStyles({
 });
 
 const initialValues = {
-    loginOrEmail: '',
-    password: '',
+  loginOrEmail: '',
+  password: ''
 };
 
 const validationSchema = yup.object().shape({
-    loginOrEmail: yup.string().email().label('email'),
-    password: yup.string().label('password'),
+  loginOrEmail: yup.string().email().label('email'),
+  password: yup.string().label('password')
 });
 
 function LoginPage() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const classes = useStyles();
-    const throwAsyncError = useAsyncError();
-    const history = useHistory();
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [typePassword, setTypePassword] = useState(true);
+    const classes = useStyles()
+    const throwAsyncError = useAsyncError()
+    const history = useHistory()
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [typePassword, setTypePassword] = useState(true)
     const [checked, setChecked] = React.useState(false);
 
-    const keepMeSignedIn = checked ? (
-        <RadioButtonCheckedIcon fontSize="small" className={classes.radio}/>
-    ) : (
-        <RadioButtonUncheckedIcon fontSize="small" className={classes.radio}/>
-    );
+  const keepMeSignedIn = checked ? (
+    <RadioButtonCheckedIcon fontSize="small" className={classes.radio} />
+  ) : (
+    <RadioButtonUncheckedIcon fontSize="small" className={classes.radio} />
+  );
 
-    const {authorizeUser} = authorizeOperations
+  const { authorizeUser } = authorizeOperations;
 
     const forwardIfAuthorized = async () => {
         dispatch(authorizeUser());
@@ -77,24 +77,23 @@ function LoginPage() {
         setChecked(!checked);
     };
 
-    const handlePasswordVisibilityClick = () => {
-        setTypePassword(!typePassword);
-    };
+  const handlePasswordVisibilityClick = () => {
+    setTypePassword(!typePassword);
+  };
 
-    const passwordVisibility = typePassword ? (
-        <VisibilityOffIcon
-            fontSize="small"
-            className={classes.visibilityBtn}
-            onClick={handlePasswordVisibilityClick}
-        />
-    ) : (
-        <VisibilityIcon
-            fontSize="small"
-            className={classes.visibilityBtn}
-            onClick={handlePasswordVisibilityClick}
-        />
-    );
-
+  const passwordVisibility = typePassword ? (
+    <VisibilityOffIcon
+      fontSize="small"
+      className={classes.visibilityBtn}
+      onClick={handlePasswordVisibilityClick}
+    />
+  ) : (
+    <VisibilityIcon
+      fontSize="small"
+      className={classes.visibilityBtn}
+      onClick={handlePasswordVisibilityClick}
+    />
+  );
 
     return (
         <>

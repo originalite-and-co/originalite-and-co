@@ -6,7 +6,6 @@ import ServerApiRequests from './ServerApiRequests';
 
 const CUSTOMERS_PATH = '/api/customers';
 
-// debugger
 const headers = generateHeaders();
 
 const exceptions = {
@@ -57,8 +56,13 @@ const createCustomer = async (data) => {
  * @param {boolean} keepLoggedIn
  */
 const logIn = async (credentials, keepLoggedIn) => {
-  const exception = generateFetchException('logging in');
-  const data = await customerRequests.create(credentials, `${CUSTOMERS_PATH}/login`, generateHeaders(), exception);
+  const exception = generateFetchException("logging in");
+  const data = await customerRequests.create(
+    credentials,
+    `${CUSTOMERS_PATH}/login`,
+    exception,
+    generateHeaders()
+  );
 
   if (keepLoggedIn) {
     addTokenToLocalStorage(data.token);
@@ -73,7 +77,11 @@ const logIn = async (credentials, keepLoggedIn) => {
  * @returns {Promise<Object>} - customer
  */
 const retrieveCustomer = async () => {
-  return await customerRequests.retrieve(`${CUSTOMERS_PATH}/customer`,generateHeaders());
+  return await customerRequests.retrieve(
+    `${CUSTOMERS_PATH}/customer`,
+    undefined,
+    generateHeaders()
+  );
 };
 
 /**
@@ -83,7 +91,12 @@ const retrieveCustomer = async () => {
  * @returns {Promise<Object>} - updated customer
  */
 const updateCustomer = async (data) => {
-  return await customerRequests.update(data, `${CUSTOMERS_PATH}`,generateHeaders())
+  return await customerRequests.update(
+    data,
+    `${CUSTOMERS_PATH}`,
+    undefined,
+    generateHeaders()
+  );
 };
 
 /**
@@ -96,11 +109,15 @@ const updateCustomer = async (data) => {
 const changeCustomerPassword = async (previousPassword, newPassword) => {
   const data = {
     password: previousPassword,
-    newPassword
+    newPassword,
   };
 
-  const exception = generateFetchException('changing the customer password');
-  return await customerRequests.update(data,`${CUSTOMERS_PATH}/password`,exception )
+  const exception = generateFetchException("changing the customer password");
+  return await customerRequests.update(
+    data,
+    `${CUSTOMERS_PATH}/password`,
+    exception
+  );
 };
 
 const customers = {

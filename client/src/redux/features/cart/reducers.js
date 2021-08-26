@@ -1,16 +1,40 @@
+import types from "./types";
+
+const {
+  GOT_CART,
+  ADDED_PRODUCT_TO_CART,
+  DECREASED_PRODUCT_QUANTITY,
+  DELETED_PRODUCT_FROM_CART,
+  DELETED_CART,
+} = types;
 
 const reducer = (state = [], action) => {
-    const {type, payload} = action;
+  const { type, payload } = action;
 
-    if (type === ""){
-        return state;
-    } else{
-        return state;
+  switch (type) {
+    case GOT_CART: {
+      return payload;
     }
-}
-
-const reducers = {
-    cart: reducer,
+    case ADDED_PRODUCT_TO_CART: {
+      return payload;
+    }
+    case DECREASED_PRODUCT_QUANTITY: {
+      return payload;
+    }
+    case DELETED_PRODUCT_FROM_CART: {
+      return payload;
+    }
+    case DELETED_CART: {
+      return [];
+    }
+    default: {
+      return state;
+    }
+  }
 };
 
-export default reducers
+const reducers = {
+  cart: reducer,
+};
+
+export default reducers;

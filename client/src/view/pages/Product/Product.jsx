@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from "../../components/Header/Header";
+import OneProduct from '../../components/Product/OneProduct'
 
 Product.propTypes = {
 
 };
 
-function Product(props) {
+function Product() {
     return (
-        <div>
-            Product
-        </div>
+        <>
+            <Header/>
+            <OneProduct/>
+        </>
     );
 }
 

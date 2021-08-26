@@ -1,11 +1,8 @@
-import {
-  generateFetchException,
-  generateHeaders
-} from './utils.js';
+import { generateFetchException, generateHeaders } from "./utils.js";
 
-import ServerApiRequests from './ServerApiRequests';
+import ServerApiRequests from "./ServerApiRequests";
 
-const CART_PATH = '/api/cart';
+const CART_PATH = "/api/cart";
 
 const headers = generateHeaders();
 
@@ -20,12 +17,12 @@ const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
 
 /**
  *
- * @param {Object} data
+ * @param {Object} [data]
  * @returns {Promise<Object>}
  */
 
 const createCart = async (data) => {
-  return await cartRequests.create(data)
+  return await cartRequests.create(data);
 };
 
 /**
@@ -34,7 +31,7 @@ const createCart = async (data) => {
  */
 
 const retrieveCart = async () => {
-  return await cartRequests.retrieve();
+  return await cartRequests.retrieve(undefined, undefined, generateHeaders());
 };
 
 /**
@@ -49,35 +46,47 @@ const updateCart = async (data) => {
 
 /**
  *
- * @param {Object} data
  * @param {String} id
+ * @param {String} size
  * @returns {Promise<Object>}
  */
 
-const addProductToCart = async (data, id) => {
-  const exception = generateFetchException("adding a product to the cart")
-  return await cartRequests.update(data, `${CART_PATH}/${id}`, exception);
+const addProductToCart = async (id, size) => {
+  const exception = generateFetchException("adding a product to the cart");
+  return await cartRequests.update(
+    null,
+    `${CART_PATH}/${id}?size=${size}`,
+    exception
+  );
 };
 
 /**
  *
  * @param {String} id
+ * @param {String} size
  * @returns {Promise<Object>}
  */
 
-const decreaseProductQuantity = async (id) => {
-  const exception = generateFetchException("decreasing a product quantity")
-  return await cartRequests.delete(`${CART_PATH}/product/${id}`, exception);
+const decreaseProductQuantity = async (id, size) => {
+  const exception = generateFetchException("decreasing a product quantity");
+  return await cartRequests.delete(
+    `${CART_PATH}/product/${id}?size=${size}`,
+    exception
+  );
 };
 
 /**
  * @param {String} id
+ * @param {String} size
  * @returns {Promise<Object>}
  */
 
-const deleteProductFromCart = async (id) => {
+const deleteProductFromCart = async (id, size) => {
   const exception = generateFetchException("deleting a product from the cart");
-  return await cartRequests.delete(`${CART_PATH}/${id}`, exception);
+  return await cartRequests.delete(
+    `${CART_PATH}/${id}?size=${size}`,
+    exception
+  );
 };
 
 /**

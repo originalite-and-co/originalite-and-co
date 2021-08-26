@@ -17,5 +17,5 @@ const authorizationReducer = (state = false, action) => {
 }
 
 export default {
-    authorization: authorizationReducer
-}
+  authorization: authorizationReducer
+};

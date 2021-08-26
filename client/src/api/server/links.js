@@ -1,18 +1,15 @@
-import {
-    generateFetchException,
-    generateHeaders
-} from './utils.js';
+import { generateFetchException, generateHeaders } from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
-const LINKS_PATH = "/api/links";
+const LINKS_PATH = '/api/links';
 
 const headers = generateHeaders();
 
 const exceptions = {
-    create: generateFetchException("creating a link"),
-    retrieve: generateFetchException("retrieving links"),
-    update: generateFetchException("updating the link"),
-    delete: generateFetchException("deleting the link"),
+  create: generateFetchException('creating a link'),
+  retrieve: generateFetchException('retrieving links'),
+  update: generateFetchException('updating the link'),
+  delete: generateFetchException('deleting the link')
 };
 
 const linkRequests = new ServerApiRequests(LINKS_PATH, headers, exceptions);
@@ -23,14 +20,14 @@ const linkRequests = new ServerApiRequests(LINKS_PATH, headers, exceptions);
  * @returns {Promise<Object>}
  */
 const createLinks = async (data) => {
-    return await linkRequests.create(data);
+  return await linkRequests.create(data);
 };
 
 /**
  * @returns {Promise<Array<Object>>}
  */
 const retrieveLinks = async () => {
-    return await linkRequests.retrieve();
+  return await linkRequests.retrieve();
 };
 
 /**
@@ -39,8 +36,8 @@ const retrieveLinks = async () => {
  * @returns {Promise<Object>}
  */
 const retrieveLinkById = async (linkId) => {
-    const exception = generateFetchException("retrieving the link by id")
-    return await linkRequests.retrieve(`${LINKS_PATH}/${linkId}`, exception);
+  const exception = generateFetchException('retrieving the link by id');
+  return await linkRequests.retrieve(`${LINKS_PATH}/${linkId}`, exception);
 };
 
 /**
@@ -50,7 +47,7 @@ const retrieveLinkById = async (linkId) => {
  * @returns {Promise<Object>}
  */
 const updateLink = async (data, linkId) => {
-    return await linkRequests.update(data, `${LINKS_PATH}/${linkId}`);
+  return await linkRequests.update(data, `${LINKS_PATH}/${linkId}`);
 };
 
 /**
@@ -59,15 +56,15 @@ const updateLink = async (data, linkId) => {
  * @returns {Promise<Object>}
  */
 const deleteLink = async (linkId) => {
-    return await linkRequests.delete(`${LINKS_PATH}/${linkId}`);
+  return await linkRequests.delete(`${LINKS_PATH}/${linkId}`);
 };
 
 const links = {
-    createLinks,
-    retrieveLinks,
-    retrieveLinkById,
-    updateLink,
-    deleteLink
+  createLinks,
+  retrieveLinks,
+  retrieveLinkById,
+  updateLink,
+  deleteLink
 };
 
 export default links;

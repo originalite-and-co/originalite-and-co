@@ -1,7 +1,7 @@
-const Cart = require('../models/Cart');
-const Product = require('../models/Product');
-const queryCreator = require('../commonHelpers/queryCreator');
-const _ = require('lodash');
+const Cart = require("../models/Cart");
+const Product = require("../models/Product");
+const queryCreator = require("../commonHelpers/queryCreator");
+const _ = require("lodash");
 
 exports.createCart = (req, res, next) => {
   Cart.findOne({ customerId: req.user.id }).then((cart) => {
@@ -16,8 +16,8 @@ exports.createCart = (req, res, next) => {
       const newCart = new Cart(queryCreator(initialQuery));
 
       newCart
-        .populate('products.product')
-        .populate('customerId')
+        .populate("products.product")
+        .populate("customerId")
         .execPopulate();
 
       newCart
@@ -42,8 +42,8 @@ exports.updateCart = (req, res, next) => {
         const newCart = new Cart(queryCreator(initialQuery));
 
         newCart
-          .populate('products.product')
-          .populate('customerId')
+          .populate("products.product")
+          .populate("customerId")
           .execPopulate();
 
         newCart
@@ -63,8 +63,8 @@ exports.updateCart = (req, res, next) => {
           { $set: updatedCart },
           { new: true }
         )
-          .populate('products.product')
-          .populate('customerId')
+          .populate("products.product")
+          .populate("customerId")
           .then((cart) => res.json(cart))
           .catch((err) =>
             res.status(400).json({
@@ -104,13 +104,14 @@ exports.addProductToCart = async (req, res, next) => {
           cartData.products = [].concat({
             product: req.params.productId,
             cartQuantity: 1,
+            chosenSize: req.query.size,
           });
 
           const newCart = new Cart(queryCreator(cartData));
 
           newCart
-            .populate('products.product')
-            .populate('customerId')
+            .populate("products.product")
+            .populate("customerId")
             .execPopulate();
 
           newCart
@@ -124,13 +125,20 @@ exports.addProductToCart = async (req, res, next) => {
         } else {
           const cartData = {};
 
-          const isProductExistInCart = cart.products.some(
-            (item) => item.product.toString() === req.params.productId
-          );
+          const isProductExistInCart = cart.products.some((item) => {
+            const isTheSameID =
+              item.product.toString() === req.params.productId;
+            const isTheSameSize = item.chosenSize.toString() === req.query.size;
+            return isTheSameSize && isTheSameID;
+          });
 
           if (isProductExistInCart) {
             cartData.products = cart.products.map((item) => {
-              if (item.product.toString() === req.params.productId) {
+              const isTheSameID =
+                item.product.toString() === req.params.productId;
+              const isTheSameSize =
+                item.chosenSize.toString() === req.query.size;
+              if (isTheSameID && isTheSameSize) {
                 item.cartQuantity += 1;
               }
 
@@ -140,6 +148,7 @@ exports.addProductToCart = async (req, res, next) => {
             cartData.products = cart.products.concat({
               product: req.params.productId,
               cartQuantity: 1,
+              chosenSize: req.query.size,
             });
           }
 
@@ -150,8 +159,8 @@ exports.addProductToCart = async (req, res, next) => {
             { $set: updatedCart },
             { new: true }
           )
-            .populate('products.product')
-            .populate('customerId')
+            .populate("products.product")
+            .populate("customerId")
             .then((cart) => res.json(cart))
             .catch((err) =>
               res.status(400).json({
@@ -172,17 +181,22 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
   Cart.findOne({ customerId: req.user.id })
     .then((cart) => {
       if (!cart) {
-        res.status(400).json({ message: 'Cart does not exists' });
+        res.status(400).json({ message: "Cart does not exists" });
       } else {
         const cartData = {};
 
-        const isProductExistInCart = cart.products.some(
-          (item) => item.product.toString() === req.params.productId
-        );
+        const isProductExistInCart = cart.products.some((item) => {
+          const isTheSameID = item.product.toString() === req.params.productId;
+          const isTheSameSize = item.chosenSize.toString() === req.query.size;
+          return isTheSameSize && isTheSameID;
+        });
 
         if (isProductExistInCart) {
           cartData.products = cart.products.map((item) => {
-            if (item.product.toString() === req.params.productId) {
+            const isTheSameID =
+              item.product.toString() === req.params.productId;
+            const isTheSameSize = item.chosenSize.toString() === req.query.size;
+            if (isTheSameSize && isTheSameID) {
               item.cartQuantity -= 1;
             }
 
@@ -194,7 +208,7 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
           );
         } else {
           res.status(400).json({
-            message: 'Product ${} does not exists in cart to decrease quantity',
+            message: "Product ${} does not exists in cart to decrease quantity",
           });
         }
 
@@ -203,8 +217,8 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
           { $set: cartData },
           { new: true }
         )
-          .populate('products.product')
-          .populate('customerId')
+          .populate("products.product")
+          .populate("customerId")
           .then((cart) => res.json(cart))
           .catch((err) =>
             res.status(400).json({
@@ -249,54 +263,59 @@ exports.deleteProductFromCart = async (req, res, next) => {
     .then((cart) => {
       if (!cart) {
         res.status(400).json({ message: `Cart does not exist` });
-      } else {
-        if (
-          !cart.products.some(
-            (item) => item.product.toString() === req.params.productId
+        return;
+      }
+
+      const isProductExistInCart = cart.products.some((item) => {
+        const isTheSameID = item.product.toString() === req.params.productId;
+        const isTheSameSize = item.chosenSize.toString() === req.query.size;
+        return isTheSameSize && isTheSameID;
+      });
+
+      if (!isProductExistInCart) {
+        res.status(400).json({
+          message: `Product with _id "${req.params.productId}" is absent in cart.`,
+        });
+
+        return;
+      }
+
+      const cartData = {};
+      cartData.products = cart.products.filter((item) => {
+        const isTheSameID = item.product.toString() === req.params.productId;
+        const isTheSameSize = item.chosenSize.toString() === req.query.size;
+        return !(isTheSameSize && isTheSameID);
+      });
+
+      const updatedCart = queryCreator(cartData);
+
+      if (cartData.products.length === 0) {
+        return Cart.deleteOne({ customerId: req.user.id })
+          .then((deletedCount) =>
+            res.status(200).json({
+              products: [],
+            })
           )
-        ) {
-          res.status(400).json({
-            message: `Product with _id "${req.params.productId}" is absent in cart.`,
-          });
-
-          return;
-        }
-
-        const cartData = {};
-        cartData.products = cart.products.filter(
-          (item) => item.product.toString() !== req.params.productId
-        );
-
-        const updatedCart = queryCreator(cartData);
-
-        if (cartData.products.length === 0) {
-          return Cart.deleteOne({ customerId: req.user.id })
-            .then((deletedCount) =>
-              res.status(200).json({
-                products: [],
-              })
-            )
-            .catch((err) =>
-              res.status(400).json({
-                message: `Error happened on server: "${err}" `,
-              })
-            );
-        }
-
-        Cart.findOneAndUpdate(
-          { customerId: req.user.id },
-          { $set: updatedCart },
-          { new: true }
-        )
-          .populate('products.product')
-          .populate('customerId')
-          .then((cart) => res.json(cart))
           .catch((err) =>
             res.status(400).json({
               message: `Error happened on server: "${err}" `,
             })
           );
       }
+
+      Cart.findOneAndUpdate(
+        { customerId: req.user.id },
+        { $set: updatedCart },
+        { new: true }
+      )
+        .populate("products.product")
+        .populate("customerId")
+        .then((cart) => res.json(cart))
+        .catch((err) =>
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `,
+          })
+        );
     })
     .catch((err) =>
       res.status(400).json({
@@ -307,8 +326,8 @@ exports.deleteProductFromCart = async (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
   Cart.findOne({ customerId: req.user.id })
-    .populate('products.product')
-    .populate('customerId')
+    .populate("products.product")
+    .populate("customerId")
     .then((cart) => res.json(cart))
     .catch((err) =>
       res.status(400).json({
