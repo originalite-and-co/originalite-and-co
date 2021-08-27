@@ -6,10 +6,9 @@ import PropTypes from 'prop-types';
 import { Box, Button } from '@material-ui/core';
 
 Step.propTypes = {
-  fields: PropTypes.object,
-  schema: PropTypes.object,
-  formProps: PropTypes.object,
+  fields: PropTypes.array,
   initialValues: PropTypes.object,
+  schema: PropTypes.object,
   handleNext: PropTypes.func,
   handlePrev: PropTypes.func,
 };
@@ -52,14 +51,18 @@ function Step({
             <Box className="stepper__navigation">
               {handlePrev && (
                 <Button
-                  variant="contained"
-                  color="secondary"
+                  variant="outlined"
+                  type="button"
                   onClick={handlePrev(values)}
                 >
                   Prev
                 </Button>
               )}
-              {handleNext && <Button type="submit">Next</Button>}
+              {handleNext && (
+                <Button variant="contained" color="secondary" type="submit">
+                  Next
+                </Button>
+              )}
             </Box>
           </Form>
         );

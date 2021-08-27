@@ -18,19 +18,23 @@ function Stepper({ children, initialValues, onSubmit }) {
 
   const lastStep = step === length - 1;
 
+  const handleNext = (data) => {
+    setFormData((prev) => ({ ...prev, ...data }));
+    if (lastStep) return onSubmit(data);
+    if (step < length - 1) setStep((prev) => prev + 1);
+  };
+
+  const handlePrev = step
+    ? (data) => () => {
+        setFormData((prev) => ({ ...prev, ...data }));
+        setStep((prev) => prev - 1);
+      }
+    : null;
+
   const Component = React.cloneElement(components[step], {
     initialValues: formData,
-    handleNext: (data) => () => {
-      setFormData((prev) => ({ ...prev, ...data }));
-      if (lastStep) return onSubmit(data);
-      if (step < length - 1) setStep((prev) => prev + 1);
-    },
-    handlePrev: step
-      ? (data) => () => {
-          setFormData((prev) => ({ ...prev, ...data }));
-          setStep((prev) => prev - 1);
-        }
-      : null,
+    handleNext,
+    handlePrev,
   });
 
   return (

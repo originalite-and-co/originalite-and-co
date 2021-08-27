@@ -3,8 +3,21 @@ import { Stepper, Step } from '../../components/Stepper';
 
 function Checkout() {
   return (
-    <Stepper initialValues={{}} onSubmit={() => {}}>
-      <Step>
+    <Stepper
+      initialValues={{
+        name: '',
+      }}
+      onSubmit={(d) => {
+        console.log(d);
+      }}
+    >
+      <Step
+        fields={[
+          {
+            name: 'name',
+          },
+        ]}
+      >
         <p>kek</p>
       </Step>
       <Step>
