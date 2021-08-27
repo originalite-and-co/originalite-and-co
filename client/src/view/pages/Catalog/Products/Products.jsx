@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   isAnyDropdownOpenActions,
-  isAnyDropdownOpenSelectors
+  isAnyDropdownOpenSelectors,
 } from '../../../../redux/features/dropdown';
 
 import { CircularProgress, Typography } from '@material-ui/core';
@@ -30,12 +30,12 @@ Products.propTypes = {
     PropTypes.shape({
       imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
       name: PropTypes.string.isRequired,
-      currentPrice: PropTypes.number.isRequired
-    })
+      currentPrice: PropTypes.number.isRequired,
+    }),
   ),
   productsQuantity: PropTypes.number.isRequired,
   loadMoreProducts: PropTypes.func.isRequired,
-  isLoaded: PropTypes.bool.isRequired
+  isLoaded: PropTypes.bool.isRequired,
 };
 
 function Products({
@@ -43,7 +43,7 @@ function Products({
   products,
   productsQuantity,
   loadMoreProducts,
-  isLoaded
+  isLoaded,
 }) {
   const [isDesktop, setDesktop] = useState(false);
   const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -52,7 +52,7 @@ function Products({
   const dispatch = useDispatch();
 
   const isAnyDropdownOpen = useSelector(
-    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
+    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen,
   );
 
   const useStyles = makeStyles(generateStyles);
@@ -131,7 +131,7 @@ function Products({
         isActive={isDropdownActive}
         classNames={{
           closed: classes.dropdown,
-          active: classes.dropdownActive
+          active: classes.dropdownActive,
         }}
         children={<Filter />}
         lockBodyScrolling

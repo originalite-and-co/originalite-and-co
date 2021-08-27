@@ -16,16 +16,16 @@ const rootReducer = combineReducers({
   ...footerReducer,
   ...filterReducer,
   ...footerReducer,
-  ...authorizationReducer
+  ...authorizationReducer,
 });
 
 const composeEnhancers = composeWithDevTools({
-  trace: true
+  trace: true,
 });
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 export default store;

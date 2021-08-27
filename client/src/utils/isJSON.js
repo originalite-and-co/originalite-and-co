@@ -9,7 +9,7 @@ const isJSON = (input) => {
     throw new TypeError(
       `Invalid data. Expected a string or a Response, but got ${typeof input}, ${
         input.__proto__
-      }`
+      }`,
     );
   }
 

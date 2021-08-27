@@ -9,7 +9,7 @@ const { SET_SEARCH_RESULT, DELETE_SEARCH_RESULT } = types;
  */
 const setSearchResult = (data) => ({
   type: SET_SEARCH_RESULT,
-  payload: data
+  payload: data,
 });
 
 /**
@@ -17,12 +17,12 @@ const setSearchResult = (data) => ({
  * @returns {{type: string}}
  */
 const deleteSearchResult = () => ({
-  type: DELETE_SEARCH_RESULT
+  type: DELETE_SEARCH_RESULT,
 });
 
 const actions = {
   setSearchResult,
-  deleteSearchResult
+  deleteSearchResult,
 };
 
 export default actions;

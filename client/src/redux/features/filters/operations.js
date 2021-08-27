@@ -18,7 +18,7 @@ const getFilters = (location) => (dispatch, getState) => {
 };
 
 const operations = {
-  getFilters
+  getFilters,
 };
 
 export default operations;

@@ -10,16 +10,16 @@ Loader.propTypes = {
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   className: PropTypes.shape({
     container: PropTypes.string,
-    loader: PropTypes.string
+    loader: PropTypes.string,
   }),
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   thickness: PropTypes.number,
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
   position: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']),
-    vertical: PropTypes.oneOf(['center', 'top', 'bottom'])
+    vertical: PropTypes.oneOf(['center', 'top', 'bottom']),
   }),
-  value: PropTypes.number
+  value: PropTypes.number,
 };
 
 Loader.defaultProps = {
@@ -31,8 +31,8 @@ Loader.defaultProps = {
   variant: 'indeterminate',
   position: {
     horizontal: 'center',
-    vertical: 'center'
-  }
+    vertical: 'center',
+  },
 };
 
 /**
@@ -56,7 +56,7 @@ function Loader({
   thickness,
   variant,
   position,
-  value
+  value,
 }) {
   const useStyles = makeStyles((theme) => generateStyles(theme, size));
   const classes = useStyles();

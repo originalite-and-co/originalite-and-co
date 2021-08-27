@@ -5,7 +5,7 @@ const {
   DELETED_FILTER_VALUE,
   DELETED_FILTER,
   DELETED_ALL_FILTERS,
-  GOT_FILTERS
+  GOT_FILTERS,
 } = types;
 
 /**
@@ -20,7 +20,7 @@ const addFilter = (filter) => {
 
   return {
     type: ADDED_FILTER,
-    payload: filter
+    payload: filter,
   };
 };
 
@@ -36,8 +36,8 @@ const deleteFilterValue = (filterName, filterValue) => ({
   type: DELETED_FILTER_VALUE,
   payload: {
     filterName,
-    filterValue
-  }
+    filterValue,
+  },
 });
 
 /**
@@ -47,7 +47,7 @@ const deleteFilterValue = (filterName, filterValue) => ({
  */
 const deleteFilter = (filterName) => ({
   type: DELETED_FILTER,
-  payload: filterName
+  payload: filterName,
 });
 
 /**
@@ -55,7 +55,7 @@ const deleteFilter = (filterName) => ({
  * @returns {{type: string}}
  */
 const deleteAllFilters = () => ({
-  type: DELETED_ALL_FILTERS
+  type: DELETED_ALL_FILTERS,
 });
 
 /**
@@ -63,7 +63,7 @@ const deleteAllFilters = () => ({
  */
 const getFilters = (filters) => ({
   type: GOT_FILTERS,
-  payload: filters
+  payload: filters,
 });
 
 const actions = {
@@ -71,7 +71,7 @@ const actions = {
   deleteFilterValue,
   deleteFilter,
   deleteAllFilters,
-  getFilters
+  getFilters,
 };
 
 export default actions;

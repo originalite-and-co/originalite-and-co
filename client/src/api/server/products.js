@@ -9,13 +9,13 @@ const exceptions = {
   create: generateFetchException('creating a product'),
   retrieve: generateFetchException('retrieving products'),
   update: generateFetchException('updating the product'),
-  delete: generateFetchException('deleting the product')
+  delete: generateFetchException('deleting the product'),
 };
 
 const productRequests = new ServerApiRequests(
   PRODUCTS_PATH,
   headers,
-  exceptions
+  exceptions,
 );
 
 /**
@@ -37,7 +37,7 @@ const searchForProduct = async (query) => {
   return await productRequests.create(
     { query },
     `${PRODUCTS_PATH}/search`,
-    exception
+    exception,
   );
 };
 
@@ -56,11 +56,11 @@ const retrieveProducts = async () => {
  */
 const retrieveProductByItemNumber = async (itemNumber) => {
   const exception = generateFetchException(
-    'retrieving the product by item number'
+    'retrieving the product by item number',
   );
   return await productRequests.retrieve(
     `${PRODUCTS_PATH}/${itemNumber}`,
-    exception
+    exception,
   );
 };
 
@@ -74,7 +74,7 @@ const retrieveByQuery = async (query) => {
   const exception = generateFetchException('retrieving products by query');
   return await productRequests.retrieve(
     `${PRODUCTS_PATH}/filter?${query}`,
-    exception
+    exception,
   );
 };
 
@@ -95,7 +95,7 @@ const product = {
   retrieveProducts,
   retrieveProductByItemNumber,
   retrieveByQuery,
-  updateProduct
+  updateProduct,
 };
 
 export default product;

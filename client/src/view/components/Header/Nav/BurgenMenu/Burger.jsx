@@ -10,7 +10,7 @@ import styles from './Burger.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   isAnyDropdownOpenActions,
-  isAnyDropdownOpenSelectors
+  isAnyDropdownOpenSelectors,
 } from '../../../../../redux/features/dropdown';
 
 function Burger() {
@@ -19,7 +19,7 @@ function Burger() {
 
   const dispatch = useDispatch();
   const isAnyDropdownOpen = useSelector(
-    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
+    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen,
   );
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function Burger() {
       <Dropdown
         classNames={{
           closed: styles.dropdown,
-          active: styles.dropdownActive
+          active: styles.dropdownActive,
         }}
         isActive={isDropdownActive}
         lockBodyScrolling

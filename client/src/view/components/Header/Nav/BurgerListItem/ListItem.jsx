@@ -34,8 +34,8 @@ export function ListItemUpper({ text }) {
 }
 
 ListItem.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 };
 ListItemUpper.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 };

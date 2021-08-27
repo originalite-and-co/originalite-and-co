@@ -15,7 +15,7 @@ const FormFields = ({ fields }) => {
         errorClass = '',
         ...rest
       },
-      key
+      key,
     ) => {
       return (
         <Field name={name} {...rest} key={key}>
@@ -39,7 +39,7 @@ const FormFields = ({ fields }) => {
                     {FormFieldComponent(component, {
                       ...fieldProps,
                       ...rest,
-                      value: fieldValue
+                      value: fieldValue,
                     })}
                   </div>
                 </label>
@@ -54,7 +54,7 @@ const FormFields = ({ fields }) => {
           }}
         </Field>
       );
-    }
+    },
   );
 };
 

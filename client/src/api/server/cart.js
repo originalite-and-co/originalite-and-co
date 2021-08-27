@@ -10,7 +10,7 @@ const exceptions = {
   create: generateFetchException('creating a cart'),
   retrieve: generateFetchException('retrieving a cart'),
   update: generateFetchException('updating the cart'),
-  delete: generateFetchException('deleting the cart')
+  delete: generateFetchException('deleting the cart'),
 };
 
 const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
@@ -91,7 +91,7 @@ const cart = {
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart
+  deleteCart,
 };
 
 export default cart;

@@ -9,7 +9,7 @@ const exceptions = {
   create: generateFetchException('creating a link'),
   retrieve: generateFetchException('retrieving links'),
   update: generateFetchException('updating the link'),
-  delete: generateFetchException('deleting the link')
+  delete: generateFetchException('deleting the link'),
 };
 
 const linkRequests = new ServerApiRequests(LINKS_PATH, headers, exceptions);
@@ -64,7 +64,7 @@ const links = {
   retrieveLinks,
   retrieveLinkById,
   updateLink,
-  deleteLink
+  deleteLink,
 };
 
 export default links;

@@ -21,27 +21,27 @@ import { authorizeOperations } from '../../../../../redux/features/authorization
 const useStyles = makeStyles({
   textField: {
     borderBottom: '1px solid white',
-    color: '#FFFFFF !important'
+    color: '#FFFFFF !important',
   },
   radio: {
-    color: '#FFFFFF !important'
+    color: '#FFFFFF !important',
   },
   visibilityBtn: {
     color: '#FFFFFF !important',
     position: 'absolute',
     top: '30%',
-    right: 0
-  }
+    right: 0,
+  },
 });
 
 const initialValues = {
   loginOrEmail: '',
-  password: ''
+  password: '',
 };
 
 const validationSchema = yup.object().shape({
   loginOrEmail: yup.string().email().label('email'),
-  password: yup.string().label('password')
+  password: yup.string().label('password'),
 });
 
 function LoginPage() {

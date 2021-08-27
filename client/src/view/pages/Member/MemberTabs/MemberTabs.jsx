@@ -6,7 +6,7 @@ import MyProfile from '../MyProfile/MyProfile';
 import {
   customerRequests,
   ordersRequests,
-  wishlistRequests
+  wishlistRequests,
 } from '../../../../api/server/index';
 import useAsyncError from '../../../hooks/useAsyncError';
 import Toast from '../../../components/Toast/Toast';
@@ -25,11 +25,11 @@ const useStyles = makeStyles({
     lineHeight: '16px',
     color: '#373737',
     borderBottom: 'none !important',
-    marginTop: '20px'
+    marginTop: '20px',
   },
   '&:selected': {
-    color: '#1890ff !important'
-  }
+    color: '#1890ff !important',
+  },
 });
 
 function MemberTabs() {
@@ -51,21 +51,21 @@ function MemberTabs() {
   useCallback(() => {
     customerRequests.retrieveCustomer().then(
       (data) => setCustomer(data),
-      (error) => throwError(error)
+      (error) => throwError(error),
     );
   }, [throwError]);
 
   useEffect(() => {
     ordersRequests.retrieveOrder().then(
       (data) => setOrders(data),
-      (error) => throwError(error)
+      (error) => throwError(error),
     );
   }, [throwError]);
 
   useEffect(() => {
     wishlistRequests.retrieveWishlist().then(
       (data) => setWishlist(data),
-      (error) => throwError(error)
+      (error) => throwError(error),
     );
   }, [throwError]);
 

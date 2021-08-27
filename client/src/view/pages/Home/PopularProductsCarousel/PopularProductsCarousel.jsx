@@ -32,7 +32,7 @@ const PopularProductsCarousel = () => {
   useEffect(() => {
     productRequests.retrieveProducts().then(
       (res) => setProductList(res),
-      (error) => throwError(error)
+      (error) => throwError(error),
     );
   }, []);
 

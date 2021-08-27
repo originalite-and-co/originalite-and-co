@@ -8,14 +8,14 @@ import {
   AccordionDetails,
   AccordionSummary,
   Grid,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
 FilterAccordion.propTypes = {
   text: PropTypes.string.isRequired,
   isDesktop: PropTypes.bool.isRequired,
-  detailsContent: PropTypes.element
+  detailsContent: PropTypes.element,
 };
 
 function FilterAccordion({ text, isDesktop, detailsContent }) {

@@ -15,7 +15,7 @@ const CardList = () => {
       (error) => {
         throwError(error);
         setApiError(error);
-      }
+      },
     );
   }, []);
   if (apiError) {

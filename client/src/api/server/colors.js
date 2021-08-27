@@ -9,7 +9,7 @@ const exceptions = {
   create: generateFetchException('creating a color'),
   retrieve: generateFetchException('retrieving colors'),
   update: generateFetchException('updating the color'),
-  delete: generateFetchException('deleting the color')
+  delete: generateFetchException('deleting the color'),
 };
 
 const colorRequests = new ServerApiRequests(COLORS_PATH, headers, exceptions);
@@ -54,7 +54,7 @@ const colors = {
   createColor,
   retrieveColors,
   updateColor,
-  deleteColor
+  deleteColor,
 };
 
 export default colors;

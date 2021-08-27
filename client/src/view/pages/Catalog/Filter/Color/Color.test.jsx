@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 const DATA = {
   name: 'black',
   cssValue: '#000000',
-  isDesktop: true
+  isDesktop: true,
 };
 describe('Color', () => {
   test('smoke', () => {
@@ -16,7 +16,7 @@ describe('Color', () => {
       <CustomThemeProvider>
         <Color {...DATA} />
       </CustomThemeProvider>,
-      store
+      store,
     );
 
     expect(getByText(DATA.name)).toBeInTheDocument();
@@ -24,13 +24,13 @@ describe('Color', () => {
 
   test('If it calls filterActions function ', () => {
     filterActions.addFilter = jest.fn(() => ({
-      type: 'test'
+      type: 'test',
     }));
     const { getByTestId } = renderWithRedux(
       <CustomThemeProvider>
         <Color {...DATA} />
       </CustomThemeProvider>,
-      store
+      store,
     );
 
     const button = getByTestId('color-button');

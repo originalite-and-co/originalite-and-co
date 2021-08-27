@@ -5,7 +5,7 @@ const WINDOW_DESKTOP_SIZE = 1024;
 const sizes = {
   WINDOW_MOBILE_SIZE,
   WINDOW_TABLET_SIZE,
-  WINDOW_DESKTOP_SIZE
+  WINDOW_DESKTOP_SIZE,
 };
 
 export default sizes;

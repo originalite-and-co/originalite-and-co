@@ -2,7 +2,7 @@ import Error from './Error';
 
 const typeComponent = {
   textarea: (props) => <textarea {...props} />,
-  default: (props) => <input {...props} />
+  default: (props) => <input {...props} />,
 };
 
 const FormFieldComponent = (type, props) => {

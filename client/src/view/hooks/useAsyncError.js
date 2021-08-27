@@ -15,7 +15,7 @@ const useAsyncError = () => {
         throw error;
       });
     },
-    [setError]
+    [setError],
   );
 };
 

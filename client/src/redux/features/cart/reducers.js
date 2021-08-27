@@ -9,7 +9,7 @@ const reducer = (state = [], action) => {
 };
 
 const reducers = {
-  cart: reducer
+  cart: reducer,
 };
 
 export default reducers;

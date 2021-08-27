@@ -7,7 +7,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
 
 ProductCard.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
 };
 
 function ProductCard({ product, size }) {
@@ -22,7 +22,7 @@ function ProductCard({ product, size }) {
 
   const handleClick = () => {
     const dataFromLocalStorage = JSON.parse(
-      localStorage.getItem('recentlyViewed')
+      localStorage.getItem('recentlyViewed'),
     );
     if (dataFromLocalStorage?.length === 10) {
       dataFromLocalStorage.shift();

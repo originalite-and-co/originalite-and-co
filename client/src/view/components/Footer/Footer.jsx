@@ -3,7 +3,7 @@ import { Box, Grid, Typography, Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   footerLinksOperations,
-  footerLinksSelectors
+  footerLinksSelectors,
 } from '../../../redux/features/footerLinks/index.js';
 import { Link } from 'react-router-dom';
 import FooterStyles from './Footer.module.scss';
