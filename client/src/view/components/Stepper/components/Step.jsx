@@ -2,7 +2,19 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { FormFields } from '../../Form';
 
-const Step = ({
+import PropTypes from 'prop-types';
+import { Box, Button } from '@material-ui/core';
+
+Step.propTypes = {
+  fields: PropTypes.object,
+  schema: PropTypes.object,
+  formProps: PropTypes.object,
+  initialValues: PropTypes.object,
+  handleNext: PropTypes.func,
+  handlePrev: PropTypes.func,
+};
+
+function Step({
   children,
   fields,
   initialValues,
@@ -10,7 +22,7 @@ const Step = ({
   handleNext,
   handlePrev,
   ...formProps
-}) => {
+}) {
   const { title, subTitle, ...restFormProps } = formProps;
 
   return (
@@ -24,7 +36,7 @@ const Step = ({
           <Form {...restFormProps}>
             {title && <h4 className="form__title">{title}</h4>}
 
-            <div className="form__inner">
+            <Box className="form__inner">
               {fields && (
                 <FormFields
                   fields={fields}
@@ -33,31 +45,27 @@ const Step = ({
                 />
               )}
               {children}
-            </div>
+            </Box>
 
             {subTitle && <h4 className="form__subtitle">{subTitle}</h4>}
 
-            <div className="multi-form__navigation">
+            <Box className="stepper__navigation">
               {handlePrev && (
-                <button
-                  className="btn btn--outline-primary btn--medium"
-                  type="button"
-                  onClick={() => handlePrev(values)}
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handlePrev(values)}
                 >
                   Prev
-                </button>
+                </Button>
               )}
-              {handleNext && (
-                <button className="btn btn--primary btn--medium" type="submit">
-                  Next
-                </button>
-              )}
-            </div>
+              {handleNext && <Button type="submit">Next</Button>}
+            </Box>
           </Form>
         );
       }}
     </Formik>
   );
-};
+}
 
 export default Step;

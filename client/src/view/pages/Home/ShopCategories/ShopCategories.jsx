@@ -20,7 +20,7 @@ const ShopCategories = () => {
   useEffect(() => {
     catalogRequests.retrieveCatalog().then(
       (res) => setCategoryList(res.splice(0, 4)),
-      (error) => throwError(error)
+      (error) => throwError(error),
     );
   }, []);
 
