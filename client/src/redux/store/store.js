@@ -1,20 +1,21 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
-import cartReducer from "./../features/cart/index";
-import isAnyDropdownOpenReducer from "./../features/dropdown/index";
-import searchResult from "./../features/searchResult/index";
-import footerReducer from "./../features/footerLinks/index";
-import filterReducer from "./../features/filters/index";
-import authorizationReducer from "../features/authorization/index";
+import cartReducer from './../features/cart/index';
+import isAnyDropdownOpenReducer from './../features/dropdown/index';
+import searchResult from './../features/searchResult/index';
+import footerReducer from './../features/footerLinks/index';
+import filterReducer from './../features/filters/index';
+import authorizationReducer from '../features/authorization/index';
+import wishlistReducer from '../features/wishlist/index';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
-  whitelist: ["cart"],
+  whitelist: ['cart', 'wishlist']
 };
 
 let rootReducer = combineReducers({
@@ -25,12 +26,13 @@ let rootReducer = combineReducers({
   ...filterReducer,
   ...footerReducer,
   ...authorizationReducer,
+  ...wishlistReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composeEnhancers = composeWithDevTools({
-  trace: true,
+  trace: true
 });
 
 const store = createStore(

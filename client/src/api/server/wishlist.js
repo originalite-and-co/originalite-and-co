@@ -52,9 +52,10 @@ const updateWishlist = async (data) => {
 const addProductToWishlist = async (productId) => {
   const exception = generateFetchException('adding a product to the wishlist');
   return await wishlistRequests.update(
-    null,
+    undefined,
     `${WISHLIST_PATH}/${productId}`,
-    exception
+    exception,
+    generateHeaders()
   );
 };
 

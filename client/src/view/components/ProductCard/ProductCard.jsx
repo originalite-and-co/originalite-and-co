@@ -5,6 +5,8 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
+import { useSelector } from 'react-redux';
+import { authorizationSelectors } from '../../../redux/features/authorization';
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired

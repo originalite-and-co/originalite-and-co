@@ -86,20 +86,27 @@
   }
 }
 
+.buttonsGroup{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .button_addToCart {
   text-align: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
 
   .button {
+    width: 263px;
+    height: 57px;
     font-size: 15px;
     text-transform: uppercase;
-    background: #f3eeee;
+    background: #000000;
+    color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    color: black;
-    padding: 18px 100px;
-    border: 2px solid grey;
+    border: none;
   }
 
   .active {
@@ -108,11 +115,22 @@
     font-size: 15px;
     text-transform: uppercase;
     text-align: center;
+    width: 263px;
+    height: 57px;
     cursor: pointer;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    padding: 18px 100px;
+    //margin-top: 50px;
+    //margin-bottom: 100px;
+    //padding: 18px 100px;
   }
+}
+.favIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 55px;
+  height: 57px;
+  background-color: black;
 }
 
 .viewed_title {
@@ -123,7 +141,12 @@
 
 
 @media (min-width:$desktop) {
-
+  .buttonsGroup{
+    justify-content: flex-start;
+  }
+  .favIcon{
+    margin-left: 5px;
+  }
   .wrapper_carousel_product {
     width: 400px;
     height: 500px;
@@ -225,22 +248,24 @@
     background: #f3eeee;
     text-align: center;
     cursor: pointer;
-    margin-top: 60px;
-    margin-bottom: 200px;
+    width: 249px;
+    //margin-top: 60px;
+    //margin-bottom: 200px;
     color: black;
-    padding: 18px 70px;
+    //padding: 18px 70px;
     border: 3px solid black;
 
     .active {
       background: #000000;
       color: #FFFFFF;
       font-size: 20px;
+      width: 249px;
       text-transform: uppercase;
       text-align: center;
       cursor: pointer;
       margin-top: 60px;
-      margin-bottom: 200px;
-      padding: 18px 100px;
+      //margin-bottom: 200px;
+      //padding: 18px 100px;
       border: 3px solid grey;
     }
   }
