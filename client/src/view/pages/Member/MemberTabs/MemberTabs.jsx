@@ -18,6 +18,7 @@ import {
   wishlistOperations,
   wishlistSelectors
 } from '../../../../redux/features/wishlist';
+import PurchaseHistoryNew from '../PurchaseHistory/PurchaseHistoryNEW';
 
 MemberTabs.propTypes = {};
 
@@ -76,8 +77,6 @@ function MemberTabs() {
     );
   }, []);
 
-  console.log(orders);
-
   useEffect(() => {
     wishlistRequests.retrieveWishlist().then(
       (data) => setWishlist(data),
@@ -113,6 +112,11 @@ function MemberTabs() {
           value="purchaseHistory"
           label="Purchase history"
         />
+        <Tab
+          className={classes.tab}
+          value="newPurchaseHistory"
+          label="New Purchase history"
+        />
       </Tabs>
       <Box className={`${Styles.wrapper} inner`}>
         {value === 'profile' && typeof customer == 'object' && (
@@ -123,6 +127,9 @@ function MemberTabs() {
         )}
         {value === 'purchaseHistory' && typeof orders == 'object' && (
           <PurchaseHistory orders={orders} />
+        )}
+        {value === 'newPurchaseHistory' && typeof orders == 'object' && (
+          <PurchaseHistoryNew orders={orders} />
         )}
       </Box>
     </>
