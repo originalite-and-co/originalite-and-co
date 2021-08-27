@@ -13,14 +13,20 @@ const generateStyles = ({ breakpoints, palette }) => ({
     paddingBottom: '6vw'
   },
   picture: {
+    display: 'block',
     marginRight: '3vw',
+    '& a': {
+      display: 'block'
+    },
 
     '& img': {
+      display: 'block',
       maxWidth: '100%'
     }
   },
   description: {},
   heading: {
+    maxWidth: '80%',
     fontWeight: 700,
     marginBottom: '.5rem'
   },
@@ -39,14 +45,29 @@ const generateStyles = ({ breakpoints, palette }) => ({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  select: {
-    color: '#847A7A'
+  counter: {
+    display: 'flex',
+    alignItems: 'center'
   },
-  option: {
-    color: '#847A7A'
+  counterBtn: {
+    padding: '5px'
   },
+  removeBtn: {},
+  counterIcon: {},
+  removeIcon: {},
+  counterValue: {
+    color: '#847A7A',
+    minWidth: '3ch',
+    maxWidth: '5ch',
+
+    '& input': {
+      textAlign: 'center',
+      padding: ''
+    }
+  },
+  addBtn: {},
+  addIcon: {},
   total: {
-    marginTop: '.5rem',
     '& span': {
       fontWeight: 700
     }

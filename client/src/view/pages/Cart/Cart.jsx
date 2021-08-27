@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { cartOperations, cartSelectors } from "../../../redux/features/cart";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useMemo, useState } from 'react';
+import { cartOperations, cartSelectors } from '../../../redux/features/cart';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   authorizationSelectors,
-  authorizeOperations,
-} from "../../../redux/features/authorization";
-import useAsyncError from "../../hooks/useAsyncError";
-import Header from "../../components/Header/Header";
-import { Box, Divider, Grid, Typography } from "@material-ui/core";
-import Footer from "../../components/Footer/Footer";
-import Loader from "../../components/Loader/Loader";
-import { makeStyles } from "@material-ui/styles";
-import generateStyles from "./styles";
-import useWindowSize from "../../hooks/useWindowSize";
-import constants from "../../constants";
-import Summary from "./Summary/Summary";
-import CartItem from "./CartItem/CartItem";
-import { productRequests } from "../../../api/server";
+  authorizeOperations
+} from '../../../redux/features/authorization';
+import useAsyncError from '../../hooks/useAsyncError';
+import Header from '../../components/Header/Header';
+import { Box, Divider, Grid, Typography } from '@material-ui/core';
+import Footer from '../../components/Footer/Footer';
+import Loader from '../../components/Loader/Loader';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
+import useWindowSize from '../../hooks/useWindowSize';
+import constants from '../../constants';
+import Summary from './Summary/Summary';
+import CartItem from './CartItem/CartItem';
+import { productRequests } from '../../../api/server';
 
 Cart.propTypes = {};
 
@@ -47,8 +47,12 @@ function Cart(props) {
     let itemNumbers = cart.map((item) => item.itemNo);
     itemNumbers = [...new Set(itemNumbers)];
 
-    productRequests.retrieveProductsByItemNumbers(itemNumbers).then(
-      (response) => {
+    const asyncFunction = async () => {
+      try {
+        const response = await productRequests.retrieveProductsByItemNumbers(
+          itemNumbers
+        );
+
         const products = cart.map((cartItem) => {
           const { color, quantity, currentPrice, name, enabled, imageUrls } =
             response.find(({ itemNo }) => {
@@ -65,14 +69,17 @@ function Cart(props) {
             itemNo: cartItem.itemNo,
             _id: cartItem._id,
             cartQuantity: cartItem.cartQuantity,
-            chosenSize: cartItem.chosenSize,
+            chosenSize: cartItem.chosenSize
           };
         });
         setProducts(products);
         setLoaded(true);
-      },
-      (error) => throwAsyncError(error)
-    );
+      } catch (error) {
+        throwAsyncError(error);
+      }
+    };
+
+    asyncFunction();
   }, [cart]);
 
   useEffect(() => {
@@ -88,35 +95,41 @@ function Cart(props) {
       });
   }, [isUserAuthorized]);
 
-  const productList = products?.map(
-    ({
-      cartQuantity,
-      itemNo,
-      color,
-      quantity,
-      currentPrice,
-      name,
-      enabled,
-      imageUrls,
-      _id,
-      chosenSize,
-    }) => {
-      return (
-        <CartItem
-          key={itemNo}
-          cartQuantity={cartQuantity}
-          itemNo={itemNo}
-          color={color}
-          maxQuantity={quantity}
-          currentPrice={currentPrice}
-          name={name}
-          enabled={enabled}
-          imageUrls={imageUrls}
-          size={chosenSize}
-        />
-      );
-    }
-  );
+  const productList = useMemo(() => {
+    return products?.map(
+      (
+        {
+          cartQuantity,
+          itemNo,
+          color,
+          quantity,
+          currentPrice,
+          name,
+          enabled,
+          imageUrls,
+          _id,
+          chosenSize
+        },
+        index
+      ) => {
+        return (
+          <CartItem
+            key={`${itemNo}-${Date.now()}-${index}`}
+            id={_id}
+            cartQuantity={cartQuantity}
+            itemNo={itemNo}
+            color={color}
+            maxQuantity={quantity}
+            currentPrice={currentPrice}
+            name={name}
+            enabled={enabled}
+            imageUrls={imageUrls}
+            size={chosenSize}
+          />
+        );
+      }
+    );
+  }, [products]);
   return (
     <>
       <Header />
@@ -125,13 +138,13 @@ function Cart(props) {
           <Typography
             className={classes.heading}
             component="h1"
-            variant={isDesktop ? "h5" : "body1"}
+            variant={isDesktop ? 'h5' : 'body1'}
             color="textSecondary"
           >
             Bag
           </Typography>
           <Divider className={classes.divider} variant="fullWidth" />
-          <Grid container direction={isDesktop ? "row" : "column"}>
+          <Grid container direction={isDesktop ? 'row' : 'column'}>
             <Grid
               container
               item
@@ -160,7 +173,7 @@ function Cart(props) {
               className={classes.summaryContainer}
               xs={isDesktop ? 3 : 12}
             >
-              <Summary />
+              <Summary products={products} />
             </Grid>
           </Grid>
         </Box>

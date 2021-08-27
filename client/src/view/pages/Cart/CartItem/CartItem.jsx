@@ -6,16 +6,21 @@ import {
   Divider,
   Grid,
   IconButton,
-  MenuItem,
-  Select,
+  Input,
   Typography
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { Close } from '@material-ui/icons';
+import { Add, Close, Remove } from '@material-ui/icons';
+import { useDispatch } from 'react-redux';
+import { cartOperations } from '../../../../redux/features/cart';
+
+import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 CartItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  itemNo: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   cartQuantity: PropTypes.number.isRequired,
-  itemNo: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
   maxQuantity: PropTypes.number.isRequired,
   currentPrice: PropTypes.number.isRequired,
@@ -26,8 +31,9 @@ CartItem.propTypes = {
 };
 
 function CartItem({
-  cartQuantity,
+  id,
   itemNo,
+  cartQuantity,
   color,
   maxQuantity,
   currentPrice,
@@ -36,9 +42,12 @@ function CartItem({
   size,
   enabled
 }) {
+  const [quantity, setQuantity] = useState(cartQuantity);
+
+  const dispatch = useDispatch();
+
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
-  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     setQuantity(cartQuantity);
@@ -46,31 +55,48 @@ function CartItem({
 
   useEffect(() => {}, [quantity]);
 
-  let optionList = [];
-  for (let i = 1; i <= maxQuantity; i++) {
-    if (i > 10) {
-      break;
-    }
-
-    optionList.push(
-      <MenuItem className={classes.option} key={i} value={i}>
-        {i}
-      </MenuItem>
-    );
-  }
+  const handleCloseBtnClick = (event) => {
+    dispatch(cartOperations.deleteProductFromCart(id, size));
+  };
 
   const handleChange = ({ target }) => {
-    setQuantity(target.value);
+    setQuantity(Number(target.value));
+  };
+
+  const handleRemoveBtnClick = (event) => {
+    if (Number(quantity) <= 1) {
+      return;
+    }
+    dispatch(
+      cartOperations.decreaseProductQuantity(id.toString(), size.toString())
+    );
+    setQuantity((prevState) => (prevState -= 1));
+  };
+
+  const handleAddBtnClick = (event) => {
+    if (Number(quantity) >= Number(maxQuantity)) {
+      return;
+    }
+    dispatch(
+      cartOperations.addProductToCart(id.toString(), itemNo, size.toString())
+    );
+    setQuantity((prevState) => (prevState += 1));
   };
 
   return (
     <Grid item component="li" className={classes.root} xs={12}>
-      <IconButton className={classes.closeBtn} color="primary">
+      <IconButton
+        onClick={handleCloseBtnClick}
+        className={classes.closeBtn}
+        color="primary"
+      >
         <Close />
       </IconButton>
       <Grid className={classes.inner} container>
-        <Grid item xs={5} component="picture" className={classes.picture}>
-          <img src={imageUrls[0]} alt={name} />
+        <Grid item xs={5} component="figure" className={classes.picture}>
+          <Link to={`/products/${itemNo}`}>
+            <img src={imageUrls[0]} alt={name} />
+          </Link>
         </Grid>
         <Grid item xs={6} className={classes.description}>
           <Typography
@@ -79,7 +105,7 @@ function CartItem({
             color="textSecondary"
             className={classes.heading}
           >
-            {name}
+            {_.upperFirst(name)}
           </Typography>
           <Typography
             component="p"
@@ -94,7 +120,7 @@ function CartItem({
               Price:
             </Typography>
             <Typography variant="body2" color="inherit" component="span">
-              {currentPrice} $
+              ${Number(currentPrice).toFixed(2)}
             </Typography>
           </Box>
           <Box className={classes.text}>
@@ -102,7 +128,7 @@ function CartItem({
               Color:
             </Typography>
             <Typography variant="body2" color="inherit" component="span">
-              {color}
+              {_.upperFirst(color)}
             </Typography>
           </Box>
           <Box className={classes.text}>
@@ -117,20 +143,48 @@ function CartItem({
             <Typography variant="body2" color="inherit" component="span">
               Quantity:
             </Typography>
-            <Select
-              className={classes.select}
-              value={quantity}
-              onChange={handleChange}
-            >
-              {optionList}
-            </Select>
+            <Box className={classes.counter}>
+              <IconButton
+                disabled={Number(quantity) <= 1}
+                onClick={handleRemoveBtnClick}
+                size="small"
+                className={`${classes.counterBtn} ${classes.removeBtn}`}
+                color="primary"
+              >
+                <Remove
+                  className={`${classes.counterIcon} ${classes.removeIcon}`}
+                />
+              </IconButton>
+              <Input
+                inputProps={{
+                  minLength: 1,
+                  maxLength: 4,
+                  min: 1,
+                  max: maxQuantity
+                }}
+                className={classes.counterValue}
+                value={quantity}
+                onChange={handleChange}
+                type="number"
+                required
+              />
+              <IconButton
+                disabled={Number(quantity) >= Number(maxQuantity)}
+                onClick={handleAddBtnClick}
+                size="small"
+                className={`${classes.counterBtn} ${classes.addBtn}`}
+                color="primary"
+              >
+                <Add className={`${classes.counterIcon} ${classes.addIcon}`} />
+              </IconButton>
+            </Box>
           </Box>
           <Box className={`${classes.text} ${classes.total}`}>
             <Typography variant="body2" color="textSecondary" component="span">
               Total:
             </Typography>
             <Typography variant="body2" color="textSecondary" component="span">
-              {currentPrice} $
+              ${Number(currentPrice * quantity).toFixed(2)}
             </Typography>
           </Box>
         </Grid>
