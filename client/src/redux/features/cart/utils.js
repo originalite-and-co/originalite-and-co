@@ -1,4 +1,4 @@
-import { cartRequests } from "../../../api/server";
+import { cartRequests } from '../../../api/server';
 
 /**
  *
@@ -10,7 +10,7 @@ const createCartFromResponse = (response) => {
     cartQuantity,
     chosenSize,
     _id: product._id,
-    itemNo: product.itemNo,
+    itemNo: product.itemNo
   }));
 };
 
@@ -44,7 +44,7 @@ const updateApiCart = async (cart) => {
     return {
       product: _id,
       cartQuantity,
-      chosenSize,
+      chosenSize
     };
   });
   await cartRequests.updateCart(data);
@@ -53,7 +53,7 @@ const updateApiCart = async (cart) => {
 const utils = {
   createCartFromResponse,
   concatCartFromDbWithCurrentOne,
-  updateApiCart,
+  updateApiCart
 };
 
 export default utils;

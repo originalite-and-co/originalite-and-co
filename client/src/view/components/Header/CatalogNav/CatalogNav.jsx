@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import styles from './CatalogNav.module.scss';
 
 import useWindowSize from '../../../hooks/useWindowSize';
 import useAsyncError from '../../../hooks/useAsyncError';
@@ -20,6 +19,10 @@ import { Grid, List } from '@material-ui/core';
 import Dropdown from '../../Dropdown/Dropdown';
 import MainCategoryLink from '../MainCategoryLink/MainCategoryLink';
 import AllCategories from '../AllCategories/AllCategories';
+
+import { generateStyles } from './styles';
+import { makeStyles } from '@material-ui/styles';
+import Styles from './Styles.module.scss';
 
 function CatalogNav() {
   const useStyles = makeStyles(generateStyles);

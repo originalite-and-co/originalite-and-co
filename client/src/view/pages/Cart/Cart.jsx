@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { cartOperations, cartSelectors } from '../../../redux/features/cart';
+import {
+  cartOperations,
+  cartSelectors
+} from '../../../redux/features/cart/index.js';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   authorizationSelectors,
