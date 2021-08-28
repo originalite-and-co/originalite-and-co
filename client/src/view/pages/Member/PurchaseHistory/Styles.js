@@ -1,68 +1,111 @@
-export function generateStyles({breakpoints}) {
-    return {
-        purchaseItem: {
-            display: 'flex',
-            alignItems: 'flex-start',
-            marginBottom: '5px',
-            borderBottom: "1px solid #847A7A",
-            position: 'relative',
-            paddingLeft: '0px !important',
-            paddingTop: '15px !important',
+export function generateStyles({ breakpoints, theme }) {
+  return {
+    cardInnerWrapper: {
+      width: '90%',
+      margin: '0 auto'
+    },
+    card: {
+      padding: '0',
+      position: 'relative',
+      marginBottom: '10px',
 
-            [breakpoints.up('desktop')]: {
-                marginTop: '25px',
-                paddingBottom: '15px'
-            }
-        },
-        purchaseItemdate: {
-            position: 'absolute',
-            left: '0',
-            top: '0',
-            fontFamily: "Open Sans",
-            fontSize: '10px',
-            lineHeight: '14px',
-            color: '#000000',
+      '&:before': {
+        position: 'absolute',
+        content: '""',
+        width: '5px',
+        height: '90%',
+        backgroundColor: '#000000',
+        borderRadius: '5px',
+        top: '2px',
+        left: '5px'
+      }
+    },
+    imgsWrapper: {
+      marginLeft: '-5px',
+      width: '120px',
+      marginTop: '9px',
+      display: 'flex',
+      justifyContent: 'flex-start'
+    },
+    infoBlock: {
+      margin: '0px 0px 7px 0px'
+    },
+    secondaryTheme: {
+      fontFamily: 'Open Sans',
+      fontSize: '12px',
+      lineHeight: '14px',
+      color: '#797878',
 
-            [breakpoints.up('desktop')]: {
-                fontSize: '18px',
-                lineHeight: '25px',
-                fontWeight: '300',
-                top: '-15px',
-            }
-        },
-        itemInfoBlock: {
-            marginLeft: '20px'
-        },
-        purchaseItemImg: {
-            height: '97px',
-            [breakpoints.up('desktop')]: {
-                height: '174px',
-            }
-        },
-        purchaseItemTitle: {
-            textTransform: 'capitalize',
-            fontFamily: "Open Sans",
-            fontSize: '14px',
-            lineHeight: '19px',
-            color: '#000000',
+      [breakpoints.up('desktop')]: {
+        fontSize: '18px',
+        lineHeight: '25px',
+        fontWeight: '300',
+        top: '-15px'
+      }
+    },
+    purchaseItemImg: {
+      width: '50px',
+      marginLeft: '5px',
+      borderRadius: '5px',
+      [breakpoints.up('desktop')]: {
+        height: '174px',
+        width: 'auto'
+      }
+    },
+    heading: {
+      textTransform: 'capitalize',
+      fontFamily: 'Open Sans',
+      fontSize: '14px',
+      lineHeight: '19px',
+      color: '#000000',
 
-            [breakpoints.up('desktop')]: {
-                fontSize: '18px',
-                lineHeight: '25px',
-                paddingBottom: '9px'
-            }
-        },
-        purchaseItemAddInfo: {
-            fontFamily: "Open Sans",
-            fontSize: '12px',
-            lineHeight: '16px',
-            color: '#847A7A',
+      [breakpoints.up('desktop')]: {
+        fontSize: '18px',
+        lineHeight: '25px',
+        paddingBottom: '9px'
+      }
+    },
+    purchaseItemAddInfo: {
+      padding: '3px 0px',
+      textTransform: 'capitalize',
+      fontFamily: 'Open Sans',
+      fontSize: '12px',
+      lineHeight: '16px',
+      color: '#000000',
 
-            [breakpoints.up('desktop')]: {
-                fontSize: '18px',
-                lineHeight: '25px',
-                fontWeight: '300',
-            }
-        }
+      [breakpoints.up('desktop')]: {
+        fontSize: '18px',
+        lineHeight: '25px',
+        fontWeight: '300'
+      }
+    },
+    expand: {
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto'
+    },
+    expandOpen: {
+      transform: 'rotate(180deg)'
+    },
+    expandedBlock: {
+      display: 'flex',
+      borderBottom: '1px solid #797878',
+      margin: '5px auto'
+    },
+    expandedInfo: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      marginLeft: '20px'
+    },
+    expandedPriceQuantity: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    test: {
+      position: 'absolute',
+      top: '0',
+      right: '10px'
     }
+  };
 }

@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { generateStyles } from './Styles';
 import { Box, Typography } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import clsx from 'clsx';
+import PurchaseItem from './PurchaseItem';
 
 PurchaseHistoryNew.propTypes = {
   orders: PropTypes.array.isRequired
@@ -11,6 +21,11 @@ PurchaseHistoryNew.propTypes = {
 function PurchaseHistoryNew({ orders }) {
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   let productsList;
   const areThereAnyProducts =
@@ -18,48 +33,7 @@ function PurchaseHistoryNew({ orders }) {
 
   areThereAnyProducts
     ? (productsList = orders.map((order) => {
-        const { address, city, country, postal } = order.deliveryAddress;
-        const { firstName, lastName } = order.customerId;
-        const products = order.products;
-
-        const purchasedProducts = products.map((productItem) => {
-          console.log(productItem, 'hey');
-          const { product, cartQuantity } = productItem;
-          console.log(product, cartQuantity, 'info');
-        });
-        return (
-          <>
-            <div key={order._id}>
-              <div>
-                <h1>general info</h1>
-                <br />
-                <p>{order.orderNo}</p>
-                <p>{order.status}</p>
-                <p>{order.date.split('T')[0]}</p>
-                <p>${order.totalSum} USD</p>
-              </div>
-              <div>
-                <br />
-                <h1>delivery info</h1>
-                <br />
-                <p>{address}</p>
-                <p>{city}</p>
-                <p>{country}</p>
-                <p>{postal}</p>
-              </div>
-              <div>
-                <br />
-                <h1>contact info</h1>
-                <br />
-                <p>{order.email}</p>
-                <p>{order.mobile}</p>
-                <p>{firstName}</p>
-                <p>{lastName}</p>
-              </div>
-            </div>
-            <hr />
-          </>
-        );
+        return <PurchaseItem order={order} />;
       }))
     : (productsList = (
         <Typography
