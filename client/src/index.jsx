@@ -16,29 +16,29 @@ import reportWebVitals from "./reportWebVitals";
 import "./view/assets/styles/index.scss";
 
 const errorToast = (
-  <Toast
-    message="An error has occurred. Please try again later"
-    severity="error"
-  />
+    <Toast
+        message="An error has occurred. Please try again later"
+        severity="error"
+    />
 );
 
 const { store, persistor } = storeConfig;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ErrorBoundary fallback={errorToast}>
-      <BrowserRouter>
-        <Provider store={store}>
-          <PersistGate persistor={persistor} loader={<Loader fixed />}>
-            <CloudinaryContext cloudName="originalite-and-co">
-              <App />
-            </CloudinaryContext>
-          </PersistGate>
-        </Provider>
-      </BrowserRouter>
-    </ErrorBoundary>
-  </React.StrictMode>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <ErrorBoundary fallback={errorToast}>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <PersistGate persistor={persistor} loader={<Loader fixed />}>
+                        <CloudinaryContext cloudName="originalite-and-co">
+                            <App />
+                        </CloudinaryContext>
+                    </PersistGate>
+                </Provider>
+            </BrowserRouter>
+        </ErrorBoundary>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

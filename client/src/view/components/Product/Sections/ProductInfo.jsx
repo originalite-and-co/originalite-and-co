@@ -8,7 +8,7 @@ function ProductInfo({availableSizes, detail}) {
     // const [isActiveColor, setActiveColor] = useState(null);
     const [activeSize, setActiveSize] = useState(null)
 
-    const {sizes, name, currentPrice, itemNo, color} = detail
+    const {sizes, name, currentPrice, itemNo, color, description} = detail
 
 
     const onSelectSize = (index) => {
@@ -45,6 +45,7 @@ function ProductInfo({availableSizes, detail}) {
             {/*    }*/}
             {/*</div>*/}
             <h3>Details</h3>
+            <div className={OneProductStyles.description}>{description}</div>
             <h3>Size</h3>
             <div >
                 <ul className={OneProductStyles.sizes}>

@@ -83,7 +83,7 @@ function CatalogNav() {
             setTimeout(() => {
                 setActiveDropdown(true);
             }, 0)
-            debugger
+
             setActiveLinkId(linkId)
         }
 
@@ -127,14 +127,14 @@ function CatalogNav() {
                     component="li"
                     xs={2}
                 >
-                        <NavLink
-                            to={`/catalog/${generateCategoryPath(category)}`}
-                            className={Styles.categoryLink}
-                            activeClassName={classes.categoryLinkActive}
-                            onClick={handleCategoryLinkClick}
-                        >
-                            {category.name}
-                        </NavLink>
+                    <NavLink
+                        to={`/catalog/${generateCategoryPath(category)}`}
+                        className={Styles.categoryLink}
+                        activeClassName={classes.categoryLinkActive}
+                        onClick={handleCategoryLinkClick}
+                    >
+                        {category.name}
+                    </NavLink>
                 </Grid>
             );
         }));
