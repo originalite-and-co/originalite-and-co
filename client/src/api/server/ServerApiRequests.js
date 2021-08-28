@@ -1,4 +1,4 @@
-import isJSON from '../../utils/isJSON';
+import isJSON from "../../utils/isJSON";
 
 class ServerApiRequests {
   /**

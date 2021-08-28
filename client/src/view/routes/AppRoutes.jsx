@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -96,8 +96,7 @@ function AppRoutes() {
       <Route path="/products/search" component={SearchResult} />
       {staticPageRoutes}
       <Route path="/catalog/:category" component={Catalog} />
-      <Route path="/catalog" component={Catalog} />
-      <Route path="/products/:itemNumber" component={ProductPage} />
+      <Route path="/products/:itemNumber" component={Product} />
       <PrivateRoute
         isAuthenticated={isAuthenticated}
         path="/checkout"

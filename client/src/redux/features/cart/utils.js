@@ -6,8 +6,9 @@ import { cartRequests } from "../../../api/server";
  * @returns {Array<Object>}
  */
 const createCartFromResponse = (response) => {
-  return response?.products?.map(({ cartQuantity, product }) => ({
+  return response?.products?.map(({ cartQuantity, product, chosenSize }) => ({
     cartQuantity,
+    chosenSize,
     _id: product._id,
     itemNo: product.itemNo,
   }));
@@ -22,7 +23,9 @@ const createCartFromResponse = (response) => {
 
 const concatCartFromDbWithCurrentOne = (currentCart, cartFromDB) => {
   return [...currentCart, ...cartFromDB].reduce((accumulator, cartItem) => {
-    const isDuplicate = accumulator.some(({ _id }) => _id === cartItem._id);
+    const isDuplicate = accumulator.some(({ _id, chosenSize }) => {
+      return _id === cartItem._id && chosenSize === cartItem.chosenSize;
+    });
     if (!isDuplicate) {
       return [...accumulator, cartItem];
     }
@@ -37,11 +40,11 @@ const concatCartFromDbWithCurrentOne = (currentCart, cartFromDB) => {
  */
 const updateApiCart = async (cart) => {
   const data = {};
-  data.products = cart.map(({ cartQuantity, _id, itemNo }) => {
+  data.products = cart.map(({ cartQuantity, _id, chosenSize }) => {
     return {
       product: _id,
       cartQuantity,
-      itemNo,
+      chosenSize,
     };
   });
   await cartRequests.updateCart(data);

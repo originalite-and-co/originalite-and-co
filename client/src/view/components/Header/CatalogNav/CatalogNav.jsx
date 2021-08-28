@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
+import styles from './CatalogNav.module.scss';
 
-import { makeStyles } from '@material-ui/styles';
-import { generateStyles } from './styles';
-import Styles from './Styles.module.scss';
 import useWindowSize from '../../../hooks/useWindowSize';
 import useAsyncError from '../../../hooks/useAsyncError';
 import { useDispatch, useSelector } from 'react-redux';

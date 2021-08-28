@@ -12,10 +12,14 @@ const exceptions = {
   create: generateFetchException('creating a customer'),
   retrieve: generateFetchException('retrieving the customer'),
   update: generateFetchException('updating the customer'),
-  delete: generateFetchException('deleting the customer'),
+  delete: generateFetchException('deleting the customer')
 };
 
-const customerRequests = new ServerApiRequests(CUSTOMERS_PATH, headers, exceptions);
+const customerRequests = new ServerApiRequests(
+  CUSTOMERS_PATH,
+  headers,
+  exceptions
+);
 
 /**
  * This function adds token to the sessionStorage

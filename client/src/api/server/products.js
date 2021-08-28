@@ -78,19 +78,14 @@ const retrieveProductsByItemNumbers = async (itemNumbersArray) => {
       headers
     });
   });
-  try {
-    const responses = await Promise.all(requests);
-    return await Promise.all(
-      responses.map(async (item) => {
-        if (item.status >= 400) {
-          throw { status: item.status, statusText: item.statusText };
-        }
-        return await item.json();
-      })
-    );
-  } catch (error) {
-    console.error('here comes the sun', error);
-  }
+
+  const responses = await Promise.all(requests);
+
+  return await Promise.all(
+    responses.map(async (item) => {
+      return await item.json();
+    })
+  );
 };
 
 /**
