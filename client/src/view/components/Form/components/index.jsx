@@ -1,6 +1,8 @@
 import Error from './Error';
+import Radio from './Radio';
 
 const typeComponent = {
+  radio: (props) => <Radio {...props} />,
   textarea: (props) => <input type="textarea" {...props} />,
   default: (props) => <input {...props} />,
 };

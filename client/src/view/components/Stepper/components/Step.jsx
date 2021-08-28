@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
-import { Box, Button } from '@material-ui/core';
 
 import { FormFields } from '../../Form';
-import StepperStyles from '../styles';
 
 Step.propTypes = {
   fields: PropTypes.array,
@@ -23,7 +21,6 @@ function Step({
   handlePrev,
   ...formProps
 }) {
-  const useStepperStyles = StepperStyles();
   const { title, subTitle, ...restFormProps } = formProps;
 
   return (
@@ -37,7 +34,7 @@ function Step({
           <Form {...restFormProps}>
             {title && <h4 className="form__title">{title}</h4>}
 
-            <Box className="form__inner">
+            <div className="form__inner">
               {fields && (
                 <FormFields
                   fields={fields}
@@ -46,25 +43,16 @@ function Step({
                 />
               )}
               {children}
-            </Box>
+            </div>
 
             {subTitle && <h4 className="form__subtitle">{subTitle}</h4>}
 
-            <Box className="stepper__navigation">
+            <div className="stepper__navigation">
               {handlePrev && (
-                <Button
-                  className={useStepperStyles.prevButton}
-                  onClick={handlePrev(values)}
-                >
-                  Prev
-                </Button>
+                <button onClick={() => handlePrev(values)}>Prev</button>
               )}
-              {handleNext && (
-                <Button className={useStepperStyles.nextButton} type="submit">
-                  Next
-                </Button>
-              )}
-            </Box>
+              {handleNext && <button type="submit">Next</button>}
+            </div>
           </Form>
         );
       }}

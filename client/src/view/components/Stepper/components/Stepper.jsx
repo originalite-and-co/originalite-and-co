@@ -10,7 +10,7 @@ Stepper.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-function Stepper({ children, initialValues, onSubmit }) {
+function Stepper({ children, initialValues, onSubmit, steps }) {
   const useStepperStyles = stepperStyles();
   const components = Array.isArray(children) ? children : [children];
 
@@ -27,7 +27,7 @@ function Stepper({ children, initialValues, onSubmit }) {
     setStep((prev) => prev + 1);
   };
 
-  const handlePrev = (data) => () => {
+  const handlePrev = (data) => {
     setFormData((prev) => ({ ...prev, ...data }));
     setStep((prev) => prev - 1);
   };
@@ -41,6 +41,11 @@ function Stepper({ children, initialValues, onSubmit }) {
   return (
     <Box className={useStepperStyles.stepper} key={step}>
       <Box className="stepper__inner">
+        {steps && (
+          <h4 className="multi__step">
+            Step {step + 1} / {length}
+          </h4>
+        )}
         <Box className="stepper__wrapper">{Component}</Box>
       </Box>
     </Box>

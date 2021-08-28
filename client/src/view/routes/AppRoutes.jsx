@@ -78,11 +78,7 @@ function AppRoutes() {
       {staticPageRoutes}
       <Route path="/catalog/:category" component={Catalog} />
       <Route path="/products/:itemNumber" component={Product} />
-      <PrivateRoute
-        isAuthenticated={isAuthenticated}
-        path="/checkout"
-        component={Checkout}
-      />
+      <Route path="/checkout" component={Checkout} />
       <PrivateRoute
         isAuthenticated={isAuthenticated}
         path="/member"
