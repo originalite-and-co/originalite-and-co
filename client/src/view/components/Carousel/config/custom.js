@@ -1,6 +1,7 @@
 import constants from '../../../constants';
 const { WINDOW_DESKTOP_SIZE, WINDOW_MOBILE_SIZE, WINDOW_TABLET_SIZE } =
   constants;
+
 const slide = {
   className: 'swiper__slide',
 };
@@ -17,6 +18,7 @@ const carousel = {
 const popularProductsSlide = {
   className: 'popularSlide',
 };
+
 const popularProductsCarousel = {
   loop: true,
   breakpoints: {

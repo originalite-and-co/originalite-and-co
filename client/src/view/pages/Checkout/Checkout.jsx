@@ -1,34 +1,34 @@
 import React from 'react';
 import { Stepper, Step } from '../../components/Stepper';
+import * as yup from 'yup';
 
 function Checkout() {
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Stepper
-      initialValues={{
+      initialValues={yup.object({
         name: '',
-      }}
-      onSubmit={(d) => {
-        console.log(d);
-      }}
+        lastName: '',
+      })}
+      onSubmit={onSubmit}
     >
       <Step
+        schema={yup.object({
+          name: yup.string().required(),
+          lastName: yup.string().required(),
+        })}
         fields={[
           {
             name: 'name',
           },
+          {
+            name: 'lastName',
+          },
         ]}
-      >
-        <p>kek</p>
-      </Step>
-      <Step>
-        <p>kek1</p>
-      </Step>
-      <Step>
-        <p>kek2</p>
-      </Step>
-      <Step>
-        <p>kek3</p>
-      </Step>
+      />
     </Stepper>
   );
 }

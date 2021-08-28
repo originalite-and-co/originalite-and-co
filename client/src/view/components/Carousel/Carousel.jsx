@@ -24,7 +24,7 @@ function Carousel({ slides, slideProps, carouselProps, carouselChildren }) {
           </SwiperSlide>
         );
       }),
-    [slides],
+    [slideProps, slides],
   );
 
   return (

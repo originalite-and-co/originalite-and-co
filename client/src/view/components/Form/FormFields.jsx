@@ -8,7 +8,6 @@ const FormFields = ({ fields }) => {
       {
         title,
         name,
-        showValue,
         component,
         groupClass = 'form__group',
         groupActiveClass = '',
@@ -20,8 +19,8 @@ const FormFields = ({ fields }) => {
       return (
         <Field name={name} {...rest} key={key}>
           {({ field, meta }) => {
-            const { value: fieldValue = '', ...fieldProps } = field;
-            const { value, error, touched } = meta;
+            const { value = '', ...fieldProps } = field;
+            const { error, touched } = meta;
 
             const groupClassName =
               value && !error
@@ -39,14 +38,10 @@ const FormFields = ({ fields }) => {
                     {FormFieldComponent(component, {
                       ...fieldProps,
                       ...rest,
-                      value: fieldValue,
+                      value,
                     })}
                   </div>
                 </label>
-
-                {showValue && fieldValue && (
-                  <p className="form__value">{fieldValue}</p>
-                )}
 
                 <ErrorMessage name={name} component={Error} />
               </div>
