@@ -10,7 +10,6 @@ import {
 import useAsyncError from '../../../hooks/useAsyncError';
 import Toast from '../../../components/Toast/Toast';
 import Styles from './../Member.module.scss';
-import PurchaseHistory from '../PurchaseHistory/PurchaseHistory';
 import MyWishlist from '../MyWishlist/MyWishlist';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -112,11 +111,6 @@ function MemberTabs() {
           value="purchaseHistory"
           label="Purchase history"
         />
-        <Tab
-          className={classes.tab}
-          value="newPurchaseHistory"
-          label="New Purchase history"
-        />
       </Tabs>
       <Box className={`${Styles.wrapper} inner`}>
         {value === 'profile' && typeof customer == 'object' && (
@@ -126,9 +120,6 @@ function MemberTabs() {
           <MyWishlist wishlist={wishlist} />
         )}
         {value === 'purchaseHistory' && typeof orders == 'object' && (
-          <PurchaseHistory orders={orders} />
-        )}
-        {value === 'newPurchaseHistory' && typeof orders == 'object' && (
           <PurchaseHistoryNew orders={orders} />
         )}
       </Box>

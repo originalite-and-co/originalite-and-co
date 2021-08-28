@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { generateStyles } from './Styles';
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -25,7 +23,6 @@ function PurchaseItem({ order }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log(order);
 
   const { address, city, country, postal } = order.deliveryAddress;
   const { firstName, lastName } = order.customerId;
@@ -45,9 +42,7 @@ function PurchaseItem({ order }) {
   });
 
   const purchasedProducts = products.map((productItem) => {
-    // console.log(productItem, 'hey');
     const { product, cartQuantity } = productItem;
-    // console.log(product, cartQuantity, 'info');
     return (
       <div key={product._id} className={classes.expandedBlock}>
         <Box className={classes.expandedImg}>
@@ -63,7 +58,7 @@ function PurchaseItem({ order }) {
           </Box>
           <Box className={classes.expandedPriceQuantity}>
             <p className={classes.purchaseItemAddInfo}>
-              Price - {product.currentPrice}
+              Price - ${product.currentPrice} USD
             </p>
             <Box style={{ marginLeft: '15px' }}>
               <p className={classes.purchaseItemAddInfo}>
@@ -84,7 +79,6 @@ function PurchaseItem({ order }) {
               <p className={classes.secondaryTheme}>
                 № {order.orderNo} from {order.date.split('T')[0]}
               </p>
-              <p className={classes.purchaseItemAddInfo}>{order.status}</p>
             </Box>
             <p className={classes.secondaryTheme}>
               Total sum ${order.totalSum} USD
@@ -108,6 +102,7 @@ function PurchaseItem({ order }) {
           <CardContent className={classes.cardInnerWrapper}>
             <Box className={classes.infoBlock}>
               <p className={classes.heading}>Delivery info</p>
+              <p className={classes.purchaseItemAddInfo}>{order.status}</p>
               <p className={classes.secondaryTheme}>
                 {country}, {city}, {address}, {postal}
               </p>
@@ -121,6 +116,12 @@ function PurchaseItem({ order }) {
                 <p className={classes.secondaryTheme}>{order.mobile}</p>
                 <p className={classes.secondaryTheme}>{order.email}</p>
               </p>
+            </Box>
+            <Box className={classes.infoBlock}>
+              <p className={classes.heading}>Payment info</p>
+              <p className={classes.secondaryTheme}>Payment status: </p>
+              <p className={classes.secondaryTheme}>Payment method: </p>
+              <p className={classes.secondaryTheme}>Shipping cost: </p>
             </Box>
             <Box className={classes.infoBlock}>{purchasedProducts}</Box>
           </CardContent>

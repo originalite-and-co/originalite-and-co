@@ -1,7 +1,7 @@
 export function generateStyles({ breakpoints, theme }) {
   return {
     cardInnerWrapper: {
-      width: '90%',
+      width: '85%',
       margin: '0 auto'
     },
     card: {
@@ -13,11 +13,18 @@ export function generateStyles({ breakpoints, theme }) {
         position: 'absolute',
         content: '""',
         width: '5px',
-        height: '90%',
+        height: '80%',
         backgroundColor: '#000000',
         borderRadius: '5px',
-        top: '2px',
-        left: '5px'
+        top: '10%',
+        bottom: '10%',
+        left: '10px',
+
+        [breakpoints.up('desktop')]: {
+          height: '90%',
+          top: '5%',
+          bottom: '5%'
+        }
       }
     },
     imgsWrapper: {
@@ -48,8 +55,8 @@ export function generateStyles({ breakpoints, theme }) {
       marginLeft: '5px',
       borderRadius: '5px',
       [breakpoints.up('desktop')]: {
-        height: '174px',
-        width: 'auto'
+        // height: '174px',
+        // width: 'auto'
       }
     },
     heading: {
@@ -88,7 +95,6 @@ export function generateStyles({ breakpoints, theme }) {
     },
     expandedBlock: {
       display: 'flex',
-      borderBottom: '1px solid #797878',
       margin: '5px auto'
     },
     expandedInfo: {
