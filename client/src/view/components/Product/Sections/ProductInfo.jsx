@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import OneProductStyles from '../Product.module.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import {Box} from '@material-ui/core';
+import {Box, Button} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
 import {wishlistOperations} from '../../../../redux/features/wishlist';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -23,8 +23,8 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
         isInWishlist ? setAddedToWishlist(true) : setAddedToWishlist(false);
     }, []);
 
-    const onSelectSize = (index) => {
-        setActiveSize(index);
+    const onSelectSize = (item) => {
+        setActiveSize(item);
     };
     const addToWishlist = () => {
         if (!isAuthorized) {
@@ -100,11 +100,11 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
                     {availableSizes.map((item, index) => (
                         <li
                             key={item}
-                            onClick={() => onSelectSize(index)}
+                            onClick={() => onSelectSize(item)}
                             className={
                                 !sizes.includes(item)
                                     ? OneProductStyles.disabled
-                                    : '' || activeSize === index
+                                    : '' || activeSize === item
                                         ? OneProductStyles.active
                                         : ''
                             }
@@ -116,16 +116,19 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
             </div>
             <div className={OneProductStyles.button_addToCart}>
                 <Box className={OneProductStyles.buttonsGroup}>
-                    <button
+                    <Button
+                        color='primary'
+                        variant="contained"
                         onClick={handleAddToCartBtnClick}
+                        disabled={!activeSize}
                         className={
-                            activeSize !== null
+                            activeSize
                                 ? OneProductStyles.active
                                 : OneProductStyles.button
                         }
                     >
                         Add to cart
-                    </button>
+                    </Button>
                     <Box className={OneProductStyles.favIcon}>{favIcon}</Box>
                 </Box>
             </div>

@@ -119,6 +119,7 @@ function Cart(props) {
           <CartItem
             key={`${itemNo}-${Date.now()}-${index}`}
             id={_id}
+            isDesktop={isDesktop}
             cartQuantity={cartQuantity}
             itemNo={itemNo}
             color={color}
