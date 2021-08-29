@@ -7,6 +7,7 @@ import {wishlistOperations} from '../../../../redux/features/wishlist';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import {authorizationSelectors} from '../../../../redux/features/authorization';
 import Toast from '../../Toast/Toast';
+import {cartOperations} from "../../../../redux/features/cart";
 
 function ProductInfo({availableSizes, detail, wishlistIDs}) {
     // const [isActiveColor, setActiveColor] = useState(null);
@@ -57,7 +58,7 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
         ));
 
     const handleAddToCartBtnClick = (event) => {
-        console.log(activeSize)
+        dispatch(cartOperations.addProductToCart(_id, itemNo, activeSize));
     }
 
     return (
@@ -112,11 +113,6 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
                         </li>
                     ))}
                 </ul>
-            </div>
-            <div className={OneProductStyles.button_addToCart}>
-                <button className={activeSize !== null ? OneProductStyles.active : OneProductStyles.button}>
-                    Add to cart
-                </button>
             </div>
             <div className={OneProductStyles.button_addToCart}>
                 <Box className={OneProductStyles.buttonsGroup}>
