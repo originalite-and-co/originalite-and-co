@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
-
+import { Box } from '@material-ui/core';
 import { FormFields } from '../../Form';
+
+import stepperStyles from '../styles';
 
 Step.propTypes = {
   fields: PropTypes.array,
@@ -21,8 +23,8 @@ function Step({
   handlePrev,
   ...formProps
 }) {
+  const useStyles = stepperStyles();
   const { title, subTitle, ...restFormProps } = formProps;
-
   return (
     <Formik
       initialValues={initialValues}
@@ -32,9 +34,11 @@ function Step({
       {({ errors, values }) => {
         return (
           <Form {...restFormProps}>
-            {title && <h4 className="form__title">{title}</h4>}
+            {title && (
+              <h4 className={`form__title ${useStyles.formTitle}`}>{title}</h4>
+            )}
 
-            <div className="form__inner">
+            <Box className={`form__inner ${useStyles.formInner}`}>
               {fields && (
                 <FormFields
                   fields={fields}
@@ -43,16 +47,30 @@ function Step({
                 />
               )}
               {children}
-            </div>
+            </Box>
 
-            {subTitle && <h4 className="form__subtitle">{subTitle}</h4>}
+            {subTitle && (
+              <h4 className={`form__subtitle ${useStyles.subTitle}`}>
+                {subTitle}
+              </h4>
+            )}
 
-            <div className="stepper__navigation">
+            <Box className={`form__navigation ${useStyles.navigation}`}>
               {handlePrev && (
-                <button onClick={() => handlePrev(values)}>Prev</button>
+                <button
+                  type="button"
+                  className={useStyles.prevButton}
+                  onClick={() => handlePrev(values)}
+                >
+                  Prev
+                </button>
               )}
-              {handleNext && <button type="submit">Next</button>}
-            </div>
+              {handleNext && (
+                <button className={useStyles.nextButton} type="submit">
+                  Next
+                </button>
+              )}
+            </Box>
           </Form>
         );
       }}

@@ -42,7 +42,7 @@ function Stepper({ children, initialValues, onSubmit, steps }) {
     <Box className={useStepperStyles.stepper} key={step}>
       <Box className="stepper__inner">
         {steps && (
-          <h4 className="multi__step">
+          <h4 className={`stepper__progress ${useStepperStyles.progress}`}>
             Step {step + 1} / {length}
           </h4>
         )}

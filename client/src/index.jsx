@@ -9,7 +9,6 @@ import ErrorBoundary from './view/HOC/ErrorBoundary/ErrorBoundary';
 import Toast from './view/components/Toast/Toast';
 import './view/assets/styles/index.scss';
 import { CloudinaryContext } from 'cloudinary-react';
-import CustomThemeProvider from './view/HOC/CustomThemeProvider/CustomThemeProvider';
 
 const errorToast = (
   <Toast

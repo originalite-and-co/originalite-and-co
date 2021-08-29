@@ -7,18 +7,16 @@ const Radio = ({ label, name, options = [], ...rest }) => {
       {({ field }) => {
         return options.map((option) => {
           return (
-            <React.Fragment key={option.key}>
-              <label className="form-radio__label">
-                <input
-                  type="radio"
-                  {...field}
-                  {...rest}
-                  value={option.value}
-                  checked={field.value === option.value}
-                />
-                <span>{option.key}</span>
-              </label>
-            </React.Fragment>
+            <label className="form-radio__label" key={option.label}>
+              <input
+                type="radio"
+                {...field}
+                {...rest}
+                value={option.value}
+                checked={field.value === option.value}
+              />
+              <span>{option.label}</span>
+            </label>
           );
         });
       }}

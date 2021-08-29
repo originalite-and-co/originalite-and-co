@@ -1,15 +1,21 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
+import { Box } from '@material-ui/core';
 import { Error, FormFieldComponent } from './components';
 
+import style from './style';
+
 const FormFields = ({ fields }) => {
+  const useStyle = style();
+
   return fields.map(
     (
       {
         title,
         name,
         component,
-        groupClass = 'form__group',
+        valueComponent,
+        groupClass,
         groupActiveClass = '',
         errorClass = '',
         ...rest
@@ -30,21 +36,25 @@ const FormFields = ({ fields }) => {
                 : '';
 
             return (
-              <div className={`${groupClass} ${groupClassName}`.trim()}>
-                <label className="form__label">
-                  {title && <h5 className="form-label__title">{title}</h5>}
+              <Box
+                className={`form__group ${groupClass} ${groupClassName}`.trim()}
+              >
+                <Box className="form-group__inner">
+                  {title && <h5 className={useStyle.fieldTitle}>{title}</h5>}
 
-                  <div className="form-label__inner">
+                  <Box className={useStyle.formField}>
                     {FormFieldComponent(component, {
                       ...fieldProps,
                       ...rest,
                       value,
                     })}
-                  </div>
-                </label>
+                  </Box>
+                </Box>
+
+                {valueComponent && value && valueComponent(value)}
 
                 <ErrorMessage name={name} component={Error} />
-              </div>
+              </Box>
             );
           }}
         </Field>
