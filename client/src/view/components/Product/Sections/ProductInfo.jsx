@@ -56,6 +56,10 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
             />
         ));
 
+    const handleAddToCartBtnClick = (event) => {
+        console.log(activeSize)
+    }
+
     return (
         <div className={OneProductStyles.info}>
             {authorizeToaster && (
@@ -117,6 +121,7 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
             <div className={OneProductStyles.button_addToCart}>
                 <Box className={OneProductStyles.buttonsGroup}>
                     <button
+                        onClick={handleAddToCartBtnClick}
                         className={
                             activeSize !== null
                                 ? OneProductStyles.active
