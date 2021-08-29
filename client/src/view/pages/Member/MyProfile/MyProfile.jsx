@@ -11,7 +11,7 @@ import { FormGroup, Box, Typography, TextField } from '@material-ui/core';
 import Button from '../../../components/Button/Button';
 import useAsyncError from '../../../hooks/useAsyncError';
 import Styles from './../Member.module.scss';
-import { date, object, string } from 'yup';
+import { string } from 'yup';
 import { useDispatch } from 'react-redux';
 import { authorizeOperations } from '../../../../redux/features/authorization';
 
@@ -37,7 +37,7 @@ function MyProfile({ customer, handleDataUpdate }) {
   };
 
   const phoneRegExp =
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
 
   const dispatch = useDispatch();
   const handleSignOut = () => {
@@ -64,7 +64,7 @@ function MyProfile({ customer, handleDataUpdate }) {
             .catch((error) => throwError(error));
         }}
       >
-        {({ values, errors, touched, isSubmitting, isValidating }) => (
+        {({ isSubmitting, isValidating }) => (
           <Form>
             <Box>
               <FormGroup className={classes.formGroup}>

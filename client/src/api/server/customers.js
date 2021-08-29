@@ -62,8 +62,8 @@ const logIn = async (credentials, keepLoggedIn) => {
   const data = await customerRequests.create(
     credentials,
     `${CUSTOMERS_PATH}/login`,
-    generateHeaders(),
-    exception
+    exception,
+    generateHeaders()
   );
 
   if (keepLoggedIn) {
@@ -81,6 +81,7 @@ const logIn = async (credentials, keepLoggedIn) => {
 const retrieveCustomer = async () => {
   return await customerRequests.retrieve(
     `${CUSTOMERS_PATH}/customer`,
+    undefined,
     generateHeaders()
   );
 };
@@ -95,6 +96,7 @@ const updateCustomer = async (data) => {
   return await customerRequests.update(
     data,
     `${CUSTOMERS_PATH}`,
+    undefined,
     generateHeaders()
   );
 };

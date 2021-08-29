@@ -66,6 +66,29 @@ const retrieveProductByItemNumber = async (itemNumber) => {
 
 /**
  *
+ * @param {Array<Number>} itemNumbersArray - an array of product numbers
+ * @returns {Promise<unknown[]>}
+ */
+const retrieveProductsByItemNumbers = async (itemNumbersArray) => {
+  const paths = itemNumbersArray.map((itemNo) => `${PRODUCTS_PATH}/${itemNo}`);
+  const headers = generateHeaders();
+  const requests = paths.map((path) => {
+    return fetch(path, {
+      method: 'GET',
+      headers
+    });
+  });
+
+  const responses = await Promise.all(requests);
+  let result = [];
+  responses.forEach(async (item) => {
+    result.push(await item.json());
+  });
+  return result;
+};
+
+/**
+ *
  * @param {String} query - query in form "property=value&property2=value"
  * @returns {Promise<Array<Object>>}
  */
@@ -94,6 +117,7 @@ const product = {
   searchForProduct,
   retrieveProducts,
   retrieveProductByItemNumber,
+  retrieveProductsByItemNumbers,
   retrieveByQuery,
   updateProduct
 };
