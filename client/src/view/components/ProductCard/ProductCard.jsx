@@ -9,10 +9,11 @@ import { useSelector } from 'react-redux';
 import { authorizationSelectors } from '../../../redux/features/authorization';
 
 ProductCard.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  size: PropTypes.number.isRequired,
 };
 
-function ProductCard({ product }) {
+function ProductCard({ product, size }) {
   const [isDesktop, setDesktop] = useState(false);
 
   const { width } = useWindowSize();
@@ -23,49 +24,46 @@ function ProductCard({ product }) {
   }, [width]);
 
   const handleClick = () => {
-    const dataFromLocalStorage = JSON.parse(
-      localStorage.getItem('recentlyViewed')
-    );
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('recentlyViewed'));
     if (dataFromLocalStorage?.length === 10) {
-      dataFromLocalStorage.shift();
+      dataFromLocalStorage.shift()
     }
     let data = [product];
-    if (Array.isArray(dataFromLocalStorage)) {
-      dataFromLocalStorage.some((item) => item.itemNo === product.itemNo)
-        ? (data = [...dataFromLocalStorage])
-        : (data = [...dataFromLocalStorage, product]);
+    if(Array.isArray(dataFromLocalStorage)){
+      dataFromLocalStorage.some(item => item.itemNo === product.itemNo) ? data = [...dataFromLocalStorage] : data = [...dataFromLocalStorage, product]
     }
-    localStorage.setItem('recentlyViewed', JSON.stringify(data));
-  };
+    localStorage.setItem("recentlyViewed",JSON.stringify(data));
+  }
 
   return (
-    <Box
-      data-testid="product-card"
-      className={styles.productCard}
-      onClick={handleClick}
-    >
-      <Link to={`/products/${product.itemNo}`} className={styles.link}>
-        <div className={styles.productImage}>
-          <img src={product.imageUrls[0]} alt="products images" />
-        </div>
-        <Typography
-          color={path === '/' ? 'textPrimary' : 'textSecondary'}
-          component="p"
-          variant={isDesktop ? 'h6' : 'body2'}
-          className={styles.productCardTitle}
-        >
-          {product.name}
-        </Typography>
-        <Typography
-          component="p"
-          variant={isDesktop ? 'h6' : 'body2'}
-          className={styles.productCardPrice}
-        >
-          {`${product.currentPrice} $`}
-        </Typography>
-      </Link>
-    </Box>
+      <Box
+          data-testid='product-card'
+          className={styles.productCard}
+          onClick={handleClick}
+      >
+        <Link to={`/products/${product.itemNo}`} className={styles.link}>
+          <div className={styles.productImage}>
+            <img src={product.imageUrls[0]} alt='products images' />
+          </div>
+          <Typography
+              color={path === '/' ? 'textPrimary' : 'textSecondary'}
+              component='p'
+              variant={isDesktop ? 'h6' : 'body2'}
+              className={styles.productCardTitle}
+          >
+            {product.name}
+          </Typography>
+          <Typography
+              component='p'
+              variant={isDesktop ? 'h6' : 'body2'}
+              className={styles.productCardPrice}
+          >
+            {`${product.currentPrice} $`}
+          </Typography>
+        </Link>
+      </Box>
   );
 }
+
 
 export default ProductCard;

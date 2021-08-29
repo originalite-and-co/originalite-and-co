@@ -35,7 +35,7 @@ class ServerApiRequests {
     this.path = path;
     this.headers = headers;
     this.fetchException = fetchException;
-  };
+  }
 
   /**
    *
@@ -77,7 +77,7 @@ class ServerApiRequests {
     } catch (error) {
       throw error || currentException;
     }
-  };
+  }
 
   /**
    * @param {String} [path] - request url

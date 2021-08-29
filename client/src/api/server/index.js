@@ -1,4 +1,3 @@
-
 export { default as cartRequests } from './cart';
 export { default as catalogRequests } from './catalog';
 export { default as customerRequests } from './customers';

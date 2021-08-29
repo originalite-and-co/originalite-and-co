@@ -14,7 +14,7 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
   const [addedToWishlist, setAddedToWishlist] = useState();
   const [authorizeToaster, setAuthorizeToaster] = useState();
   const dispatch = useDispatch();
-  const { sizes, name, currentPrice, itemNo, color, _id } = detail;
+  const { sizes, name, currentPrice, itemNo, color, description, _id } = detail;
   const isInWishlist = wishlistIDs.some((id) => id === _id);
   const isAuthorized = useSelector(authorizationSelectors.authorization);
 
@@ -83,6 +83,34 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
       {/*                </button>*/}
       {/*            </>*/}
 
+            {/*            )*/}
+            {/*        )*/}
+            {/*    }*/}
+            {/*</div>*/}
+            <h3>Details</h3>
+            <div className={OneProductStyles.description}>{description}</div>
+            <h3>Size</h3>
+            <div >
+                <ul className={OneProductStyles.sizes}>
+                    {availableSizes.map((item, index) => (
+                        <li
+                            key={item}
+                            onClick={() => onSelectSize(index)}
+                            className={
+                                !sizes.includes(item) ? OneProductStyles.disabled : "" ||
+                                activeSize === index ? OneProductStyles.active : ''}>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className={OneProductStyles.button_addToCart}>
+                <button className={activeSize !== null ? OneProductStyles.active : OneProductStyles.button}>
+                    Add to cart
+                </button>
+            </div>
+        </div>
+    )
       {/*            )*/}
       {/*        )*/}
       {/*    }*/}
