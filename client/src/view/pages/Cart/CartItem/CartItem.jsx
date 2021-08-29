@@ -43,6 +43,8 @@ function CartItem({
   enabled
 }) {
   const [quantity, setQuantity] = useState(cartQuantity);
+  const [error, setError] = useState('');
+  const [touched, setTouched] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -60,7 +62,12 @@ function CartItem({
   };
 
   const handleChange = ({ target }) => {
-    setQuantity(Number(target.value));
+    const { value } = target;
+
+    if (value < 1 || value > maxQuantity) {
+      setError(`Please enter a number between 1 and ${maxQuantity}`);
+    }
+    setQuantity(Number(value));
   };
 
   const handleRemoveBtnClick = (event) => {
@@ -83,6 +90,36 @@ function CartItem({
     setQuantity((prevState) => (prevState += 1));
   };
 
+  const handleItemClick = () => {
+    // eslint-disable-next-line no-debugger
+    debugger;
+    const dataFromLocalStorage = JSON.parse(
+      localStorage.getItem('recentlyViewed')
+    );
+    if (dataFromLocalStorage?.length === 10) {
+      dataFromLocalStorage.shift();
+    }
+    const product = {
+      enabled,
+      id,
+      itemNo,
+      cartQuantity,
+      color,
+      maxQuantity,
+      currentPrice,
+      name,
+      imageUrls,
+      size
+    };
+    let data = [product];
+    if (Array.isArray(dataFromLocalStorage)) {
+      dataFromLocalStorage.some((item) => item.itemNo === product.itemNo)
+        ? (data = [...dataFromLocalStorage])
+        : (data = [...dataFromLocalStorage, product]);
+    }
+    localStorage.setItem('recentlyViewed', JSON.stringify(data));
+  };
+
   return (
     <Grid item component="li" className={classes.root} xs={12}>
       <IconButton
@@ -94,7 +131,7 @@ function CartItem({
       </IconButton>
       <Grid className={classes.inner} container>
         <Grid item xs={5} component="figure" className={classes.picture}>
-          <Link to={`/products/${itemNo}`}>
+          <Link onCLick={handleItemClick} to={`/products/${itemNo}`}>
             <img src={imageUrls[0]} alt={name} />
           </Link>
         </Grid>
@@ -165,6 +202,7 @@ function CartItem({
                 className={classes.counterValue}
                 value={quantity}
                 onChange={handleChange}
+                onBlur={() => setTouched(true)}
                 type="number"
                 required
               />
@@ -178,6 +216,7 @@ function CartItem({
                 <Add className={`${classes.counterIcon} ${classes.addIcon}`} />
               </IconButton>
             </Box>
+            {error && touched && <span>{error}</span>}
           </Box>
           <Box className={`${classes.text} ${classes.total}`}>
             <Typography variant="body2" color="textSecondary" component="span">
