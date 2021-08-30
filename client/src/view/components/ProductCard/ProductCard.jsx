@@ -5,9 +5,12 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
+import { useSelector } from 'react-redux';
+import { authorizationSelectors } from '../../../redux/features/authorization';
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
+  size: PropTypes.number.isRequired,
 };
 
 function ProductCard({ product, size }) {
@@ -25,40 +28,40 @@ function ProductCard({ product, size }) {
     if (dataFromLocalStorage?.length === 10) {
       dataFromLocalStorage.shift()
     }
-    let data = [product.itemNo];
+    let data = [product];
     if(Array.isArray(dataFromLocalStorage)){
-      data = [...dataFromLocalStorage, product.itemNo];
+      dataFromLocalStorage.some(item => item.itemNo === product.itemNo) ? data = [...dataFromLocalStorage] : data = [...dataFromLocalStorage, product]
     }
     localStorage.setItem("recentlyViewed",JSON.stringify(data));
   }
 
   return (
-    <Box
-      data-testid='product-card'
-      className={styles.productCard}
-      onClick={handleClick}
-    >
-      <Link to={`/products/${product.itemNo}`} className={styles.link}>
-        <div className={styles.productImage}>
-          <img src={product.imageUrls[0]} alt='products images' />
-        </div>
-        <Typography
-          color={path === '/' ? 'textPrimary' : 'textSecondary'}
-          component='p'
-          variant={isDesktop ? 'h6' : 'body2'}
-          className={styles.productCardTitle}
-        >
-          {product.name}
-        </Typography>
-        <Typography
-          component='p'
-          variant={isDesktop ? 'h6' : 'body2'}
-          className={styles.productCardPrice}
-        >
-          {`${product.currentPrice} $`}
-        </Typography>
-      </Link>
-    </Box>
+      <Box
+          data-testid='product-card'
+          className={styles.productCard}
+          onClick={handleClick}
+      >
+        <Link to={`/products/${product.itemNo}`} className={styles.link}>
+          <div className={styles.productImage}>
+            <img src={product.imageUrls[0]} alt='products images' />
+          </div>
+          <Typography
+              color={path === '/' ? 'textPrimary' : 'textSecondary'}
+              component='p'
+              variant={isDesktop ? 'h6' : 'body2'}
+              className={styles.productCardTitle}
+          >
+            {product.name}
+          </Typography>
+          <Typography
+              component='p'
+              variant={isDesktop ? 'h6' : 'body2'}
+              className={styles.productCardPrice}
+          >
+            {`${product.currentPrice} $`}
+          </Typography>
+        </Link>
+      </Box>
   );
 }
 

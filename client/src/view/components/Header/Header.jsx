@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 import Nav from './Nav/Nav';
 import CatalogNav from './CatalogNav/CatalogNav';
-import HeaderStyles from './Header.module.scss';
 import useWindowSize from "../../hooks/useWindowSize";
 import constants from "../../constants";
 import Logo from "./Nav/Logo/Logo";
 import NavItems from "./Nav/NavItems/NavItems";
+import {makeStyles} from "@material-ui/styles";
+import {generateStyles} from './HeaderStyles'
 
 function Header() {
+    const useStyles = makeStyles(generateStyles);
+    const classes = useStyles();
+
     const [isDesktop, setIsDesktop] = useState()
     const {width} = useWindowSize();
 
@@ -20,7 +23,6 @@ function Header() {
     const mobileHeader =
         <>
             <Nav/>
-            <CatalogNav/>
         </>
 
     const desktopHeader =
@@ -31,10 +33,10 @@ function Header() {
         </>
 
     return (
-        <Box className={HeaderStyles.header}>
+        <Box className={classes.header}>
             <Box className={isDesktop
-                ? `${HeaderStyles.inner} wrapper`
-                : HeaderStyles.inner}
+                ? `${classes.inner} wrapper`
+                : classes.inner}
             >
                 {!isDesktop && mobileHeader}
                 {isDesktop && desktopHeader}

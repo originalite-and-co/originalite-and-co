@@ -36,22 +36,26 @@ const getCart = () => async (dispatch, getState) => {
 /**
  *
  * @param {String} id - id of the product that needs to be added
+ * @param {String} itemNo - itemNo property of the product
+ * @param {String} size - size of the product that needs to be added
  * @returns {(function(Function, Function): Promise<*|undefined>)|*}
  */
-const addProductToCart = (id) => async (dispatch, getState) => {
+const addProductToCart = (id, itemNo, size) => async (dispatch, getState) => {
   const { cart, authorization } = getState();
   if (authorization) {
-    const response = await cartRequests.addProductToCart(id);
+    const response = await cartRequests.addProductToCart(id, size);
     const cartFromAPi = createCartFromResponse(response);
     return dispatch(actions.addProductToCart(cartFromAPi));
   }
 
   const cartCopy = [...cart];
-  const itemInCart = cartCopy.find(({ _id }) => _id === id);
+  const itemInCart = cartCopy.find(({ _id, chosenSize }) => {
+    return _id === id && chosenSize === size;
+  });
   if (itemInCart) {
     itemInCart.cartQuantity += 1;
   } else {
-    cartCopy.push({ cartQuantity: 1, _id: id });
+    cartCopy.push({ cartQuantity: 1, _id: id, itemNo, chosenSize: size });
   }
   dispatch(actions.addProductToCart(cartCopy));
 };
@@ -59,24 +63,29 @@ const addProductToCart = (id) => async (dispatch, getState) => {
 /**
  *
  * @param {String} id - id of the product which amount needs to be decreased
+ * @param {String} size - size of the product which amount needs to be decreased
  * @returns {(function(Function, Function): Promise<*|undefined>)|*}
  */
-const decreaseProductQuantity = (id) => async (dispatch, getState) => {
+const decreaseProductQuantity = (id, size) => async (dispatch, getState) => {
   const { cart, authorization } = getState();
   if (authorization) {
-    const response = await cartRequests.decreaseProductQuantity(id);
+    const response = await cartRequests.decreaseProductQuantity(id, size);
     const cartFromAPi = createCartFromResponse(response);
     return dispatch(actions.decreaseProductQuantity(cartFromAPi));
   }
 
   const cartCopy = [...cart];
-  const itemInCart = cartCopy.find(({ _id }) => _id === id);
+  const itemInCart = cartCopy.find(({ _id, chosenSize }) => {
+    return _id === id && chosenSize === size;
+  });
   if (!itemInCart) {
     throw new Error("There is no item with such id");
   }
   itemInCart.cartQuantity -= 1;
   if (!itemInCart.cartQuantity) {
-    const indexOfProduct = cartCopy.findIndex(({ _id }) => _id === id);
+    const indexOfProduct = cartCopy.findIndex(({ _id, chosenSize }) => {
+      return _id === id && chosenSize === size;
+    });
     cartCopy.splice(indexOfProduct, 1);
   }
   dispatch(actions.decreaseProductQuantity(cartCopy));
@@ -85,18 +94,21 @@ const decreaseProductQuantity = (id) => async (dispatch, getState) => {
 /**
  *
  * @param {String} id - id of the product that needs to be deleted
+ *  @param {String} size - product with which size needs to be deleted
  * @returns {(function(Function, Function): Promise<*|undefined>)|*}
  */
-const deleteProductFromCart = (id) => async (dispatch, getState) => {
+const deleteProductFromCart = (id, size) => async (dispatch, getState) => {
   const { cart, authorization } = getState();
   if (authorization) {
-    const response = await cartRequests.deleteProductFromCart(id);
+    const response = await cartRequests.deleteProductFromCart(id, size);
     const cartFromAPi = createCartFromResponse(response);
     return dispatch(actions.deleteProductFromCart(cartFromAPi));
   }
 
   const cartCopy = [...cart];
-  const indexOfProduct = cartCopy.findIndex(({ _id }) => _id === id);
+  const indexOfProduct = cartCopy.findIndex(({ _id, chosenSize }) => {
+    return _id === id && chosenSize === size;
+  });
   if (indexOfProduct === -1) {
     throw new Error("There is no item with such id");
   }

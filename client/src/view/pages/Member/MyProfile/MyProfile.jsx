@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {customerRequests} from "../../../../api/server";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {makeStyles} from "@material-ui/styles";
+import {generateStyles} from "./Styles";
 import CreateIcon from '@material-ui/icons/Create';
 import * as yup from 'yup';
 
@@ -26,13 +27,12 @@ MyProfile.propTypes = {
     handleDataUpdate: PropTypes.func.isRequired
 };
 
-const useStyles = makeStyles(generateStyles);
-
 function MyProfile({customer, handleDataUpdate}) {
 
-    const throwError = useAsyncError();
-
+    const useStyles = makeStyles(generateStyles);
     const classes = useStyles();
+
+    const throwError = useAsyncError();
 
     const initialValues = {
         email: customer.email,
@@ -62,13 +62,13 @@ function MyProfile({customer, handleDataUpdate}) {
                 validationSchema={validationSchema}
                 initialValues={initialValues}
                 onSubmit={(values) => {
-                if (JSON.stringify(values) === JSON.stringify(initialValues)) {
-                    return
-                }
-                customerRequests.updateCustomer(values)
-                    .then(handleDataUpdate())
-                    .catch(error => throwError(error))
-            }}
+                    if (JSON.stringify(values) === JSON.stringify(initialValues)) {
+                        return
+                    }
+                    customerRequests.updateCustomer(values)
+                        .then(handleDataUpdate())
+                        .catch(error => throwError(error))
+                }}
             >
                 {({values, errors, touched, isSubmitting, isValidating}) => (
                     <Form>
@@ -169,30 +169,5 @@ function MyProfile({customer, handleDataUpdate}) {
         ;
 }
 
-function generateStyles({breakpoints}) {
-    return {
-        input: {
-            fontFamily: "Open Sans",
-            fontWeight: "bold",
-            fontSize: "12px",
-            lineHeight: "16px",
-            color: "#373737",
-
-            [breakpoints.up("desktop")]: {
-                color: "#373737",
-            },
-        },
-        formGroup: {
-            position: "relative"
-        },
-        createIcon: {
-            position: "absolute",
-            right: "0"
-        },
-        select: {
-            marginTop: '10px'
-        }
-    }
-}
 
 export default MyProfile;

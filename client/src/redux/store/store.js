@@ -4,12 +4,13 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-import cartReducer from "./../features/cart/index";
-import isAnyDropdownOpenReducer from "./../features/dropdown/index";
-import searchResult from "./../features/searchResult/index";
-import footerReducer from "./../features/footerLinks/index";
-import filterReducer from "./../features/filters/index";
-import authorizationReducer from "../features/authorization/index";
+import cartReducer from './../features/cart/index';
+import isAnyDropdownOpenReducer from './../features/dropdown/index';
+import searchResult from './../features/searchResult/index';
+import footerReducer from './../features/footerLinks/index';
+import filterReducer from './../features/filters/index';
+import authorizationReducer from '../features/authorization/index';
+import wishlistReducer from '../features/wishlist/index';
 
 const persistConfig = {
   key: "root",
@@ -25,6 +26,7 @@ let rootReducer = combineReducers({
   ...filterReducer,
   ...footerReducer,
   ...authorizationReducer,
+  ...wishlistReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

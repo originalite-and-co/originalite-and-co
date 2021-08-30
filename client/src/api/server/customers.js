@@ -1,16 +1,18 @@
-import { generateFetchException, generateHeaders } from "./utils.js";
-import ServerApiRequests from "./ServerApiRequests";
+import {
+  generateFetchException,
+  generateHeaders
+} from './utils.js';
+import ServerApiRequests from './ServerApiRequests';
 
-const CUSTOMERS_PATH = "/api/customers";
+const CUSTOMERS_PATH = '/api/customers';
 
-// debugger
 const headers = generateHeaders();
 
 const exceptions = {
-  create: generateFetchException("creating a customer"),
-  retrieve: generateFetchException("retrieving the customer"),
-  update: generateFetchException("updating the customer"),
-  delete: generateFetchException("deleting the customer"),
+  create: generateFetchException('creating a customer'),
+  retrieve: generateFetchException('retrieving the customer'),
+  update: generateFetchException('updating the customer'),
+  delete: generateFetchException('deleting the customer')
 };
 
 const customerRequests = new ServerApiRequests(
@@ -25,7 +27,7 @@ const customerRequests = new ServerApiRequests(
  * @param {String} token - authorization token
  */
 const addTokenToSessionStorage = (token) => {
-  sessionStorage.setItem("token", token);
+  sessionStorage.setItem('token', token);
 };
 
 /**
@@ -34,7 +36,7 @@ const addTokenToSessionStorage = (token) => {
  * @param {String} token  - authorization token
  */
 const addTokenToLocalStorage = (token) => {
-  localStorage.setItem("token", token);
+  localStorage.setItem('token', token);
 };
 
 /**

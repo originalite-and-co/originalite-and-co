@@ -32,7 +32,7 @@ const createWishlist = async (data) => {
  * @returns {Promise<Object>}
  */
 const retrieveWishlist = async () => {
-  return await wishlistRequests.retrieve(null, generateHeaders());
+  return await wishlistRequests.retrieve(null, undefined, generateHeaders());
 };
 
 /**
@@ -52,9 +52,10 @@ const updateWishlist = async (data) => {
 const addProductToWishlist = async (productId) => {
   const exception = generateFetchException('adding a product to the wishlist');
   return await wishlistRequests.update(
-    null,
+    undefined,
     `${WISHLIST_PATH}/${productId}`,
-    exception
+    exception,
+    generateHeaders()
   );
 };
 

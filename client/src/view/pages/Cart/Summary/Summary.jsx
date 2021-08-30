@@ -1,13 +1,25 @@
-import React from "react";
-import { Box, Button, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-import generateStyles from "./styles";
+import React from 'react';
+import { Box, Button, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
 
 Summary.propTypes = {};
 
-function Summary(props) {
+function Summary({ products }) {
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
+
+  const orderValue = products.reduce((sum, cartItem) => {
+    const { currentPrice, cartQuantity } = cartItem;
+    return (Number(sum) + Number(currentPrice) * Number(cartQuantity)).toFixed(
+      2
+    );
+  }, 0);
+
+  const deliveryValue = 0;
+
+  const total = Number(orderValue + deliveryValue).toFixed(2);
+
   return (
     <Box className={classes.summary}>
       <Typography
@@ -24,7 +36,7 @@ function Summary(props) {
             Order value:
           </Typography>
           <Typography component="p" variant="body1" color="textSecondary">
-            100$
+            ${orderValue}
           </Typography>
         </Box>
         <Box className={classes.summaryContent}>
@@ -32,7 +44,7 @@ function Summary(props) {
             Delivery:
           </Typography>
           <Typography component="p" variant="body1" color="textSecondary">
-            FREE
+            {deliveryValue === 0 ? 'FREE' : deliveryValue}
           </Typography>
         </Box>
         <Box className={`${classes.summaryContent} ${classes.summaryTotal}`}>
@@ -40,7 +52,7 @@ function Summary(props) {
             Total:
           </Typography>
           <Typography component="p" variant="body1" color="textSecondary">
-            200$
+            ${total}
           </Typography>
         </Box>
         <Button
