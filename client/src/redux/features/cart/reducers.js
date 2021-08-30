@@ -1,11 +1,12 @@
-import types from "./types";
+import types from './types';
 
 const {
   GOT_CART,
+  UPDATED_CART,
   ADDED_PRODUCT_TO_CART,
   DECREASED_PRODUCT_QUANTITY,
   DELETED_PRODUCT_FROM_CART,
-  DELETED_CART,
+  DELETED_CART
 } = types;
 
 const reducer = (state = [], action) => {
@@ -13,6 +14,9 @@ const reducer = (state = [], action) => {
 
   switch (type) {
     case GOT_CART: {
+      return payload;
+    }
+    case UPDATED_CART: {
       return payload;
     }
     case ADDED_PRODUCT_TO_CART: {
@@ -34,7 +38,7 @@ const reducer = (state = [], action) => {
 };
 
 const reducers = {
-  cart: reducer,
+  cart: reducer
 };
 
 export default reducers;

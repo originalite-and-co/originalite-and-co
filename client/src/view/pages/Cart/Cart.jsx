@@ -30,6 +30,7 @@ function Cart(props) {
   const [isDesktop, setDesktop] = useState(width >= WINDOW_DESKTOP_SIZE);
   const [isLoaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
 
   const isUserAuthorized = useSelector(authorizationSelectors.authorization);
   const cart = useSelector(cartSelectors.getCart);
@@ -49,41 +50,44 @@ function Cart(props) {
 
     let itemNumbers = cart.map((item) => item.itemNo);
     itemNumbers = [...new Set(itemNumbers)];
-
     const asyncFunction = async () => {
       try {
         const response = await productRequests.retrieveProductsByItemNumbers(
           itemNumbers
         );
-
-        const products = cart.map((cartItem) => {
-          const { color, quantity, currentPrice, name, enabled, imageUrls } =
-            response.find(({ itemNo }) => {
-              return itemNo === cartItem.itemNo;
-            });
-
-          return {
-            color,
-            quantity,
-            currentPrice,
-            name,
-            enabled,
-            imageUrls,
-            itemNo: cartItem.itemNo,
-            _id: cartItem._id,
-            cartQuantity: cartItem.cartQuantity,
-            chosenSize: cartItem.chosenSize
-          };
-        });
-        setProducts(products);
-        setLoaded(true);
+        setProducts(response);
       } catch (error) {
         throwAsyncError(error);
       }
     };
-
     asyncFunction();
-  }, [cart]);
+  }, []);
+
+  useEffect(() => {
+    if (!products?.length) {
+      return;
+    }
+    const cartProducts = cart.map((cartItem) => {
+      const { color, quantity, currentPrice, name, enabled, imageUrls } =
+        products?.find(({ itemNo }) => {
+          return itemNo === cartItem.itemNo;
+        });
+
+      return {
+        color,
+        quantity,
+        currentPrice,
+        name,
+        enabled,
+        imageUrls,
+        itemNo: cartItem.itemNo,
+        _id: cartItem._id,
+        cartQuantity: cartItem.cartQuantity,
+        chosenSize: cartItem.chosenSize
+      };
+    });
+    setCartProducts(cartProducts);
+  }, [cart, products]);
 
   useEffect(() => {
     setLoaded(false);
@@ -99,7 +103,7 @@ function Cart(props) {
   }, [isUserAuthorized]);
 
   const productList = useMemo(() => {
-    return products?.map(
+    return cartProducts?.map(
       (
         {
           cartQuantity,
@@ -133,7 +137,7 @@ function Cart(props) {
         );
       }
     );
-  }, [products]);
+  }, [cartProducts]);
   return (
     <>
       <Header />
@@ -177,7 +181,7 @@ function Cart(props) {
               className={classes.summaryContainer}
               xs={isDesktop ? 3 : 12}
             >
-              <Summary products={products} />
+              <Summary products={cartProducts} />
             </Grid>
           </Grid>
         </Box>
