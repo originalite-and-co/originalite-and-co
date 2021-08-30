@@ -11,11 +11,14 @@ import {
   wishlistSelectors
 } from '../../../redux/features/wishlist';
 import { useDispatch, useSelector } from 'react-redux';
+import { authorizationSelectors } from '../../../redux/features/authorization';
 
 function Product() {
   const [product, setProduct] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [availableSizes, setAvailableSizes] = useState([]);
+  const isAuthorized = useSelector(authorizationSelectors.authorization);
+
   const dispatch = useDispatch();
   const { params, url } = useRouteMatch();
 
@@ -23,7 +26,14 @@ function Product() {
 
   const throwAsyncError = useAsyncError();
   const wishlistState = useSelector(wishlistSelectors.getWishlist);
-  const wishlistIDs = wishlistState.map((product) => product._id);
+
+  let wishlistIDs;
+
+  if (isAuthorized) {
+    wishlistIDs = wishlistState.map((product) => product._id);
+  } else {
+    wishlistIDs = [];
+  }
 
   useEffect(() => {
     dispatch(wishlistOperations.gotWishlist());

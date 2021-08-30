@@ -70,7 +70,8 @@ const deleteProductFromWishlist = async (productId) => {
   );
   return await wishlistRequests.delete(
     `${WISHLIST_PATH}/${productId}`,
-    exception
+    exception,
+    generateHeaders()
   );
 };
 
