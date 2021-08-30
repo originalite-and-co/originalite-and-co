@@ -1,11 +1,11 @@
-import { cartRequests } from "../../../api/server";
-import actions from "./actions";
-import utils from "./utils";
+import { cartRequests } from '../../../api/server';
+import actions from './actions';
+import utils from './utils';
 
 const {
   createCartFromResponse,
   concatCartFromDbWithCurrentOne,
-  updateApiCart,
+  updateApiCart
 } = utils;
 
 /**
@@ -32,6 +32,69 @@ const getCart = () => async (dispatch, getState) => {
 
   dispatch(actions.getCart(currentCart));
 };
+
+/**
+ *
+ * @param {String} id
+ * @param {String} itemNo
+ * @param {String} size
+ * @param {Number} quantity
+ * @returns {(function(Function, Function): Promise<*|undefined>)|*}
+ */
+const changeProductQuantity =
+  (id, itemNo, size, quantity) => async (dispatch, getState) => {
+    const { cart, authorization } = getState();
+
+    if (quantity < 1) {
+      throw new Error(`Invalid quantity: ${quantity}. it should be > 0`);
+    }
+
+    if (authorization) {
+      const { products } = await cartRequests.retrieveCart();
+      const indexOfProduct = products.findIndex(({ product, chosenSize }) => {
+        return product._id === id && chosenSize === size;
+      });
+
+      if (indexOfProduct !== -1) {
+        products.splice(indexOfProduct, 1);
+      }
+
+      const data = {
+        products: [
+          ...products,
+          {
+            product: id,
+            cartQuantity: quantity,
+            chosenSize: size
+          }
+        ]
+      };
+
+      const updatedCart = await cartRequests.updateCart(data);
+      const cartFromAPi = createCartFromResponse(updatedCart);
+      return dispatch(actions.updateCart(cartFromAPi));
+    }
+
+    const cartCopy = [...cart];
+    const indexOfProduct = cartCopy.findIndex(({ _id, chosenSize }) => {
+      return _id === id && chosenSize === size;
+    });
+
+    if (indexOfProduct !== -1) {
+      cartCopy.splice(indexOfProduct, 1);
+    }
+
+    const data = [
+      ...cartCopy,
+      {
+        _id: id,
+        cartQuantity: quantity,
+        chosenSize: size,
+        itemNo
+      }
+    ];
+    dispatch(actions.updateCart(data));
+  };
 
 /**
  *
@@ -79,7 +142,7 @@ const decreaseProductQuantity = (id, size) => async (dispatch, getState) => {
     return _id === id && chosenSize === size;
   });
   if (!itemInCart) {
-    throw new Error("There is no item with such id");
+    throw new Error('There is no item with such id');
   }
   itemInCart.cartQuantity -= 1;
   if (!itemInCart.cartQuantity) {
@@ -110,7 +173,7 @@ const deleteProductFromCart = (id, size) => async (dispatch, getState) => {
     return _id === id && chosenSize === size;
   });
   if (indexOfProduct === -1) {
-    throw new Error("There is no item with such id");
+    throw new Error('There is no item with such id');
   }
 
   cartCopy.splice(indexOfProduct, 1);
@@ -132,10 +195,11 @@ const deleteCart = () => async (dispatch, getState) => {
 
 const operations = {
   getCart,
+  changeProductQuantity,
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart,
+  deleteCart
 };
 
 export default operations;
