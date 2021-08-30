@@ -24,7 +24,11 @@ const generateStyles = ({ breakpoints, palette }) => ({
       maxWidth: '100%'
     }
   },
-  description: {},
+  description: {
+    [breakpoints.up("desktop")]: {
+      maxWidth: "40%",
+    }
+  },
   heading: {
     maxWidth: '80%',
     fontWeight: 700,
@@ -38,7 +42,11 @@ const generateStyles = ({ breakpoints, palette }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     color: '#847A7A',
-    marginBottom: '.5rem'
+    marginBottom: '.5rem',
+
+    '& span:last-child': {
+      paddingRight: "10px"
+    }
   },
   counterWrapper: {
     display: 'flex',
