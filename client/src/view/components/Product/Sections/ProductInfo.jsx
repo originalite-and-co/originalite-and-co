@@ -8,6 +8,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import {authorizationSelectors} from '../../../../redux/features/authorization';
 import Toast from '../../Toast/Toast';
 import {cartOperations} from "../../../../redux/features/cart";
+import {useHistory} from 'react-router-dom';
+function ProductInfo({availableSizes, detail, wishlistIDs}) {
 
 function ProductInfo({availableSizes, detail, wishlistIDs}) {
     // const [isActiveColor, setActiveColor] = useState(null);
@@ -16,8 +18,15 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
     const [authorizeToaster, setAuthorizeToaster] = useState();
     const dispatch = useDispatch();
     const {sizes, name, currentPrice, itemNo, color, description, _id} = detail;
+
     const isInWishlist = wishlistIDs.some((id) => id === _id);
     const isAuthorized = useSelector(authorizationSelectors.authorization);
+
+    const history = useHistory();
+
+    useEffect(() => {
+        setAddedToWishlist(isInWishlist);
+    }, [isAuthorized]);
 
     useEffect(() => {
         isInWishlist ? setAddedToWishlist(true) : setAddedToWishlist(false);
@@ -29,6 +38,9 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
     const addToWishlist = () => {
         if (!isAuthorized) {
             setAuthorizeToaster(true);
+            setTimeout(() => {
+                history.push('/auth/login');
+            }, 1500);
             return;
         }
         setAddedToWishlist(true);
@@ -65,6 +77,7 @@ function ProductInfo({availableSizes, detail, wishlistIDs}) {
         <div className={OneProductStyles.info}>
             {authorizeToaster && (
                 <Toast
+                    variant="filled"
                     message="Log in to add the item to your wishlist"
                     severity="error"
                 />
