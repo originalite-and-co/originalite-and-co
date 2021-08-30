@@ -11,7 +11,6 @@ import { cartOperations } from '../../../../redux/features/cart';
 import { useHistory } from 'react-router-dom';
 
 function ProductInfo({ availableSizes, detail, wishlistIDs }) {
-  // const [isActiveColor, setActiveColor] = useState(null);
   const [activeSize, setActiveSize] = useState(null);
   const [addedToWishlist, setAddedToWishlist] = useState();
   const [authorizeToaster, setAuthorizeToaster] = useState();
