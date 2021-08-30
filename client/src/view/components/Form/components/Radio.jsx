@@ -15,7 +15,10 @@ const Radio = ({ label, name, options = [], ...rest }) => {
                 value={option.value}
                 checked={field.value === option.value}
               />
-              <span>{option.label}</span>
+              <h4>
+                {option.icon}
+                <span>{option.label}</span>
+              </h4>
             </label>
           );
         });

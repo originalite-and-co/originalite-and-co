@@ -10,20 +10,24 @@ Stepper.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-function Stepper({ children, initialValues, onSubmit, steps }) {
+function Stepper({ children, initialValues, onSubmit, steps, checkArterAll }) {
   const useStepperStyles = stepperStyles();
-  const components = Array.isArray(children) ? children : [children];
+  let components = Array.isArray(children) ? children : [children];
+
+  if (checkArterAll) {
+    components = [...components, components];
+  }
 
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState(initialValues);
 
   const { length } = components;
 
-  const lastStep = step === length - 1;
+  const isLastStep = step === length - 1;
 
   const handleNext = (data) => {
     setFormData((prev) => ({ ...prev, ...data }));
-    if (lastStep) return onSubmit(data);
+    if (isLastStep) return onSubmit(data);
     setStep((prev) => prev + 1);
   };
 
@@ -36,6 +40,7 @@ function Stepper({ children, initialValues, onSubmit, steps }) {
     initialValues: formData,
     handleNext,
     handlePrev: step ? handlePrev : null,
+    isLastStep,
   });
 
   return (

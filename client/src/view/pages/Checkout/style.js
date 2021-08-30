@@ -45,6 +45,27 @@ const styles = {
       gridTemplateColumns: 'repeat(4, 1fr)',
       gridGap: 20,
     },
+    '& .payment': {
+      gridArea: '1 / 1 / 2 / 6',
+      '& .form__field': {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(1, 1fr)',
+        gridGap: 20,
+      },
+      '& .form-radio__label': {
+        border: '1px solid #ccc',
+        padding: 15,
+        borderRadius: 4,
+        cursor: 'pointer',
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        '& span': {
+          fontSize: 18,
+          fontWeight: 700,
+        },
+      },
+    },
     '& .cardNumber': {
       gridArea: '1 / 1 / 2 / 3;',
     },

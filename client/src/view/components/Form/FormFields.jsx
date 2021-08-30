@@ -42,7 +42,7 @@ const FormFields = ({ fields }) => {
                 <Box className="form-group__inner">
                   {title && <h5 className={useStyle.fieldTitle}>{title}</h5>}
 
-                  <Box className={useStyle.formField}>
+                  <Box className={`form__field ${useStyle.formField}`}>
                     {FormFieldComponent(component, {
                       ...fieldProps,
                       ...rest,

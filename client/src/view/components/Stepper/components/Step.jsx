@@ -12,6 +12,7 @@ Step.propTypes = {
   schema: PropTypes.object,
   handleNext: PropTypes.func,
   handlePrev: PropTypes.func,
+  // isLastStep: PropTypes.bool,
 };
 
 function Step({
@@ -21,6 +22,7 @@ function Step({
   schema,
   handleNext,
   handlePrev,
+  isLastStep,
   ...formProps
 }) {
   const useStyles = stepperStyles();
@@ -67,7 +69,7 @@ function Step({
               )}
               {handleNext && (
                 <button className={useStyles.nextButton} type="submit">
-                  Next
+                  {isLastStep ? 'Submit' : 'Next'}
                 </button>
               )}
             </Box>

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const styles = {
   formField: {
     display: 'flex',
+    alignItems: 'center',
     '& .form__input': {
       flex: 1,
       height: 15,
@@ -12,6 +13,17 @@ const styles = {
       border: '1px solid #ccc',
       borderRadius: '4px',
       color: (props) => props.color,
+    },
+    '& .form-radio__label': {
+      display: 'flex',
+      alignItems: 'center',
+      '& h4': {
+        display: 'flex',
+        alignItems: 'center',
+        '& span': {
+          padding: '0 15px',
+        },
+      },
     },
   },
   fieldTitle: {
