@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as yup from 'yup';
 
 import { Box } from '@material-ui/core';
@@ -11,23 +11,7 @@ import PaymentMethodComponent from './PaymentMethod';
 
 import styles from './style';
 
-const qqq = {
-  credit: yup.object().shape({
-    creditNumber: yup.number().required(),
-  }),
-  paypal: yup.object().shape({
-    creditNumber: yup.number().required(),
-  }),
-  cash: yup.object().shape({
-    value: yup.number().required(),
-  }),
-};
-
 function Checkout() {
-  const [paymentSchema, setPaymentSchema] = useState({});
-
-  console.log(paymentSchema);
-
   const useStyle = styles();
 
   const onSubmit = (data) => {
@@ -107,7 +91,6 @@ function Checkout() {
             schema: yup.object({
               payment: yup.object().shape({
                 type: yup.string().required(),
-                ...paymentSchema,
               }),
             }),
           }}
