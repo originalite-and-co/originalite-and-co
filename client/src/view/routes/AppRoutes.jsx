@@ -27,6 +27,8 @@ import {
   wishlistOperations,
   wishlistSelectors
 } from '../../redux/features/wishlist';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
 function AppRoutes() {
   const dispatch = useDispatch();
@@ -80,11 +82,14 @@ function AppRoutes() {
           key={page._id}
           path={page.url}
           render={(renderProps) => (
-            <StaticPage
-              title={page.title}
-              htmlContent={page.htmlContent}
-              {...renderProps}
-            />
+            <>
+              <Header />
+              <StaticPage
+                title={page.title}
+                htmlContent={page.htmlContent}
+                {...renderProps}
+              />
+            </>
           )}
         />
       );
