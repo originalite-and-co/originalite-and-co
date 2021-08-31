@@ -9,7 +9,7 @@ const createCartFromResponse = (response) => {
   return response?.products?.map(({ cartQuantity, product }) => ({
     cartQuantity,
     _id: product._id,
-    itemNo: product.itemNo
+    itemNo: product.itemNo,
   }));
 };
 
@@ -41,7 +41,7 @@ const updateApiCart = async (cart) => {
     return {
       product: _id,
       cartQuantity,
-      itemNo
+      itemNo,
     };
   });
   await cartRequests.updateCart(data);
@@ -50,7 +50,7 @@ const updateApiCart = async (cart) => {
 const utils = {
   createCartFromResponse,
   concatCartFromDbWithCurrentOne,
-  updateApiCart
+  updateApiCart,
 };
 
 export default utils;

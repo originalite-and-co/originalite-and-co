@@ -26,7 +26,7 @@ const renderWithProjectProviders = (
   component,
   store,
   history,
-  cloudName = 'originalite-and-co'
+  cloudName = 'originalite-and-co',
 ) => {
   return {
     ...render(
@@ -38,10 +38,10 @@ const renderWithProjectProviders = (
             </CloudinaryContext>
           </Provider>
         </Router>
-      </ErrorBoundary>
+      </ErrorBoundary>,
     ),
     history,
-    store
+    store,
   };
 };
 

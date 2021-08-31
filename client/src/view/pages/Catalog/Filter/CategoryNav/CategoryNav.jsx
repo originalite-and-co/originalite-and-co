@@ -14,7 +14,7 @@ import classes from './CategoryNav.module.scss';
 
 CategoryNav.propTypes = {
   parentCategoryId: PropTypes.string.isRequired,
-  parentCategoryName: PropTypes.string.isRequired
+  parentCategoryName: PropTypes.string.isRequired,
 };
 
 function CategoryNav({ parentCategoryId, parentCategoryName }) {
@@ -24,7 +24,7 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
   useEffect(() => {
     catalogRequests.retrieveCatalog().then(
       (catalog) => setCatalog(catalog),
-      (error) => throwAsyncError(error)
+      (error) => throwAsyncError(error),
     );
   }, []);
 
@@ -38,7 +38,7 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
           className={classes.link}
           to={`/catalog/${generateCategoryPath({
             id,
-            parentId: parentCategoryId
+            parentId: parentCategoryId,
           })}`}
           replace
         >

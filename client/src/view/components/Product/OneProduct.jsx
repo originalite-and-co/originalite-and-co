@@ -22,7 +22,7 @@ function OneProduct() {
       (sizes) => {
         setAvailableSizes(sizes.map((size) => size.name));
       },
-      (error) => throwAsyncError(error)
+      (error) => throwAsyncError(error),
     );
   }, [throwAsyncError]);
 
@@ -33,7 +33,7 @@ function OneProduct() {
         setProduct(product);
         setIsLoaded(true);
       },
-      (error) => throwAsyncError(error)
+      (error) => throwAsyncError(error),
     );
   }, [itemNumber, throwAsyncError]);
 

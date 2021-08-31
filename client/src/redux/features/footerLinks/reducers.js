@@ -13,7 +13,7 @@ const reducer = (state = [], action) => {
 };
 
 const reducers = {
-  footerLinks: reducer
+  footerLinks: reducer,
 };
 
 export default reducers;

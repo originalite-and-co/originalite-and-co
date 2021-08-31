@@ -19,5 +19,5 @@ const loggOutUser = () => (dispatch) => {
 
 export default {
   authorizeUser,
-  loggOutUser
+  loggOutUser,
 };

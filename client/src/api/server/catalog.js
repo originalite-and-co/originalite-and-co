@@ -9,13 +9,13 @@ const exceptions = {
   create: generateFetchException('creating a category'),
   retrieve: generateFetchException('retrieving a catalog'),
   update: generateFetchException('updating a catalog'),
-  delete: generateFetchException('deleting a catalog')
+  delete: generateFetchException('deleting a catalog'),
 };
 
 const catalogRequests = new ServerApiRequests(
   CATALOG_PATH,
   headers,
-  exceptions
+  exceptions,
 );
 
 /**
@@ -73,7 +73,7 @@ const catalog = {
   retrieveCatalog,
   retrieveCategory,
   updateCatalog,
-  deleteCategory
+  deleteCategory,
 };
 
 export default catalog;

@@ -10,14 +10,14 @@ Toast.propTypes = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
   anchorOrigin: PropTypes.exact({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']),
-    vertical: PropTypes.oneOf(['bottom', 'up'])
-  })
+    vertical: PropTypes.oneOf(['bottom', 'up']),
+  }),
 };
 
 Toast.defaultProps = {
   autoHideDuration: 6000,
   severity: 'info',
-  variant: 'outlined'
+  variant: 'outlined',
 };
 
 /**
@@ -39,7 +39,7 @@ function Toast({
   severity,
   variant,
   anchorOrigin,
-  className
+  className,
 }) {
   const [isOpen, setOpen] = useState(true);
 

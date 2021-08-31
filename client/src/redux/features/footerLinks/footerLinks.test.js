@@ -8,8 +8,8 @@ describe('testing getLinks reducer', () => {
   const initialState = [
     {
       title: '',
-      links: [{}, {}, {}, {}]
-    }
+      links: [{}, {}, {}, {}],
+    },
   ];
 
   const linkData = [{ title: '', links: [{}, {}, {}] }];

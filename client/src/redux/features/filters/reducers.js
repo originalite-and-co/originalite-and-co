@@ -11,7 +11,7 @@ const {
   DELETED_FILTER_VALUE,
   DELETED_FILTER,
   DELETED_ALL_FILTERS,
-  GOT_FILTERS
+  GOT_FILTERS,
 } = types;
 
 const reducer = (state = {}, { type, payload }) => {
@@ -23,7 +23,7 @@ const reducer = (state = {}, { type, payload }) => {
       if (!Array.isArray(state[payload.filterName])) {
         throw new Error(
           `Invalid data type of filter value.
-                 Expected Array, got ${state[payload.filterName]}`
+                 Expected Array, got ${state[payload.filterName]}`,
         );
       }
       return deleteFilterValue(state, payload);
@@ -46,7 +46,7 @@ const reducer = (state = {}, { type, payload }) => {
 };
 
 export default {
-  filters: reducer
+  filters: reducer,
 };
 
 function addFilter(state, payload) {
@@ -63,7 +63,7 @@ function addFilter(state, payload) {
 
     stateCopy = {
       ...stateCopy,
-      ...payload
+      ...payload,
     };
   });
 
@@ -75,7 +75,7 @@ function deleteFilterValue(state, payload) {
   const filterValue = stateCopy[payload.filterName];
 
   stateCopy[payload.filterName] = filterValue.filter(
-    (value) => value !== payload.filterValue
+    (value) => value !== payload.filterValue,
   );
 
   //can't use a variable here because its value doesn't update

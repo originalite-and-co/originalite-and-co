@@ -25,7 +25,7 @@ const getSelectedFilter = (state, selectedFilter) =>
 const selectors = {
   getFilters,
   getFiltersQuery,
-  getSelectedFilter
+  getSelectedFilter,
 };
 
 export default selectors;

@@ -19,7 +19,7 @@ import { customerRequests, pageRequests } from '../../api/server';
 import StaticPage from '../components/StaticPage/StaticPage';
 import {
   authorizationSelectors,
-  authorizeOperations
+  authorizeOperations,
 } from '../../redux/features/authorization';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -27,7 +27,7 @@ function AppRoutes() {
   const dispatch = useDispatch();
   const authorization = useSelector(authorizationSelectors.authorization);
   const [isAuthenticated, setAuthenticated] = useState(
-    !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
+    !!sessionStorage.getItem('token') || !!localStorage.getItem('token'),
   );
 
   const [staticPages, setStaticPages] = useState([]);
@@ -37,7 +37,7 @@ function AppRoutes() {
   useEffect(() => {
     dispatch(authorizeOperations.authorizeUser());
     setAuthenticated(
-      !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
+      !!sessionStorage.getItem('token') || !!localStorage.getItem('token'),
     );
   }, [authorization, isAuthenticated]);
 
@@ -45,10 +45,10 @@ function AppRoutes() {
     useCallback(() => {
       pageRequests.retrievePages().then(
         (data) => setStaticPages(data),
-        (error) => throwError(error)
+        (error) => throwError(error),
       );
     }, [staticPages]),
-    []
+    [],
   );
 
   useEffect(() => {

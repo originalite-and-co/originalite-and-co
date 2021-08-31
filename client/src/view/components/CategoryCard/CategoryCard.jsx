@@ -3,7 +3,7 @@ import styles from './CategoryCard.module.scss';
 import { Box, Grid, Typography } from '@material-ui/core';
 
 CategoryCard.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
 };
 
 function CategoryCard({ product, gridArea }) {
@@ -11,7 +11,7 @@ function CategoryCard({ product, gridArea }) {
   return (
     <Box
       sx={{
-        gridArea: gridArea
+        gridArea: gridArea,
       }}
       className={styles.categoryCard}
     >

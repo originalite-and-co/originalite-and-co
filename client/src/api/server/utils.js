@@ -7,7 +7,7 @@
 const generateHeaders = () => ({
   'Content-Type': 'application/json',
   Authorization:
-    sessionStorage.getItem('token') || localStorage.getItem('token')
+    sessionStorage.getItem('token') || localStorage.getItem('token'),
 });
 
 /**

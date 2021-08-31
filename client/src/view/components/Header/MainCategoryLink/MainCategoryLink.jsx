@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import {
   CatalogNavButton,
-  CatalogNavLink
+  CatalogNavLink,
 } from '../CatalogNav/LinkButtonGenerators';
 import styles from './MainCategoryLink.module.scss';
 import { ListItem } from '@material-ui/core';
@@ -13,12 +13,12 @@ MainCategoryLink.propTypes = {
     _id: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    parentId: PropTypes.string.isRequired
+    parentId: PropTypes.string.isRequired,
   }).isRequired,
   isDesktop: PropTypes.bool.isRequired,
   isDropdownActive: PropTypes.bool.isRequired,
   onHover: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 function MainCategoryLink({
@@ -26,7 +26,7 @@ function MainCategoryLink({
   isDesktop,
   onHover,
   onClick,
-  isDropdownActive
+  isDropdownActive,
 }) {
   return (
     <ListItem className={styles.navItem} key={category._id}>

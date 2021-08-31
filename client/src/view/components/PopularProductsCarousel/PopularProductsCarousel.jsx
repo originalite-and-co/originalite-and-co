@@ -32,7 +32,7 @@ const PopularProductsCarousel = () => {
       (error) => {
         throwError(error);
         setApiError(error);
-      }
+      },
     );
   }, []);
   const slides = productList.map((product) => (

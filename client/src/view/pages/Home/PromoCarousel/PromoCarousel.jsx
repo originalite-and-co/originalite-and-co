@@ -17,7 +17,7 @@ function PromoCarousel(props) {
       slides.map(({ imageUrl, _id }) => (
         <Image key={_id} src={imageUrl} className="swiper__image" />
       )),
-    [slides]
+    [slides],
   );
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function PromoCarousel(props) {
     if (isActive) {
       slideRequests.retrieveSlides().then(
         (data) => setSlides(data),
-        (error) => console.log(error)
+        (error) => console.log(error),
       );
     }
 

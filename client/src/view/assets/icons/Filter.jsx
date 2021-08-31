@@ -10,13 +10,13 @@ Filter.propTypes = {
     'secondary',
     'action',
     'disabled',
-    'error'
+    'error',
   ]),
   fontSize: PropTypes.oneOf(['default', 'inherit', 'large', 'medium', 'small']),
   htmlColor: PropTypes.string,
   shapeRendering: PropTypes.string,
   titleAccess: PropTypes.string,
-  viewBox: PropTypes.string
+  viewBox: PropTypes.string,
 };
 
 function Filter(props) {

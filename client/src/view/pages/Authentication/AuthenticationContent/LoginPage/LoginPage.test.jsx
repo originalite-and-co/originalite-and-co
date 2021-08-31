@@ -47,7 +47,7 @@ describe('LoginPage component', () => {
   test('should not render welcome message until logged in', () => {
     render(<TestLoginPage />);
     expect(
-      screen.queryByText(/Welcome to Originalite, fashionista/)
+      screen.queryByText(/Welcome to Originalite, fashionista/),
     ).not.toBeInTheDocument();
   });
 });

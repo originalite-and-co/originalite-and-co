@@ -8,7 +8,7 @@ const getData = () => (dispatch) => {
 };
 
 const operations = {
-  getData
+  getData,
 };
 
 export default operations;

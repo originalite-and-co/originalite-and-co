@@ -1,19 +1,19 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const slide = {
-  className: 'swiper__slide'
+  className: 'swiper__slide',
 };
 
 const carousel = {
   loop: true,
   effect: 'cube',
   pagination: {
-    clickable: true
+    clickable: true,
   },
   autoplay: {
-    delay: 5000
+    delay: 5000,
   },
-  navigation: true
+  navigation: true,
 };
 
 const useStyles = makeStyles({
@@ -21,17 +21,17 @@ const useStyles = makeStyles({
     width: '100%',
     display: 'flex',
     height: 'calc(100vh - 94px)',
-    position: 'relative'
+    position: 'relative',
   },
   headerCarousel: {
     width: '100%',
     '& .swiper-container': {
-      height: '100%'
+      height: '100%',
     },
     '& .swiper__slide': {
       zIndex: 1,
       display: 'flex',
-      height: '100%'
+      height: '100%',
     },
     '& .swiper__image': {
       display: 'block',
@@ -39,36 +39,36 @@ const useStyles = makeStyles({
       width: '100%',
       objectFit: 'cover',
       objectPosition: 'center',
-      margin: 0
+      margin: 0,
     },
     '& .swiper-pagination': {
       padding: 20,
-      textAlign: 'left'
+      textAlign: 'left',
     },
     '& .swiper-pagination-bullet': {
       boxShadow: '0 0 0 2px #333',
       backgroundColor: '#fff',
       width: 16,
       height: 16,
-      margin: '0 10px'
+      margin: '0 10px',
     },
     '& .swiper-button-next:after': {
       zIndex: 6,
       fontWeight: 900,
-      color: '#fff'
+      color: '#fff',
     },
     '& .swiper-button-prev:after': {
       zIndex: 6,
       fontWeight: 900,
-      color: '#fff'
+      color: '#fff',
     },
     '& .swiper-button-prev': {
-      mixBlendMode: 'exclusion'
+      mixBlendMode: 'exclusion',
     },
     '& .swiper-button-next': {
-      mixBlendMode: 'exclusion'
-    }
-  }
+      mixBlendMode: 'exclusion',
+    },
+  },
 });
 
 export default { slide, carousel, useStyles };

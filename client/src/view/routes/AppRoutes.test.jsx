@@ -36,7 +36,7 @@ describe('AppRoutes', () => {
     const { getByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(getByText(/home/i)).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(queryByText(/authentication/i)).toBeNull();
@@ -58,7 +58,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(queryByText(/authentication/i)).toBeNull();
@@ -70,7 +70,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(queryByText(/cart/i)).toBeNull();
@@ -82,7 +82,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(queryByText(/catalog/i)).toBeNull();
@@ -94,7 +94,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(queryByText(/product/i)).toBeNull();
@@ -106,7 +106,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(sessionStorage.getItem('token')).toBeNull();
@@ -125,7 +125,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(sessionStorage.getItem('token')).toMatch(tokenValue);
@@ -141,7 +141,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(sessionStorage.getItem('token')).toBeNull();
@@ -160,7 +160,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(sessionStorage.getItem('token')).toMatch(tokenValue);
@@ -176,7 +176,7 @@ describe('AppRoutes', () => {
     const { queryByText } = renderWithProjectProviders(
       <AppRoutes />,
       store,
-      history
+      history,
     );
 
     expect(queryByText(/404/i)).toBeNull();

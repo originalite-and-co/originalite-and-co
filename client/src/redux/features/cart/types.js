@@ -9,7 +9,7 @@ const types = {
   ADDED_PRODUCT_TO_CART,
   DECREASED_PRODUCT_QUANTITY,
   DELETED_PRODUCT_FROM_CART,
-  DELETED_CART
+  DELETED_CART,
 };
 
 export default types;

@@ -9,7 +9,7 @@ const exceptions = {
   create: generateFetchException('creating the order'),
   retrieve: generateFetchException('retrieving the order'),
   update: generateFetchException('updating the order'),
-  delete: generateFetchException('deleting the order')
+  delete: generateFetchException('deleting the order'),
 };
 
 const orderRequests = new ServerApiRequests(ORDERS_PATH, headers, exceptions);
@@ -34,7 +34,7 @@ const retrieveOrder = async () => {
 
 const orders = {
   createOrder,
-  retrieveOrder
+  retrieveOrder,
 };
 
 export default orders;

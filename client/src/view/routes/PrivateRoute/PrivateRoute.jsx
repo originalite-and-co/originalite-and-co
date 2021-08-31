@@ -6,7 +6,7 @@ import { Redirect, Route } from 'react-router-dom';
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
 };
 
 function PrivateRoute({

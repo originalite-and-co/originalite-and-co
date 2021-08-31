@@ -7,7 +7,7 @@ describe('Loader', () => {
     const { getByTestId } = render(
       <CustomThemeProvider>
         <Loader />
-      </CustomThemeProvider>
+      </CustomThemeProvider>,
     );
 
     expect(getByTestId('loaderContainer')).toBeInTheDocument();
