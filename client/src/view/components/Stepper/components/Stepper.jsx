@@ -10,13 +10,9 @@ Stepper.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-function Stepper({ children, initialValues, onSubmit, steps, checkArterAll }) {
+function Stepper({ children, initialValues, onSubmit, steps }) {
   const useStepperStyles = stepperStyles();
-  let components = Array.isArray(children) ? children : [children];
-
-  if (checkArterAll) {
-    components = [...components, components];
-  }
+  const components = Array.isArray(children) ? children : [children];
 
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState(initialValues);

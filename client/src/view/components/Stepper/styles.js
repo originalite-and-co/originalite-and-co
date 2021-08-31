@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const styles = {
   stepper: {
+    margin: '150px auto',
     fontFamily: 'Josefin Sans, sans-serif',
     padding: '20px',
     maxWidth: '540px',
@@ -25,13 +26,17 @@ const styles = {
     fontWeight: 700,
     padding: '15px 0',
   },
-  formInner: {},
+  formInner: {
+    padding: '25px 0',
+  },
   prevButton: {
+    transition: '.1s',
+    fontSize: 20,
+    padding: '14px 26px',
     fontFamily: 'inherit',
     color: '#000',
     border: '1px solid #000',
     backgroundColor: 'transparent',
-    padding: '10px 16px',
     borderRadius: '4px',
     cursor: 'pointer',
     '&:hover': {
@@ -41,11 +46,13 @@ const styles = {
     },
   },
   nextButton: {
+    transition: '.1s',
+    fontSize: 20,
+    padding: '14px 26px',
     fontFamily: 'inherit',
     color: '#fff',
     border: '1px solid #000',
     backgroundColor: '#000',
-    padding: '10px 16px',
     borderRadius: '4px',
     cursor: 'pointer',
     '&:hover': {

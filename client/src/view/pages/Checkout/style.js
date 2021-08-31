@@ -1,6 +1,24 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = {
+  paymentMethod: {
+    padding: '20px 0',
+  },
+  paymentMethodTitle: {
+    textTransform: 'uppercase',
+    fontSize: 24,
+    fontWeight: 700,
+    margin: '0 0 20px 0',
+    padding: '15px 0',
+  },
+  paymentMethodInner: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gridGap: '0 20px',
+    '& > *:not(:last-child)': {
+      margin: '0 0 20px 0',
+    },
+  },
   stepOne: {
     '& .form__inner': {
       display: 'grid',

@@ -1,50 +1,21 @@
 import React from 'react';
 import * as yup from 'yup';
 
+import { Box } from '@material-ui/core';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
-import { Box } from '@material-ui/core';
+
 import { Stepper, Step } from '../../components/Stepper';
+import PaymentMethodComponent from './PaymentMethod';
+
 import styles from './style';
-import { FormFields } from '../../components/Form';
-
-const paymentMethodComponent = (key) => {
-  const components = {
-    credit: (
-      <FormFields
-        fields={[
-          { name: 'payment.credit.creditNumber' },
-          { name: 'payment.credit.cvv' },
-          { name: 'payment.credit.expityDate' },
-        ]}
-      />
-    ),
-    paypal: (
-      <FormFields
-        fields={[
-          { name: 'payment.paypal.creditNumber' },
-          { name: 'payment.paypal.cvv' },
-          { name: 'payment.paypal.expityDate' },
-        ]}
-      />
-    ),
-    cash: <FormFields fields={[{ name: 'payment.cash.value' }]} />,
-  };
-
-  return (
-    <div className="payment-method">
-      <h4 className="payment-method__title">{key}</h4>
-      <div className="payment-method__inner">{components[key]}</div>
-    </div>
-  );
-};
 
 function Checkout() {
   const useStyle = styles();
 
-  const onSubmit = (data) => {
-    console.log({ ...data.payment[data.payment.type] });
+  const onSubmit = () => {
+    // console.log({ ...data.payment[data.payment.type] });
   };
 
   return (
@@ -73,7 +44,9 @@ function Checkout() {
             fields: [
               {
                 name: 'type.payment',
-                valueComponent: paymentMethodComponent,
+                valueComponent: (key) => (
+                  <PaymentMethodComponent value={key} style={useStyle} />
+                ),
                 groupClass: 'payment',
                 component: 'radio',
                 options: [

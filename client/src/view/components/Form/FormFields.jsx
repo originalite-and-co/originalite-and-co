@@ -15,9 +15,10 @@ const FormFields = ({ fields }) => {
         name,
         component,
         valueComponent,
-        groupClass,
+        groupClass = '',
         groupActiveClass = '',
         errorClass = '',
+        style,
         ...rest
       },
       key,
@@ -37,6 +38,7 @@ const FormFields = ({ fields }) => {
 
             return (
               <Box
+                style={style}
                 className={`form__group ${groupClass} ${groupClassName}`.trim()}
               >
                 <Box className="form-group__inner">
