@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Dropdown.module.scss';
-import { Box } from '@material-ui/core';
+import { List, Box } from '@material-ui/core';
 
 Dropdown.propTypes = {
   classNames: PropTypes.shape({

@@ -1,7 +1,6 @@
 import constants from '../../../constants';
 const { WINDOW_DESKTOP_SIZE, WINDOW_MOBILE_SIZE, WINDOW_TABLET_SIZE } =
   constants;
-
 const slide = {
   className: 'swiper__slide',
 };
@@ -39,11 +38,9 @@ const popularProductsCarousel = {
   },
 };
 
-const custom = {
+export default {
   slide,
   carousel,
   popularProductsCarousel,
   popularProductsSlide,
 };
-
-export default custom;

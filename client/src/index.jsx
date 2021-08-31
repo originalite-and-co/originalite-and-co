@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+
 import App from './view/App';
-import reportWebVitals from './reportWebVitals';
-import store from './redux/store/store';
-import { Provider } from 'react-redux';
-import ErrorBoundary from './view/HOC/ErrorBoundary/ErrorBoundary';
 import Toast from './view/components/Toast/Toast';
-import './view/assets/styles/index.scss';
+
+import ErrorBoundary from './view/HOC/ErrorBoundary/ErrorBoundary';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { CloudinaryContext } from 'cloudinary-react';
+
+import storeConfig from './redux/store/store';
+import reportWebVitals from './reportWebVitals';
+import './view/assets/styles/index.scss';
 
 const errorToast = (
   <Toast
@@ -16,6 +19,8 @@ const errorToast = (
     severity="error"
   />
 );
+
+const { store } = storeConfig;
 
 ReactDOM.render(
   <React.StrictMode>

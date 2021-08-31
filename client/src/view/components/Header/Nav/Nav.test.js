@@ -8,7 +8,9 @@ import { render } from '@testing-library/react';
 const MockNav = () => {
   return (
     <BrowserRouter>
-      <Provider store={store}>{<Nav />}</Provider>
+      <Provider store={store}>
+        <Nav />
+      </Provider>
     </BrowserRouter>
   );
 };

@@ -66,9 +66,10 @@ function Catalog() {
     () => numberOfProductsGenerator(numberOfProducts),
     [],
   );
+
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
-    [generator, numberOfProducts, productsQuantity],
+    [productsQuantity],
   );
 
   useEffect(() => {

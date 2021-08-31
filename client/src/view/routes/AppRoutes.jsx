@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ import SearchResult from '../pages/SearchResult/SearchResult';
 import Product from '../pages/Product/Product';
 
 import useAsyncError from '../hooks/useAsyncError';
-import { pageRequests } from '../../api/server';
+import { customerRequests, pageRequests } from '../../api/server';
 import StaticPage from '../components/StaticPage/StaticPage';
 import {
   authorizationSelectors,
@@ -51,6 +51,15 @@ function AppRoutes() {
     }, [staticPages]),
     [],
   );
+
+  useEffect(() => {
+    customerRequests.retrieveCustomer().catch((error) => {
+      if (error.status >= 400) {
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
+      }
+    });
+  }, []);
 
   let staticPageRoutes;
 

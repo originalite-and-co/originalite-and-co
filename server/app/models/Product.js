@@ -5,64 +5,67 @@ const ProductSchema = new Schema(
   {
     itemNo: {
       type: String,
-      required: true
+      required: true,
     },
     enabled: {
       type: Boolean,
       required: true,
-      default: true
+      default: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     currentPrice: {
       type: Number,
-      required: true
+      required: true,
     },
     previousPrice: {
-      type: Number
+      type: Number,
     },
     categories: {
       type: String,
-      required: true
+      required: true,
     },
     imageUrls: [
       {
         type: String,
-        required: true
-      }
+        required: true,
+      },
     ],
     quantity: {
       type: Number,
       required: true,
-      default: 0
+      default: 0,
+    },
+    description: {
+      type: String,
     },
     color: {
-      type: String
+      type: String,
     },
-      sizes: {
-          type: Array
-      },
+    sizes: {
+      type: Array,
+    },
     productUrl: {
-      type: String
+      type: String,
     },
     brand: {
-      type: String
+      type: String,
     },
     manufacturer: {
-      type: String
+      type: String,
     },
     manufacturerCountry: {
-      type: String
+      type: String,
     },
     seller: {
-      type: String
+      type: String,
     },
     date: {
       type: Date,
-      default: Date.now
-    }
+      default: Date.now,
+    },
   },
   { strict: false }
 );

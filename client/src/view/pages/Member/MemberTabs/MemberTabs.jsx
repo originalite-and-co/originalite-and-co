@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Box, Tabs, Tab } from '@material-ui/core';
-
+import { Box, Tab, Tabs } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MyProfile from '../MyProfile/MyProfile';
 import {
@@ -48,26 +47,29 @@ function MemberTabs() {
     setValue(newValue);
   };
 
-  useCallback(() => {
-    customerRequests.retrieveCustomer().then(
-      (data) => setCustomer(data),
-      (error) => throwError(error),
-    );
-  }, [throwError]);
+  useEffect(
+    useCallback(() => {
+      customerRequests.retrieveCustomer().then(
+        (data) => setCustomer(data),
+        (error) => throwError(error),
+      );
+    }, [customer, isDataUpdated]),
+    [isDataUpdated],
+  );
 
   useEffect(() => {
     ordersRequests.retrieveOrder().then(
       (data) => setOrders(data),
       (error) => throwError(error),
     );
-  }, [throwError]);
+  }, []);
 
   useEffect(() => {
     wishlistRequests.retrieveWishlist().then(
       (data) => setWishlist(data),
       (error) => throwError(error),
     );
-  }, [throwError]);
+  }, []);
 
   const handleDataUpdate = () => {
     setIsDataUpdated(true);

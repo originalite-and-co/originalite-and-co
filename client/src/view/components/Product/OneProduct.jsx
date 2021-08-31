@@ -5,7 +5,6 @@ import OneProductStyles from './OneProduct.module.scss';
 import { useRouteMatch } from 'react-router-dom';
 import { productRequests, sizeRequests } from '../../../api/server';
 import useAsyncError from '../../hooks/useAsyncError';
-import sizes from '../../../api/server/sizes';
 
 function OneProduct() {
   const [product, setProduct] = useState(null);
@@ -25,7 +24,7 @@ function OneProduct() {
       },
       (error) => throwAsyncError(error),
     );
-  }, []);
+  }, [throwAsyncError]);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -36,7 +35,7 @@ function OneProduct() {
       },
       (error) => throwAsyncError(error),
     );
-  }, []);
+  }, [itemNumber, throwAsyncError]);
 
   return isLoaded ? (
     <section className="wrapper">

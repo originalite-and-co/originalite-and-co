@@ -4,6 +4,8 @@ import styles from './Page.module.scss';
 import Footer from '../../components/Footer/Footer';
 import img from '../Page404/img/oops.jpg';
 
+Page404.propTypes = {};
+
 function Page404() {
   return (
     <>
@@ -14,7 +16,7 @@ function Page404() {
           <p className={styles.Info__item}>Page not found</p>
         </div>
         <div className={styles.img}>
-          <img className={styles.img__item} src={img} alt={img} />
+          <img className={styles.img__item} src={img} alt="" />
         </div>
       </div>
       <Footer />

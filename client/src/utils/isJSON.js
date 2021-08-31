@@ -3,7 +3,7 @@
  * @param {String | Response} input
  * @returns {boolean}
  */
-const isJSON = (input) => {
+const isJSON = async (input) => {
   const isResponse = input.__proto__ === new Response().__proto__;
   if (typeof input !== 'string' && !isResponse) {
     throw new TypeError(
@@ -16,7 +16,7 @@ const isJSON = (input) => {
   try {
     if (isResponse) {
       const responseCopy = input.clone();
-      responseCopy.json();
+      await responseCopy.json();
     } else {
       JSON.parse(input);
     }

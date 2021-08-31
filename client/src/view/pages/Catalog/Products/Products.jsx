@@ -71,7 +71,7 @@ function Products({
       setActiveDropdown(false);
       dispatch(isAnyDropdownOpenActions.closedDropdown());
     }
-  }, [isDesktop, dispatch]);
+  }, [dispatch, isDesktop]);
 
   const handleButtonClick = () => {
     if (isDropdownActive) {

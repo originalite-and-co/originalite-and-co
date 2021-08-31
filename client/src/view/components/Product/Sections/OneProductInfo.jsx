@@ -5,7 +5,7 @@ function OneProductInfo({ availableSizes, detail }) {
   // const [isActiveColor, setActiveColor] = useState(null);
   const [activeSize, setActiveSize] = useState(null);
 
-  const { sizes, name, currentPrice, itemNo, color } = detail;
+  const { sizes, name, currentPrice, itemNo } = detail;
 
   const onSelectSize = (index) => {
     setActiveSize(index);

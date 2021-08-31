@@ -6,7 +6,6 @@ import store from '../../../redux/store/store';
 describe('Catalog', () => {
   test('Smoke', () => {
     const history = createBrowserHistory();
-
     renderWithProjectProviders(<Catalog />, store, history);
   });
 });
