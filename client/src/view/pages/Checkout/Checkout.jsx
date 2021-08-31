@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 
 import { Box } from '@material-ui/core';
@@ -11,11 +11,27 @@ import PaymentMethodComponent from './PaymentMethod';
 
 import styles from './style';
 
+const qqq = {
+  credit: yup.object().shape({
+    creditNumber: yup.number().required(),
+  }),
+  paypal: yup.object().shape({
+    creditNumber: yup.number().required(),
+  }),
+  cash: yup.object().shape({
+    value: yup.number().required(),
+  }),
+};
+
 function Checkout() {
+  const [paymentSchema, setPaymentSchema] = useState({});
+
+  console.log(paymentSchema);
+
   const useStyle = styles();
 
-  const onSubmit = () => {
-    // console.log({ ...data.payment[data.payment.type] });
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -32,7 +48,24 @@ function Checkout() {
           zipCode: '',
           city: '',
           country: '',
-          payment: { type: 'credit' },
+          payment: {
+            type: '',
+            credit: {
+              creditNumber: '',
+              cvv: '',
+              expityDate: '',
+            },
+            paypal: {
+              creditNumber: '',
+              cvv: '',
+              expityDate: '',
+            },
+            cash: {
+              creditNumber: '',
+              cvv: '',
+              expityDate: '',
+            },
+          },
         }}
         onSubmit={onSubmit}
         className="form__checkout"
@@ -43,10 +76,13 @@ function Checkout() {
             title: 'Payment Method',
             fields: [
               {
-                name: 'type.payment',
-                valueComponent: (key) => (
-                  <PaymentMethodComponent value={key} style={useStyle} />
-                ),
+                name: 'payment.type',
+                valueComponent: (value) => {
+                  return (
+                    <PaymentMethodComponent value={value} style={useStyle} />
+                  );
+                },
+
                 groupClass: 'payment',
                 component: 'radio',
                 options: [
@@ -67,19 +103,13 @@ function Checkout() {
                   },
                 ],
               },
-              // {
-              //   name: 'expityDate',
-              //   title: 'Expity date',
-              //   type: 'date',
-              //   groupClass: 'expityDate',
-              // },
-              // {
-              //   name: 'CVV',
-              //   title: 'CVC/CVV',
-              //   groupClass: 'cvv',
-              // },
             ],
-            // schema: paymentSchema,
+            schema: yup.object({
+              payment: yup.object().shape({
+                type: yup.string().required(),
+                ...paymentSchema,
+              }),
+            }),
           }}
         />
         <Step

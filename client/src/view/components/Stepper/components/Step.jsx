@@ -33,15 +33,21 @@ function Step({
       onSubmit={handleNext}
       validationSchema={schema}
     >
-      {({ values }) => {
+      {({ errors, values }) => {
         return (
-          <Form {...restFormProps} lang="en">
+          <Form {...restFormProps}>
             {title && (
               <h4 className={`form__title ${useStyles.formTitle}`}>{title}</h4>
             )}
 
             <Box className={`form__inner ${useStyles.formInner}`}>
-              {fields && <FormFields fields={fields} />}
+              {fields && (
+                <FormFields
+                  fields={fields}
+                  errors={errors}
+                  initialValues={initialValues}
+                />
+              )}
               {children}
             </Box>
 

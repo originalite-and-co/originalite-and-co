@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const styles = {
+const styles = ({ breakpoints }) => ({
   paymentMethod: {
     padding: '20px 0',
   },
@@ -26,16 +26,28 @@ const styles = {
       gridGap: 20,
     },
     '& .firstName': {
-      gridArea: '1 / 1 / 2 / 3',
+      gridArea: '1 / 1 / 2 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '1 / 1 / 2 / 3',
+      },
     },
     '& .lastName': {
-      gridArea: '1 / 3 / 2 / 5',
+      gridArea: '2 / 1 / 3 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '1 / 3 / 2 / 5',
+      },
     },
     '& .email': {
-      gridArea: '2 / 1 / 3 / 3',
+      gridArea: '3 / 1 / 4 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '2 / 1 / 3 / 3',
+      },
     },
     '& .phone': {
-      gridArea: '2 / 3 / 3 / 5',
+      gridArea: '4 / 1 / 5 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '2 / 3 / 3 / 5',
+      },
     },
   },
   stepTwo: {
@@ -70,6 +82,45 @@ const styles = {
         gridTemplateColumns: 'repeat(1, 1fr)',
         gridGap: 20,
       },
+      '& .paypalNumber': {
+        gridArea: '1 / 1 / 2 / 5',
+        [breakpoints.up('desktop')]: {
+          gridArea: '1 / 1 / 2 / 3',
+        },
+      },
+      '& .paypalCVV': {
+        gridArea: '2 / 1 / 3 / 5',
+        [breakpoints.up('desktop')]: {
+          gridArea: '2 / 1 / 3 / 2',
+        },
+      },
+      '& .paypalDate': {
+        gridArea: '3 / 1 / 4 / 5',
+        [breakpoints.up('desktop')]: {
+          gridArea: '2 / 2 / 3 / 3',
+        },
+      },
+      '& .creditNumber': {
+        gridArea: '1 / 1 / 2 / 5',
+        [breakpoints.up('desktop')]: {
+          gridArea: '1 / 1 / 2 / 3',
+        },
+      },
+      '& .creditCVV': {
+        gridArea: '2 / 1 / 3 / 5',
+        [breakpoints.up('desktop')]: {
+          gridArea: '2 / 1 / 3 / 2',
+        },
+      },
+      '& .creditDate': {
+        gridArea: '3 / 1 / 4 / 5',
+        [breakpoints.up('desktop')]: {
+          gridArea: '2 / 2 / 3 / 3',
+        },
+      },
+      '& .cash': {
+        gridArea: '1 / 1 / 2 / 5',
+      },
       '& .form-radio__label': {
         border: '1px solid #ccc',
         padding: 15,
@@ -84,16 +135,7 @@ const styles = {
         },
       },
     },
-    '& .cardNumber': {
-      gridArea: '1 / 1 / 2 / 3;',
-    },
-    '& .expityDate': {
-      gridArea: '1 / 3 / 2 / 4',
-    },
-    '& .cvv': {
-      gridArea: '1 / 4 / 2 / 5',
-    },
   },
-};
+});
 
 export default makeStyles(styles);

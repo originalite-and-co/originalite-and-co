@@ -11,10 +11,15 @@ const PaymentMethodComponent = ({ value, style }) => {
           {
             name: 'payment.credit.creditNumber',
             title: 'Credit number',
-            style: { gridArea: '1 / 1 / 2 / 3' },
+            groupClass: 'creditNumber',
           },
-          { name: 'payment.credit.cvv', title: 'CVV' },
           {
+            name: 'payment.credit.cvv',
+            title: 'CVV',
+            groupClass: 'creditCVV',
+          },
+          {
+            groupClass: 'creditDate',
             name: 'payment.credit.expityDate',
             title: 'Expity date',
             type: 'date',
@@ -28,10 +33,15 @@ const PaymentMethodComponent = ({ value, style }) => {
           {
             title: 'Card number',
             name: 'payment.paypal.creditNumber',
-            style: { gridArea: '1 / 1 / 2 / 3' },
+            groupClass: 'paypalNumber',
           },
-          { name: 'payment.paypal.cvv', title: 'CVV' },
           {
+            name: 'payment.paypal.cvv',
+            title: 'CVV',
+            groupClass: 'paypalCVV',
+          },
+          {
+            groupClass: 'paypalDate',
             name: 'payment.paypal.expityDate',
             title: 'Expity date',
             type: 'date',
@@ -43,9 +53,9 @@ const PaymentMethodComponent = ({ value, style }) => {
       <FormFields
         fields={[
           {
+            groupClass: 'cash',
             title: 'Cash',
             name: 'payment.cash.value',
-            style: { gridArea: '1 / 1 / 2 / 3' },
           },
         ]}
       />

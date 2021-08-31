@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const styles = {
   stepper: {
-    margin: '150px auto',
+    margin: '20px auto',
     fontFamily: 'Josefin Sans, sans-serif',
     padding: '20px',
     maxWidth: '540px',
@@ -27,7 +27,7 @@ const styles = {
     padding: '15px 0',
   },
   formInner: {
-    padding: '25px 0',
+    padding: '25px 0 0 0',
   },
   prevButton: {
     transition: '.1s',
