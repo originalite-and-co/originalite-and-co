@@ -15,6 +15,7 @@ function Checkout() {
   const useStyle = styles();
 
   const onSubmit = (data) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 

@@ -11,8 +11,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import constants from '../../../constants';
 import useWindowSize from '../../../hooks/useWindowSize';
 
-import { useHistory } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import {
   isAnyDropdownOpenActions,
@@ -73,9 +71,9 @@ function Products({
       setActiveDropdown(false);
       dispatch(isAnyDropdownOpenActions.closedDropdown());
     }
-  }, [isDesktop]);
+  }, [isDesktop, dispatch]);
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = () => {
     if (isDropdownActive) {
       setActiveDropdown(false);
       dispatch(isAnyDropdownOpenActions.closedDropdown());
