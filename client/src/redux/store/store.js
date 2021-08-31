@@ -40,4 +40,6 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-export default { store, persistor };
+const storeExp = { store, persistor };
+
+export default storeExp;

@@ -2,13 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './view/App';
-import Loader from './view/components/Loader/Loader';
 import Toast from './view/components/Toast/Toast';
 
 import ErrorBoundary from './view/HOC/ErrorBoundary/ErrorBoundary';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 import { CloudinaryContext } from 'cloudinary-react';
 
 import storeConfig from './redux/store/store';
@@ -22,7 +20,7 @@ const errorToast = (
   />
 );
 
-const { store, persistor } = storeConfig;
+const { store } = storeConfig;
 
 ReactDOM.render(
   <React.StrictMode>
