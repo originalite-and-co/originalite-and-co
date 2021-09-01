@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 
 import { Box } from '@material-ui/core';
@@ -11,11 +11,24 @@ import PaymentMethodComponent from './PaymentMethod';
 
 import styles from './style';
 
+const validationSchemaData = {
+  credit: yup.object().shape({
+    creditNumber: yup.number().required(),
+  }),
+  cash: yup.object().shape({
+    value: yup.number().required(),
+  }),
+  paypal: yup.object().shape({
+    creditNumber: yup.number().required(),
+  }),
+};
+
 function Checkout() {
   const useStyle = styles();
 
+  const [value, setValue] = useState('credit');
+
   const onSubmit = (data) => {
-    // eslint-disable-next-line no-console
     console.log(data);
   };
 
@@ -46,9 +59,7 @@ function Checkout() {
               expityDate: '',
             },
             cash: {
-              creditNumber: '',
-              cvv: '',
-              expityDate: '',
+              value: '',
             },
           },
         }}
@@ -62,12 +73,7 @@ function Checkout() {
             fields: [
               {
                 name: 'payment.type',
-                valueComponent: (value) => {
-                  return (
-                    <PaymentMethodComponent value={value} style={useStyle} />
-                  );
-                },
-
+                // valueComponent: (value) => setValue(value),
                 groupClass: 'payment',
                 component: 'radio',
                 options: [
@@ -92,6 +98,7 @@ function Checkout() {
             schema: yup.object({
               payment: yup.object().shape({
                 type: yup.string().required(),
+                // ...validationSchema,
               }),
             }),
           }}
@@ -165,6 +172,8 @@ function Checkout() {
           }}
         />
       </Stepper>
+
+      {/* {value ? <PaymentMethodComponent value={value} style={useStyle} /> : null} */}
     </Box>
   );
 }
