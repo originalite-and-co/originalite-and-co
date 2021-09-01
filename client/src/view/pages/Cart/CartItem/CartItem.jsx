@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/styles';
-import generateStyles from './styles';
 import {
   Box,
   Divider,
   Grid,
   IconButton,
   Input,
-  Typography,
-  useTheme
+  Typography
 } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { Add, Close, Remove } from '@material-ui/icons';
+import generateStyles from './styles';
+
 import { useDispatch } from 'react-redux';
 import { cartOperations } from '../../../../redux/features/cart';
 
@@ -234,17 +236,6 @@ function CartItem({
               >
                 <Add className={`${classes.counterIcon} ${classes.addIcon}`} />
               </IconButton>
-              {touched && error && (
-                <Typography
-                  color="error"
-                  component="span"
-                  variant="body2"
-                  noWrap
-                  className={classes.counterError}
-                >
-                  {error}
-                </Typography>
-              )}
               {maxQuantity === 1 && (
                 <Typography
                   component="span"
@@ -253,7 +244,7 @@ function CartItem({
                   display="block"
                   className={classes.counterInfo}
                 >
-                  There is only one item left
+                  Last item
                 </Typography>
               )}
             </Box>
@@ -269,6 +260,16 @@ function CartItem({
                 : Number(currentPrice * 1).toFixed(2)}
             </Typography>
           </Box>
+          {touched && error && (
+            <Typography
+              color="error"
+              component="span"
+              variant="body2"
+              className={classes.counterError}
+            >
+              {error}
+            </Typography>
+          )}
         </Grid>
       </Grid>
       <Divider className={classes.divider} variant="fullWidth" />

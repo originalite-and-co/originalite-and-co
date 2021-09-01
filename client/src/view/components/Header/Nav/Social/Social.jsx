@@ -1,11 +1,11 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
-import Facebook from '../icons/facebook.svg';
-import Instagram from '../icons/instagram.svg';
-import Pinterest from '../icons/pinterest.svg';
-import {makeStyles} from "@material-ui/styles";
-import {generateStyles} from './SocialStyles'
+import Facebook from '../../../../assets/icons/facebook.svg';
+import Instagram from '../../../../assets/icons/instagram.svg';
+import Pinterest from '../../../../assets/icons/pinterest.svg';
+import { makeStyles } from '@material-ui/styles';
+import { generateStyles } from './SocialStyles';
 
 function Social() {
   const useStyles = makeStyles(generateStyles);

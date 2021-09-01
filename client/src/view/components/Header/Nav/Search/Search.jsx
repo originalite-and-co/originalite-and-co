@@ -17,9 +17,9 @@ import { productRequests } from '../../../../../api/server/index';
 import Toast from '../../../Toast/Toast';
 import Dropdown from '../../../Dropdown/Dropdown';
 import Button from '../../../Button/Button';
-import { Box, TextField } from '@material-ui/core';
+import { Box, TextField, Typography } from '@material-ui/core';
 
-import search from '../icons/search.svg';
+import SearchIcon from '../../../../assets/icons/Search';
 import { makeStyles } from '@material-ui/styles';
 import { generateStyles } from './SearchStyles';
 
@@ -175,8 +175,18 @@ function Search(props) {
         className={classes.imageWrapper}
         data-testid="nav-item-search"
       >
-        <img className={classes.icon} src={search} alt="search icon" />
-        {isDesktop && <p>Search</p>}
+        <SearchIcon color="primary" className={classes.icon} />
+        {isDesktop && (
+          <Typography
+            className={classes.iconTitle}
+            component="p"
+            variant="body1"
+            color="textPrimary"
+            noWrap
+          >
+            Search
+          </Typography>
+        )}
       </Box>
       <Dropdown
         lockBodyScrolling
