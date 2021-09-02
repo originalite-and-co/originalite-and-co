@@ -11,7 +11,7 @@ import PaymentMethodComponent from './PaymentMethod';
 
 import styles from './style';
 
-const validationSchemaData = {
+const validationSchemaData = yup.object({
   credit: yup.object().shape({
     creditNumber: yup.number().required(),
   }),
@@ -21,12 +21,10 @@ const validationSchemaData = {
   paypal: yup.object().shape({
     creditNumber: yup.number().required(),
   }),
-};
+});
 
 function Checkout() {
   const useStyle = styles();
-
-  const [value, setValue] = useState('credit');
 
   const onSubmit = (data) => {
     console.log(data);
@@ -48,18 +46,20 @@ function Checkout() {
           country: '',
           payment: {
             type: '',
-            credit: {
-              creditNumber: '',
-              cvv: '',
-              expityDate: '',
-            },
-            paypal: {
-              creditNumber: '',
-              cvv: '',
-              expityDate: '',
-            },
-            cash: {
-              value: '',
+            method: {
+              credit: {
+                creditNumber: '',
+                cvv: '',
+                expityDate: '',
+              },
+              paypal: {
+                creditNumber: '',
+                cvv: '',
+                expityDate: '',
+              },
+              cash: {
+                value: '',
+              },
             },
           },
         }}
@@ -73,7 +73,9 @@ function Checkout() {
             fields: [
               {
                 name: 'payment.type',
-                // valueComponent: (value) => setValue(value),
+                valueComponent: (value) => (
+                  <PaymentMethodComponent value={value} style={useStyle} />
+                ),
                 groupClass: 'payment',
                 component: 'radio',
                 options: [
@@ -98,7 +100,7 @@ function Checkout() {
             schema: yup.object({
               payment: yup.object().shape({
                 type: yup.string().required(),
-                // ...validationSchema,
+                method: validationSchemaData,
               }),
             }),
           }}
