@@ -64,7 +64,7 @@ const generateStyles = ({ breakpoints, palette, typography }) => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
-    paddingBottom: typography.body2.fontSize
+    paddingBottom: typography.body1.fontSize
   },
   counterBtn: {
     padding: '5px'
@@ -85,15 +85,15 @@ const generateStyles = ({ breakpoints, palette, typography }) => ({
   addBtn: {},
   addIcon: {},
   counterError: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0
+    marginTop: '5px',
+    display: 'block'
   },
   counterInfo: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    color: palette.info.dark
+    left: '50%',
+    transform: 'translateX(-50%)',
+    color: palette.error.main
   },
   total: {
     '& span': {

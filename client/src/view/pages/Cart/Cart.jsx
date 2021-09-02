@@ -1,25 +1,29 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Loader from '../../components/Loader/Loader';
+import Summary from './Summary/Summary';
+import CartItem from './CartItem/CartItem';
+
+import { useDispatch, useSelector } from 'react-redux';
 import {
   cartOperations,
   cartSelectors
 } from '../../../redux/features/cart/index.js';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   authorizationSelectors,
   authorizeOperations
 } from '../../../redux/features/authorization';
+
 import useAsyncError from '../../hooks/useAsyncError';
-import Header from '../../components/Header/Header';
-import { Box, Divider, Grid, Typography } from '@material-ui/core';
-import Footer from '../../components/Footer/Footer';
-import Loader from '../../components/Loader/Loader';
-import { makeStyles } from '@material-ui/styles';
-import generateStyles from './styles';
 import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
-import Summary from './Summary/Summary';
-import CartItem from './CartItem/CartItem';
 import { productRequests } from '../../../api/server';
+
+import { Box, Divider, Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
 
 Cart.propTypes = {};
 

@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
+
 import ProductInfo from './Sections/ProductInfo';
 import ProductImageSlider from './Sections/ProductImageSlider';
-import ProductStyles from './Product.module.scss';
-import { useRouteMatch } from 'react-router-dom';
+import ViewedProducts from './Sections/ViewedProducts';
+
 import { productRequests, sizeRequests } from '../../../api/server';
 import useAsyncError from '../../hooks/useAsyncError';
-import ViewedProducts from './Sections/ViewedProducts';
+
+import ProductStyles from './Product.module.scss';
+
+import { useDispatch, useSelector } from 'react-redux';
 import {
   wishlistOperations,
   wishlistSelectors
 } from '../../../redux/features/wishlist';
-import { useDispatch, useSelector } from 'react-redux';
 import { authorizationSelectors } from '../../../redux/features/authorization';
+import { useRouteMatch } from 'react-router-dom';
 
 function Product() {
   const [product, setProduct] = useState(null);
@@ -61,8 +65,8 @@ function Product() {
   }, [url]);
 
   return isLoaded ? (
-    <section className="wrapper">
-      <div className={ProductStyles.main}>
+    <section className={`${ProductStyles.root} wrapper`}>
+      <div className={ProductStyles.content}>
         <ProductImageSlider detail={product} />
         <ProductInfo
           detail={product}
