@@ -32,7 +32,8 @@ CartNotification.propTypes = {
     name: PropTypes.string.isRequired,
     size: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  onClose: PropTypes.func
 };
 
 const DEVICES = {
