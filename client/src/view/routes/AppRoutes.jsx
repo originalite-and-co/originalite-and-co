@@ -89,6 +89,7 @@ function AppRoutes() {
                 htmlContent={page.htmlContent}
                 {...renderProps}
               />
+              <Footer />
             </>
           )}
         />

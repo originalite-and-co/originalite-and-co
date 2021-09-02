@@ -1,14 +1,14 @@
 export function generateStyles({ breakpoints }) {
   return {
-    wrapper: {
-      marginTop: '50px',
-      [breakpoints.up('desktop')]: {
-        marginTop: '70px'
-      }
-    },
     mapWrapper: {
       position: 'absolute',
-      left: '0'
+      top: '53vh',
+      left: '0vw',
+
+      [breakpoints.up('tablet')]: {
+        top: '35vh',
+        left: '5vw'
+      }
     }
   };
 }
