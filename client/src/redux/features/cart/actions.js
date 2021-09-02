@@ -2,10 +2,11 @@ import types from './types';
 
 const {
   GOT_CART,
+  UPDATED_CART,
   ADDED_PRODUCT_TO_CART,
   DECREASED_PRODUCT_QUANTITY,
   DELETED_PRODUCT_FROM_CART,
-  DELETED_CART,
+  DELETED_CART
 } = types;
 
 /**
@@ -15,7 +16,17 @@ const {
  */
 const getCart = (cartProducts) => ({
   type: GOT_CART,
-  payload: cartProducts,
+  payload: cartProducts
+});
+
+/**
+ *
+ * @param {Array<Object>} cartProducts
+ * @returns {{payload, type: string}}
+ */
+const updateCart = (cartProducts) => ({
+  type: UPDATED_CART,
+  payload: cartProducts
 });
 
 /**
@@ -25,7 +36,7 @@ const getCart = (cartProducts) => ({
  */
 const addProductToCart = (cartProducts) => ({
   type: ADDED_PRODUCT_TO_CART,
-  payload: cartProducts,
+  payload: cartProducts
 });
 
 /**
@@ -35,7 +46,7 @@ const addProductToCart = (cartProducts) => ({
  */
 const decreaseProductQuantity = (cartProducts) => ({
   type: DECREASED_PRODUCT_QUANTITY,
-  payload: cartProducts,
+  payload: cartProducts
 });
 
 /**
@@ -45,7 +56,7 @@ const decreaseProductQuantity = (cartProducts) => ({
  */
 const deleteProductFromCart = (cartProducts) => ({
   type: DELETED_PRODUCT_FROM_CART,
-  payload: cartProducts,
+  payload: cartProducts
 });
 
 /**
@@ -53,15 +64,16 @@ const deleteProductFromCart = (cartProducts) => ({
  * @returns {{type: string}}
  */
 const deleteCart = () => ({
-  type: DELETED_CART,
+  type: DELETED_CART
 });
 
 const actions = {
   getCart,
+  updateCart,
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart,
+  deleteCart
 };
 
 export default actions;

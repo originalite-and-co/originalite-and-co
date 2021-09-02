@@ -1,4 +1,4 @@
-const generateStyles = ({ breakpoints, palette }) => ({
+const generateStyles = ({ breakpoints, palette, typography }) => ({
   root: {
     position: 'relative',
     marginBottom: '3vw',
@@ -10,7 +10,11 @@ const generateStyles = ({ breakpoints, palette }) => ({
     right: '0'
   },
   inner: {
-    paddingBottom: '6vw'
+    paddingBottom: '6vw',
+
+    [breakpoints.up('desktop')]: {
+      paddingBottom: '2.8vw'
+    }
   },
   picture: {
     display: 'block',
@@ -25,8 +29,8 @@ const generateStyles = ({ breakpoints, palette }) => ({
     }
   },
   description: {
-    [breakpoints.up("desktop")]: {
-      maxWidth: "40%",
+    [breakpoints.up('desktop')]: {
+      maxWidth: '40%'
     }
   },
   heading: {
@@ -45,17 +49,22 @@ const generateStyles = ({ breakpoints, palette }) => ({
     marginBottom: '.5rem',
 
     '& span:last-child': {
-      paddingRight: "10px"
+      paddingRight: '10px'
     }
   },
   counterWrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    extend: 'text',
+    alignItems: 'center',
+
+    '& span:last-child': {
+      padding: 0
+    }
   },
   counter: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+    paddingBottom: typography.body1.fontSize
   },
   counterBtn: {
     padding: '5px'
@@ -65,16 +74,27 @@ const generateStyles = ({ breakpoints, palette }) => ({
   removeIcon: {},
   counterValue: {
     color: '#847A7A',
-    minWidth: '3ch',
-    maxWidth: '5ch',
+    minWidth: '4ch',
+    maxWidth: '7ch',
 
     '& input': {
       textAlign: 'center',
-      padding: ''
+      padding: '.1em'
     }
   },
   addBtn: {},
   addIcon: {},
+  counterError: {
+    marginTop: '5px',
+    display: 'block'
+  },
+  counterInfo: {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    color: palette.error.main
+  },
   total: {
     '& span': {
       fontWeight: 700

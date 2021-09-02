@@ -1,12 +1,12 @@
 @import "src/view/assets/styles/variables";
 
+.root {
+  padding-top: 1vw;
+}
+
 .wrapper_carousel_product {
   width: 100%;
   height: 100%;
-}
-
-.main{
-  margin-top: 150px;
 }
 
 .info {
@@ -147,6 +147,9 @@
 
 
 @media (min-width:$desktop) {
+  .root {
+    padding-top: 7vw;
+  }
   .buttonsGroup{
     justify-content: flex-start;
   }
@@ -158,9 +161,8 @@
     height: 500px;
   }
 
-  .main{
+  .content{
     display: flex;
-    margin-top: 200px;
     justify-content: space-evenly;
     flex-wrap: wrap;
   }

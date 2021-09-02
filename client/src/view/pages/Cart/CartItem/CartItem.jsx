@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/styles';
-import generateStyles from './styles';
 import {
   Box,
   Divider,
   Grid,
   IconButton,
   Input,
-  Typography
+  Typography,
+  useTheme
 } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { Add, Close, Remove } from '@material-ui/icons';
+import generateStyles from './styles';
+
 import { useDispatch } from 'react-redux';
 import { cartOperations } from '../../../../redux/features/cart';
 
@@ -43,7 +47,10 @@ function CartItem({
   size,
   enabled
 }) {
-  const [quantity, setQuantity] = useState(cartQuantity);
+  const [quantity, setQuantity] = useState({
+    isValid: true,
+    value: cartQuantity
+  });
   const [error, setError] = useState('');
   const [touched, setTouched] = useState(false);
 
@@ -53,7 +60,7 @@ function CartItem({
   const classes = useStyles();
 
   useEffect(() => {
-    setQuantity(cartQuantity);
+    setQuantity({ isValid: true, value: cartQuantity });
   }, []);
 
   useEffect(() => {}, [quantity]);
@@ -66,29 +73,40 @@ function CartItem({
     const { value } = target;
 
     if (value < 1 || value > maxQuantity) {
-      return setError(`Please enter a number between 1 and ${maxQuantity}`);
+      setError(`Please enter a number between 1 and ${maxQuantity}`);
+      return setQuantity({ isValid: false, value: Number(value) });
     }
-    setQuantity(Number(value));
+    dispatch(
+      cartOperations.changeProductQuantity(id, itemNo, size, value)
+    ).catch((error) => console.error(error));
+    setError('');
+    setQuantity({ isValid: true, value: Number(value) });
   };
 
   const handleRemoveBtnClick = (event) => {
-    if (Number(quantity) <= 1) {
+    if (Number(quantity.value) <= 1) {
       return;
     }
     dispatch(
       cartOperations.decreaseProductQuantity(id.toString(), size.toString())
     );
-    setQuantity((prevState) => (prevState -= 1));
+    setQuantity((prevState) => ({
+      ...prevState,
+      value: (prevState.value -= 1)
+    }));
   };
 
   const handleAddBtnClick = (event) => {
-    if (Number(quantity) >= Number(maxQuantity)) {
+    if (Number(quantity.value) >= Number(maxQuantity)) {
       return;
     }
     dispatch(
       cartOperations.addProductToCart(id.toString(), itemNo, size.toString())
     );
-    setQuantity((prevState) => (prevState += 1));
+    setQuantity((prevState) => ({
+      ...prevState,
+      value: (prevState.value += 1)
+    }));
   };
 
   const handleItemClick = () => {
@@ -131,15 +149,15 @@ function CartItem({
       <Grid className={classes.inner} container>
         <Grid
           item
-          xs={isDesktop ? 3 : 5}
+          xs={isDesktop ? 2 : 5}
           component="figure"
           className={classes.picture}
         >
-          <Link onCLick={handleItemClick} to={`/products/${itemNo}`}>
+          <Link onClick={handleItemClick} to={`/products/${itemNo}`}>
             <img src={imageUrls[0]} alt={name} />
           </Link>
         </Grid>
-        <Grid item xs={isDesktop ? 8 : 6} className={classes.description}>
+        <Grid item xs={isDesktop ? 9 : 6} className={classes.description}>
           <Typography
             component="h3"
             variant="body1"
@@ -186,7 +204,7 @@ function CartItem({
             </Typography>
             <Box className={classes.counter}>
               <IconButton
-                disabled={Number(quantity) <= 1}
+                disabled={Number(quantity.value) <= 1}
                 onClick={handleRemoveBtnClick}
                 size="small"
                 className={`${classes.counterBtn} ${classes.removeBtn}`}
@@ -204,14 +222,14 @@ function CartItem({
                   max: maxQuantity
                 }}
                 className={classes.counterValue}
-                value={quantity}
+                value={quantity.value}
                 onChange={handleChange}
                 onBlur={() => setTouched(true)}
                 type="number"
                 required
               />
               <IconButton
-                disabled={Number(quantity) >= Number(maxQuantity)}
+                disabled={Number(quantity.value) >= Number(maxQuantity)}
                 onClick={handleAddBtnClick}
                 size="small"
                 className={`${classes.counterBtn} ${classes.addBtn}`}
@@ -219,6 +237,17 @@ function CartItem({
               >
                 <Add className={`${classes.counterIcon} ${classes.addIcon}`} />
               </IconButton>
+              {maxQuantity === 1 && (
+                <Typography
+                  component="span"
+                  variant="body2"
+                  noWrap
+                  display="block"
+                  className={classes.counterInfo}
+                >
+                  Last item
+                </Typography>
+              )}
             </Box>
           </Box>
           <Box className={`${classes.text} ${classes.total}`}>
@@ -226,9 +255,22 @@ function CartItem({
               Total:
             </Typography>
             <Typography variant="body2" color="textSecondary" component="span">
-              ${Number(currentPrice * quantity).toFixed(2)}
+              $
+              {quantity.isValid
+                ? Number(currentPrice * quantity.value).toFixed(2)
+                : Number(currentPrice * 1).toFixed(2)}
             </Typography>
           </Box>
+          {touched && error && (
+            <Typography
+              color="error"
+              component="span"
+              variant="body2"
+              className={classes.counterError}
+            >
+              {error}
+            </Typography>
+          )}
         </Grid>
       </Grid>
       <Divider className={classes.divider} variant="fullWidth" />
