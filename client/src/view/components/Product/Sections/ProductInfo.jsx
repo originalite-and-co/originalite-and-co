@@ -11,6 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
 import { wishlistOperations } from '../../../../redux/features/wishlist';
 import { authorizationSelectors } from '../../../../redux/features/authorization';
+
 import { cartOperations } from '../../../../redux/features/cart';
 import { useHistory } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
   const [addedToWishlist, setAddedToWishlist] = useState();
   const [authorizeToaster, setAuthorizeToaster] = useState();
   const [showCartNotification, setShowCartNotification] = useState(false);
+  
   const dispatch = useDispatch();
   const {
     sizes,
@@ -81,6 +83,7 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
           onClick={addToWishlist}
         />
       ));
+
 
   const duration = 6000;
   const handleAddToCartBtnClick = (event) => {

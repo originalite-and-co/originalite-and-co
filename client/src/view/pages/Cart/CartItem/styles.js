@@ -87,13 +87,6 @@ const generateStyles = ({ breakpoints, palette, typography }) => ({
   counterError: {
     marginTop: '5px',
     display: 'block'
-    // position: 'absolute',
-    // bottom: 0,
-    // left: 0,
-    // right: 0
-    // left: '50%',
-    //
-    // transform: 'translateX(-50%)'
   },
   counterInfo: {
     position: 'absolute',

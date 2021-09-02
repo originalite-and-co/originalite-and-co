@@ -9,7 +9,8 @@ import {
   Grid,
   IconButton,
   Input,
-  Typography
+  Typography,
+  useTheme
 } from '@material-ui/core';
 import { Add, Close, Remove } from '@material-ui/icons';
 import generateStyles from './styles';
