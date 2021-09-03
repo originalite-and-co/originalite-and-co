@@ -9,7 +9,7 @@ import CategoryNav from './CategoryNav/CategoryNav';
 import {
   catalogRequests,
   colorRequests,
-  sizeRequests,
+  sizeRequests
 } from '../../../../api/server';
 import useAsyncError from '../../../hooks/useAsyncError';
 import useWindowSize from '../../../hooks/useWindowSize';
@@ -42,7 +42,7 @@ function Filter() {
       .retrieveCategory(params.category)
       .then((category) => setCategory(category))
       .then(() => setIsLoaded(true));
-  }, []);
+  }, [params.category]);
 
   useEffect(() => {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);

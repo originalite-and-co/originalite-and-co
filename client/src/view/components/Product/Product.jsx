@@ -16,6 +16,7 @@ import {
 } from '../../../redux/features/wishlist';
 import { authorizationSelectors } from '../../../redux/features/authorization';
 import { useRouteMatch } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 function Product() {
   const [product, setProduct] = useState(null);
@@ -78,7 +79,7 @@ function Product() {
       <ViewedProducts activeProductNumber={itemNumber} />
     </section>
   ) : (
-    <p>Loading...</p>
+    <Loader fixed />
   );
 }
 

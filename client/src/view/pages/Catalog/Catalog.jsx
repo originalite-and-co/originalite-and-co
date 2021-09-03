@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Header from '../../components/Header/Header';
 import Products from './Products/Products';
@@ -13,13 +12,15 @@ import { useHistory } from 'react-router-dom';
 import useAsyncError from '../../hooks/useAsyncError';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { filterOperations, filterSelectors } from '../../../redux/features/filters';
+import {
+  filterOperations,
+  filterSelectors
+} from '../../../redux/features/filters';
 import { catalogRequests, productRequests } from '../../../api/server';
 
 import { Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
-
 
 Catalog.propTypes = {};
 
@@ -33,13 +34,12 @@ function numberOfProductsGenerator(initialValue) {
   let number = initialValue;
   return function* (step, maxLength) {
     while (number <= maxLength) {
-      yield number += step;
+      yield (number += step);
     }
   };
 }
 
 function Catalog(props) {
-
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
   const [numberOfProducts, setNumberOfProducts] = useState(4);
@@ -58,25 +58,30 @@ function Catalog(props) {
 
   const categoryID = location.pathname
     .split('/')
-    .filter(category => category && category !== 'catalog')
+    .filter((category) => category && category !== 'catalog')
     .join('-');
 
   /**
    * useMemo hooks are used to prevent re-renders
    */
-  let generator = useMemo(() => numberOfProductsGenerator(numberOfProducts), []);
-  generator = useMemo(() => generator(numberOfProducts, productsQuantity), [productsQuantity]);
+  let generator = useMemo(
+    () => numberOfProductsGenerator(numberOfProducts),
+    []
+  );
+  generator = useMemo(
+    () => generator(numberOfProducts, productsQuantity),
+    [productsQuantity]
+  );
 
   useEffect(() => {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
   }, [width]);
 
   useEffect(() => {
-    catalogRequests.retrieveCategory(categoryID)
-      .then(
-        data => setCategoryName(data.name),
-        error => throwAsyncError(error),
-      );
+    catalogRequests.retrieveCategory(categoryID).then(
+      (data) => setCategoryName(data.name),
+      (error) => throwAsyncError(error)
+    );
   }, [location, categoryID]);
 
   useEffect(() => {
@@ -86,19 +91,18 @@ function Catalog(props) {
     replace(`${location.pathname}?${query}`);
 
     const additionInfoQuery = `categories=${categoryID}&perPage=${numberOfProducts}`;
-    const requestQuery = query ?
-      `${query}&${additionInfoQuery}` :
-      additionInfoQuery;
+    const requestQuery = query
+      ? `${query}&${additionInfoQuery}`
+      : additionInfoQuery;
 
     setLoaded(false);
-    productRequests.retrieveByQuery(requestQuery)
-      .then(
-        data => {
-          setProducts(data);
-          setLoaded(true);
-        },
-        error => throwAsyncError(error),
-      );
+    productRequests.retrieveByQuery(requestQuery).then(
+      (data) => {
+        setProducts(data);
+        setLoaded(true);
+      },
+      (error) => throwAsyncError(error)
+    );
   }, [query, numberOfProducts, location.pathname]);
 
   useEffect(() => {
@@ -115,45 +119,39 @@ function Catalog(props) {
   return (
     <>
       <Header />
-      <Box
-        component='main'
-        className={classes.content}
-      >
-
+      <Box component="main" className={classes.content}>
         <Box
-          className={isDesktop ?
-            classes.breadcrumbsContainer :
-            `${classes.breadcrumbsContainer} wrapper`}
+          className={
+            isDesktop
+              ? classes.breadcrumbsContainer
+              : `${classes.breadcrumbsContainer} wrapper`
+          }
         >
-          <CatalogBreadcrumbs categoryName={categoryName} path={location.pathname} />
+          <CatalogBreadcrumbs
+            categoryName={categoryName}
+            path={location.pathname}
+          />
         </Box>
 
         <Grid container>
-
-          {
-            isDesktop && (
-              <>
-                <Grid
-                  xs={isDesktop ? 3 : 0}
-                  item
-                  component='aside'
-                  className={classes.filter}
-                >
-                  <Box className={classes.filterContentWrapper}>
-                    <Box className={classes.filterContentInner}>
-                      <Filter />
-                    </Box>
+          {isDesktop && (
+            <>
+              <Grid
+                xs={isDesktop ? 3 : 0}
+                item
+                component="aside"
+                className={classes.filter}
+              >
+                <Box className={classes.filterContentWrapper}>
+                  <Box className={classes.filterContentInner}>
+                    <Filter />
                   </Box>
-                </Grid>
-              </>
-            )
-          }
+                </Box>
+              </Grid>
+            </>
+          )}
 
-          <Grid
-            xs={isDesktop ? 9 : 12}
-            component='section'
-            item
-          >
+          <Grid xs={isDesktop ? 9 : 12} component="section" item>
             <Box className={classes.productListWrapper}>
               <Products
                 isLoaded={isLoaded}
