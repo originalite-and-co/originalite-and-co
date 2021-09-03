@@ -6,13 +6,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '../../../../components/Button/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup } from '@material-ui/core';
+import { FormGroup, Typography } from '@material-ui/core';
 import { customerRequests } from '../../../../../api/server';
 import useAsyncError from '../../../../hooks/useAsyncError';
 import { useHistory } from 'react-router-dom';
 import Toast from '../../../../components/Toast/Toast';
 import * as yup from 'yup';
-import { Typography } from '@material-ui/core';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
@@ -21,14 +20,14 @@ SignUpPage.propTypes = {};
 const useStyles = makeStyles({
   textField: {
     borderBottom: '1px solid white',
-    color: '#FFFFFF !important',
+    color: '#FFFFFF !important'
   },
   visibilityBtn: {
     color: '#FFFFFF !important',
     position: 'absolute',
     top: '30%',
-    right: 0,
-  },
+    right: 0
+  }
 });
 
 const phoneRegExp =
@@ -42,22 +41,26 @@ const initialValues = {
   password: '',
   mobile: '',
   birthdate: '',
-  gender: '',
+  gender: ''
 };
 
 const validationSchema = yup.object().shape({
   firstName: yup.string().required().label('first name'),
   lastName: yup.string().required().label('last name'),
-  login: yup.string().min(4).required().label('login'),
+  login: yup
+    .string()
+    .min(4)
+    .required()
+    .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed for this field ')
+    .label('login'),
   email: yup.string().email().required().label('email'),
   password: yup.string().min(8).required().label('password'),
   mobile: yup
     .string()
     .matches(phoneRegExp, 'mobile must be a valid phone number')
-    .required()
     .label('mobile'),
-  birthdate: yup.string().required().label('birthday'),
-  gender: yup.string().required().label('gender'),
+  birthdate: yup.string().label('birthday'),
+  gender: yup.string().label('gender')
 });
 
 function SignUpPage({ onClick }) {
@@ -116,6 +119,7 @@ function SignUpPage({ onClick }) {
                 <FormGroup data-testid="firstName">
                   <Field
                     as={TextField}
+                    required
                     name="firstName"
                     fullWidth
                     label="First name"
@@ -133,6 +137,7 @@ function SignUpPage({ onClick }) {
                 <FormGroup data-testid="lastName">
                   <Field
                     as={TextField}
+                    required
                     name="lastName"
                     fullWidth
                     label="Last name"
@@ -150,6 +155,7 @@ function SignUpPage({ onClick }) {
                 <FormGroup data-testid="login">
                   <Field
                     as={TextField}
+                    required
                     name="login"
                     fullWidth
                     label="Login name"
@@ -167,6 +173,7 @@ function SignUpPage({ onClick }) {
                 <FormGroup data-testid="email">
                   <Field
                     as={TextField}
+                    required
                     name="email"
                     fullWidth
                     label="E-mail"
@@ -185,6 +192,7 @@ function SignUpPage({ onClick }) {
                   <Box style={{ position: 'relative' }}>
                     <Field
                       as={TextField}
+                      required
                       name="password"
                       type={typePassword ? 'password' : 'text'}
                       fullWidth
