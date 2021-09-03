@@ -73,45 +73,47 @@ function StaticPage({ title, htmlContent }) {
     </Marker>
   ));
 
-  console.log(isTablet);
   const html = parse(htmlContent);
   let page;
   isContactPage
     ? (page = (
-        <Box style={{ position: 'relative' }}>
+        <Box className={classes.wrapper}>
           {html}
-          <Box className={classes.mapWrapper}>
-            <ReactMapGL
-              {...viewport}
-              width={isTablet ? '50vw' : '100vw'}
-              height="30vh"
-              mapboxApiAccessToken={token}
-              mapStyle="mapbox://styles/antonmolchanov/ckt0gexez00qb18mk01wp9eeq"
-              onViewportChange={(viewport) => {
-                setViewport(viewport);
-              }}
-            >
-              {offices}
-              {selectedOffice && (
-                <Popup
-                  longitude={selectedOffice.longitude}
-                  latitude={selectedOffice.latitude}
-                  onClose={() => {
-                    setSelectedOffice(null);
-                  }}
-                >
-                  <div>
-                    <Typography component="p" color="textSecondary">
-                      {selectedOffice.address}
-                    </Typography>
-                    <Typography component="p" color="textSecondary">
-                      {selectedOffice.mobile}
-                    </Typography>
-                  </div>
-                </Popup>
-              )}
-            </ReactMapGL>
-          </Box>
+          <ReactMapGL
+            className={classes.mapWrapper}
+            {...viewport}
+            width={isTablet ? '400px' : '90vw'}
+            height="20vh"
+            mapboxApiAccessToken={token}
+            mapStyle="mapbox://styles/antonmolchanov/ckt0gexez00qb18mk01wp9eeq"
+            onViewportChange={(viewport) => {
+              setViewport(viewport);
+            }}
+          >
+            {offices}
+            {selectedOffice && (
+              <Popup
+                longitude={selectedOffice.longitude}
+                latitude={selectedOffice.latitude}
+                onClose={() => {
+                  setSelectedOffice(null);
+                }}
+              >
+                <div>
+                  <Typography
+                    component="p"
+                    color="textSecondary"
+                    style={{ fontSize: '14px' }}
+                  >
+                    {selectedOffice.address}
+                  </Typography>
+                  <Typography component="p" color="textSecondary">
+                    {selectedOffice.mobile}
+                  </Typography>
+                </div>
+              </Popup>
+            )}
+          </ReactMapGL>
         </Box>
       ))
     : (page = <>{html}</>);

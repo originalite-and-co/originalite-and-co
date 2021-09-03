@@ -1,13 +1,20 @@
 export function generateStyles({ breakpoints }) {
   return {
+    wrapper: {
+      position: 'relative',
+      marginBottom: '15vh',
+
+      [breakpoints.up('largeScreens')]: {
+        marginBottom: '30vh'
+      }
+    },
     mapWrapper: {
-      position: 'absolute',
-      top: '53vh',
-      left: '0vw',
+      border: '1px solid black',
+      marginTop: '5vh',
+      marginLeft: '5vw',
 
       [breakpoints.up('tablet')]: {
-        top: '35vh',
-        left: '5vw'
+        marginLeft: '5vw'
       }
     }
   };
