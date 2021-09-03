@@ -11,20 +11,24 @@ import PaymentMethodComponent from './PaymentMethod';
 
 import styles from './style';
 
-const validationSchemaData = yup.object({
+const validationSchemaData = {
   credit: yup.object().shape({
     creditNumber: yup.number().required(),
+    expityDate: yup.date().required(),
+  }),
+  paypal: yup.object().shape({
+    creditNumber: yup.number().required(),
+    expityDate: yup.date().required(),
   }),
   cash: yup.object().shape({
     value: yup.number().required(),
   }),
-  paypal: yup.object().shape({
-    creditNumber: yup.number().required(),
-  }),
-});
+};
 
 function Checkout() {
   const useStyle = styles();
+
+  // const [schema, setSchema] = useState('');
 
   const onSubmit = (data) => {
     console.log(data);
@@ -46,20 +50,18 @@ function Checkout() {
           country: '',
           payment: {
             type: '',
-            method: {
-              credit: {
-                creditNumber: '',
-                cvv: '',
-                expityDate: '',
-              },
-              paypal: {
-                creditNumber: '',
-                cvv: '',
-                expityDate: '',
-              },
-              cash: {
-                value: '',
-              },
+            credit: {
+              creditNumber: '',
+              cvv: '',
+              expityDate: '',
+            },
+            paypal: {
+              creditNumber: '',
+              cvv: '',
+              expityDate: '',
+            },
+            cash: {
+              value: '',
             },
           },
         }}
@@ -73,9 +75,11 @@ function Checkout() {
             fields: [
               {
                 name: 'payment.type',
-                valueComponent: (value) => (
-                  <PaymentMethodComponent value={value} style={useStyle} />
-                ),
+                valueComponent: (value) => {
+                  return (
+                    <PaymentMethodComponent value={value} style={useStyle} />
+                  );
+                },
                 groupClass: 'payment',
                 component: 'radio',
                 options: [
@@ -98,10 +102,16 @@ function Checkout() {
               },
             ],
             schema: yup.object({
-              payment: yup.object().shape({
-                type: yup.string().required(),
-                method: validationSchemaData,
-              }),
+              payment: yup
+                .object()
+                .shape({
+                  type: yup.string().required(),
+                })
+                .when((values, schema) => {
+                  return schema.shape({
+                    [values.type]: validationSchemaData[values.type],
+                  });
+                }),
             }),
           }}
         />
@@ -173,6 +183,9 @@ function Checkout() {
             }),
           }}
         />
+        <Step>
+          <h4>OrderDetails</h4>
+        </Step>
       </Stepper>
 
       {/* {value ? <PaymentMethodComponent value={value} style={useStyle} /> : null} */}
