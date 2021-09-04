@@ -11,7 +11,7 @@ const styles = {
   navigation: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '5px 0',
+    padding: '25px 0',
     '& *': {
       margin: 15,
     },
@@ -31,8 +31,8 @@ const styles = {
   },
   prevButton: {
     transition: '.1s',
-    fontSize: 20,
-    padding: '14px 26px',
+    fontSize: 16,
+    padding: '12px 24px',
     fontFamily: 'inherit',
     color: '#000',
     border: '1px solid #000',
@@ -47,8 +47,8 @@ const styles = {
   },
   nextButton: {
     transition: '.1s',
-    fontSize: 20,
-    padding: '14px 26px',
+    fontSize: 16,
+    padding: '12px 24px',
     fontFamily: 'inherit',
     color: '#fff',
     border: '1px solid #000',

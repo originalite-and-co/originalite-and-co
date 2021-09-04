@@ -1,6 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = ({ breakpoints }) => ({
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    justifyContent: 'space-between',
+  },
+  content: {
+    paddingTop: '126px',
+    paddingBottom: '4vh',
+
+    [breakpoints.up('desktop')]: {
+      paddingTop: '95px',
+    },
+  },
   paymentMethod: {
     padding: '20px 0',
   },

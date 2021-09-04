@@ -9,11 +9,13 @@ const PaymentMethodComponent = ({ value, style }) => {
       <FormFields
         fields={[
           {
+            type: 'number',
             name: 'payment.credit.creditNumber',
             title: 'Credit number',
             groupClass: 'creditNumber',
           },
           {
+            type: 'number',
             name: 'payment.credit.cvv',
             title: 'CVV',
             groupClass: 'creditCVV',
@@ -31,11 +33,13 @@ const PaymentMethodComponent = ({ value, style }) => {
       <FormFields
         fields={[
           {
+            type: 'number',
             title: 'Card number',
             name: 'payment.paypal.creditNumber',
             groupClass: 'paypalNumber',
           },
           {
+            type: 'number',
             name: 'payment.paypal.cvv',
             title: 'CVV',
             groupClass: 'paypalCVV',
@@ -53,6 +57,7 @@ const PaymentMethodComponent = ({ value, style }) => {
       <FormFields
         fields={[
           {
+            type: 'number',
             groupClass: 'cash',
             title: 'Cash',
             name: 'payment.cash.value',
