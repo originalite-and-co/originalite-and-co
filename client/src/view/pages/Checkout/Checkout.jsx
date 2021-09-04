@@ -7,10 +7,16 @@ import { Box } from '@material-ui/core';
 import { Stepper, Step } from '../../components/Stepper';
 import { stepper, payment, userData, delivery } from './data';
 
+import { useSelector } from 'react-redux';
+import { cartSelectors } from '../../../redux/features/cart/index.js';
+
 import styles from './style';
 
 function Checkout() {
+  const cart = useSelector(cartSelectors.getCart);
   const useStyle = styles();
+
+  console.log(cart);
 
   const onSubmit = (data) => {
     console.log(data);
