@@ -1,11 +1,11 @@
-const checkoutStepper = {
+const checkoutStepper = ({ firstName, lastName, email, telephone: phone }) => ({
   className: 'form__checkout',
   steps: true,
   initialValues: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    firstName,
+    lastName,
+    email,
+    phone,
     streetAdress: '',
     zipCode: '',
     city: '',
@@ -27,6 +27,6 @@ const checkoutStepper = {
       }
     }
   }
-};
+});
 
 export default checkoutStepper;

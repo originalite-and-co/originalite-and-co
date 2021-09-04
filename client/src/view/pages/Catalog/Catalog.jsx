@@ -22,6 +22,8 @@ import { Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
+Catalog.propTypes = {};
+
 /***
  * Closure is used to create protected variable
  *
@@ -37,7 +39,7 @@ function numberOfProductsGenerator(initialValue) {
   };
 }
 
-function Catalog() {
+function Catalog(props) {
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
   const [numberOfProducts, setNumberOfProducts] = useState(4);
@@ -66,7 +68,6 @@ function Catalog() {
     () => numberOfProductsGenerator(numberOfProducts),
     []
   );
-
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
     [productsQuantity]

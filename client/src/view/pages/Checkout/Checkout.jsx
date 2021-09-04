@@ -11,17 +11,28 @@ import { useSelector } from 'react-redux';
 import { cartSelectors } from '../../../redux/features/cart';
 
 import useAsyncError from '../../hooks/useAsyncError';
-import { productRequests } from '../../../api/server';
+import { productRequests, customerRequests } from '../../../api/server';
 
 import styles from './style';
 
 function Checkout() {
   const useStyle = styles();
   const cart = useSelector(cartSelectors.getCart);
+
+  const [profileData, setProfileData] = useState();
   const [products, setProducts] = useState([]);
   const throwAsyncError = useAsyncError();
 
-  console.log(products);
+  useEffect(() => {
+    (async () => {
+      try {
+        const profile = await customerRequests.retrieveCustomer();
+        setProfileData(profile);
+      } catch (error) {
+        throwAsyncError(error);
+      }
+    })();
+  }, [throwAsyncError]);
 
   useEffect(() => {
     if (!cart.length) return;
@@ -40,18 +51,21 @@ function Checkout() {
   }, [cart, throwAsyncError]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log({ data, products });
   };
 
   return (
     <Box className={useStyle.wrapper}>
       <Header />
       <Box className={useStyle.content} component={'main'}>
-        <Stepper {...stepper} onSubmit={onSubmit}>
-          <Step {...payment(useStyle)} />
-          <Step {...userData(useStyle)} />
-          <Step {...delivery(useStyle)} />
-        </Stepper>
+        {profileData && (
+          <Stepper {...stepper(profileData)} onSubmit={onSubmit}>
+            <Step>{JSON.stringify(products, null, 2)}</Step>
+            <Step {...userData(useStyle)} />
+            <Step {...payment(useStyle)} />
+            <Step {...delivery(useStyle)} />
+          </Stepper>
+        )}
       </Box>
       <Footer />
     </Box>
