@@ -14,7 +14,7 @@ import useAsyncError from '../../hooks/useAsyncError';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   filterOperations,
-  filterSelectors,
+  filterSelectors
 } from '../../../redux/features/filters';
 import { catalogRequests, productRequests } from '../../../api/server';
 
@@ -64,12 +64,12 @@ function Catalog() {
    */
   let generator = useMemo(
     () => numberOfProductsGenerator(numberOfProducts),
-    [],
+    []
   );
 
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
-    [productsQuantity],
+    [productsQuantity]
   );
 
   useEffect(() => {
@@ -79,7 +79,7 @@ function Catalog() {
   useEffect(() => {
     catalogRequests.retrieveCategory(categoryID).then(
       (data) => setCategoryName(data.name),
-      (error) => throwAsyncError(error),
+      (error) => throwAsyncError(error)
     );
   }, [location, categoryID]);
 
@@ -100,7 +100,7 @@ function Catalog() {
         setProducts(data);
         setLoaded(true);
       },
-      (error) => throwAsyncError(error),
+      (error) => throwAsyncError(error)
     );
   }, [query, numberOfProducts, location.pathname]);
 

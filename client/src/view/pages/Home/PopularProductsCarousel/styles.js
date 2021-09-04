@@ -1,10 +1,10 @@
 const generateStyles = () => ({
   root: {
-    marginBottom: '5vh',
+    marginBottom: '5vh'
   },
   heading: {
-    marginBottom: '1rem',
-  },
+    marginBottom: '1rem'
+  }
 });
 
 export default generateStyles;

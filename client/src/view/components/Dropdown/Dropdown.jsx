@@ -6,16 +6,16 @@ import { List, Box } from '@material-ui/core';
 Dropdown.propTypes = {
   classNames: PropTypes.shape({
     active: PropTypes.string,
-    closed: PropTypes.string,
+    closed: PropTypes.string
   }),
   onMouseLeave: PropTypes.func,
   children: PropTypes.element,
   isActive: PropTypes.bool,
-  lockBodyScrolling: PropTypes.bool,
+  lockBodyScrolling: PropTypes.bool
 };
 
 Dropdown.defaultProps = {
-  lockBodyScrolling: false,
+  lockBodyScrolling: false
 };
 
 function Dropdown({
@@ -23,7 +23,7 @@ function Dropdown({
   onMouseLeave,
   children,
   isActive,
-  lockBodyScrolling,
+  lockBodyScrolling
 }) {
   if (lockBodyScrolling) {
     isActive

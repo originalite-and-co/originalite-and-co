@@ -4,11 +4,11 @@ const { GOT_LINKS } = footerLinksTypes;
 
 const getLinks = (data) => ({
   type: GOT_LINKS,
-  payload: data,
+  payload: data
 });
 
 const actions = {
-  getLinks,
+  getLinks
 };
 
 export default actions;

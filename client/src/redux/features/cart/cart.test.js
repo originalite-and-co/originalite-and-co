@@ -9,7 +9,7 @@ const { cart: cartReducer } = reducer;
  * */
 describe('cart reducer', () => {
   const initAction = {
-    type: '@@INIT',
+    type: '@@INIT'
   };
   test('if it returns initial value ', () => {
     const result = cartReducer(undefined, initAction);

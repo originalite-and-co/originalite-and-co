@@ -5,7 +5,7 @@ import { Box, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   searchResultActions,
-  searchResultSelectors,
+  searchResultSelectors
 } from '../../../redux/features/searchResult';
 import { useHistory } from 'react-router-dom';
 import { productRequests } from '../../../api/server';
@@ -28,7 +28,7 @@ function SearchResult() {
   const classes = useStyles();
 
   const query = history.location.search.slice(
-    Number(history.location.search.indexOf('=')) + 1,
+    Number(history.location.search.indexOf('=')) + 1
   );
 
   if (searchResult.length && !products.length) {
@@ -43,7 +43,7 @@ function SearchResult() {
           dispatch(searchResultActions.setSearchResult(data));
         }
       },
-      (error) => throwAsyncError(error),
+      (error) => throwAsyncError(error)
     );
   }
 

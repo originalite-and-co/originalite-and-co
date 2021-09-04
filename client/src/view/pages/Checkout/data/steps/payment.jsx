@@ -12,16 +12,16 @@ const validationSchemaData = {
   credit: yup.object().shape({
     creditNumber: yup.number().required(requiredMessage),
     expityDate: yup.date().required(requiredMessage),
-    cvv: yup.number().required(requiredMessage),
+    cvv: yup.number().required(requiredMessage)
   }),
   paypal: yup.object().shape({
     creditNumber: yup.number().required(requiredMessage),
     expityDate: yup.date().required(requiredMessage),
-    cvv: yup.number().required(requiredMessage),
+    cvv: yup.number().required(requiredMessage)
   }),
   cash: yup.object().shape({
-    value: yup.number().min(0).required(requiredMessage),
-  }),
+    value: yup.number().min(0).required(requiredMessage)
+  })
 };
 
 const payment = (style) => ({
@@ -39,33 +39,33 @@ const payment = (style) => ({
         {
           label: 'PayPal',
           value: 'paypal',
-          icon: <AccountBalanceIcon />,
+          icon: <AccountBalanceIcon />
         },
         {
           label: 'Credit card',
           value: 'credit',
-          icon: <CreditCardIcon />,
+          icon: <CreditCardIcon />
         },
         {
           label: 'Cash',
           value: 'cash',
-          icon: <MonetizationOnIcon />,
-        },
-      ],
-    },
+          icon: <MonetizationOnIcon />
+        }
+      ]
+    }
   ],
   schema: yup.object({
     payment: yup
       .object()
       .shape({
-        type: yup.string().required(requiredMessage),
+        type: yup.string().required(requiredMessage)
       })
       .when((values, schema) => {
         return schema.shape({
-          [values.type]: validationSchemaData[values.type],
+          [values.type]: validationSchemaData[values.type]
         });
-      }),
-  }),
+      })
+  })
 });
 
 export default payment;

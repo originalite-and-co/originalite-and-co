@@ -14,7 +14,7 @@ const orders = [
           imageUrls: [
             'https://res.cloudinary.com/originalite-and-co/image/upload/v1628686614/product3_ynhozw.png',
             './img2',
-            './img3',
+            './img3'
           ],
           quantity: 1,
           sizes: ['xs', 's'],
@@ -31,10 +31,10 @@ const orders = [
           seller: 'Shop',
           itemNo: '788773',
           date: '2021-07-29T17:07:45.436Z',
-          __v: 0,
+          __v: 0
         },
-        cartQuantity: 1,
-      },
+        cartQuantity: 1
+      }
     ],
     canceled: false,
     _id: '611cdd2f48d8943acbb78831',
@@ -54,13 +54,13 @@ const orders = [
       date: '2021-08-09T14:37:43.407Z',
       __v: 0,
       birthday: '22.04.1997',
-      mobilePhone: '+380508088725',
+      mobilePhone: '+380508088725'
     },
     deliveryAddress: {
       country: 'Ukraine',
       city: 'Kiev',
       address: 'Suvorova 13',
-      postal: '01044',
+      postal: '01044'
     },
     status: 'not shipped',
     email: 'antonmolchanov97@gmail.com',
@@ -71,8 +71,8 @@ const orders = [
     orderNo: '2620719',
     totalSum: 580,
     date: '2021-08-18T10:13:03.813Z',
-    __v: 0,
-  },
+    __v: 0
+  }
 ];
 
 const PurchaseHistoryTest = () => {

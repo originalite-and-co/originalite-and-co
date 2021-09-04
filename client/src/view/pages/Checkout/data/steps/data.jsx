@@ -15,18 +15,18 @@ const checkoutStepper = {
       credit: {
         creditNumber: '',
         cvv: '',
-        expityDate: '',
+        expityDate: ''
       },
       paypal: {
         creditNumber: '',
         cvv: '',
-        expityDate: '',
+        expityDate: ''
       },
       cash: {
-        value: '',
-      },
-    },
-  },
+        value: ''
+      }
+    }
+  }
 };
 
 export default checkoutStepper;

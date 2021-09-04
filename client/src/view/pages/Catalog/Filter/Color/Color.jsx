@@ -8,13 +8,13 @@ import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   filterActions,
-  filterSelectors,
+  filterSelectors
 } from '../../../../../redux/features/filters';
 
 Color.propTypes = {
   name: PropTypes.string.isRequired,
   cssValue: PropTypes.string.isRequired,
-  isDesktop: PropTypes.bool.isRequired,
+  isDesktop: PropTypes.bool.isRequired
 };
 
 function Color({ name, cssValue, isDesktop }) {
@@ -22,7 +22,7 @@ function Color({ name, cssValue, isDesktop }) {
 
   const dispatch = useDispatch();
   const colors = useSelector((state) =>
-    filterSelectors.getSelectedFilter(state, 'color'),
+    filterSelectors.getSelectedFilter(state, 'color')
   );
 
   useEffect(() => {

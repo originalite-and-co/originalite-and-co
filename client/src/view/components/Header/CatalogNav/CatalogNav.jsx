@@ -11,7 +11,7 @@ import { catalogRequests } from '../../../../api/server';
 import constants from '././.././.././../constants';
 import {
   isAnyDropdownOpenActions,
-  isAnyDropdownOpenSelectors,
+  isAnyDropdownOpenSelectors
 } from '../../../../redux/features/dropdown';
 import getAllChildCategories from '../../../utils/getAllChildCategories';
 import generateCategoryPath from '../../../utils/generateCategoryPath';
@@ -34,7 +34,7 @@ function CatalogNav() {
 
   const dispatch = useDispatch();
   const isAnyDropdownOpen = useSelector(
-    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen,
+    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
   );
 
   useEffect(
@@ -43,17 +43,17 @@ function CatalogNav() {
         setActiveDropdown(false);
       }
     }, [isAnyDropdownOpen, isDropdownActive]),
-    [isAnyDropdownOpen, isDropdownActive],
+    [isAnyDropdownOpen, isDropdownActive]
   );
 
   useEffect(
     useCallback(() => {
       catalogRequests.retrieveCatalog().then(
         (data) => setCatalog(data),
-        (error) => throwError(error),
+        (error) => throwError(error)
       );
     }, [catalog]),
-    [],
+    []
   );
 
   useEffect(() => {
@@ -142,7 +142,7 @@ function CatalogNav() {
             </NavLink>
           </Grid>
         );
-      }),
+      })
     );
   };
 
@@ -206,7 +206,7 @@ function CatalogNav() {
       <Dropdown
         classNames={{
           closed: styles.dropdown,
-          active: styles.dropdownActive,
+          active: styles.dropdownActive
         }}
         lockBodyScrolling
         isActive={isDropdownActive}

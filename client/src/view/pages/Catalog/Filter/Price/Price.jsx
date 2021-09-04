@@ -23,8 +23,8 @@ const PriceFilter = () => {
         dispatch(
           filterActions.addFilter({
             minPrice,
-            maxPrice,
-          }),
+            maxPrice
+          })
         );
       }}
       valueLabelDisplay="auto"

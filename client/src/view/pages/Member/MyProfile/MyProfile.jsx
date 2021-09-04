@@ -17,7 +17,7 @@ import { authorizeOperations } from '../../../../redux/features/authorization';
 
 MyProfile.propTypes = {
   customer: PropTypes.object.isRequired,
-  handleDataUpdate: PropTypes.func.isRequired,
+  handleDataUpdate: PropTypes.func.isRequired
 };
 
 const useStyles = makeStyles(generateStyles);
@@ -33,7 +33,7 @@ function MyProfile({ customer, handleDataUpdate }) {
     lastName: customer.lastName,
     telephone: customer.telephone,
     birthdate: customer.birthdate,
-    gender: customer.gender,
+    gender: customer.gender
   };
 
   const phoneRegExp =
@@ -46,7 +46,7 @@ function MyProfile({ customer, handleDataUpdate }) {
 
   const validationSchema = yup.object().shape({
     email: string().email('Must be a valid email'),
-    telephone: string().matches(phoneRegExp, 'Phone number is not valid'),
+    telephone: string().matches(phoneRegExp, 'Phone number is not valid')
   });
 
   return (
@@ -177,19 +177,19 @@ function generateStyles({ breakpoints }) {
       color: '#373737',
 
       [breakpoints.up('desktop')]: {
-        color: '#373737',
-      },
+        color: '#373737'
+      }
     },
     formGroup: {
-      position: 'relative',
+      position: 'relative'
     },
     createIcon: {
       position: 'absolute',
-      right: '0',
+      right: '0'
     },
     select: {
-      marginTop: '10px',
-    },
+      marginTop: '10px'
+    }
   };
 }
 

@@ -12,7 +12,7 @@ describe('ErrorBoundary', () => {
     const { getByText } = render(
       <ErrorBoundary fallback={<p>Error</p>}>
         <ErrorComponent />
-      </ErrorBoundary>,
+      </ErrorBoundary>
     );
 
     expect(getByText(/error/i)).toBeInTheDocument();

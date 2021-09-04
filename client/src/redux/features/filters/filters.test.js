@@ -9,7 +9,7 @@ const {
   deleteFilterValue,
   deleteFilter,
   deleteAllFilters,
-  getFilters,
+  getFilters
 } = actions;
 
 const {
@@ -17,7 +17,7 @@ const {
   DELETED_FILTER_VALUE,
   DELETED_FILTER,
   DELETED_ALL_FILTERS,
-  GOT_FILTERS,
+  GOT_FILTERS
 } = types;
 
 describe('filter feature', () => {
@@ -37,12 +37,12 @@ describe('filter feature', () => {
 
       test('If it returns correct object when all required arguments are provided', () => {
         const input = {
-          colors: ['red'],
+          colors: ['red']
         };
 
         const output = {
           type: ADDED_FILTER,
-          payload: input,
+          payload: input
         };
         expect(addFilter(input)).toStrictEqual(output);
       });
@@ -52,16 +52,16 @@ describe('filter feature', () => {
       test('If it returns correct object when all required arguments are provided', () => {
         const input = {
           filterName: 'colors',
-          filterValue: 'red',
+          filterValue: 'red'
         };
 
         const output = {
           type: DELETED_FILTER_VALUE,
-          payload: input,
+          payload: input
         };
 
         expect(
-          deleteFilterValue(input.filterName, input.filterValue),
+          deleteFilterValue(input.filterName, input.filterValue)
         ).toStrictEqual(output);
       });
     });
@@ -69,12 +69,12 @@ describe('filter feature', () => {
     describe('deleteFilter', () => {
       test('If it returns correct object when all required arguments are provided', () => {
         const input = {
-          filterName: 'colors',
+          filterName: 'colors'
         };
 
         const output = {
           type: DELETED_FILTER,
-          payload: input.filterName,
+          payload: input.filterName
         };
 
         expect(deleteFilter(input.filterName)).toStrictEqual(output);
@@ -84,7 +84,7 @@ describe('filter feature', () => {
     describe('deleteAllFilters', () => {
       test('If it returns correct object when all required arguments are provided', () => {
         const output = {
-          type: DELETED_ALL_FILTERS,
+          type: DELETED_ALL_FILTERS
         };
         expect(deleteAllFilters()).toStrictEqual(output);
       });
@@ -93,12 +93,12 @@ describe('filter feature', () => {
     describe('getFilters', () => {
       test('If it returns correct object when all required arguments are provided', () => {
         const input = {
-          colors: ['red', 'green'],
+          colors: ['red', 'green']
         };
 
         const output = {
           type: GOT_FILTERS,
-          payload: input,
+          payload: input
         };
 
         expect(getFilters(input)).toStrictEqual(output);
@@ -116,8 +116,8 @@ describe('filter feature', () => {
         const dispatch = jest.fn((obj) => obj);
         const getState = jest.fn(() => ({
           filters: {
-            colors: ['red'],
-          },
+            colors: ['red']
+          }
         }));
 
         operations.getFilters()(dispatch, getState);
@@ -129,7 +129,7 @@ describe('filter feature', () => {
   describe('filter reducer', () => {
     const { filters: filterReducer } = reducers;
     const initAction = {
-      type: '@@INIT',
+      type: '@@INIT'
     };
     test('If it returns default value', () => {
       expect(filterReducer(undefined, initAction)).toStrictEqual({});
@@ -137,24 +137,24 @@ describe('filter feature', () => {
 
     test('If it return state in case action type is not defined', () => {
       const state = {
-        colors: ['red', 'green'],
+        colors: ['red', 'green']
       };
       expect(filterReducer(state, initAction)).toStrictEqual(state);
     });
 
     test('if it returns correct object in case ADDED_FILTER action is passed', () => {
       const state = {
-        colors: ['red', 'green'],
+        colors: ['red', 'green']
       };
 
       const action = addFilter({
-        sizes: 's',
+        sizes: 's'
       });
 
       const { payload } = action;
       const output = {
         ...state,
-        ...payload,
+        ...payload
       };
 
       expect(filterReducer(state, action)).toStrictEqual(output);
@@ -162,7 +162,7 @@ describe('filter feature', () => {
 
     test('If it throws an error in case filter value is not an array when DELETED_FILTER_VALUE action is passed', () => {
       const state = {
-        minPrice: '200',
+        minPrice: '200'
       };
 
       const action = deleteFilterValue('minPrice', '200');
@@ -173,13 +173,13 @@ describe('filter feature', () => {
 
     test('If it returns correct object in case DELETED_FILTER_VALUE action is passed', () => {
       const state = {
-        colors: ['red', 'green'],
+        colors: ['red', 'green']
       };
 
       const action = deleteFilterValue('colors', 'red');
 
       const output = {
-        colors: ['green'],
+        colors: ['green']
       };
 
       expect(filterReducer(state, action)).toStrictEqual(output);
@@ -187,7 +187,7 @@ describe('filter feature', () => {
 
     test('if it deletes a filter when the last item of an array was deleted in case DELETED_FILTER_VALUE action is passed', () => {
       const state = {
-        colors: ['red'],
+        colors: ['red']
       };
 
       const action = deleteFilterValue('colors', 'red');
@@ -199,11 +199,11 @@ describe('filter feature', () => {
 
     test('If it deletes filter value in case DELETED_FILTER_VALUE action is passed', () => {
       const minPriceState = {
-        minPrice: '200',
+        minPrice: '200'
       };
 
       const colorsState = {
-        colors: ['red', 'green'],
+        colors: ['red', 'green']
       };
 
       const minPriceAction = deleteFilter('minPrice');
@@ -213,18 +213,18 @@ describe('filter feature', () => {
       const colorsOutput = {};
 
       expect(filterReducer(minPriceState, minPriceAction)).toStrictEqual(
-        minPriceOutput,
+        minPriceOutput
       );
 
       expect(filterReducer(colorsState, colorsAction)).toStrictEqual(
-        colorsOutput,
+        colorsOutput
       );
     });
 
     test('If it deletes all filters when DELETED_ALL_FILTERS action is passed', () => {
       const state = {
         minPrice: '200',
-        colors: ['red', 'green'],
+        colors: ['red', 'green']
       };
 
       const action = deleteAllFilters();
@@ -238,7 +238,7 @@ describe('filter feature', () => {
       const state = {};
 
       const data = {
-        colors: ['red', 'green'],
+        colors: ['red', 'green']
       };
 
       const action = getFilters(data);
@@ -251,9 +251,9 @@ describe('filter feature', () => {
     test('if getFilters returns filters', () => {
       const state = {
         filters: {
-          colors: ['red', 'green'],
+          colors: ['red', 'green']
         },
-        cart: ['1', '2'],
+        cart: ['1', '2']
       };
 
       expect(selectors.getFilters(state)).toStrictEqual(state.filters);
@@ -263,8 +263,8 @@ describe('filter feature', () => {
       const state = {
         filters: {
           colors: ['red', 'green'],
-          minPrice: '200',
-        },
+          minPrice: '200'
+        }
       };
 
       const output = 'colors=red,green&minPrice=200';

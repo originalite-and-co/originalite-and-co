@@ -3,23 +3,23 @@ const generateStyles = ({ palette, breakpoints }) => ({
     paddingTop: '120px',
 
     [breakpoints.up('desktop')]: {
-      paddingTop: '94px',
-    },
+      paddingTop: '94px'
+    }
   },
   inner: {
     paddingTop: '1.5rem',
-    paddingBottom: '1.5rem',
+    paddingBottom: '1.5rem'
   },
   heading: {
     marginBottom: '.5rem',
-    fontWeight: 700,
+    fontWeight: 700
   },
   divider: {
     backgroundColor: palette.primary.main,
 
     [breakpoints.up('desktop')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   productList: {
     marginBottom: '10vw',
@@ -28,23 +28,23 @@ const generateStyles = ({ palette, breakpoints }) => ({
 
     [breakpoints.up('desktop')]: {
       marginRight: '3.5vw',
-      marginBottom: '12vw',
-    },
+      marginBottom: '12vw'
+    }
   },
   loaderContainer: {
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   noItemsAlert: {},
   summaryContainer: {
     marginTop: '5vw',
 
     [breakpoints.up('desktop')]: {
-      marginTop: 0,
-    },
-  },
+      marginTop: 0
+    }
+  }
 });
 
 export default generateStyles;

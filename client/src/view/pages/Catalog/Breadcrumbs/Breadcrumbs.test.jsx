@@ -15,7 +15,7 @@ describe('Breadcrumbs', () => {
         <CustomThemeProvider>
           <CatalogBreadcrumbs path={PATH} categoryName={CATEGORY_NAME} />
         </CustomThemeProvider>
-      </Router>,
+      </Router>
     );
 
     expect(getByText(/catalog/i)).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe('Breadcrumbs', () => {
         <CustomThemeProvider>
           <CatalogBreadcrumbs path={PATH} categoryName={CATEGORY_NAME} />
         </CustomThemeProvider>
-      </Router>,
+      </Router>
     );
 
     expect(history.location.pathname).toMatch(PATH);

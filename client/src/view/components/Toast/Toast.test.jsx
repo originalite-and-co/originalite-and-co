@@ -26,7 +26,7 @@ describe('Toast', () => {
     const message = 'test';
     const duration = 500;
     const { queryByText } = render(
-      <Toast message={message} autoHideDuration={duration} />,
+      <Toast message={message} autoHideDuration={duration} />
     );
 
     setTimeout(() => {

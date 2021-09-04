@@ -21,7 +21,7 @@ const FormFields = ({ fields }) => {
         style,
         ...rest
       },
-      key,
+      key
     ) => {
       return (
         <Field name={name} {...rest} key={key}>
@@ -48,7 +48,7 @@ const FormFields = ({ fields }) => {
                     {FormFieldComponent(component, {
                       ...fieldProps,
                       ...rest,
-                      value,
+                      value
                     })}
                   </Box>
                 </Box>
@@ -61,7 +61,7 @@ const FormFields = ({ fields }) => {
           }}
         </Field>
       );
-    },
+    }
   );
 };
 

@@ -1,7 +1,7 @@
 const getSearchResult = (state) => state.searchResult;
 
 const selectors = {
-  getSearchResult,
+  getSearchResult
 };
 
 export default selectors;

@@ -5,7 +5,7 @@ const {
   ADDED_PRODUCT_TO_CART,
   DECREASED_PRODUCT_QUANTITY,
   DELETED_PRODUCT_FROM_CART,
-  DELETED_CART,
+  DELETED_CART
 } = types;
 
 const reducer = (state = [], action) => {
@@ -34,7 +34,7 @@ const reducer = (state = [], action) => {
 };
 
 const reducers = {
-  cart: reducer,
+  cart: reducer
 };
 
 export default reducers;

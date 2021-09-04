@@ -13,7 +13,7 @@ const wishlist = {
       imageUrls: [
         'https://res.cloudinary.com/originalite-and-co/image/upload/v1628522942/jacket1_zuyr96.png',
         './img2',
-        './img3',
+        './img3'
       ],
       quantity: 4,
       sizes: ['xs', 's', 'm', 'l', 'xl'],
@@ -30,14 +30,14 @@ const wishlist = {
       seller: 'Shop',
       itemNo: '477619',
       date: '2021-07-29T17:07:45.436Z',
-      __v: 0,
+      __v: 0
     },
     {
       enabled: true,
       imageUrls: [
         'https://res.cloudinary.com/originalite-and-co/image/upload/v1628684811/product5_vgteuq.png',
         './img2',
-        './img3',
+        './img3'
       ],
       quantity: 0,
       sizes: [],
@@ -54,14 +54,14 @@ const wishlist = {
       seller: 'Shop',
       itemNo: '841293',
       date: '2021-07-29T17:07:45.436Z',
-      __v: 0,
+      __v: 0
     },
     {
       enabled: true,
       imageUrls: [
         'https://res.cloudinary.com/originalite-and-co/image/upload/v1628686468/product1_axv2s9.png',
         './img2',
-        './img3',
+        './img3'
       ],
       quantity: 4,
       sizes: ['xs', 's'],
@@ -78,8 +78,8 @@ const wishlist = {
       seller: 'Shop',
       itemNo: '388912',
       date: '2021-07-29T17:07:45.436Z',
-      __v: 0,
-    },
+      __v: 0
+    }
   ],
   _id: '611e56335386805cc4c51fcd',
   customerId: {
@@ -99,10 +99,10 @@ const wishlist = {
     __v: 0,
     birthday: '06.09.1969',
     mobilePhone: '+380503311484',
-    name: 'Tony',
+    name: 'Tony'
   },
   date: '2021-08-19T13:01:39.838Z',
-  __v: 0,
+  __v: 0
 };
 
 const MyWishlistTest = () => {

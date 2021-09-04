@@ -6,7 +6,7 @@ export function CatalogNavLink({
   handleHover,
   styles,
   text,
-  onMouseLeave,
+  onMouseLeave
 }) {
   return (
     <Link

@@ -10,13 +10,13 @@ const exceptions = {
   create: generateFetchException('creating a customer'),
   retrieve: generateFetchException('retrieving the customer'),
   update: generateFetchException('updating the customer'),
-  delete: generateFetchException('deleting the customer'),
+  delete: generateFetchException('deleting the customer')
 };
 
 const customerRequests = new ServerApiRequests(
   CUSTOMERS_PATH,
   headers,
-  exceptions,
+  exceptions
 );
 
 /**
@@ -63,7 +63,7 @@ const logIn = async (credentials, keepLoggedIn) => {
     credentials,
     `${CUSTOMERS_PATH}/login`,
     exception,
-    generateHeaders(),
+    generateHeaders()
   );
 
   if (keepLoggedIn) {
@@ -82,7 +82,7 @@ const retrieveCustomer = async () => {
   return await customerRequests.retrieve(
     `${CUSTOMERS_PATH}/customer`,
     undefined,
-    generateHeaders(),
+    generateHeaders()
   );
 };
 
@@ -97,7 +97,7 @@ const updateCustomer = async (data) => {
     data,
     `${CUSTOMERS_PATH}`,
     undefined,
-    generateHeaders(),
+    generateHeaders()
   );
 };
 
@@ -111,14 +111,14 @@ const updateCustomer = async (data) => {
 const changeCustomerPassword = async (previousPassword, newPassword) => {
   const data = {
     password: previousPassword,
-    newPassword,
+    newPassword
   };
 
   const exception = generateFetchException('changing the customer password');
   return await customerRequests.update(
     data,
     `${CUSTOMERS_PATH}/password`,
-    exception,
+    exception
   );
 };
 
@@ -127,7 +127,7 @@ const customers = {
   logIn,
   retrieveCustomer,
   changeCustomerPassword,
-  updateCustomer,
+  updateCustomer
 };
 
 export default customers;

@@ -14,7 +14,7 @@ import authorizationReducer from '../features/authorization/index';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart'],
+  whitelist: ['cart']
 };
 
 let rootReducer = combineReducers({
@@ -24,18 +24,18 @@ let rootReducer = combineReducers({
   ...footerReducer,
   ...filterReducer,
   ...footerReducer,
-  ...authorizationReducer,
+  ...authorizationReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composeEnhancers = composeWithDevTools({
-  trace: true,
+  trace: true
 });
 
 const store = createStore(
   persistedReducer,
-  composeEnhancers(applyMiddleware(thunk)),
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 const persistor = persistStore(store);

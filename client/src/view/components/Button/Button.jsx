@@ -5,11 +5,11 @@ import propTypes from 'prop-types';
 Button.propTypes = {
   onClick: propTypes.func,
   backgroundColor: propTypes.string,
-  text: propTypes.string,
+  text: propTypes.string
 };
 
 Button.defaultProps = {
-  onClick: () => null,
+  onClick: () => null
 };
 
 function Button({ onClick, backgroundColor, text, color, type }) {

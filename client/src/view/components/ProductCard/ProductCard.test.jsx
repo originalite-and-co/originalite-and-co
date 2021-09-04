@@ -11,7 +11,7 @@ describe('ProductCard', () => {
     const { getByTestId } = render(
       <Router history={history}>
         <ProductCard size={4} product={products} />
-      </Router>,
+      </Router>
     );
     expect(getByTestId('product-card')).toBeInTheDocument();
   });

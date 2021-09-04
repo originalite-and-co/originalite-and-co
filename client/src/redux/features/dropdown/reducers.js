@@ -15,7 +15,7 @@ const reducer = (state = false, action) => {
 };
 
 const reducers = {
-  isAnyDropdownOpen: reducer,
+  isAnyDropdownOpen: reducer
 };
 
 export default reducers;

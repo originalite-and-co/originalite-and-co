@@ -3,7 +3,7 @@ import { cartOperations, cartSelectors } from '../../../redux/features/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   authorizationSelectors,
-  authorizeOperations,
+  authorizeOperations
 } from '../../../redux/features/authorization';
 import useAsyncError from '../../hooks/useAsyncError';
 import Header from '../../components/Header/Header';
@@ -48,17 +48,17 @@ function Cart(props) {
         (response) => {
           const products = response.map((item) => {
             const { cartQuantity } = cart.find(
-              (cartItem) => cartItem.itemNo === item.itemNo,
+              (cartItem) => cartItem.itemNo === item.itemNo
             );
             return { ...item, cartQuantity };
           });
           setProducts(products);
           setLoaded(true);
         },
-        (error) => throwAsyncError(error),
+        (error) => throwAsyncError(error)
       );
     }, [cart]),
-    [cart],
+    [cart]
   );
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import utils from './utils';
 const {
   createCartFromResponse,
   concatCartFromDbWithCurrentOne,
-  updateApiCart,
+  updateApiCart
 } = utils;
 
 /**
@@ -123,7 +123,7 @@ const operations = {
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart,
+  deleteCart
 };
 
 export default operations;

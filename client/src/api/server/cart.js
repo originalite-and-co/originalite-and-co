@@ -10,7 +10,7 @@ const exceptions = {
   create: generateFetchException('creating a cart'),
   retrieve: generateFetchException('retrieving a cart'),
   update: generateFetchException('updating the cart'),
-  delete: generateFetchException('deleting the cart'),
+  delete: generateFetchException('deleting the cart')
 };
 
 const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
@@ -56,7 +56,7 @@ const addProductToCart = async (id, size) => {
   return await cartRequests.update(
     null,
     `${CART_PATH}/${id}?size=${size}`,
-    exception,
+    exception
   );
 };
 
@@ -71,7 +71,7 @@ const decreaseProductQuantity = async (id, size) => {
   const exception = generateFetchException('decreasing a product quantity');
   return await cartRequests.delete(
     `${CART_PATH}/product/${id}?size=${size}`,
-    exception,
+    exception
   );
 };
 
@@ -85,7 +85,7 @@ const deleteProductFromCart = async (id, size) => {
   const exception = generateFetchException('deleting a product from the cart');
   return await cartRequests.delete(
     `${CART_PATH}/${id}?size=${size}`,
-    exception,
+    exception
   );
 };
 
@@ -103,7 +103,7 @@ const cart = {
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart,
+  deleteCart
 };
 
 export default cart;

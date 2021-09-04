@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
 CatalogBreadcrumbs.propTypes = {
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired
 };
 
 function CatalogBreadcrumbs({ path, categoryName }) {

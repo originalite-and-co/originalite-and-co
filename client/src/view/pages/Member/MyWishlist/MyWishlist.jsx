@@ -8,7 +8,7 @@ import useWindowSize from '../../../hooks/useWindowSize';
 import constants from '../../../constants';
 
 MyWishlist.propTypes = {
-  wishlist: PropTypes.object.isRequired,
+  wishlist: PropTypes.object.isRequired
 };
 
 const useStyles = makeStyles(generateStyles);
@@ -103,18 +103,18 @@ function generateStyles({ breakpoints }) {
 
       [breakpoints.up('desktop')]: {
         paddingBottom: '15px',
-        paddingTop: '15px',
-      },
+        paddingTop: '15px'
+      }
     },
     itemInfoBlock: {
-      marginLeft: '20px',
+      marginLeft: '20px'
     },
     purchaseItemImg: {
       height: '97px',
 
       [breakpoints.up('desktop')]: {
-        height: '174px',
-      },
+        height: '174px'
+      }
     },
     purchaseItemTitle: {
       textTransform: 'capitalize',
@@ -128,8 +128,8 @@ function generateStyles({ breakpoints }) {
         lineHeight: '25px',
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        paddingBottom: '16px',
-      },
+        paddingBottom: '16px'
+      }
     },
     purchaseItemAddInfo: {
       fontFamily: 'Open Sans',
@@ -140,15 +140,15 @@ function generateStyles({ breakpoints }) {
       [breakpoints.up('desktop')]: {
         fontSize: '16px',
         lineHeight: '22px',
-        paddingBottom: '16px',
-      },
+        paddingBottom: '16px'
+      }
     },
     imageAndInfo: {
-      display: 'flex',
+      display: 'flex'
     },
     btnsWrapper: {
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'column'
     },
     cartBtn: {
       fontFamily: 'Open Sans',
@@ -158,7 +158,7 @@ function generateStyles({ breakpoints }) {
       backgroundColor: 'white',
       display: 'flex',
       alignItems: 'center',
-      marginBottom: '5px',
+      marginBottom: '5px'
     },
     removeBtn: {
       fontFamily: 'Open Sans',
@@ -167,8 +167,8 @@ function generateStyles({ breakpoints }) {
       border: 'none',
       backgroundColor: 'white',
       color: '#847A7A',
-      marginTop: '5px',
-    },
+      marginTop: '5px'
+    }
   };
 }
 

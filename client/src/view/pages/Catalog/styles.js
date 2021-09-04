@@ -4,8 +4,8 @@ const generateStyles = ({ breakpoints, palette }) => ({
     paddingTop: '124px',
 
     [breakpoints.up('desktop')]: {
-      paddingTop: '94px!important',
-    },
+      paddingTop: '94px!important'
+    }
   },
   breadcrumbsContainer: {
     paddingTop: '1rem!important',
@@ -13,8 +13,8 @@ const generateStyles = ({ breakpoints, palette }) => ({
     [breakpoints.up('desktop')]: {
       padding: '1vh 4vw',
       borderTop: `1px solid ${palette.primary.main}`,
-      backgroundColor: palette.primary.main,
-    },
+      backgroundColor: palette.primary.main
+    }
   },
   filter: {
     [breakpoints.up('desktop')]: {
@@ -22,25 +22,25 @@ const generateStyles = ({ breakpoints, palette }) => ({
       top: '94px',
       left: 0,
       maxHeight: '100vh',
-      backgroundColor: palette.primary.main,
-    },
+      backgroundColor: palette.primary.main
+    }
   },
   filterContentWrapper: {
     height: 'auto',
     maxHeight: '100%',
-    overflow: 'hidden scroll',
+    overflow: 'hidden scroll'
   },
   filterContentInner: {
-    padding: '1vh 4vw 10vh',
+    padding: '1vh 4vw 10vh'
   },
   productListWrapper: {
     position: 'relative',
     padding: '0 7vw!important',
 
     [breakpoints.up('desktop')]: {
-      padding: '5vw 7vw!important',
-    },
-  },
+      padding: '5vw 7vw!important'
+    }
+  }
 });
 
 export default generateStyles;

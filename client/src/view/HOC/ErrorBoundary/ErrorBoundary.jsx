@@ -34,11 +34,11 @@ class ErrorBoundary extends Component {
 
 ErrorBoundary.propTypes = {
   fallback: PropTypes.element.isRequired,
-  renderChildren: PropTypes.bool,
+  renderChildren: PropTypes.bool
 };
 
 ErrorBoundary.defaultProps = {
-  renderChildren: false,
+  renderChildren: false
 };
 
 export default React.memo(ErrorBoundary);

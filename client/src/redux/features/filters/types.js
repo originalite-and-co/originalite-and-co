@@ -9,7 +9,7 @@ const types = {
   DELETED_FILTER_VALUE,
   DELETED_FILTER,
   DELETED_ALL_FILTERS,
-  GOT_FILTERS,
+  GOT_FILTERS
 };
 
 export default types;

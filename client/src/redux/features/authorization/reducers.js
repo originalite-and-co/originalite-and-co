@@ -5,7 +5,7 @@ const authorizationReducer = (state = false, action) => {
   const {
     AUTHORIZATION_LOGGED_IN,
     AUTHORIZATION_LOGGED_OUT,
-    AUTHORIZATION_NOT_AUTHORIZED,
+    AUTHORIZATION_NOT_AUTHORIZED
   } = types;
 
   switch (type) {
@@ -21,5 +21,5 @@ const authorizationReducer = (state = false, action) => {
 };
 
 export default {
-  authorization: authorizationReducer,
+  authorization: authorizationReducer
 };

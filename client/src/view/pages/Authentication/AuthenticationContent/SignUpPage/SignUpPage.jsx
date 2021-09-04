@@ -20,14 +20,14 @@ SignUpPage.propTypes = {};
 const useStyles = makeStyles({
   textField: {
     borderBottom: '1px solid white',
-    color: '#FFFFFF !important',
+    color: '#FFFFFF !important'
   },
   visibilityBtn: {
     color: '#FFFFFF !important',
     position: 'absolute',
     top: '30%',
-    right: 0,
-  },
+    right: 0
+  }
 });
 
 const phoneRegExp =
@@ -41,7 +41,7 @@ const initialValues = {
   password: '',
   mobile: '',
   birthdate: '',
-  gender: '',
+  gender: ''
 };
 
 const validationSchema = yup.object().shape({
@@ -56,7 +56,7 @@ const validationSchema = yup.object().shape({
     .required()
     .label('mobile'),
   birthdate: yup.string().required().label('birthday'),
-  gender: yup.string().required().label('gender'),
+  gender: yup.string().required().label('gender')
 });
 
 function SignUpPage({ onClick }) {

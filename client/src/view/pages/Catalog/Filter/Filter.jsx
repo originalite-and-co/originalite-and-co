@@ -9,7 +9,7 @@ import CategoryNav from './CategoryNav/CategoryNav';
 import {
   catalogRequests,
   colorRequests,
-  sizeRequests,
+  sizeRequests
 } from '../../../../api/server';
 import useAsyncError from '../../../hooks/useAsyncError';
 import useWindowSize from '../../../hooks/useWindowSize';
@@ -54,7 +54,7 @@ function Filter() {
       .retrieveColors()
       .then(
         (data) => setColors(data),
-        (error) => throwAsyncError(error),
+        (error) => throwAsyncError(error)
       )
       .then(() => setIsLoaded(true));
   }, []);
@@ -65,7 +65,7 @@ function Filter() {
       .retrieveSizes()
       .then(
         (data) => setSizes(data),
-        (error) => throwAsyncError(error),
+        (error) => throwAsyncError(error)
       )
       .then(() => setIsLoaded(true));
   }, []);

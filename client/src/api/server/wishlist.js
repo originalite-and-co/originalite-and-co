@@ -9,13 +9,13 @@ const exceptions = {
   create: generateFetchException('creating a wishlist'),
   retrieve: generateFetchException('retrieving the wishlist'),
   update: generateFetchException('updating the wishlist'),
-  delete: generateFetchException('deleting the wishlist'),
+  delete: generateFetchException('deleting the wishlist')
 };
 
 const wishlistRequests = new ServerApiRequests(
   WISHLIST_PATH,
   headers,
-  exceptions,
+  exceptions
 );
 
 /**
@@ -54,7 +54,7 @@ const addProductToWishlist = async (productId) => {
   return await wishlistRequests.update(
     null,
     `${WISHLIST_PATH}/${productId}`,
-    exception,
+    exception
   );
 };
 
@@ -65,11 +65,11 @@ const addProductToWishlist = async (productId) => {
  */
 const deleteProductFromWishlist = async (productId) => {
   const exception = generateFetchException(
-    'deleting a product from the wishlist',
+    'deleting a product from the wishlist'
   );
   return await wishlistRequests.delete(
     `${WISHLIST_PATH}/${productId}`,
-    exception,
+    exception
   );
 };
 
@@ -87,7 +87,7 @@ const wishlist = {
   updateWishlist,
   addProductToWishlist,
   deleteProductFromWishlist,
-  deleteWishlist,
+  deleteWishlist
 };
 
 export default wishlist;

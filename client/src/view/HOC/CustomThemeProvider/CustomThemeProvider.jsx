@@ -15,8 +15,8 @@ function CustomThemeProvider({ children }) {
         outline: 'none',
         border: 'none',
         backgroundColor: 'transparent',
-        cursor: 'pointer',
-      }),
+        cursor: 'pointer'
+      })
     },
     breakpoints: {
       keys: [
@@ -25,7 +25,7 @@ function CustomThemeProvider({ children }) {
         'tablet',
         'minDesktop',
         'desktop',
-        'largeScreens',
+        'largeScreens'
       ],
       values: {
         ...breakpoints.values,
@@ -33,26 +33,26 @@ function CustomThemeProvider({ children }) {
         tablet: 481,
         minDesktop: 993,
         desktop: 1024,
-        largeScreens: 1200,
-      },
+        largeScreens: 1200
+      }
     },
     palette: {
       primary: {
         main: '#000000',
-        contrastText: '#FFFFFF',
+        contrastText: '#FFFFFF'
       },
       secondary: {
         main: '#FFFFFF',
-        contrastText: '#000000',
+        contrastText: '#000000'
       },
       text: {
         primary: '#FFFFFF',
-        secondary: '#000000',
-      },
+        secondary: '#000000'
+      }
     },
     typography: {
-      fontFamily: `"Open Sans", "Josefin Sans", sans-serif`,
-    },
+      fontFamily: `"Open Sans", "Josefin Sans", sans-serif`
+    }
   });
 
   return <ThemeProvider theme={customTheme}>{children}</ThemeProvider>;

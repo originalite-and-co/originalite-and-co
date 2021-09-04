@@ -9,7 +9,7 @@ const exceptions = {
   create: generateFetchException('creating a size'),
   retrieve: generateFetchException('retrieving sizes'),
   update: generateFetchException('updating the size'),
-  delete: generateFetchException('deleting the size'),
+  delete: generateFetchException('deleting the size')
 };
 
 const sizeRequests = new ServerApiRequests(SIZES_PATH, headers, exceptions);
@@ -54,7 +54,7 @@ const sizes = {
   createSize,
   retrieveSizes,
   updateSize,
-  deleteSize,
+  deleteSize
 };
 
 export default sizes;

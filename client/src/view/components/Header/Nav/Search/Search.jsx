@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchResultActions } from '../../../../../redux/features/searchResult';
 import {
   isAnyDropdownOpenActions,
-  isAnyDropdownOpenSelectors,
+  isAnyDropdownOpenSelectors
 } from '../../../../../redux/features/dropdown';
 
 import { useHistory } from 'react-router-dom';
@@ -34,7 +34,7 @@ function Search(props) {
   const [isDesktop, setIsDesktop] = useState();
 
   const isAnyDropdownOpen = useSelector(
-    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen,
+    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
   );
   const dispatch = useDispatch();
 
@@ -92,7 +92,7 @@ function Search(props) {
           dispatch(isAnyDropdownOpenActions.closedDropdown());
         }
       },
-      (error) => throwAsyncError(error),
+      (error) => throwAsyncError(error)
     );
   };
 
@@ -104,19 +104,19 @@ function Search(props) {
         message="No items have been found "
       />
     ),
-    [],
+    []
   );
 
   const dropdownContent = (
     <>
       <Formik
         initialValues={{
-          search: '',
+          search: ''
         }}
         validationSchema={Yup.object().shape({
           search: Yup.string()
             .min(2, "It's required to type at least two characters")
-            .required('Fill in this field, please'),
+            .required('Fill in this field, please')
         })}
         onSubmit={handleSubmit}
       >
@@ -126,7 +126,7 @@ function Search(props) {
           handleSubmit,
           values,
           errors,
-          touched,
+          touched
         }) => {
           return (
             <form onSubmit={handleSubmit} className={styles.form}>
@@ -140,7 +140,7 @@ function Search(props) {
                     onChange: handleChange,
                     onBlur: handleBlur,
                     name: 'search',
-                    className: styles.input,
+                    className: styles.input
                   }}
                 />
 
@@ -178,7 +178,7 @@ function Search(props) {
         lockBodyScrolling
         classNames={{
           closed: styles.dropdown,
-          active: styles.dropdownActive,
+          active: styles.dropdownActive
         }}
         isActive={isDropdownActive}
         children={dropdownContent}

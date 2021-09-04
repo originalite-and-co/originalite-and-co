@@ -10,12 +10,12 @@ import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   filterActions,
-  filterSelectors,
+  filterSelectors
 } from '../../../../../redux/features/filters';
 
 Size.propTypes = {
   name: PropTypes.string.isRequired,
-  isDesktop: PropTypes.bool.isRequired,
+  isDesktop: PropTypes.bool.isRequired
 };
 
 function Size({ name, isDesktop }) {
@@ -23,7 +23,7 @@ function Size({ name, isDesktop }) {
 
   const dispatch = useDispatch();
   const sizes = useSelector((state) =>
-    filterSelectors.getSelectedFilter(state, 'sizes'),
+    filterSelectors.getSelectedFilter(state, 'sizes')
   );
 
   useEffect(() => {

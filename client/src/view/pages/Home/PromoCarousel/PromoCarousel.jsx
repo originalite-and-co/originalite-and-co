@@ -14,7 +14,7 @@ function PromoCarousel() {
       slides.map(({ imageUrl, _id }) => (
         <Image key={_id} src={imageUrl} className="swiper__image" />
       )),
-    [slides],
+    [slides]
   );
 
   useEffect(() => {

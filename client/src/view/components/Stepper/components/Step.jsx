@@ -12,7 +12,7 @@ Step.propTypes = {
   schema: PropTypes.object,
   handleNext: PropTypes.func,
   handlePrev: PropTypes.func,
-  isLastStep: PropTypes.bool,
+  isLastStep: PropTypes.bool
 };
 
 function Step({

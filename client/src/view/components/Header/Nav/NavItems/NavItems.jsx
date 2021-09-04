@@ -16,7 +16,7 @@ function NavItems() {
   const [isDropdownActive, setActiveDropdown] = useState(false);
   const dispatch = useDispatch();
   const isAnyDropdownOpen = useSelector(
-    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen,
+    isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
   );
 
   const [isDesktop, setIsDesktop] = useState();

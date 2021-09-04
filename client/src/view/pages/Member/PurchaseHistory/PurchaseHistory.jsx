@@ -4,7 +4,7 @@ import { Box, List, ListItem, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 PurchaseHistory.propTypes = {
-  orders: PropTypes.array.isRequired,
+  orders: PropTypes.array.isRequired
 };
 
 const useStyles = makeStyles(generateStyles);
@@ -22,7 +22,7 @@ function PurchaseHistory({ orders }) {
 
   const ordersArray = orders.map((order) => order.products);
   const productsArray = ordersArray.map(
-    (orderProduct) => orderProduct[0].product,
+    (orderProduct) => orderProduct[0].product
   );
   const productsList = productsArray.map((product) => (
     <ListItem
@@ -70,8 +70,8 @@ function generateStyles({ breakpoints }) {
 
       [breakpoints.up('desktop')]: {
         marginTop: '25px',
-        paddingBottom: '15px',
-      },
+        paddingBottom: '15px'
+      }
     },
     purchaseItemdate: {
       position: 'absolute',
@@ -86,17 +86,17 @@ function generateStyles({ breakpoints }) {
         fontSize: '18px',
         lineHeight: '25px',
         fontWeight: '300',
-        top: '-15px',
-      },
+        top: '-15px'
+      }
     },
     itemInfoBlock: {
-      marginLeft: '20px',
+      marginLeft: '20px'
     },
     purchaseItemImg: {
       height: '97px',
       [breakpoints.up('desktop')]: {
-        height: '174px',
-      },
+        height: '174px'
+      }
     },
     purchaseItemTitle: {
       textTransform: 'capitalize',
@@ -108,8 +108,8 @@ function generateStyles({ breakpoints }) {
       [breakpoints.up('desktop')]: {
         fontSize: '18px',
         lineHeight: '25px',
-        paddingBottom: '9px',
-      },
+        paddingBottom: '9px'
+      }
     },
     purchaseItemAddInfo: {
       fontFamily: 'Open Sans',
@@ -120,9 +120,9 @@ function generateStyles({ breakpoints }) {
       [breakpoints.up('desktop')]: {
         fontSize: '18px',
         lineHeight: '25px',
-        fontWeight: '300',
-      },
-    },
+        fontWeight: '300'
+      }
+    }
   };
 }
 

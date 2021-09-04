@@ -11,8 +11,8 @@ const DATA = [
     _id: '610a96b4180396f37c64e888',
     id: 'men-outwear',
     name: 'Outwear',
-    parentId: 'men',
-  },
+    parentId: 'men'
+  }
 ];
 
 describe('CategoryNav', () => {
@@ -31,7 +31,7 @@ describe('CategoryNav', () => {
             parentCategoryName={parentCategoryName}
           />
         </CustomThemeProvider>
-      </Router>,
+      </Router>
     );
 
     expect(getByText(parentCategoryName)).toBeInTheDocument();
@@ -58,7 +58,7 @@ describe('CategoryNav', () => {
             parentCategoryName={parentCategoryName}
           />
         </CustomThemeProvider>
-      </Router>,
+      </Router>
     );
 
     /**

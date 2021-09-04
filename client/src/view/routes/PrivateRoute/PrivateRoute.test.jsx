@@ -27,7 +27,7 @@ describe('Private route', () => {
       <Router history={history}>
         <Route path="/auth/login" render={() => <LoginComponent />} />
         <PrivateRoute isAuthenticated component={TestComponent} path="/test" />
-      </Router>,
+      </Router>
     );
 
     expect(queryByText(/test/i)).toBeNull();
@@ -44,7 +44,7 @@ describe('Private route', () => {
           component={TestComponent}
           path="/test"
         />
-      </Router>,
+      </Router>
     );
 
     expect(queryByText(/test/i)).toBeNull();

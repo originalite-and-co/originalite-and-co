@@ -16,7 +16,7 @@ const TestHeaderDropdown = () => {
         <Dropdown
           classNames={{
             closed: styles.dropdown,
-            active: styles.dropdownActive,
+            active: styles.dropdownActive
           }}
           lockBodyScrolling
           onLeave={fn}

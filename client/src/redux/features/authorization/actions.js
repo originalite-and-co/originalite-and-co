@@ -3,26 +3,26 @@ import types from './types';
 const {
   AUTHORIZATION_LOGGED_IN,
   AUTHORIZATION_LOGGED_OUT,
-  AUTHORIZATION_NOT_AUTHORIZED,
+  AUTHORIZATION_NOT_AUTHORIZED
 } = types;
 
 const logInCustomer = () => ({
   type: AUTHORIZATION_LOGGED_IN,
-  payload: true,
+  payload: true
 });
 
 const doNotAuthorize = () => ({
   type: AUTHORIZATION_NOT_AUTHORIZED,
-  payload: false,
+  payload: false
 });
 
 const loggOutCustomer = () => ({
   type: AUTHORIZATION_LOGGED_OUT,
-  payload: false,
+  payload: false
 });
 
 export default {
   logInCustomer,
   doNotAuthorize,
-  loggOutCustomer,
+  loggOutCustomer
 };

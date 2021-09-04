@@ -9,7 +9,7 @@ const exceptions = {
   create: generateFetchException('creating a page'),
   retrieve: generateFetchException('retrieving pages'),
   update: generateFetchException('updating the page'),
-  delete: generateFetchException('deleting the page'),
+  delete: generateFetchException('deleting the page')
 };
 
 const pageRequests = new ServerApiRequests(PAGES_PATH, headers, exceptions);
@@ -69,7 +69,7 @@ const pages = {
   retrievePages,
   retrievePage,
   updatePage,
-  deletePage,
+  deletePage
 };
 
 export default pages;

@@ -12,7 +12,7 @@ const styles = {
       padding: '12px 8px',
       border: '1px solid #ccc',
       borderRadius: '4px',
-      color: (props) => props.color,
+      color: (props) => props.color
     },
     '& .form-radio__label': {
       display: 'flex',
@@ -21,19 +21,19 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         '& span': {
-          padding: '0 15px',
-        },
-      },
-    },
+          padding: '0 15px'
+        }
+      }
+    }
   },
   fieldTitle: {
-    padding: '5px 0',
+    padding: '5px 0'
   },
   error: {
     padding: '8px 0',
     fontSize: '12px',
-    color: '#dc3545',
-  },
+    color: '#dc3545'
+  }
 };
 
 export default makeStyles(styles);

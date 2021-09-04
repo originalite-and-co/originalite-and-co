@@ -18,7 +18,7 @@ const reducer = (state = [], action) => {
 };
 
 const reducers = {
-  searchResult: reducer,
+  searchResult: reducer
 };
 
 export default reducers;

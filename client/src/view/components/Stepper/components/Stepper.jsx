@@ -7,7 +7,7 @@ import stepperStyles from '../styles';
 
 Stepper.propTypes = {
   initialValues: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 function Stepper({ children, initialValues, onSubmit, steps }) {
@@ -36,7 +36,7 @@ function Stepper({ children, initialValues, onSubmit, steps }) {
     initialValues: formData,
     handleNext,
     handlePrev: step ? handlePrev : null,
-    isLastStep,
+    isLastStep
   });
 
   return (

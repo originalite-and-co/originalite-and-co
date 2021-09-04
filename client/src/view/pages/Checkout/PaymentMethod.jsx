@@ -12,20 +12,20 @@ const PaymentMethodComponent = ({ value, style }) => {
             type: 'number',
             name: 'payment.credit.creditNumber',
             title: 'Credit number',
-            groupClass: 'creditNumber',
+            groupClass: 'creditNumber'
           },
           {
             type: 'number',
             name: 'payment.credit.cvv',
             title: 'CVV',
-            groupClass: 'creditCVV',
+            groupClass: 'creditCVV'
           },
           {
             groupClass: 'creditDate',
             name: 'payment.credit.expityDate',
             title: 'Expity date',
-            type: 'date',
-          },
+            type: 'date'
+          }
         ]}
       />
     ),
@@ -36,20 +36,20 @@ const PaymentMethodComponent = ({ value, style }) => {
             type: 'number',
             title: 'Card number',
             name: 'payment.paypal.creditNumber',
-            groupClass: 'paypalNumber',
+            groupClass: 'paypalNumber'
           },
           {
             type: 'number',
             name: 'payment.paypal.cvv',
             title: 'CVV',
-            groupClass: 'paypalCVV',
+            groupClass: 'paypalCVV'
           },
           {
             groupClass: 'paypalDate',
             name: 'payment.paypal.expityDate',
             title: 'Expity date',
-            type: 'date',
-          },
+            type: 'date'
+          }
         ]}
       />
     ),
@@ -60,11 +60,11 @@ const PaymentMethodComponent = ({ value, style }) => {
             type: 'number',
             groupClass: 'cash',
             title: 'Cash',
-            name: 'payment.cash.value',
-          },
+            name: 'payment.cash.value'
+          }
         ]}
       />
-    ),
+    )
   };
 
   if (!components[value]) return null;
