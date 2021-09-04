@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -12,7 +12,6 @@ import Checkout from '../pages/Checkout/Checkout';
 import Catalog from '../pages/Catalog/Catalog';
 import Cart from '../pages/Cart/Cart';
 import SearchResult from '../pages/SearchResult/SearchResult';
-import Product from '../pages/Product/Product';
 
 import useAsyncError from '../hooks/useAsyncError';
 import { customerRequests, pageRequests } from '../../api/server';
@@ -22,10 +21,13 @@ import {
   authorizeOperations
 } from '../../redux/features/authorization';
 import { useDispatch, useSelector } from 'react-redux';
+import ProductPage from '../pages/ProductPage/ProductPage';
+import { wishlistOperations } from '../../redux/features/wishlist';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
 function AppRoutes() {
   const dispatch = useDispatch();
-
   const authorization = useSelector(authorizationSelectors.authorization);
   const [isAuthenticated, setAuthenticated] = useState(
     !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
@@ -34,6 +36,11 @@ function AppRoutes() {
   const [staticPages, setStaticPages] = useState([]);
 
   const throwError = useAsyncError();
+
+  useEffect(() => {
+    dispatch(authorizeOperations.authorizeUser());
+    dispatch(wishlistOperations.gotWishlist());
+  }, []);
 
   useEffect(() => {
     dispatch(authorizeOperations.authorizeUser());
@@ -70,11 +77,15 @@ function AppRoutes() {
           key={page._id}
           path={page.url}
           render={(renderProps) => (
-            <StaticPage
-              title={page.title}
-              htmlContent={page.htmlContent}
-              {...renderProps}
-            />
+            <>
+              <Header />
+              <StaticPage
+                title={page.title}
+                htmlContent={page.htmlContent}
+                {...renderProps}
+              />
+              <Footer />
+            </>
           )}
         />
       );
@@ -86,11 +97,15 @@ function AppRoutes() {
       <Route path="/products/search" component={SearchResult} />
       {staticPageRoutes}
       <Route path="/catalog/:category" component={Catalog} />
-      <Route path="/products/:itemNumber" component={Product} />
-      <Route path="/checkout" component={Checkout} />
+      <Route path="/products/:itemNumber" component={ProductPage} />
       <PrivateRoute
         isAuthenticated={isAuthenticated}
-        path="/member"
+        path="/checkout"
+        component={Checkout}
+      />
+      <PrivateRoute
+        isAuthenticated={isAuthenticated}
+        path="/member/:section"
         component={Member}
       />
       <Route path="/cart" component={Cart} />

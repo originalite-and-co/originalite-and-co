@@ -54,8 +54,8 @@ function SearchResult() {
   return (
     <>
       <Header />
-      <Box component="main" className={`${classes.content} wrapper`}>
-        <Box component="section">
+      <Box component="main" className={classes.content}>
+        <Box component="section" className={`${classes.section} wrapper`}>
           <Typography
             component="h3"
             variant="h5"

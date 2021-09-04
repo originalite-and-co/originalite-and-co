@@ -54,7 +54,7 @@ const updateCart = async (data) => {
 const addProductToCart = async (id, size) => {
   const exception = generateFetchException('adding a product to the cart');
   return await cartRequests.update(
-    null,
+    {},
     `${CART_PATH}/${id}?size=${size}`,
     exception
   );

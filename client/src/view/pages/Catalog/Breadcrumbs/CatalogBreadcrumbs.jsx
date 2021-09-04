@@ -10,7 +10,8 @@ import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
 CatalogBreadcrumbs.propTypes = {
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
+  categoryName: PropTypes.string.isRequired
 };
 
 function CatalogBreadcrumbs({ path, categoryName }) {
@@ -34,6 +35,7 @@ function CatalogBreadcrumbs({ path, categoryName }) {
   const links = path
     .split('/')
     .filter((link) => link.length)
+    .filter((link) => link !== 'catalog')
     .map((link, index, array) => {
       const stringIndex = path.indexOf(link);
       const dividerIndex = path.indexOf('/', stringIndex);

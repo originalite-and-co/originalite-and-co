@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types';
 import styles from './ProductCard.module.scss';
+<<<<<<< HEAD
 import { Typography, Box } from '@material-ui/core';
+=======
+import { Box, Typography } from '@material-ui/core';
+>>>>>>> origin/develop
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
 
 ProductCard.propTypes = {
+<<<<<<< HEAD
   product: PropTypes.object.isRequired
+=======
+  product: PropTypes.object.isRequired,
+  size: PropTypes.number.isRequired
+>>>>>>> origin/develop
 };
 
 function ProductCard({ product }) {
@@ -27,9 +36,17 @@ function ProductCard({ product }) {
     if (dataFromLocalStorage?.length === 10) {
       dataFromLocalStorage.shift();
     }
+<<<<<<< HEAD
     let data = [product.itemNo];
     if (Array.isArray(dataFromLocalStorage)) {
       data = [...dataFromLocalStorage, product.itemNo];
+=======
+    let data = [product];
+    if (Array.isArray(dataFromLocalStorage)) {
+      dataFromLocalStorage.some((item) => item.itemNo === product.itemNo)
+        ? (data = [...dataFromLocalStorage])
+        : (data = [...dataFromLocalStorage, product]);
+>>>>>>> origin/develop
     }
     localStorage.setItem('recentlyViewed', JSON.stringify(data));
   };
@@ -57,7 +74,7 @@ function ProductCard({ product }) {
           variant={isDesktop ? 'h6' : 'body2'}
           className={styles.productCardPrice}
         >
-          {`${product.currentPrice} $`}
+          ${product.currentPrice}
         </Typography>
       </Link>
     </Box>

@@ -3,7 +3,6 @@ import ServerApiRequests from './ServerApiRequests';
 
 const CUSTOMERS_PATH = '/api/customers';
 
-// debugger
 const headers = generateHeaders();
 
 const exceptions = {

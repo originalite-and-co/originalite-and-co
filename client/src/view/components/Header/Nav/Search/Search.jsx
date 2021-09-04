@@ -17,10 +17,11 @@ import { productRequests } from '../../../../../api/server/index';
 import Toast from '../../../Toast/Toast';
 import Dropdown from '../../../Dropdown/Dropdown';
 import Button from '../../../Button/Button';
-import { Box, TextField } from '@material-ui/core';
+import { Box, TextField, Typography } from '@material-ui/core';
 
-import search from '../icons/search.svg';
-import styles from './Search.module.scss';
+import SearchIcon from '../../../../assets/icons/Search';
+import { makeStyles } from '@material-ui/styles';
+import { generateStyles } from './SearchStyles';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -28,6 +29,9 @@ import * as Yup from 'yup';
 Search.propTypes = {};
 
 function Search(props) {
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
+
   const [searchResult, setSearchResult] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
   const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -100,7 +104,11 @@ function Search(props) {
     () => (
       <Toast
         variant="filled"
+<<<<<<< HEAD
         className={styles.informationToast}
+=======
+        className={classes.informationToast}
+>>>>>>> origin/develop
         message="No items have been found "
       />
     ),
@@ -129,8 +137,13 @@ function Search(props) {
           touched
         }) => {
           return (
+<<<<<<< HEAD
             <form onSubmit={handleSubmit} className={styles.form}>
               <Box className={`${styles.textFieldWrapper} wrapper`}>
+=======
+            <form onSubmit={handleSubmit} className={classes.form}>
+              <Box className={`${classes.textFieldWrapper} wrapper`}>
+>>>>>>> origin/develop
                 <TextField
                   color="primary"
                   value={values.search}
@@ -140,15 +153,26 @@ function Search(props) {
                     onChange: handleChange,
                     onBlur: handleBlur,
                     name: 'search',
+<<<<<<< HEAD
                     className: styles.input
+=======
+                    className: classes.input
+>>>>>>> origin/develop
                   }}
                 />
 
                 {errors.search && touched.search && (
+<<<<<<< HEAD
                   <p className={styles.error}>{errors.search}</p>
                 )}
               </Box>
               <Box className={styles.btnWrapper}>
+=======
+                  <p className={classes.error}>{errors.search}</p>
+                )}
+              </Box>
+              <Box className={classes.btnWrapper}>
+>>>>>>> origin/develop
                 <Button
                   text="search"
                   type="submit"
@@ -168,17 +192,40 @@ function Search(props) {
     <>
       <Box
         onClick={handleIconClick}
+<<<<<<< HEAD
         className={styles.imageWrapper}
         data-testid="nav-item-search"
       >
         <img className={styles.icon} src={search} alt="search icon" />
         {isDesktop && <p>Search</p>}
+=======
+        className={classes.imageWrapper}
+        data-testid="nav-item-search"
+      >
+        <SearchIcon color="primary" className={classes.icon} />
+        {isDesktop && (
+          <Typography
+            className={classes.iconTitle}
+            component="p"
+            variant="body1"
+            color="textPrimary"
+            noWrap
+          >
+            Search
+          </Typography>
+        )}
+>>>>>>> origin/develop
       </Box>
       <Dropdown
         lockBodyScrolling
         classNames={{
+<<<<<<< HEAD
           closed: styles.dropdown,
           active: styles.dropdownActive
+=======
+          closed: classes.dropdown,
+          active: classes.dropdownActive
+>>>>>>> origin/develop
         }}
         isActive={isDropdownActive}
         children={dropdownContent}

@@ -2,6 +2,7 @@ import types from './types';
 
 const {
   GOT_CART,
+  UPDATED_CART,
   ADDED_PRODUCT_TO_CART,
   DECREASED_PRODUCT_QUANTITY,
   DELETED_PRODUCT_FROM_CART,
@@ -15,6 +16,16 @@ const {
  */
 const getCart = (cartProducts) => ({
   type: GOT_CART,
+  payload: cartProducts
+});
+
+/**
+ *
+ * @param {Array<Object>} cartProducts
+ * @returns {{payload, type: string}}
+ */
+const updateCart = (cartProducts) => ({
+  type: UPDATED_CART,
   payload: cartProducts
 });
 
@@ -58,6 +69,7 @@ const deleteCart = () => ({
 
 const actions = {
   getCart,
+  updateCart,
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,

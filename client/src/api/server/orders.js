@@ -29,7 +29,11 @@ const createOrder = async (orderDetails) => {
  * @returns {Promise<Array>} - customer orders
  */
 const retrieveOrder = async () => {
-  return await orderRequests.retrieve(`${ORDERS_PATH}`, generateHeaders());
+  return await orderRequests.retrieve(
+    `${ORDERS_PATH}`,
+    undefined,
+    generateHeaders()
+  );
 };
 
 const orders = {

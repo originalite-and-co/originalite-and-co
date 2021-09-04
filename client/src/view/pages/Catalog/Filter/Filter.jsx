@@ -42,7 +42,7 @@ function Filter() {
       .retrieveCategory(params.category)
       .then((category) => setCategory(category))
       .then(() => setIsLoaded(true));
-  }, []);
+  }, [params.category]);
 
   useEffect(() => {
     setDesktop(width >= constants.WINDOW_DESKTOP_SIZE);

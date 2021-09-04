@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import React, { useEffect, useState, useCallback } from 'react';
 
 import { Link, NavLink } from 'react-router-dom';
 import styles from './CatalogNav.module.scss';
 import mainCategoryLinkStyles from '../MainCategoryLink/MainCategoryLink.module.scss';
+=======
+import React, { useCallback, useEffect, useState } from 'react';
+
+import {NavLink} from 'react-router-dom';
+>>>>>>> origin/develop
 
 import useWindowSize from '../../../hooks/useWindowSize';
 import useAsyncError from '../../../hooks/useAsyncError';
@@ -22,7 +28,18 @@ import Dropdown from '../../Dropdown/Dropdown';
 import MainCategoryLink from '../MainCategoryLink/MainCategoryLink';
 import AllCategories from '../AllCategories/AllCategories';
 
+<<<<<<< HEAD
 function CatalogNav() {
+=======
+import { generateStyles } from './styles';
+import { makeStyles } from '@material-ui/styles';
+import Styles from './Styles.module.scss';
+
+function CatalogNav() {
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
+
+>>>>>>> origin/develop
   const [catalog, setCatalog] = useState([]);
   const [categoryLinks, setCategoryLinks] = useState([]);
   const [isDropdownActive, setActiveDropdown] = useState(false);
@@ -88,6 +105,7 @@ function CatalogNav() {
       setActiveLinkId(linkId);
     }
 
+<<<<<<< HEAD
     if (isDropdownActive) {
       dispatch(isAnyDropdownOpenActions.closedDropdown());
       setActiveDropdown(false);
@@ -96,6 +114,16 @@ function CatalogNav() {
       renderCategoryLinks(linkId);
       //close all dropdowns that are active
       dispatch(isAnyDropdownOpenActions.closedDropdown());
+=======
+        if (isDropdownActive) {
+            dispatch(isAnyDropdownOpenActions.closedDropdown())
+            setActiveDropdown(false)
+            setActiveLinkId(linkId)
+        } else {
+            renderCategoryLinks(linkId)
+            //close all dropdowns that are active
+            dispatch(isAnyDropdownOpenActions.closedDropdown());
+>>>>>>> origin/develop
 
       /**
        * These setTimeouts are important for functionality,
@@ -115,9 +143,12 @@ function CatalogNav() {
         setActiveLinkId(linkId);
       });
     }
+<<<<<<< HEAD
 
     // setActiveDropdown(!isDropdownActive)
     // setActiveLinkId(linkId)
+=======
+>>>>>>> origin/develop
   };
 
   const renderCategoryLinks = (linkId) => {
@@ -128,14 +159,23 @@ function CatalogNav() {
           <Grid
             item
             key={category._id}
+<<<<<<< HEAD
             className={styles.categoryListItem}
+=======
+            className={classes.categoryListItem}
+>>>>>>> origin/develop
             component="li"
             xs={2}
           >
             <NavLink
               to={`/catalog/${generateCategoryPath(category)}`}
+<<<<<<< HEAD
               className={styles.categoryLink}
               activeClassName={styles.categoryLinkActive}
+=======
+              className={Styles.categoryLink}
+              activeClassName={classes.categoryLinkActive}
+>>>>>>> origin/develop
               onClick={handleCategoryLinkClick}
             >
               {category.name}
@@ -164,12 +204,21 @@ function CatalogNav() {
   let dropdownContent;
   if (categoryLinks.length) {
     dropdownContent = (
+<<<<<<< HEAD
       <Box component="nav" className={`${styles.categoryNav} wrapper`}>
         {isDesktop && <p className={styles.categoriesTitle}>Categories</p>}
         <Grid
           container
           component="ul"
           className={styles.categoryList}
+=======
+      <Box component="nav" className={`${classes.categoryNav} wrapper`}>
+        {isDesktop && <p className={classes.categoriesTitle}>Categories</p>}
+        <Grid
+          container
+          component="ul"
+          className={classes.categoryList}
+>>>>>>> origin/develop
           data-testid="dropdown-content"
           direction="column"
           alignItems="flex-start"
@@ -197,16 +246,26 @@ function CatalogNav() {
       disablePadding
       className={
         isDesktop
+<<<<<<< HEAD
           ? styles.catalogNavWrapper
           : `${styles.catalogNavWrapper} wrapper`
+=======
+          ? classes.catalogNavWrapper
+          : `${classes.catalogNavWrapper} wrapper`
+>>>>>>> origin/develop
       }
       data-testid="catalog-nav"
     >
       {renderMainCategoryLinks(3)}
       <Dropdown
         classNames={{
+<<<<<<< HEAD
           closed: styles.dropdown,
           active: styles.dropdownActive
+=======
+          closed: classes.dropdown,
+          active: classes.dropdownActive
+>>>>>>> origin/develop
         }}
         lockBodyScrolling
         isActive={isDropdownActive}

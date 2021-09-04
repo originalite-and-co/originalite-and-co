@@ -9,6 +9,7 @@
   display: block;
   height: 100%;
   width: 100%;
+  text-decoration: none;
 }
 
 .productCardTitle {
@@ -20,7 +21,7 @@
 }
 
 .productImage {
-  height: 85%;
+  height: 75%;
   width: 100%;
 
   img {
@@ -37,4 +38,16 @@
   font-weight: 400;
   color: #847a7a;
   text-transform: uppercase;
+}
+
+@media (min-width: $tablet){
+  .productImage {
+    height: 80%;
+  }
+}
+
+@media (min-width: $min-desktop) {
+  .productImage {
+    height: 75%;
+  }
 }

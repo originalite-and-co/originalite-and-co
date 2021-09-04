@@ -80,11 +80,12 @@ const retrieveProductsByItemNumbers = async (itemNumbersArray) => {
   });
 
   const responses = await Promise.all(requests);
-  let result = [];
-  responses.forEach(async (item) => {
-    result.push(await item.json());
-  });
-  return result;
+
+  return await Promise.all(
+    responses.map(async (item) => {
+      return await item.json();
+    })
+  );
 };
 
 /**

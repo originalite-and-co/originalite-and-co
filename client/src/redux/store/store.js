@@ -10,6 +10,7 @@ import searchResult from './../features/searchResult/index';
 import footerReducer from './../features/footerLinks/index';
 import filterReducer from './../features/filters/index';
 import authorizationReducer from '../features/authorization/index';
+import wishlistReducer from '../features/wishlist/index';
 
 const persistConfig = {
   key: 'root',
@@ -24,7 +25,8 @@ let rootReducer = combineReducers({
   ...footerReducer,
   ...filterReducer,
   ...footerReducer,
-  ...authorizationReducer
+  ...authorizationReducer,
+  ...wishlistReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

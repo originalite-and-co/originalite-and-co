@@ -4,8 +4,7 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '../../../../components/Button/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import * as yup from 'yup';
+import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { FormGroup, Typography } from '@material-ui/core';
 import { customerRequests } from '../../../../../api/server';
 import useAsyncError from '../../../../hooks/useAsyncError';
@@ -17,6 +16,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import { useDispatch } from 'react-redux';
 import { authorizeOperations } from '../../../../../redux/features/authorization';
+import * as yup from 'yup';
 
 const useStyles = makeStyles({
   textField: {
@@ -64,8 +64,8 @@ function LoginPage() {
 
   const forwardIfAuthorized = async () => {
     dispatch(authorizeUser());
-
     if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
+      setLoggedIn(true);
       setTimeout(() => {
         history.push('/');
       }, 1500);
@@ -112,7 +112,6 @@ function LoginPage() {
           onSubmit={(values) => {
             customerRequests
               .logIn(values, checked)
-              .then(setLoggedIn(true))
               .then(forwardIfAuthorized)
               .catch((error) => throwAsyncError(error));
           }}

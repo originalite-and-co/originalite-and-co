@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
+<<<<<<< HEAD
 import logo from '../icons/Originalité.svg';
 import logoDesktop from '../icons/OriginalitéDesktop.svg';
+=======
+import logo from '../../../../assets/icons/Originalité.svg';
+// eslint-disable-next-line import/no-unresolved
+import logoDesktop from '../../../../assets/icons/OriginalitéDesktop.svg';
+>>>>>>> origin/develop
 import useWindowSize from '../../../../hooks/useWindowSize';
 import constants from '../../../../constants';
 

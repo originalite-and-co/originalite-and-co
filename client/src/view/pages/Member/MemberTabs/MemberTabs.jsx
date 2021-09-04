@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Box, Tab, Tabs } from '@material-ui/core';
+import { Box, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MyProfile from '../MyProfile/MyProfile';
 import {
@@ -9,10 +9,15 @@ import {
 } from '../../../../api/server/index';
 import useAsyncError from '../../../hooks/useAsyncError';
 import Toast from '../../../components/Toast/Toast';
-
 import Styles from './../Member.module.scss';
-import PurchaseHistory from '../PurchaseHistory/PurchaseHistory';
 import MyWishlist from '../MyWishlist/MyWishlist';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  wishlistOperations,
+  wishlistSelectors
+} from '../../../../redux/features/wishlist';
+import PurchaseHistoryNew from '../PurchaseHistory/PurchaseHistoryNEW';
 
 MemberTabs.propTypes = {};
 
@@ -36,14 +41,21 @@ function MemberTabs() {
   const [isDataUpdated, setIsDataUpdated] = useState(false);
   /*is used in MyProfile component, should the data be successfully updated*/
 
-  const [value, setValue] = useState(0);
   const [orders, setOrders] = useState();
-
+  const { params, url } = useRouteMatch();
   const [wishlist, setWishlist] = useState();
 
   const classes = useStyles();
   const throwError = useAsyncError();
+  const dispatch = useDispatch();
+  const wishlistState = useSelector(wishlistSelectors.getWishlist);
+
+  const { replace } = useHistory();
+
+  const [value, setValue] = useState('profile');
   const handleChange = (event, newValue) => {
+    const pageUrl = url.replace(params.section, newValue);
+    replace(pageUrl);
     setValue(newValue);
   };
 
@@ -69,7 +81,14 @@ function MemberTabs() {
       (data) => setWishlist(data),
       (error) => throwError(error)
     );
-  }, []);
+  }, [wishlistState]);
+
+  useEffect(() => {
+    if (!params.section) {
+      return;
+    }
+    setValue(params.section);
+  }, [params?.section]);
 
   const handleDataUpdate = () => {
     setIsDataUpdated(true);
@@ -85,19 +104,23 @@ function MemberTabs() {
         />
       )}
       <Tabs value={value} onChange={handleChange} centered={true}>
-        <Tab className={classes.tab} label="My Profile" />
-        <Tab className={classes.tab} label="My Wishlist" />
-        <Tab className={classes.tab} label="Purchase history" />
+        <Tab className={classes.tab} value="profile" label="My Profile" />
+        <Tab className={classes.tab} value="wishlist" label="My Wishlist" />
+        <Tab
+          className={classes.tab}
+          value="purchaseHistory"
+          label="Purchase history"
+        />
       </Tabs>
       <Box className={`${Styles.wrapper} inner`}>
-        {value === 0 && typeof customer == 'object' && (
+        {value === 'profile' && typeof customer == 'object' && (
           <MyProfile customer={customer} handleDataUpdate={handleDataUpdate} />
         )}
-        {value === 1 && typeof wishlist == 'object' && (
+        {value === 'wishlist' && typeof wishlist == 'object' && (
           <MyWishlist wishlist={wishlist} />
         )}
-        {value === 2 && typeof orders == 'object' && (
-          <PurchaseHistory orders={orders} />
+        {value === 'purchaseHistory' && typeof orders == 'object' && (
+          <PurchaseHistoryNew orders={orders} />
         )}
       </Box>
     </>

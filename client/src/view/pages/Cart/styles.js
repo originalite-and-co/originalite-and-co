@@ -1,6 +1,6 @@
 const generateStyles = ({ palette, breakpoints }) => ({
   root: {
-    paddingTop: '120px',
+    paddingTop: '68px',
 
     [breakpoints.up('desktop')]: {
       paddingTop: '94px'

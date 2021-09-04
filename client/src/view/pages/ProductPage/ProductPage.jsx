@@ -1,15 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
-import OneProduct from '../../components/Product/OneProduct';
-
-ProductPage.propTypes = {};
+import Product from '../../components/Product/Product';
+import Footer from '../../components/Footer/Footer';
+import { makeStyles } from '@material-ui/styles';
+import generateStyles from './styles';
 
 function ProductPage() {
+  const useStyles = makeStyles(generateStyles);
+  const classes = useStyles();
   return (
     <>
       <Header />
-      <OneProduct />
+      <main className={classes.main}>
+        <Product />
+      </main>
+      <Footer />
     </>
   );
 }

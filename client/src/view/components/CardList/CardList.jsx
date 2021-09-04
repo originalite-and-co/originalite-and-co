@@ -18,6 +18,10 @@ const CardList = () => {
       }
     );
   }, []);
+<<<<<<< HEAD
+=======
+  console.log(productList);
+>>>>>>> origin/develop
   if (apiError) {
     return <div>ERROR</div>;
   }
