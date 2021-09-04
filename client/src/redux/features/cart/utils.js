@@ -44,11 +44,7 @@ const updateApiCart = async (cart) => {
     return {
       product: _id,
       cartQuantity,
-<<<<<<< HEAD
-      itemNo
-=======
       chosenSize
->>>>>>> origin/develop
     };
   });
   await cartRequests.updateCart(data);

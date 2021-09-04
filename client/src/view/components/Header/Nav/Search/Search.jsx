@@ -104,11 +104,7 @@ function Search(props) {
     () => (
       <Toast
         variant="filled"
-<<<<<<< HEAD
-        className={styles.informationToast}
-=======
         className={classes.informationToast}
->>>>>>> origin/develop
         message="No items have been found "
       />
     ),
@@ -137,13 +133,8 @@ function Search(props) {
           touched
         }) => {
           return (
-<<<<<<< HEAD
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <Box className={`${styles.textFieldWrapper} wrapper`}>
-=======
             <form onSubmit={handleSubmit} className={classes.form}>
               <Box className={`${classes.textFieldWrapper} wrapper`}>
->>>>>>> origin/develop
                 <TextField
                   color="primary"
                   value={values.search}
@@ -153,26 +144,15 @@ function Search(props) {
                     onChange: handleChange,
                     onBlur: handleBlur,
                     name: 'search',
-<<<<<<< HEAD
-                    className: styles.input
-=======
                     className: classes.input
->>>>>>> origin/develop
                   }}
                 />
 
                 {errors.search && touched.search && (
-<<<<<<< HEAD
-                  <p className={styles.error}>{errors.search}</p>
-                )}
-              </Box>
-              <Box className={styles.btnWrapper}>
-=======
                   <p className={classes.error}>{errors.search}</p>
                 )}
               </Box>
               <Box className={classes.btnWrapper}>
->>>>>>> origin/develop
                 <Button
                   text="search"
                   type="submit"
@@ -192,13 +172,6 @@ function Search(props) {
     <>
       <Box
         onClick={handleIconClick}
-<<<<<<< HEAD
-        className={styles.imageWrapper}
-        data-testid="nav-item-search"
-      >
-        <img className={styles.icon} src={search} alt="search icon" />
-        {isDesktop && <p>Search</p>}
-=======
         className={classes.imageWrapper}
         data-testid="nav-item-search"
       >
@@ -214,18 +187,12 @@ function Search(props) {
             Search
           </Typography>
         )}
->>>>>>> origin/develop
       </Box>
       <Dropdown
         lockBodyScrolling
         classNames={{
-<<<<<<< HEAD
-          closed: styles.dropdown,
-          active: styles.dropdownActive
-=======
           closed: classes.dropdown,
           active: classes.dropdownActive
->>>>>>> origin/develop
         }}
         isActive={isDropdownActive}
         children={dropdownContent}
