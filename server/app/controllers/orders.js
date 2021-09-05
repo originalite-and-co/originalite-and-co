@@ -17,6 +17,8 @@ exports.placeOrder = async (req, res, next) => {
         order.orderNo = String(rand());
         let cartProducts = [];
 
+        order.letterHtml = order.letterHtml.replace("Order #", `Order#${order.orderNo}`)
+
         if (req.body.customerId) {
             order.customerId = req.body.customerId;
 
@@ -49,9 +51,9 @@ exports.placeOrder = async (req, res, next) => {
                 productAvailibilityInfo
             });
         } else {
-            const subscriberMail = req.body.email;
-            const letterSubject = req.body.letterSubject;
-            const letterHtml = req.body.letterHtml;
+            const subscriberMail = order.email;
+            const letterSubject = order.letterSubject;
+            const letterHtml = order.letterHtml;
 
             const {errors, isValid} = validateOrderForm(req.body);
 

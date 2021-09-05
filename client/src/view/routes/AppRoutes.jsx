@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -12,7 +12,6 @@ import Checkout from '../pages/Checkout/Checkout';
 import Catalog from '../pages/Catalog/Catalog';
 import Cart from '../pages/Cart/Cart';
 import SearchResult from '../pages/SearchResult/SearchResult';
-import Product from '../pages/Product/Product';
 
 import useAsyncError from '../hooks/useAsyncError';
 import { customerRequests, pageRequests } from '../../api/server';
@@ -29,6 +28,8 @@ import {
 } from '../../redux/features/wishlist';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import Email from '../components/Email/Email';
+import * as ReactDOMServer from 'react-dom/server';
 
 function AppRoutes() {
   const dispatch = useDispatch();
@@ -97,8 +98,38 @@ function AppRoutes() {
     });
   }
 
+  const products = [
+    {
+      image:
+        'https://res.cloudinary.com/originalite-and-co/image/upload/v1629556260/omar-tursic-mfoH7-IPaBI-unsplash_fjvhrv.jpg',
+      size: 'l',
+      color: 'blue',
+      _id: '6121109571bb3347ae905f2b',
+      name: 'jacket',
+      price: 400,
+      quantity: 3
+    },
+    {
+      image:
+        'https://res.cloudinary.com/originalite-and-co/image/upload/v1629556257/marcus-p-I45yxLNWHaY-unsplash_pzspmi.jpg',
+      size: 'm',
+      _id: '612110aa71bb3347ae905f2e',
+      name: 'jacket',
+      price: 140,
+      color: 'black',
+      quantity: 2
+    }
+  ];
+
+  const email = <Email products={products} total={540} orderNumber={654559} />;
+  console.log(
+    JSON.stringify({
+      letterHtml: ReactDOMServer.renderToString(email)
+    })
+  );
   return (
     <Switch>
+      <Route path="/email">{email}</Route>
       <Route path="/products/search" component={SearchResult} />
       {staticPageRoutes}
       <Route path="/catalog/:category" component={Catalog} />
