@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   Box,
   Button,
-  Grid,
   IconButton,
   Snackbar,
   Typography
@@ -15,11 +14,10 @@ import generateStyles from './styles';
 
 import { useSelector } from 'react-redux';
 import { cartSelectors } from '../../../redux/features/cart';
-
-import _ from 'lodash';
 import useWindowSize from '../../hooks/useWindowSize';
 import constants from '../../constants';
 import { Link } from 'react-router-dom';
+import ChosenProductInfo from '../ChosenProductInfo/ChosenProductInfo';
 
 CartNotification.propTypes = {
   autoHideDuration: PropTypes.number,
@@ -85,7 +83,7 @@ function CartNotification({
     setDevice(getDevice(width));
   }, [width]);
 
-  const figureSize =
+  const imgSize =
     device === DEVICES.MOBILE
       ? 4
       : device === DEVICES.TABLET && device === DEVICES.MIN_DESKTOP
@@ -127,46 +125,13 @@ function CartNotification({
               Added to Bag
             </Typography>
           </Box>
-          <Grid
-            container
-            justifyContent="space-between"
-            className={classes.content}
-            wrap="nowrap"
-          >
-            <Grid
-              xs={figureSize}
-              item
-              component="figure"
-              className={classes.image}
-            >
-              <img src={product.image} alt={product.name} />
-            </Grid>
-            <Grid xs={descriptionSize} className={classes.description} item>
-              <Typography
-                className={classes.productName}
-                component="p"
-                variant="body1"
-                color="textSecondary"
-              >
-                {_.upperFirst(product.name)}
-              </Typography>
-              <Typography
-                className={classes.productSize}
-                component="p"
-                variant="body2"
-              >
-                Size: {product.size.toUpperCase()}
-              </Typography>
-              <Box className={classes.productPrice}>
-                <Typography component="p" variant="body2">
-                  Price:
-                </Typography>
-                <Typography component="p" variant="body2" color="textSecondary">
-                  ${Number(product.price).toFixed(2)}
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+          <ChosenProductInfo
+            product={product}
+            sizes={{
+              img: imgSize,
+              description: descriptionSize
+            }}
+          />
           <Button
             component={Link}
             to="/cart"
