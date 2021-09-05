@@ -194,7 +194,7 @@ function CartItem({
               Size:
             </Typography>
             <Typography variant="body2" color="inherit" component="span">
-              {size.toUpperCase()}
+              {size?.toUpperCase()}
             </Typography>
           </Box>
           <Box className={`${classes.counterWrapper} ${classes.text}`}>

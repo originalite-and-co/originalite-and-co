@@ -149,6 +149,47 @@ const styles = ({ breakpoints }) => ({
         }
       }
     }
+  },
+  productList: {
+    '& .checkoutProductItem': {
+      display: 'flex',
+      margin: '10px 0'
+    },
+    '& .cardContent': {
+      display: 'flex',
+      flex: 1,
+      justifyContent: 'space-between'
+    },
+    '& .cardImageWrapper': {
+      width: 70,
+      height: 70,
+      margin: '0 15px 0 0'
+    },
+    '& .cardImage': {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    },
+    '& .cardHeader': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+    },
+    '& .cardTitle': {
+      fontSize: 24,
+      fontWeight: 700
+    },
+    '& .cardSubTitle': {
+      fontSize: 18,
+      fontWeight: 500
+    },
+    '& .cardText': {
+      display: 'flex',
+      alignItems: 'center',
+      color: '#ccc',
+      fontSize: 20,
+      fontWeight: 500
+    }
   }
 });
 
