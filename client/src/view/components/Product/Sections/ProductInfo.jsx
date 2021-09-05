@@ -3,13 +3,14 @@ import OneProductStyles from '../Product.module.scss'
 
 
 
-function ProductInfo({availableSizes, detail}) {
+function ProductInfo({availableSizes, detail, availableColors}) {
 
     // const [isActiveColor, setActiveColor] = useState(null);
     const [activeSize, setActiveSize] = useState(null)
 
     const {sizes, name, currentPrice, itemNo, color, description} = detail
 
+    const productColor = availableColors.find(item => item.name === color)
 
     const onSelectSize = (index) => {
         setActiveSize(index)
@@ -27,23 +28,12 @@ function ProductInfo({availableSizes, detail}) {
             </div>
             <span className={OneProductStyles.itemNo}>{itemNo}</span>
             <h3>Color</h3>
-            {/*<div className={OneProductStyles.color}>*/}
-            {/*    {*/}
-            {/*        color && color.map((item, index) => (*/}
-            {/*            <>*/}
-            {/*                <button*/}
-            {/*                    type='radio'*/}
-            {/*                    key={`${item}_${index}`}*/}
-            {/*                    style={{background: item}}*/}
-            {/*                    className={isActiveColor === index ? OneProductStyles.active : ''}*/}
-            {/*                    onClick={() => onSelectColor(index)}>*/}
-            {/*                </button>*/}
-            {/*            </>*/}
-
-            {/*            )*/}
-            {/*        )*/}
-            {/*    }*/}
-            {/*</div>*/}
+            <div className={OneProductStyles.color}>
+                <button
+                    type='radio'
+                    style={{background: productColor.cssValue}}>
+                </button>
+            </div>
             <h3>Details</h3>
             <div className={OneProductStyles.description}>{description}</div>
             <h3>Size</h3>

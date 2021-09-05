@@ -3,7 +3,7 @@ import ProductInfo from "./Sections/ProductInfo";
 import ProductImageSlider from "./Sections/ProductImageSlider";
 import ProductStyles from "./Product.module.scss";
 import {useRouteMatch} from "react-router-dom";
-import {productRequests, sizeRequests} from "../../../api/server";
+import {productRequests, sizeRequests, colorRequests} from "../../../api/server";
 import useAsyncError from "../../hooks/useAsyncError";
 import ViewedProducts from "./Sections/ViewedProducts";
 
@@ -12,6 +12,7 @@ function Product() {
     const [product, setProduct] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [availableSizes, setAvailableSizes] = useState([])
+    const [availableColors, setAvailableColors] = useState([])
 
     const {params, url} = useRouteMatch()
 
@@ -25,6 +26,15 @@ function Product() {
             .then(sizes => {
                     setAvailableSizes(sizes.map(size => size.name))
 
+                },
+                error => throwAsyncError(error))
+    }, [])
+
+    useEffect(() => {
+        setIsLoaded(false)
+        colorRequests.retrieveColors()
+            .then(colors => {
+                    setAvailableColors(colors)
                 },
                 error => throwAsyncError(error))
     }, [])
@@ -44,7 +54,7 @@ function Product() {
         <section className='wrapper'>
             <div className={ProductStyles.main}>
                 <ProductImageSlider detail={product}/>
-                <ProductInfo detail={product} availableSizes={availableSizes}/>
+                <ProductInfo detail={product} availableSizes={availableSizes} availableColors={availableColors}/>
             </div>
             <h3 className={ProductStyles.viewed_title}>Recently viewed products</h3>
             <ViewedProducts activeProductNumber={itemNumber}/>
