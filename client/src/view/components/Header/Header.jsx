@@ -13,8 +13,10 @@ function Header() {
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
 
-  const [isDesktop, setIsDesktop] = useState();
   const { width } = useWindowSize();
+  const [isDesktop, setIsDesktop] = useState(
+    width >= constants.WINDOW_DESKTOP_SIZE
+  );
 
   useEffect(() => {
     setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);

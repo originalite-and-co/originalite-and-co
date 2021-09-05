@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
+import { Link } from 'react-router-dom';
 
 Summary.propTypes = {};
 
@@ -57,6 +58,8 @@ function Summary({ products }) {
           </Typography>
         </Box>
         <Button
+          component={Link}
+          to="/checkout"
           size="large"
           variant="contained"
           color="primary"
