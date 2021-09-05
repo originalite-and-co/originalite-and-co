@@ -1,8 +1,6 @@
 @import "src/view/assets/styles/variables";
 
-
-
-.sizeButton{
+.sizeButton {
   outline: none;
   border: none;
   background-color: transparent;
@@ -14,8 +12,8 @@
   text-align: center;
   display: block;
 
-  &::after{
-    content: '';
+  &::after {
+    content: "";
     display: block;
     width: 100%;
     background-color: transparent;
@@ -23,29 +21,28 @@
   }
 }
 
-.sizeButton.active{
-  &::after{
+.sizeButton.active {
+  &::after {
     background-color: #000000;
   }
 }
 
-@media (min-width: $desktop){
-  .listItem{
-    &:hover{
-      button::after{
+@media (min-width: $desktop) {
+  .listItem {
+    &:hover {
+      button::after {
         background-color: #ffffff;
       }
     }
   }
-  .sizeButton{
+  .sizeButton {
     margin: unset;
     color: #ffffff;
 
-    &.active{
-      &::after{
+    &.active {
+      &::after {
         background-color: #ffffff;
       }
     }
   }
-
 }

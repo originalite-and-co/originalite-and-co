@@ -13,7 +13,6 @@ import { makeStyles } from '@material-ui/styles';
 import { productRequests } from '../../../../api/server';
 import constants from '../../../constants';
 
-
 const PopularProductsCarousel = () => {
   const [productList, setProductList] = useState([]);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -31,34 +30,37 @@ const PopularProductsCarousel = () => {
   }, [width]);
 
   useEffect(() => {
-    productRequests.retrieveProducts()
-      .then(
-        res => setProductList(res),
-        error => throwError(error),
-      );
+    productRequests.retrieveProducts().then(
+      (res) => setProductList(res),
+      (error) => throwError(error)
+    );
   }, []);
 
   const slides = productList.map((product) => (
-    <ProductCard product={product} size={12} key={product._id} />));
+    <ProductCard product={product} size={12} key={product._id} />
+  ));
 
   return (
     <Box
       component="section"
-      data-testid='popular-product-carousel'
+      data-testid="popular-product-carousel"
       className={classes.root}
     >
       <Typography
-        component='h3'
-        color='textPrimary'
-        variant='body2'
+        component="h3"
+        color="textPrimary"
+        variant="body2"
         className={classes.heading}
       >
         Popular Products
       </Typography>
-      <Carousel slides={slides}
-                carouselProps={{ ...popularProductsCarousel, navigation: isDesktop }}
-                slideProps={popularProductsSlide} />
-    </Box>);
+      <Carousel
+        slides={slides}
+        carouselProps={{ ...popularProductsCarousel, navigation: isDesktop }}
+        slideProps={popularProductsSlide}
+      />
+    </Box>
+  );
 };
 
 export default PopularProductsCarousel;

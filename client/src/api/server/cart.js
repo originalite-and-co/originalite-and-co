@@ -103,7 +103,7 @@ const cart = {
   addProductToCart,
   decreaseProductQuantity,
   deleteProductFromCart,
-  deleteCart,
+  deleteCart
 };
 
 export default cart;

@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
-import {Provider} from "react-redux";
-import store from "../../../redux/store/store";
-import React from "react";
-import Nav from "./Nav/Nav";
-import CatalogNav from "./CatalogNav/CatalogNav";
-import CustomThemeProvider from "../../HOC/CustomThemeProvider/CustomThemeProvider";
+import { Provider } from 'react-redux';
+import store from '../../../redux/store/store';
+import React from 'react';
+import Nav from './Nav/Nav';
+import CatalogNav from './CatalogNav/CatalogNav';
+import CustomThemeProvider from '../../HOC/CustomThemeProvider/CustomThemeProvider';
 
 const mobileHeader = (
   <>
@@ -17,27 +17,25 @@ const mobileHeader = (
 
 const MockHeader = () => {
   return (
-      <CustomThemeProvider>
-          <BrowserRouter>
-              <Provider store={store}>
-                  <Header/>
-              </Provider>
-          </BrowserRouter>
-      </CustomThemeProvider>
-  )
-}
+    <CustomThemeProvider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Header />
+        </Provider>
+      </BrowserRouter>
+    </CustomThemeProvider>
+  );
+};
 
 const MobileHeader = () => {
-    return (
-        <CustomThemeProvider>
-        <BrowserRouter>
-            <Provider store={store}>
-                {mobileHeader}
-            </Provider>
-        </BrowserRouter>
-        </CustomThemeProvider>
-    )
-}
+  return (
+    <CustomThemeProvider>
+      <BrowserRouter>
+        <Provider store={store}>{mobileHeader}</Provider>
+      </BrowserRouter>
+    </CustomThemeProvider>
+  );
+};
 
 describe('Header component', () => {
   test('renders Header without crashing', () => {

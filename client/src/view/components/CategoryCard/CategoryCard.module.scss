@@ -3,18 +3,18 @@
 .categoryCard {
   font-size: 14px;
   line-height: 19px;
-  color: #FFFFFF;
+  color: #ffffff;
 
-  &:last-child{
+  &:last-child {
     overflow: hidden;
 
-    img{
-    height: unset;
+    img {
+      height: unset;
     }
   }
 
   p {
-    font-family: Open Sans,sans-serif;
+    font-family: Open Sans, sans-serif;
     font-weight: bold;
     font-size: 12px;
     line-height: 16px;
@@ -27,7 +27,7 @@
   height: 100%;
   width: 100%;
 
-  img{
+  img {
     display: block;
     width: 100%;
     height: 100%;

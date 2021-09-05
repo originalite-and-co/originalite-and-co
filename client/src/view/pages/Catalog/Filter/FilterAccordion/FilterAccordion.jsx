@@ -3,17 +3,22 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import classes from '../Filter.module.scss';
-import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography } from '@material-ui/core';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Grid,
+  Typography
+} from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
 FilterAccordion.propTypes = {
   text: PropTypes.string.isRequired,
   isDesktop: PropTypes.bool.isRequired,
-  detailsContent: PropTypes.element,
+  detailsContent: PropTypes.element
 };
 
 function FilterAccordion({ text, isDesktop, detailsContent }) {
-
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -32,7 +37,7 @@ function FilterAccordion({ text, isDesktop, detailsContent }) {
       >
         <Typography
           className={classes.accordionSummaryText}
-          component='p'
+          component="p"
           variant={isDesktop ? 'h6' : 'body1'}
           color={isDesktop ? 'textPrimary' : 'textSecondary'}
         >

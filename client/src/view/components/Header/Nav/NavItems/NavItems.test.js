@@ -3,7 +3,6 @@ import NavItems from './NavItems';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './../../../../../redux/store/store';
-import search from '../../../../assets/icons/search.svg';
 import React from 'react';
 import CustomThemeProvider from '../../../../HOC/CustomThemeProvider/CustomThemeProvider';
 

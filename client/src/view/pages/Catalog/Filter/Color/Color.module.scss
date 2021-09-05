@@ -1,6 +1,6 @@
 @import "src/view/assets/styles/variables";
 
-.colorButton{
+.colorButton {
   outline: none;
   border: none;
   background-color: transparent;
@@ -11,21 +11,21 @@
   border-radius: 50%;
 }
 
-.color{
+.color {
   margin: auto;
   display: block;
-  border: 2px solid #C4C4C4;
+  border: 2px solid #c4c4c4;
   border-radius: 50%;
   height: 21px;
   width: 21px;
 }
 
-.colorName{
+.colorName {
   font-family: Open Sans, sans-serif;
-  margin-top: .9rem!important;
+  margin-top: 0.9rem !important;
 
-  &::after{
-    content: '';
+  &::after {
+    content: "";
     display: block;
     width: 100%;
     background-color: transparent;
@@ -34,7 +34,6 @@
 }
 
 .colorName.active {
-
   &::after {
     background-color: #000000;
   }
@@ -43,26 +42,23 @@
 @media (min-width: $desktop) {
   .listItem {
     &:hover {
-
       p::after {
-        background-color: #FFFFFF;
+        background-color: #ffffff;
       }
     }
   }
 
-  .colorButton{
+  .colorButton {
     flex-direction: row;
-
   }
 
-  .colorName{
-    margin-top: 0!important;
-    margin-left: 2vw!important;
+  .colorName {
+    margin-top: 0 !important;
+    margin-left: 2vw !important;
     color: #ffffff;
   }
 
   .colorName.active {
-
     &::after {
       background-color: #ffffff;
     }

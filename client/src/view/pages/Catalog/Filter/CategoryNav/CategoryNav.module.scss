@@ -1,26 +1,25 @@
-.root{
-  margin-top: 2.5vh!important;
+.root {
+  margin-top: 2.5vh !important;
 }
 
-.heading{
+.heading {
   font-family: Josefin Sans, sans-serif;
   font-weight: 600;
-  margin-bottom: 1vh!important;
-  color: #FFFFFF;
+  margin-bottom: 1vh !important;
+  color: #ffffff;
 }
 
-.list{
+.list {
   padding: 0;
 }
 
-.listItem{
-  margin-bottom: .9vh!important;
+.listItem {
+  margin-bottom: 0.9vh !important;
   cursor: pointer;
 
   &:hover {
-
     a {
-      border-bottom: 1px solid #FFFFFF;
+      border-bottom: 1px solid #ffffff;
     }
   }
 }
@@ -29,10 +28,10 @@
   font-family: Open Sans, sans-serif;
   font-size: 16px;
   line-height: 22px;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 1px solid transparent;
 }
 
 .activeLink {
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #ffffff;
 }
