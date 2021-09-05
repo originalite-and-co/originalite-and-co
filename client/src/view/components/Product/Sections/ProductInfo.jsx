@@ -4,7 +4,7 @@ import CartNotification from '../../CartNotification/CartNotification';
 import Toast from '../../Toast/Toast';
 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 import OneProductStyles from '../Product.module.scss';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
@@ -13,15 +13,23 @@ import { wishlistOperations } from '../../../../redux/features/wishlist';
 import { authorizationSelectors } from '../../../../redux/features/authorization';
 
 import { cartOperations } from '../../../../redux/features/cart';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import _ from 'lodash';
+import { productRequests } from '../../../../api/server';
 
-function ProductInfo({ availableSizes, detail, wishlistIDs }) {
-  // const [isActiveColor, setActiveColor] = useState(null);
+function ProductInfo({
+  activeProductNumber,
+  colors,
+  availableSizes,
+  detail,
+  wishlistIDs
+}) {
+  const [availableColors, setAvailableColors] = useState([]);
   const [activeSize, setActiveSize] = useState(null);
   const [addedToWishlist, setAddedToWishlist] = useState();
   const [authorizeToaster, setAuthorizeToaster] = useState();
   const [showCartNotification, setShowCartNotification] = useState(false);
-  
+
   const dispatch = useDispatch();
   const {
     sizes,
@@ -31,7 +39,8 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
     color,
     description,
     _id,
-    imageUrls
+    imageUrls,
+    groupId
   } = detail;
 
   const isInWishlist = wishlistIDs.some((id) => id === _id);
@@ -41,11 +50,34 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
 
   useEffect(() => {
     setAddedToWishlist(isInWishlist);
-  }, [isAuthorized]);
+  }, [isAuthorized, history.location.pathname]);
 
   useEffect(() => {
-    isInWishlist ? setAddedToWishlist(true) : setAddedToWishlist(false);
-  }, []);
+    if (!groupId) {
+      const colorObject = colors?.find((item) => item.name === color);
+      return setAvailableColors([
+        {
+          colorName: colorObject.name,
+          cssValue: colorObject.cssValue,
+          itemNo
+        }
+      ]);
+    }
+    productRequests
+      .retrieveByQuery(`groupId=${groupId}`)
+      .then(({ products }) => {
+        setAvailableColors(
+          products.map(({ color, itemNo }) => {
+            const colorObject = colors.find((item) => item.name === color);
+            return {
+              colorName: colorObject.name,
+              cssValue: colorObject.cssValue,
+              itemNo
+            };
+          })
+        );
+      });
+  }, [groupId, color, history.location.pathname]);
 
   const onSelectSize = (item) => {
     setActiveSize(item);
@@ -84,7 +116,6 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
         />
       ));
 
-
   const duration = 6000;
   const handleAddToCartBtnClick = (event) => {
     setShowCartNotification(true);
@@ -111,6 +142,39 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
     [showCartNotification]
   );
 
+  const colorList = availableColors?.map(({ itemNo, colorName, cssValue }) => {
+    return (
+      <Grid
+        key={itemNo}
+        item
+        component="li"
+        className={OneProductStyles.colorListItem}
+      >
+        <NavLink
+          className={OneProductStyles.colorLink}
+          to={`/products/${itemNo}`}
+        >
+          <span
+            className={OneProductStyles.color}
+            style={{ backgroundColor: cssValue }}
+          />
+          <Typography
+            noWrap
+            component="p"
+            variant="body1"
+            className={
+              activeProductNumber === itemNo
+                ? `${OneProductStyles.colorName} ${OneProductStyles.active}`
+                : OneProductStyles.colorName
+            }
+          >
+            {_.lowerCase(colorName)}
+          </Typography>
+        </NavLink>
+      </Grid>
+    );
+  });
+
   return (
     <div className={OneProductStyles.info}>
       {authorizeToaster && (
@@ -126,23 +190,11 @@ function ProductInfo({ availableSizes, detail, wishlistIDs }) {
       </div>
       <span className={OneProductStyles.itemNo}>{itemNo}</span>
       <h3>Color</h3>
-      {/*<div className={OneProductStyles.color}>*/}
-      {/*    {*/}
-      {/*        color && color.map((item, index) => (*/}
-      {/*            <>*/}
-      {/*                <button*/}
-      {/*                    type='radio'*/}
-      {/*                    key={`${item}_${index}`}*/}
-      {/*                    style={{background: item}}*/}
-      {/*                    className={isActiveColor === index ? OneProductStyles.active : ''}*/}
-      {/*                    onClick={() => onSelectColor(index)}>*/}
-      {/*                </button>*/}
-      {/*            </>*/}
-
-      {/*            )*/}
-      {/*        )*/}
-      {/*    }*/}
-      {/*</div>*/}
+      <div>
+        <Grid spacing={2} container component="ul">
+          {colorList}
+        </Grid>
+      </div>
       <h3>Details</h3>
       <div className={OneProductStyles.description}>{description}</div>
       <h3>Size</h3>
