@@ -4,7 +4,11 @@ import ProductInfo from './Sections/ProductInfo';
 import ProductImageSlider from './Sections/ProductImageSlider';
 import ViewedProducts from './Sections/ViewedProducts';
 
-import { productRequests, sizeRequests } from '../../../api/server';
+import {
+  colorRequests,
+  productRequests,
+  sizeRequests
+} from '../../../api/server';
 import useAsyncError from '../../hooks/useAsyncError';
 
 import ProductStyles from './Product.module.scss';
@@ -22,6 +26,7 @@ function Product() {
   const [product, setProduct] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [availableSizes, setAvailableSizes] = useState([]);
+  const [colors, setColors] = useState([]);
   const isAuthorized = useSelector(authorizationSelectors.authorization);
 
   const dispatch = useDispatch();
@@ -55,6 +60,13 @@ function Product() {
   }, []);
 
   useEffect(() => {
+    colorRequests.retrieveColors().then(
+      (colors) => setColors(colors),
+      (error) => throwAsyncError(error)
+    );
+  }, []);
+
+  useEffect(() => {
     setIsLoaded(false);
     productRequests.retrieveProductByItemNumber(itemNumber).then(
       (product) => {
@@ -70,6 +82,8 @@ function Product() {
       <div className={ProductStyles.content}>
         <ProductImageSlider detail={product} />
         <ProductInfo
+          activeProductNumber={itemNumber}
+          colors={colors}
           detail={product}
           availableSizes={availableSizes}
           wishlistIDs={wishlistIDs}
