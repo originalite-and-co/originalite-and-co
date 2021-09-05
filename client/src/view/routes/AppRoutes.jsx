@@ -22,7 +22,10 @@ import {
 } from '../../redux/features/authorization';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductPage from '../pages/ProductPage/ProductPage';
-import { wishlistOperations } from '../../redux/features/wishlist';
+import {
+  wishlistOperations,
+  wishlistSelectors
+} from '../../redux/features/wishlist';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Email from '../components/Email/Email';
@@ -31,6 +34,7 @@ import * as ReactDOMServer from 'react-dom/server';
 function AppRoutes() {
   const dispatch = useDispatch();
   const authorization = useSelector(authorizationSelectors.authorization);
+  const wishlist = useSelector(wishlistSelectors.getWishlist);
   const [isAuthenticated, setAuthenticated] = useState(
     !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
   );
