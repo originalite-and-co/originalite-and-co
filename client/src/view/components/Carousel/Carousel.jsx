@@ -11,7 +11,7 @@ Carousel.propTypes = {
   slides: PropTypes.array.isRequired,
   slideProps: PropTypes.object.isRequired,
   carouselProps: PropTypes.object.isRequired,
-  carouselChildren: PropTypes.node,
+  carouselChildren: PropTypes.node
 };
 
 function Carousel({ slides, slideProps, carouselProps, carouselChildren }) {
@@ -24,7 +24,7 @@ function Carousel({ slides, slideProps, carouselProps, carouselChildren }) {
           </SwiperSlide>
         );
       }),
-    [slides]
+    [slideProps, slides]
   );
 
   return (

@@ -1,8 +1,8 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import cartReducer from './../features/cart/index';
 import isAnyDropdownOpenReducer from './../features/dropdown/index';
@@ -13,9 +13,9 @@ import authorizationReducer from '../features/authorization/index';
 import wishlistReducer from '../features/wishlist/index';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
-  whitelist: ["cart"],
+  whitelist: ['cart']
 };
 
 let rootReducer = combineReducers({
@@ -32,7 +32,7 @@ let rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composeEnhancers = composeWithDevTools({
-  trace: true,
+  trace: true
 });
 
 const store = createStore(
@@ -42,4 +42,6 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-export default { store, persistor };
+const storeExp = { store, persistor };
+
+export default storeExp;

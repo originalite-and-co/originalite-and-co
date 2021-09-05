@@ -9,8 +9,7 @@ import {
   Grid,
   IconButton,
   Input,
-  Typography,
-  useTheme
+  Typography
 } from '@material-ui/core';
 import { Add, Close, Remove } from '@material-ui/icons';
 import generateStyles from './styles';
@@ -65,7 +64,7 @@ function CartItem({
 
   useEffect(() => {}, [quantity]);
 
-  const handleCloseBtnClick = (event) => {
+  const handleCloseBtnClick = () => {
     dispatch(cartOperations.deleteProductFromCart(id, size));
   };
 
@@ -83,7 +82,7 @@ function CartItem({
     setQuantity({ isValid: true, value: Number(value) });
   };
 
-  const handleRemoveBtnClick = (event) => {
+  const handleRemoveBtnClick = () => {
     if (Number(quantity.value) <= 1) {
       return;
     }
@@ -96,7 +95,7 @@ function CartItem({
     }));
   };
 
-  const handleAddBtnClick = (event) => {
+  const handleAddBtnClick = () => {
     if (Number(quantity.value) >= Number(maxQuantity)) {
       return;
     }

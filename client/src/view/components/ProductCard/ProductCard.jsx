@@ -11,7 +11,7 @@ ProductCard.propTypes = {
   size: PropTypes.number.isRequired
 };
 
-function ProductCard({ product, size }) {
+function ProductCard({ product }) {
   const [isDesktop, setDesktop] = useState(false);
 
   const { width } = useWindowSize();

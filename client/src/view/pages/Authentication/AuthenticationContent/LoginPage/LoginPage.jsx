@@ -116,7 +116,7 @@ function LoginPage() {
               .catch((error) => throwAsyncError(error));
           }}
         >
-          {({ values, errors, touched, isSubmitting, isValidating }) => (
+          {({ isSubmitting, isValidating }) => (
             <Form>
               <Box className={Styles.loginGroup}>
                 <FormGroup data-testid="loginOrEmail">

@@ -25,11 +25,9 @@ import { Box, Divider, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
-Cart.propTypes = {};
-
 const { WINDOW_DESKTOP_SIZE } = constants;
 
-function Cart(props) {
+function Cart() {
   const { width } = useWindowSize();
   const [isDesktop, setDesktop] = useState(width >= WINDOW_DESKTOP_SIZE);
   const [isLoaded, setLoaded] = useState(false);

@@ -17,6 +17,7 @@ const carousel = {
 const popularProductsSlide = {
   className: 'popularSlide'
 };
+
 const popularProductsCarousel = {
   loop: true,
   breakpoints: {

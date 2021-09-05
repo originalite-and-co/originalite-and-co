@@ -12,7 +12,6 @@ import Checkout from '../pages/Checkout/Checkout';
 import Catalog from '../pages/Catalog/Catalog';
 import Cart from '../pages/Cart/Cart';
 import SearchResult from '../pages/SearchResult/SearchResult';
-import Product from '../pages/Product/Product';
 
 import useAsyncError from '../hooks/useAsyncError';
 import { customerRequests, pageRequests } from '../../api/server';
@@ -23,17 +22,13 @@ import {
 } from '../../redux/features/authorization';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductPage from '../pages/ProductPage/ProductPage';
-import {
-  wishlistOperations,
-  wishlistSelectors
-} from '../../redux/features/wishlist';
+import { wishlistOperations } from '../../redux/features/wishlist';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
 function AppRoutes() {
   const dispatch = useDispatch();
   const authorization = useSelector(authorizationSelectors.authorization);
-  const wishlist = useSelector(wishlistSelectors.getWishlist);
   const [isAuthenticated, setAuthenticated] = useState(
     !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
   );

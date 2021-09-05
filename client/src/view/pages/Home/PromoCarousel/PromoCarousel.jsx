@@ -1,15 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
 import Carousel, { defaultCarousel } from '../../../components/Carousel';
 import Image from '../../../components/Image';
 import { slideRequests } from '../../../../api/server';
 import { Box } from '@material-ui/core';
 
-PromoCarousel.propTypes = {
-
-};
-
-function PromoCarousel(props) {
+function PromoCarousel() {
   const { slide, carousel, useStyles } = defaultCarousel;
   const [slides, setSlides] = useState([]);
   const classes = useStyles();
@@ -26,10 +21,7 @@ function PromoCarousel(props) {
     let isActive = true;
 
     if (isActive) {
-      slideRequests.retrieveSlides().then(
-        (data) => setSlides(data),
-        (error) => console.log(error)
-      );
+      slideRequests.retrieveSlides().then((data) => setSlides(data));
     }
 
     return () => (isActive = false);

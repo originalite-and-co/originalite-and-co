@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import useWindowSize from '../../../hooks/useWindowSize';
 import useAsyncError from '../../../hooks/useAsyncError';
@@ -93,14 +93,14 @@ function CatalogNav() {
       setActiveLinkId(linkId);
     }
 
-        if (isDropdownActive) {
-            dispatch(isAnyDropdownOpenActions.closedDropdown())
-            setActiveDropdown(false)
-            setActiveLinkId(linkId)
-        } else {
-            renderCategoryLinks(linkId)
-            //close all dropdowns that are active
-            dispatch(isAnyDropdownOpenActions.closedDropdown());
+    if (isDropdownActive) {
+      dispatch(isAnyDropdownOpenActions.closedDropdown());
+      setActiveDropdown(false);
+      setActiveLinkId(linkId);
+    } else {
+      renderCategoryLinks(linkId);
+      //close all dropdowns that are active
+      dispatch(isAnyDropdownOpenActions.closedDropdown());
 
       /**
        * These setTimeouts are important for functionality,

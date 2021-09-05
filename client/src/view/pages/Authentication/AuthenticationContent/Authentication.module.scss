@@ -11,7 +11,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 0px solid green;
-  -webkit-text-fill-color: #A0A0A0;
+  -webkit-text-fill-color: #a0a0a0;
   -webkit-box-shadow: 0 0 0px 1000px #000 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -27,30 +27,30 @@ select:-webkit-autofill:focus {
   padding-right: 27px;
 }
 
-.logInPageWrapper{
+.logInPageWrapper {
   margin-top: 47px;
 }
-.signUpPageWrapper{
+.signUpPageWrapper {
   margin-top: 25px;
 }
 
-.closeIcon{
+.closeIcon {
   position: absolute;
   top: 24px;
   right: 0px;
 }
 
-.accountBtns{
+.accountBtns {
   display: flex;
   justify-content: space-between;
 }
-.logInSignUp{
+.logInSignUp {
   font-family: Josefin Sans, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 18px;
-  color: #C4C4C4;
+  color: #c4c4c4;
   width: 109px;
   background: none;
   padding-bottom: 4px;
@@ -59,52 +59,52 @@ select:-webkit-autofill:focus {
   border-bottom: 1px solid #000000;
 }
 
-.active{
-  border-bottom: 1px solid #E5E5E5;
-  color: #FFFFFF;
+.active {
+  border-bottom: 1px solid #e5e5e5;
+  color: #ffffff;
 }
 
-.text{
+.text {
   text-align: center;
   font-family: Josefin Sans, sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
   line-height: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.loginGroup{
+.loginGroup {
   margin: 50px 0 135px 0;
 }
-.signUpGroup{
-  margin: 25px 0 30px 0
+.signUpGroup {
+  margin: 25px 0 30px 0;
 }
 
-.textFieldInput{
-  color: #A0A0A0 !important;
+.textFieldInput {
+  color: #a0a0a0 !important;
   font-family: Open Sans, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px !important;
   line-height: 16px;
 }
-.loginBtn{
+.loginBtn {
   display: flex;
   justify-content: center;
 }
 
-.radio{
+.radio {
   cursor: pointer;
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
-.radioText{
+.radioText {
   font-family: Open Sans, sans-serif;
   font-size: 12px;
   line-height: 16px;
-  color: #847A7A;
+  color: #847a7a;
   margin-left: 15px;
 }
 
@@ -116,23 +116,23 @@ select:-webkit-autofill:focus {
     max-width: 50vw;
     margin: 0 auto;
   }
-  .accountBtns{
+  .accountBtns {
     justify-content: space-around;
   }
-  .logInSignUp{
+  .logInSignUp {
     width: 200px;
   }
 
-  .textFieldLabel{
+  .textFieldLabel {
     font-family: Open Sans, sans-serif;
     font-size: 12px !important;
     line-height: 16px !important;
-    color: #A0A0A0 !important;
+    color: #a0a0a0 !important;
   }
-  .textFieldInput{
+  .textFieldInput {
     font-family: Open Sans, sans-serif;
     font-size: 12px !important;
     line-height: 16px !important;
-    color: #A0A0A0 !important;
+    color: #a0a0a0 !important;
   }
 }
