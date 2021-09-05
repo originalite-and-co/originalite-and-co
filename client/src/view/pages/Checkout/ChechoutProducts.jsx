@@ -3,7 +3,7 @@ import Image from '../../components/Image';
 
 import { Box, Typography } from '@material-ui/core';
 
-function CheckoutProduct({ brand, currentPrice, name, quantity, image }) {
+function CheckoutProduct({ brand, currentPrice, name, cartQuantity, image }) {
   return (
     <Box className="checkoutProductItem">
       <Box className="cardImageWrapper">
@@ -19,7 +19,7 @@ function CheckoutProduct({ brand, currentPrice, name, quantity, image }) {
           </Typography>
         </Box>
         <Typography component="p" className="cardText">
-          {`${currentPrice * quantity} / ${quantity}`}
+          {`${currentPrice * cartQuantity} / ${cartQuantity}`}
         </Typography>
       </Box>
     </Box>

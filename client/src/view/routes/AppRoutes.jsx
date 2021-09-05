@@ -122,11 +122,11 @@ function AppRoutes() {
   ];
 
   const email = <Email products={products} total={540} orderNumber={654559} />;
-  console.log(
-    JSON.stringify({
-      letterHtml: ReactDOMServer.renderToString(email)
-    })
-  );
+  // console.log(
+  //   JSON.stringify({
+  //     letterHtml: ReactDOMServer.renderToString(email)
+  //   })
+  // );
   return (
     <Switch>
       <Route path="/email">{email}</Route>

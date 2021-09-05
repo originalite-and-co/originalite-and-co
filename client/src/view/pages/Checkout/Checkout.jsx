@@ -7,7 +7,7 @@ import Footer from '../../components/Footer/Footer';
 import { Stepper, Step } from '../../components/Stepper';
 import List from '../../components/List';
 import Product from './ChechoutProducts';
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import { stepper, payment, userData, delivery } from './data';
 
 import { useSelector } from 'react-redux';
@@ -23,15 +23,14 @@ import {
 import styles from './style';
 
 function Checkout() {
-  //   const email = ReactDOMServer.renderToString(<Email />);
   const useStyle = styles();
   const cart = useSelector(cartSelectors.getCart);
-
-  console.log(cart);
 
   const [profileData, setProfileData] = useState();
   const [products, setProducts] = useState([]);
   const throwAsyncError = useAsyncError();
+
+  console.log('prod', products);
 
   useEffect(() => {
     (async () => {
@@ -54,17 +53,12 @@ function Checkout() {
           catrItems
         );
         setProducts(
-          response.map(
-            ({ brand, color, currentPrice, name, imageUrls, _id }, index) => ({
-              _id,
-              brand,
-              color,
-              currentPrice,
-              name,
-              image: imageUrls[0],
-              quantity: cart[index].cartQuantity
-            })
-          )
+          response.map((props, index) => ({
+            ...props,
+            ...cart[index],
+            size: props.sizes[props.chosenSize],
+            image: props.imageUrls[0]
+          }))
         );
       } catch (error) {
         throwAsyncError(error);
@@ -72,9 +66,8 @@ function Checkout() {
     })();
   }, [cart, throwAsyncError]);
 
-  console.log(profileData);
-
   const onSubmit = (data) => {
+    // const email = ReactDOMServer.renderToString(<Email products={products} />);
     const order = {
       customerId: profileData._id,
       deliveryInformation: {
@@ -86,7 +79,8 @@ function Checkout() {
       email: profileData.email,
       mobile: profileData.telephone
     };
-    console.log({ data, products });
+
+    console.log(order);
   };
 
   return (
@@ -96,6 +90,9 @@ function Checkout() {
         {profileData && (
           <Stepper {...stepper(profileData)} onSubmit={onSubmit}>
             <Step>
+              <Typography component="h4" className={useStyle.title}>
+                Product list
+              </Typography>
               <List
                 data={products}
                 className={useStyle.productList}

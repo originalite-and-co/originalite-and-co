@@ -176,20 +176,38 @@ const styles = ({ breakpoints }) => ({
       justifyContent: 'space-between'
     },
     '& .cardTitle': {
-      fontSize: 24,
-      fontWeight: 700
+      fontSize: 18,
+      fontWeight: 700,
+      [breakpoints.up('desktop')]: {
+        fontSize: 24
+      }
     },
     '& .cardSubTitle': {
-      fontSize: 18,
-      fontWeight: 500
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      maxWidth: 150,
+      fontSize: 14,
+      fontWeight: 500,
+      [breakpoints.up('desktop')]: {
+        fontSize: 18
+      }
     },
     '& .cardText': {
       display: 'flex',
       alignItems: 'center',
       color: '#ccc',
-      fontSize: 20,
-      fontWeight: 500
+      fontSize: 16,
+      fontWeight: 500,
+      [breakpoints.up('desktop')]: {
+        fontSize: 20
+      }
     }
+  },
+  title: {
+    padding: '0 0 20px 0',
+    fontSize: 24,
+    fontWeight: 700
   }
 });
 

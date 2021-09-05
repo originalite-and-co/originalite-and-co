@@ -9,7 +9,7 @@ Email.propTypes = {
       image: PropTypes.string,
       name: PropTypes.string,
       size: PropTypes.string,
-      price: PropTypes.number,
+      currentPrice: PropTypes.number,
       color: PropTypes.string,
       quantity: PropTypes.number
     })
@@ -20,7 +20,7 @@ Email.propTypes = {
 
 function Email({ products, total }) {
   const productList = products.map(
-    ({ _id, image, name, size, price, color, quantity }) => (
+    ({ _id, image, name, size, currentPrice, color, quantity }) => (
       <li
         style={{
           display: 'grid',
@@ -117,7 +117,7 @@ function Email({ products, total }) {
               }}
             >
               {' '}
-              ${Number(price).toFixed(2)}
+              ${Number(currentPrice).toFixed(2)}
             </p>
           </div>
         </div>
