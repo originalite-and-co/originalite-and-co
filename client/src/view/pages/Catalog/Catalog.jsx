@@ -42,7 +42,7 @@ function numberOfProductsGenerator(initialValue) {
 function Catalog(props) {
   const [isDesktop, setDesktop] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState({});
-  const [numberOfProducts, setNumberOfProducts] = useState(4);
+  const [numberOfProducts, setNumberOfProducts] = useState(10);
   const [categoryName, setCategoryName] = useState('');
   const [isLoaded, setLoaded] = useState(false);
 
