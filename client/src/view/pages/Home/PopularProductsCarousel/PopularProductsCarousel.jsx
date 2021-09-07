@@ -15,15 +15,22 @@ import constants from '../../../constants';
 
 const PopularProductsCarousel = () => {
   const [productList, setProductList] = useState([]);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   const { width } = useWindowSize();
-  const throwError = useAsyncError();
+  const [isDesktop, setIsDesktop] = useState(
+    width >= constants.WINDOW_DESKTOP_SIZE
+  );
 
-  const { popularProductsCarousel, popularProductsSlide } = popularProductCard;
+  const throwError = useAsyncError();
+  const {
+    popularProductsCarousel,
+    popularProductsSlide,
+    useStyles: useCarouselStyles
+  } = popularProductCard;
 
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
+  const carouselClasses = useCarouselStyles();
 
   useEffect(() => {
     setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
@@ -44,7 +51,7 @@ const PopularProductsCarousel = () => {
     <Box
       component="section"
       data-testid="popular-product-carousel"
-      className={classes.root}
+      className={`${classes.root} ${carouselClasses.root}`}
     >
       <Typography
         component="h3"
