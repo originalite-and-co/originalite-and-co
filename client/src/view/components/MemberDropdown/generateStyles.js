@@ -1,12 +1,5 @@
-export function generateStyles() {
+export function generateStyles({ breakpoints }) {
   return {
-    dropdownWrapper: {
-      position: 'absolute',
-      top: '60px',
-      left: '-15px',
-      background: 'transparent'
-    },
-    content: {},
     dropdownItem: {
       left: '-15px',
       position: 'absolute',
@@ -15,17 +8,37 @@ export function generateStyles() {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      backgroundColor: '#f2f2f2',
+      background:
+        '-webkit-linear-gradient(268.93deg, #f2f2f2 15.72%, rgba(13, 5, 186, 0) 91.59%)',
       borderRadius: '50%',
       transform: 'translateY(0)',
 
+      [breakpoints.up('desktop')]: {
+        backgroundColor: 'transparent'
+      },
+
+      '&:hover': {
+        [breakpoints.up('desktop')]: {
+          background:
+            '-webkit-linear-gradient(268.93deg, #f2f2f2 15.72%, rgba(13, 5, 186, 0) 91.59%)'
+        }
+      },
+
       '&:first-child': {
         top: '60px',
-        transition: 'transform 0.5s ease-in-out'
+        transition: 'transform 0.5s ease-in-out',
+
+        [breakpoints.up('desktop')]: {
+          top: '50px'
+        }
       },
       '&:nth-child(2)': {
         top: '120px',
-        transition: 'transform 0.7s ease-in-out'
+        transition: 'transform 0.7s ease-in-out',
+
+        [breakpoints.up('desktop')]: {
+          top: '115px'
+        }
       },
       '&:nth-child(3)': {
         top: '180px',
@@ -33,7 +46,11 @@ export function generateStyles() {
       }
     },
     dropdownItemClosed: {
-      transform: 'translateY(-40vh)'
+      transform: 'translateY(-40vh)',
+
+      [breakpoints.up('desktop')]: {
+        transform: 'translateY(-60vh)'
+      }
     },
     icon: {}
   };

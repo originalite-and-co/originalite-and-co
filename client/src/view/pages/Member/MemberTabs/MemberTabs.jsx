@@ -53,6 +53,7 @@ function MemberTabs() {
   const { replace } = useHistory();
 
   const [value, setValue] = useState('profile');
+
   const handleChange = (event, newValue) => {
     const pageUrl = url.replace(params.section, newValue);
     replace(pageUrl);

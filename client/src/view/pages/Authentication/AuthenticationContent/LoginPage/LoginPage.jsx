@@ -44,12 +44,11 @@ const validationSchema = yup.object().shape({
   password: yup.string().label('password')
 });
 
-function LoginPage() {
+function LoginPage({ goBack }) {
   const dispatch = useDispatch();
 
   const classes = useStyles();
   const throwAsyncError = useAsyncError();
-  const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [typePassword, setTypePassword] = useState(true);
   const [checked, setChecked] = React.useState(false);
@@ -67,7 +66,7 @@ function LoginPage() {
     if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
       setLoggedIn(true);
       setTimeout(() => {
-        history.push('/');
+        goBack();
       }, 1500);
     }
   };
