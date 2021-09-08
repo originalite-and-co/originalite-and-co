@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import styles from './CategoryCard.module.scss';
 import { Box, Typography } from '@material-ui/core';
+import generateCategoryPath from '../../utils/generateCategoryPath';
+import { Link } from 'react-router-dom';
 
 CategoryCard.propTypes = {
   product: PropTypes.object.isRequired
@@ -15,12 +17,24 @@ function CategoryCard({ product, gridArea }) {
       }}
       className={styles.categoryCard}
     >
-      <Box component="picture" className={styles.imageWrapper}>
-        <img src={img} alt={name} />
-      </Box>
-      <Typography component="p" variant="h5">
-        {name}
-      </Typography>
+      <Link
+        to={`/catalog/${generateCategoryPath(product)}`}
+        className={styles.link}
+      >
+        <Box component="picture" className={styles.imageWrapper}>
+          <img src={img} alt={name} />
+        </Box>
+        <Box className={styles.nameWrapper}>
+          <Typography
+            className={styles.name}
+            component="p"
+            variant="body2"
+            color="textPrimary"
+          >
+            {name}
+          </Typography>
+        </Box>
+      </Link>
     </Box>
   );
 }
