@@ -103,9 +103,7 @@ function Email({ products, total }) {
                 color: '#757575',
                 marginRight: '3px'
               }}
-            >
-              Price:{' '}
-            </p>
+            ></p>
             <p
               style={{
                 fontFamily: '"Open Sans"  ,sans-serif',
