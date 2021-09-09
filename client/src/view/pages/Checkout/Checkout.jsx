@@ -63,10 +63,11 @@ function Checkout() {
       }
     })();
   }, [cart, throwAsyncError]);
-  console.log(products);
 
-  const onSubmit = (data) => {
-    // const email = ReactDOMServer.renderToString(<Email products={products} total={} />);
+  const onSubmit = async (data) => {
+    const letterHtml = ReactDOMServer.renderToString(
+      <Email products={products} total={1000} />
+    );
     const order = {
       customerId: profileData._id,
       deliveryInformation: {
@@ -76,11 +77,15 @@ function Checkout() {
         postal: data.zipCode
       },
       email: profileData.email,
-      mobile: profileData.telephone
+      mobile: profileData.telephone,
+      letterSubject: 'Thank you for order! You are welcome!',
+      letterHtml: letterHtml
     };
 
-    const request = ordersRequests.createOrder(order);
-    console.log(request);
+    const orderRequest = await ordersRequests.createOrder(order);
+
+    // eslint-disable-next-line no-console
+    console.log(orderRequest);
   };
 
   return (
