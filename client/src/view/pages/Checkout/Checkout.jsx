@@ -30,8 +30,6 @@ function Checkout() {
   const [products, setProducts] = useState([]);
   const throwAsyncError = useAsyncError();
 
-  console.log('prod', products);
-
   useEffect(() => {
     (async () => {
       try {
@@ -80,7 +78,8 @@ function Checkout() {
       mobile: profileData.telephone
     };
 
-    console.log(order);
+    const request = ordersRequests.createOrder(order);
+    console.log(request);
   };
 
   return (
