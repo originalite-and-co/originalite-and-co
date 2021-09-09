@@ -30,8 +30,6 @@ function Checkout() {
   const [products, setProducts] = useState([]);
   const throwAsyncError = useAsyncError();
 
-  console.log('prod', products);
-
   useEffect(() => {
     (async () => {
       try {
@@ -66,8 +64,10 @@ function Checkout() {
     })();
   }, [cart, throwAsyncError]);
 
-  const onSubmit = (data) => {
-    // const email = ReactDOMServer.renderToString(<Email products={products} />);
+  const onSubmit = async (data) => {
+    const letterHtml = ReactDOMServer.renderToString(
+      <Email products={products} total={1000} />
+    );
     const order = {
       customerId: profileData._id,
       deliveryInformation: {
@@ -77,10 +77,14 @@ function Checkout() {
         postal: data.zipCode
       },
       email: profileData.email,
-      mobile: profileData.telephone
+      mobile: profileData.telephone,
+      letterSubject: 'Thank you for order! You are welcome!',
+      letterHtml: letterHtml
     };
 
-    console.log(order);
+    const orderRequest = await ordersRequests.createOrder(order);
+
+    console.log(orderRequest);
   };
 
   return (
