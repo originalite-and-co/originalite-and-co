@@ -63,9 +63,10 @@ function Checkout() {
       }
     })();
   }, [cart, throwAsyncError]);
+  console.log(products);
 
   const onSubmit = (data) => {
-    // const email = ReactDOMServer.renderToString(<Email products={products} />);
+    // const email = ReactDOMServer.renderToString(<Email products={products} total={} />);
     const order = {
       customerId: profileData._id,
       deliveryInformation: {
