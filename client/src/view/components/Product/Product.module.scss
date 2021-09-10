@@ -112,7 +112,7 @@
 
 .buttonsGroup{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -125,6 +125,7 @@
     width: 263px;
     height: 57px;
     font-size: 15px;
+    margin-right: 5px;
     text-transform: uppercase;
     background: #000000;
     color: #ffffff;
@@ -142,6 +143,7 @@
     width: 263px;
     height: 57px;
     cursor: pointer;
+    margin-right: 5px;
     //margin-top: 50px;
     //margin-bottom: 100px;
     //padding: 18px 100px;

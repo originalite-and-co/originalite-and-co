@@ -48,6 +48,7 @@ const validationSchema = yup.object().shape({
   login: yup
     .string()
     .min(4)
+    .max(10)
     .required()
     .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed for this field ')
     .label('login'),

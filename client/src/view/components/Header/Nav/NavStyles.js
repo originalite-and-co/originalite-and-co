@@ -4,7 +4,8 @@ export function generateStyles() {
       paddingTop: '14px',
       paddingBottom: '14px',
       position: 'relative',
-      backgroundColor: '#000000'
+      backgroundColor: '#000000',
+      zIndex: '1'
     },
     inner: {
       display: 'flex',

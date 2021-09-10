@@ -3,6 +3,7 @@ export function generateStyles({ breakpoints }) {
     dropdownItem: {
       left: '-15px',
       position: 'absolute',
+      zIndex: '1111999',
       marginBottom: '5px',
       padding: '10px',
       display: 'flex',
@@ -26,6 +27,7 @@ export function generateStyles({ breakpoints }) {
 
       '&:first-child': {
         top: '60px',
+        zIndex: '1111999',
         transition: 'transform 0.5s ease-in-out',
 
         [breakpoints.up('desktop')]: {

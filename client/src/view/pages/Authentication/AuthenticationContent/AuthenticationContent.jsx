@@ -12,11 +12,19 @@ function AuthenticationContent() {
   const { url } = useRouteMatch();
   const { replace, goBack } = useHistory();
   const [activeSection, setActiveSection] = useState(section);
-  const [loginClicked, setLoginClicked] = useState(section === 'login');
-  const [signupClicked, setSignupClicked] = useState(section === 'signup');
+  const [loginClicked, setLoginClicked] = useState();
+  const [signupClicked, setSignupClicked] = useState();
 
   useEffect(() => {
     setActiveSection(section);
+  }, [section]);
+
+  useEffect(() => {
+    setLoginClicked(section === 'login');
+  }, [section]);
+
+  useEffect(() => {
+    setSignupClicked(section === 'signup');
   }, [section]);
 
   const handleloginOptionClick = () => {
@@ -41,6 +49,7 @@ function AuthenticationContent() {
 
   const handleSignUpClick = () => {
     setLoginClicked(true);
+    setActiveSection('login');
     setSignupClicked(false);
   };
 
