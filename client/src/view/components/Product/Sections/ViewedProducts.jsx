@@ -18,7 +18,7 @@ function ViewedProducts({ activeProductNumber }) {
         return item.itemNo !== activeProductNumber;
       })
     );
-  }, []);
+  }, [activeProductNumber]);
 
   const slides = viewed.map((product) => (
     <ProductCard product={product} size={6} key={product._id} />

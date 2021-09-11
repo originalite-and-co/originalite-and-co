@@ -47,6 +47,7 @@ function Product() {
 
   useEffect(() => {
     dispatch(wishlistOperations.gotWishlist());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -57,6 +58,7 @@ function Product() {
       },
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -64,6 +66,7 @@ function Product() {
       (colors) => setColors(colors),
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -75,6 +78,7 @@ function Product() {
       },
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return isLoaded ? (

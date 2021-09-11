@@ -7,11 +7,12 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
+    // eslint-disable-next-line no-console
     console.error(error, errorInfo);
   }
 

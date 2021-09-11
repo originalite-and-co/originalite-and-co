@@ -1,28 +1,28 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const slideProduct = {
-  className: 'swiper__slide',
+  className: 'swiper__slide'
 };
 
 const carouselProduct = {
   loop: true,
   effect: 'cube',
   pagination: {
-    clickable: true,
+    clickable: true
   },
-  navigation: true,
-}
+  navigation: true
+};
 
 const useStylesProduct = makeStyles({
   headerCarousel: {
     width: '100%',
     '& .swiper-container': {
-      height: '100%',
+      height: '100%'
     },
     '& .swiper__slide': {
       zIndex: 1,
       display: 'flex',
-      height: '100%',
+      height: '100%'
     },
     '& .swiper__image': {
       display: 'block',
@@ -30,36 +30,38 @@ const useStylesProduct = makeStyles({
       width: '100%',
       objectFit: 'cover',
       objectPosition: 'center',
-      margin: 0,
+      margin: 0
     },
     '& .swiper-pagination': {
       padding: 20,
-      textAlign: 'left',
+      textAlign: 'left'
     },
     '& .swiper-pagination-bullet': {
       boxShadow: '0 0 0 2px #333',
       backgroundColor: '#fff',
       width: 10,
       height: 10,
-      margin: '0 10px',
+      margin: '0 10px'
     },
     '& .swiper-button-next:after': {
       zIndex: 6,
       fontWeight: 600,
-      color: '#fff',
+      color: '#fff'
     },
     '& .swiper-button-prev:after': {
       zIndex: 6,
       fontWeight: 600,
-      color: '#fff',
+      color: '#fff'
     },
     '& .swiper-button-prev': {
-      mixBlendMode: 'exclusion',
+      mixBlendMode: 'exclusion'
     },
     '& .swiper-button-next': {
-      mixBlendMode: 'exclusion',
-    },
-  },
+      mixBlendMode: 'exclusion'
+    }
+  }
 });
 
-export default { slideProduct, carouselProduct, useStylesProduct };
+const config = { slideProduct, carouselProduct, useStylesProduct };
+
+export default config;

@@ -8,6 +8,7 @@
     "plugin:import/warnings"
   ],
   "rules": {
+    "no-throw-literal": "off",
     "no-console": "warn",
     "no-unused-vars": [
 			"warn",

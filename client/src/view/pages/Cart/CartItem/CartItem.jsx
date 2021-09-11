@@ -60,7 +60,7 @@ function CartItem({
 
   useEffect(() => {
     setQuantity({ isValid: true, value: cartQuantity });
-  }, []);
+  }, [cartQuantity]);
 
   useEffect(() => {}, [quantity]);
 
@@ -77,6 +77,7 @@ function CartItem({
     }
     dispatch(
       cartOperations.changeProductQuantity(id, itemNo, size, value)
+      // eslint-disable-next-line no-console
     ).catch((error) => console.error(error));
     setError('');
     setQuantity({ isValid: true, value: Number(value) });

@@ -33,9 +33,10 @@ function Size({ name, isDesktop }) {
     }
 
     setChecked(sizes === name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sizes]);
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = () => {
     if (isChecked) {
       setChecked(false);
       dispatch(filterActions.deleteFilterValue('sizes', name));

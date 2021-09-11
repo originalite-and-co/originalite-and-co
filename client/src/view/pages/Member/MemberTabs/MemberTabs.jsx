@@ -1,22 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Box, Tabs, Tab } from '@material-ui/core';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
+import { Box, Tab, Tabs } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MyProfile from '../MyProfile/MyProfile';
-import {
-  customerRequests,
-  ordersRequests,
-  wishlistRequests
-} from '../../../../api/server/index';
+import { customerRequests, ordersRequests, wishlistRequests } from '../../../../api/server/index';
 import useAsyncError from '../../../hooks/useAsyncError';
 import Toast from '../../../components/Toast/Toast';
 import Styles from './../Member.module.scss';
 import MyWishlist from '../MyWishlist/MyWishlist';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  wishlistOperations,
-  wishlistSelectors
-} from '../../../../redux/features/wishlist';
+import { useSelector } from 'react-redux';
+import { wishlistSelectors } from '../../../../redux/features/wishlist';
 import PurchaseHistoryNew from '../PurchaseHistory/PurchaseHistoryNEW';
 
 MemberTabs.propTypes = {};
@@ -47,7 +41,6 @@ function MemberTabs() {
 
   const classes = useStyles();
   const throwError = useAsyncError();
-  const dispatch = useDispatch();
   const wishlistState = useSelector(wishlistSelectors.getWishlist);
 
   const { replace } = useHistory();
@@ -59,15 +52,13 @@ function MemberTabs() {
     setValue(newValue);
   };
 
-  useEffect(
-    useCallback(() => {
-      customerRequests.retrieveCustomer().then(
-        (data) => setCustomer(data),
-        (error) => throwError(error)
-      );
-    }, [customer, isDataUpdated]),
-    [isDataUpdated]
-  );
+  useEffect(() => {
+    customerRequests.retrieveCustomer().then(
+      (data) => setCustomer(data),
+      (error) => throwError(error)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDataUpdated]);
 
   useEffect(() => {
     ordersRequests.retrieveOrder().then(

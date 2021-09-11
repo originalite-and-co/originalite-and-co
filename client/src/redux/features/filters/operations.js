@@ -6,7 +6,7 @@ import transformQueryIntoObject from '../../../utils/transformQueryIntoObject';
  * @param{Object} [location] - location property from history object;
  * @returns {(function(*, *): void)|*}
  */
-const getFilters = (location) => (dispatch, getState) => {
+const getFilters = (location) => (dispatch) => {
   let filtersFromQuery;
 
   if (location && location.search.length) {

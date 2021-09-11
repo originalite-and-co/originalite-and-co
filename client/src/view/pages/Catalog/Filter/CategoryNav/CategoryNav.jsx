@@ -26,6 +26,7 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
       (catalog) => setCatalog(catalog),
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categories = getAllChildCategories(catalog, parentCategoryId);

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -42,30 +42,25 @@ function CatalogNav() {
     isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
   );
 
-  useEffect(
-    useCallback(() => {
-      if (!isAnyDropdownOpen) {
-        setActiveDropdown(false);
-      }
-    }, [isAnyDropdownOpen, isDropdownActive]),
-    [isAnyDropdownOpen, isDropdownActive]
-  );
+  useEffect(() => {
+    if (!isAnyDropdownOpen) {
+      setActiveDropdown(false);
+    }
+  }, [isAnyDropdownOpen, isDropdownActive]);
 
-  useEffect(
-    useCallback(() => {
-      catalogRequests.retrieveCatalog().then(
-        (data) => setCatalog(data),
-        (error) => throwError(error)
-      );
-    }, [catalog]),
-    []
-  );
+  useEffect(() => {
+    catalogRequests.retrieveCatalog().then(
+      (data) => setCatalog(data),
+      (error) => throwError(error)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setIsDesktop(width >= constants.WINDOW_DESKTOP_SIZE);
   }, [width]);
 
-  const handleCategoryLinkClick = (event) => {
+  const handleCategoryLinkClick = () => {
     document.body.classList.remove('lock-scroll');
     setActiveDropdown(false);
     dispatch(isAnyDropdownOpenActions.closedDropdown());

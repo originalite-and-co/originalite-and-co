@@ -1,9 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
-import constants from "../../../constants";
-const {WINDOW_DESKTOP_SIZE,WINDOW_MOBILE_SIZE, WINDOW_TABLET_SIZE} = constants;
+import constants from '../../../constants';
+
+const { WINDOW_DESKTOP_SIZE, WINDOW_MOBILE_SIZE, WINDOW_TABLET_SIZE } =
+  constants;
 
 const slideViewedProduct = {
-  className: 'swiper__slide',
+  className: 'swiper__slide'
 };
 
 const carouselViewedProduct = {
@@ -11,7 +13,7 @@ const carouselViewedProduct = {
   navigation: true,
   slidesPerView: 4,
   spaceBetween: 20,
-  breakpoints : {
+  breakpoints: {
     [WINDOW_MOBILE_SIZE]: {
       slidesPerView: 1
     },
@@ -20,8 +22,8 @@ const carouselViewedProduct = {
     },
     [WINDOW_DESKTOP_SIZE]: {
       slidesPerView: 4
-    },
-  },
+    }
+  }
 };
 
 const useStylesViewedProduct = makeStyles({
@@ -29,17 +31,17 @@ const useStylesViewedProduct = makeStyles({
     width: '100%',
     display: 'flex',
     height: 'calc(100vh - 94px)',
-    position: 'relative',
+    position: 'relative'
   },
   headerCarousel: {
-      marginBottom: '100px',
+    marginBottom: '100px',
     '& .swiper-container': {
-      height: '100%',
+      height: '100%'
     },
     '& .swiper__slide': {
       zIndex: 1,
       display: 'flex',
-      height: '100%',
+      height: '100%'
     },
     '& .swiper__image': {
       display: 'block',
@@ -47,25 +49,31 @@ const useStylesViewedProduct = makeStyles({
       width: '100%',
       objectFit: 'cover',
       objectPosition: 'center',
-      margin: 0,
+      margin: 0
     },
     '& .swiper-button-next:after': {
       zIndex: 6,
       fontWeight: 900,
-      color: '#fff',
+      color: '#fff'
     },
     '& .swiper-button-prev:after': {
       zIndex: 6,
       fontWeight: 600,
-      color: '#fff',
+      color: '#fff'
     },
     '& .swiper-button-prev': {
-      mixBlendMode: 'exclusion',
+      mixBlendMode: 'exclusion'
     },
     '& .swiper-button-next': {
-      mixBlendMode: 'exclusion',
-    },
-  },
+      mixBlendMode: 'exclusion'
+    }
+  }
 });
 
-export default { slideViewedProduct, carouselViewedProduct, useStylesViewedProduct };
+const config = {
+  slideViewedProduct,
+  carouselViewedProduct,
+  useStylesViewedProduct
+};
+
+export default config;

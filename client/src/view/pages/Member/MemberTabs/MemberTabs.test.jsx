@@ -1,9 +1,8 @@
 import MemberTabs from './MemberTabs';
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import store from './../../../../redux/store/store';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Tab } from '@material-ui/core';
 import React from 'react';
 
 const TestMemberTabs = () => {

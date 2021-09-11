@@ -50,7 +50,7 @@ function ProductInfo({
 
   useEffect(() => {
     setAddedToWishlist(isInWishlist);
-  }, [isAuthorized, history.location.pathname]);
+  }, [isAuthorized, history.location.pathname, isInWishlist]);
 
   useEffect(() => {
     if (!groupId) {
@@ -77,6 +77,7 @@ function ProductInfo({
           })
         );
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupId, color, history.location.pathname]);
 
   const onSelectSize = (item) => {
@@ -117,7 +118,7 @@ function ProductInfo({
       ));
 
   const duration = 6000;
-  const handleAddToCartBtnClick = (event) => {
+  const handleAddToCartBtnClick = () => {
     setShowCartNotification(true);
     dispatch(cartOperations.addProductToCart(_id, itemNo, activeSize));
   };
@@ -139,6 +140,7 @@ function ProductInfo({
         onClose={() => setShowCartNotification(false)}
       />
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [showCartNotification]
   );
 
@@ -200,7 +202,7 @@ function ProductInfo({
       <h3>Size</h3>
       <div>
         <ul className={OneProductStyles.sizes}>
-          {availableSizes.map((item, index) => (
+          {availableSizes.map((item) => (
             <li
               key={item}
               onClick={() => onSelectSize(item)}
