@@ -143,7 +143,7 @@ function AppRoutes() {
         component={Member}
       />
       <Route path="/cart" component={Cart} />
-      <Route path="/auth" component={Authentication} />
+      <Route path="/auth/:section" component={Authentication} />
       <Route exact path="/" component={Home} />
       <Route path="*" component={Page404} />
     </Switch>
