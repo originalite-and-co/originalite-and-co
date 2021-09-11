@@ -25,11 +25,9 @@ import { Box, Divider, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './styles';
 
-Cart.propTypes = {};
-
 const { WINDOW_DESKTOP_SIZE } = constants;
 
-function Cart(props) {
+function Cart() {
   const { width } = useWindowSize();
   const [isDesktop, setDesktop] = useState(width >= WINDOW_DESKTOP_SIZE);
   const [isLoaded, setLoaded] = useState(false);
@@ -65,6 +63,7 @@ function Cart(props) {
       }
     };
     asyncFunction();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -101,9 +100,11 @@ function Cart(props) {
       .catch((err) => {
         if (err.status >= 400) {
           setLoaded(true);
+          // eslint-disable-next-line no-console
           console.error(err);
         }
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUserAuthorized]);
 
   const productList = useMemo(() => {
@@ -141,7 +142,7 @@ function Cart(props) {
         );
       }
     );
-  }, [cartProducts]);
+  }, [cartProducts, isDesktop]);
   return (
     <>
       <Header />

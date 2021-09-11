@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 function Image({ src, className }) {

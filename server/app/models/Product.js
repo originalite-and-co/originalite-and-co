@@ -38,6 +38,9 @@ const ProductSchema = new Schema(
       required: true,
       default: 0,
     },
+    groupId: {
+      type: String,
+    },
     description: {
       type: String,
     },

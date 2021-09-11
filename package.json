@@ -6,7 +6,10 @@
   "scripts": {
     "test": "npm run test --prefix client -- --coverage",
     "build": "npm install --prefix client && npm install --prefix server && npm run build --prefix client && rm -rf server/public/* && cp -a client/build/. server/public",
-    "start": "npm run start --prefix server"
+    "start": "npm run start --prefix server",
+    "prepare": "husky install",
+    "prepush": "npm run lint && npm run test",
+    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
   },
   "repository": {
     "type": "git",
@@ -17,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/originalite-and-co/originalite-and-co/issues"
   },
-  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme"
+  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "cd ./client/ && CI=true npm run test"
+    }
+  }
 }

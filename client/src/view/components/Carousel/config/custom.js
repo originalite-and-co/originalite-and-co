@@ -1,4 +1,6 @@
 import constants from '../../../constants';
+import { makeStyles } from '@material-ui/styles';
+
 const { WINDOW_DESKTOP_SIZE, WINDOW_MOBILE_SIZE, WINDOW_TABLET_SIZE } =
   constants;
 const slide = {
@@ -17,6 +19,7 @@ const carousel = {
 const popularProductsSlide = {
   className: 'popularSlide'
 };
+
 const popularProductsCarousel = {
   loop: true,
   breakpoints: {
@@ -31,15 +34,26 @@ const popularProductsCarousel = {
     }
   },
   slidesPerView: 3,
-  spaceBetween: 20,
-  pagination: {
-    clickable: true
-  }
+  spaceBetween: 20
 };
 
-export default {
+const useStyles = makeStyles({
+  root: {
+    '& .swiper-button-prev': {
+      mixBlendMode: 'exclusion'
+    },
+    '& .swiper-button-next': {
+      mixBlendMode: 'exclusion'
+    }
+  }
+});
+
+const config = {
   slide,
   carousel,
   popularProductsCarousel,
-  popularProductsSlide
+  popularProductsSlide,
+  useStyles
 };
+
+export default config;

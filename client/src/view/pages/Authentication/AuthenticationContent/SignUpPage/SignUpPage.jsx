@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Styles from '../Authentication.module.scss';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -9,7 +8,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, Typography } from '@material-ui/core';
 import { customerRequests } from '../../../../../api/server';
 import useAsyncError from '../../../../hooks/useAsyncError';
-import { useHistory } from 'react-router-dom';
 import Toast from '../../../../components/Toast/Toast';
 import * as yup from 'yup';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -113,7 +111,7 @@ function SignUpPage({ onClick }) {
               .catch((error) => throwAsyncError(error));
           }}
         >
-          {({ values, touched, isValidating, isSubmitting }) => (
+          {() => (
             <Form>
               <Box className={Styles.signUpGroup}>
                 <FormGroup data-testid="firstName">

@@ -1,4 +1,4 @@
-import isJSON from "../../utils/isJSON";
+import isJSON from '../../utils/isJSON';
 
 class ServerApiRequests {
   /**
@@ -52,9 +52,9 @@ class ServerApiRequests {
       exception || this.fetchException.create || this.fetchException;
     try {
       const response = await fetch(currentPath, {
-        method: "POST",
+        method: 'POST',
         headers: currentHeaders,
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       });
 
       const isResponseJSON = await isJSON(response);
@@ -69,7 +69,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -92,11 +92,11 @@ class ServerApiRequests {
       exception || this.fetchException.retrieve || this.fetchException;
     try {
       const response = await fetch(currentPath, {
-        method: "GET",
-        headers: currentHeaders,
+        method: 'GET',
+        headers: currentHeaders
       });
 
-      const isResponseJSON = await isJSON(response);
+      const isResponseJSON = isJSON(response);
       const data = isResponseJSON
         ? await response.json()
         : await response.text();
@@ -107,7 +107,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -131,9 +131,9 @@ class ServerApiRequests {
       exception || this.fetchException.update || this.fetchException;
     try {
       const response = await fetch(currentPath, {
-        method: "PUT",
+        method: 'PUT',
         headers: currentHeaders,
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       });
 
       const isResponseJSON = await isJSON(response);
@@ -147,7 +147,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -170,8 +170,8 @@ class ServerApiRequests {
       exception || this.fetchException.delete || this.fetchException;
     try {
       const response = await fetch(currentPath, {
-        method: "DELETE",
-        headers: currentHeaders,
+        method: 'DELETE',
+        headers: currentHeaders
       });
 
       const isResponseJSON = await isJSON(response);
@@ -185,7 +185,7 @@ class ServerApiRequests {
           ...currentException,
           message: readableData,
           status: response.status,
-          statusText: response.statusText,
+          statusText: response.statusText
         };
       }
 
@@ -197,12 +197,12 @@ class ServerApiRequests {
 }
 
 function createReadableData(data) {
-  if (typeof data === "object" && data !== null) {
-    return Object.values(data).join(".");
+  if (typeof data === 'object' && data !== null) {
+    return Object.values(data).join('.');
   }
 
   if (Array.isArray(data)) {
-    return data.join(".");
+    return data.join('.');
   }
   return data;
 }

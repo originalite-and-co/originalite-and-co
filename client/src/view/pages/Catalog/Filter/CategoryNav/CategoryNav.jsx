@@ -14,20 +14,19 @@ import classes from './CategoryNav.module.scss';
 
 CategoryNav.propTypes = {
   parentCategoryId: PropTypes.string.isRequired,
-  parentCategoryName: PropTypes.string.isRequired,
+  parentCategoryName: PropTypes.string.isRequired
 };
 
 function CategoryNav({ parentCategoryId, parentCategoryName }) {
-
   const [catalog, setCatalog] = useState([]);
   const throwAsyncError = useAsyncError();
 
   useEffect(() => {
-    catalogRequests.retrieveCatalog()
-      .then(
-        catalog => setCatalog(catalog),
-        error => throwAsyncError(error),
-      );
+    catalogRequests.retrieveCatalog().then(
+      (catalog) => setCatalog(catalog),
+      (error) => throwAsyncError(error)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categories = getAllChildCategories(catalog, parentCategoryId);
@@ -38,7 +37,10 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
         <NavLink
           activeClassName={classes.activeLink}
           className={classes.link}
-          to={`/catalog/${generateCategoryPath({ id, parentId: parentCategoryId })}`}
+          to={`/catalog/${generateCategoryPath({
+            id,
+            parentId: parentCategoryId
+          })}`}
           replace
         >
           {name}
@@ -49,12 +51,10 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
 
   return (
     <Box className={classes.root}>
-      <Typography className={classes.heading} component='h4' variant='h6'>
+      <Typography className={classes.heading} component="h4" variant="h6">
         {parentCategoryName}
       </Typography>
-      <List className={classes.list}>
-        {categoryList}
-      </List>
+      <List className={classes.list}>{categoryList}</List>
     </Box>
   );
 }

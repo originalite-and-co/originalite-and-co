@@ -1,7 +1,4 @@
-import {
-  generateFetchException,
-  generateHeaders
-} from './utils.js';
+import { generateFetchException, generateHeaders } from './utils.js';
 import ServerApiRequests from './ServerApiRequests';
 
 const CUSTOMERS_PATH = '/api/customers';
@@ -60,7 +57,7 @@ const createCustomer = async (data) => {
  * @param {boolean} keepLoggedIn
  */
 const logIn = async (credentials, keepLoggedIn) => {
-  const exception = generateFetchException("logging in");
+  const exception = generateFetchException('logging in');
   const data = await customerRequests.create(
     credentials,
     `${CUSTOMERS_PATH}/login`,
@@ -113,10 +110,10 @@ const updateCustomer = async (data) => {
 const changeCustomerPassword = async (previousPassword, newPassword) => {
   const data = {
     password: previousPassword,
-    newPassword,
+    newPassword
   };
 
-  const exception = generateFetchException("changing the customer password");
+  const exception = generateFetchException('changing the customer password');
   return await customerRequests.update(
     data,
     `${CUSTOMERS_PATH}/password`,
@@ -129,7 +126,7 @@ const customers = {
   logIn,
   retrieveCustomer,
   changeCustomerPassword,
-  updateCustomer,
+  updateCustomer
 };
 
 export default customers;

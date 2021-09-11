@@ -1,9 +1,8 @@
 import React from 'react';
-import {render} from '@testing-library/react';
-import { Route, Router} from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react';
+import { Route, Router } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-import {createBrowserHistory} from "history";
+import { createBrowserHistory } from 'history';
 
 /**
  * Regular expression is used to check if component includes written text.
@@ -14,39 +13,43 @@ import {createBrowserHistory} from "history";
  *
  * */
 describe('Private route', () => {
-    const LoginComponent = () => <p>Login</p>;
-    const TestComponent = () => <p>Test</p>;
-    const history = createBrowserHistory();
+  const LoginComponent = () => <p>Login</p>;
+  const TestComponent = () => <p>Test</p>;
+  const history = createBrowserHistory();
 
-    afterEach(() => {
-        history.push("/")
-    })
+  afterEach(() => {
+    history.push('/');
+  });
 
-    test('Smoke', () => {
-        const {getByTestId, getByText, queryByText,} = render(
-            <Router history={history}>
-                <Route path="/auth/login" render={() => <LoginComponent/>}/>
-                <PrivateRoute isAuthenticated component={TestComponent} path="/test"/>
-            </Router>
-        );
+  test('Smoke', () => {
+    const { getByText, queryByText } = render(
+      <Router history={history}>
+        <Route path="/auth/login" render={() => <LoginComponent />} />
+        <PrivateRoute isAuthenticated component={TestComponent} path="/test" />
+      </Router>
+    );
 
-        expect(queryByText(/test/i)).toBeNull();
-        history.push("/test");
-        expect(getByText(/test/i)).toBeInTheDocument();
-    });
+    expect(queryByText(/test/i)).toBeNull();
+    history.push('/test');
+    expect(getByText(/test/i)).toBeInTheDocument();
+  });
 
-    test('if private route redirects to login when the user is not authenticated', () => {
-        const {getByTestId, getByText, queryByText,} = render(
-            <Router history={history}>
-                <Route path="/auth/login" render={() => <LoginComponent/>}/>
-                <PrivateRoute isAuthenticated={false} component={TestComponent} path="/test"/>
-            </Router>
-        );
+  test('if private route redirects to login when the user is not authenticated', () => {
+    const { getByText, queryByText } = render(
+      <Router history={history}>
+        <Route path="/auth/login" render={() => <LoginComponent />} />
+        <PrivateRoute
+          isAuthenticated={false}
+          component={TestComponent}
+          path="/test"
+        />
+      </Router>
+    );
 
-        expect(queryByText(/test/i)).toBeNull();
-        expect(queryByText(/login/i)).toBeNull();
-        history.push("/test");
-        expect(queryByText(/test/i)).toBeNull();
-        expect(getByText(/login/i)).toBeInTheDocument();
-    });
+    expect(queryByText(/test/i)).toBeNull();
+    expect(queryByText(/login/i)).toBeNull();
+    history.push('/test');
+    expect(queryByText(/test/i)).toBeNull();
+    expect(getByText(/login/i)).toBeInTheDocument();
+  });
 });

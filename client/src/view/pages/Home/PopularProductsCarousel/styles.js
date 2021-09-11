@@ -1,4 +1,4 @@
-const generateStyles = (theme) => ({
+const generateStyles = () => ({
   root: {
     marginBottom: '5vh'
   },

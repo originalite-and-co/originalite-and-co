@@ -7,6 +7,7 @@
 .wrapper_carousel_product {
   width: 100%;
   height: 100%;
+  margin-right: 2vw;
 }
 
 .info {
@@ -37,24 +38,42 @@
   color: #847A7A;
 }
 
-//.color {
-//
-//  button {
-//    cursor: pointer;
-//    width: 23px;
-//    height: 23px;
-//    border-radius: 50%;
-//    border: none;
-//    display: inline;
-//    margin-right: 30px;
-//  }
-//
-//  .active {
-//    width: 30px;
-//    height: 30px;
-//  }
-//
-//}
+.colorLink{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 50%;
+  color: #000000;
+}
+
+.color{
+  margin: auto;
+  display: block;
+  border: 2px solid #C4C4C4;
+  border-radius: 50%;
+  height: 21px;
+  width: 21px;
+}
+.colorName{
+  font-family: Open Sans, sans-serif;
+
+  &::after{
+    content: '';
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    height: 1px;
+  }
+}
+
+.colorName.active{
+  &::after {
+    background-color: #000000;
+  }
+}
 
 .description {
   font-size: 12px;

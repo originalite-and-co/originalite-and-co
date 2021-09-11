@@ -1,5 +1,5 @@
 import actions from './actions';
-import { cartRequests, wishlistRequests } from '../../../api/server';
+import { wishlistRequests } from '../../../api/server';
 
 const gotWishlist = () => async (dispatch, getState) => {
   const { authorization } = getState();

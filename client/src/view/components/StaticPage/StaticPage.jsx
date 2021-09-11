@@ -54,7 +54,7 @@ function StaticPage({ title, htmlContent }) {
     if (title === 'Contact') {
       setIsContactPage(true);
     }
-  }, []);
+  }, [title]);
   const offices = officesArray.map((office) => (
     <Marker
       longitude={office.longitude}
@@ -68,7 +68,7 @@ function StaticPage({ title, htmlContent }) {
           setSelectedOffice(office);
         }}
       >
-        <img src={icon} />
+        <img src={icon} alt="map marker" />
       </button>
     </Marker>
   ));

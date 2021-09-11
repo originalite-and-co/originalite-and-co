@@ -8,10 +8,15 @@ import constants from '../../constants';
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
-  size: PropTypes.number.isRequired
+  size: PropTypes.number.isRequired,
+  className: PropTypes.string
 };
 
-function ProductCard({ product, size }) {
+ProductCard.defaultProps = {
+  className: ''
+};
+
+function ProductCard({ product, className }) {
   const [isDesktop, setDesktop] = useState(false);
 
   const { width } = useWindowSize();
@@ -40,7 +45,7 @@ function ProductCard({ product, size }) {
   return (
     <Box
       data-testid="product-card"
-      className={styles.productCard}
+      className={`${styles.productCard} ${className}`}
       onClick={handleClick}
     >
       <Link to={`/products/${product.itemNo}`} className={styles.link}>

@@ -1,4 +1,4 @@
-.dropdown{
+.dropdown {
   position: fixed;
   z-index: 10;
   width: 100%;
@@ -6,6 +6,6 @@
   transition: all 0.5s linear;
 }
 
-.dropdown.active{
+.dropdown.active {
   opacity: 1;
 }

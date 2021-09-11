@@ -39,17 +39,20 @@ function numberOfProductsGenerator(initialValue) {
   };
 }
 
-function Catalog(props) {
-  const [isDesktop, setDesktop] = useState(false);
+function Catalog() {
+  const { width } = useWindowSize();
+
+  const [isDesktop, setDesktop] = useState(
+    width >= constants.WINDOW_DESKTOP_SIZE
+  );
   const [{ products, productsQuantity }, setProducts] = useState({});
-  const [numberOfProducts, setNumberOfProducts] = useState(4);
+  const [numberOfProducts, setNumberOfProducts] = useState(10);
   const [categoryName, setCategoryName] = useState('');
   const [isLoaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
   const query = useSelector(filterSelectors.getFiltersQuery);
 
-  const { width } = useWindowSize();
   const { location, replace } = useHistory();
   const throwAsyncError = useAsyncError();
 
@@ -66,10 +69,12 @@ function Catalog(props) {
    */
   let generator = useMemo(
     () => numberOfProductsGenerator(numberOfProducts),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   generator = useMemo(
     () => generator(numberOfProducts, productsQuantity),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [productsQuantity]
   );
 
@@ -82,6 +87,7 @@ function Catalog(props) {
       (data) => setCategoryName(data.name),
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, categoryID]);
 
   useEffect(() => {
@@ -103,10 +109,12 @@ function Catalog(props) {
       },
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, numberOfProducts, location.pathname]);
 
   useEffect(() => {
     dispatch(filterOperations.getFilters(location));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   /**

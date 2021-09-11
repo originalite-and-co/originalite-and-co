@@ -1,7 +1,7 @@
 import './../../../../assets/styles/_variables.scss';
 import './../../../../assets/typography/typography.scss';
 
-export function generateStyles({ breakpoints, palette, typography }) {
+export function generateStyles({ breakpoints }) {
   return {
     navItemsGroup: {
       display: 'flex',

@@ -57,6 +57,7 @@ function Filter() {
         (error) => throwAsyncError(error)
       )
       .then(() => setIsLoaded(true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -68,6 +69,7 @@ function Filter() {
         (error) => throwAsyncError(error)
       )
       .then(() => setIsLoaded(true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const colorList = colors?.map(({ _id, name, cssValue }) => {
@@ -80,7 +82,7 @@ function Filter() {
     return <Size key={_id} name={name} isDesktop={isDesktop} />;
   });
 
-  const handleCloseBtnClick = (event) => {
+  const handleCloseBtnClick = () => {
     dispatch(isAnyDropdownOpenActions.closedDropdown());
   };
 

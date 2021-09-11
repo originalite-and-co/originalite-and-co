@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import ProductCard from '../ProductCard/ProductCard';
 import styles from './CardList.module.scss';
 import { useEffect, useState } from 'react';
@@ -18,7 +19,6 @@ const CardList = () => {
       }
     );
   }, []);
-  console.log(productList);
   if (apiError) {
     return <div>ERROR</div>;
   }

@@ -1,4 +1,4 @@
-export function generateStyles({ breakpoints, theme }) {
+export function generateStyles({ breakpoints }) {
   return {
     cardInnerWrapper: {
       width: '85%',

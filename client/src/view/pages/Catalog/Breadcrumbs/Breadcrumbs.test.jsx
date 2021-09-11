@@ -15,27 +15,27 @@ describe('Breadcrumbs', () => {
         <CustomThemeProvider>
           <CatalogBreadcrumbs path={PATH} categoryName={CATEGORY_NAME} />
         </CustomThemeProvider>
-      </Router>,
+      </Router>
     );
 
     expect(getByText(/catalog/i)).toBeInTheDocument();
     expect(getByText(CATEGORY_NAME)).toBeInTheDocument();
   });
 
-  test("if links redirect to another page", () => {
+  test('if links redirect to another page', () => {
     const history = createBrowserHistory();
-    history.push(PATH)
+    history.push(PATH);
     const { getByText } = render(
       <Router history={history}>
         <CustomThemeProvider>
           <CatalogBreadcrumbs path={PATH} categoryName={CATEGORY_NAME} />
         </CustomThemeProvider>
-      </Router>,
+      </Router>
     );
 
     expect(history.location.pathname).toMatch(PATH);
     const link = getByText(/catalog/i);
     userEvent.click(link);
-    expect(history.location.pathname).toMatch("/catalog");
-  })
+    expect(history.location.pathname).toMatch('/catalog');
+  });
 });

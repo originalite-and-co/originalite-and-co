@@ -16,6 +16,8 @@ const wishlistReducers = (state = [], action) => {
   }
 };
 
-export default {
+const reducers = {
   wishlist: wishlistReducers
 };
+
+export default reducers;
