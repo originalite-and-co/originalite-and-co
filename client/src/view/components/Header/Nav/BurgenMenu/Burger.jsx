@@ -12,13 +12,7 @@ import {
 } from '../../../../../redux/features/dropdown';
 import { catalogRequests } from '../../../../../api/server';
 import useAsyncError from '../../../../hooks/useAsyncError';
-import {
-  Link,
-  NavLink,
-  useHistory,
-  useParams,
-  useRouteMatch
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authorizationSelectors } from '../../../../../redux/features/authorization';
 import { makeStyles } from '@material-ui/styles';
 import { generateStyles } from './BurgerStyles';
@@ -88,7 +82,7 @@ function Burger() {
     }
   };
 
-  const test = () => {
+  const handleBurgerClick = () => {
     setTimeout(() => {
       dispatch(isAnyDropdownOpenActions.closedDropdown());
     }, 0);
@@ -97,7 +91,7 @@ function Burger() {
   const burgerDropdownContent = (
     <>
       {!isAuthorized && (
-        <Box className={`${classes.auth} wrapper`} onClick={test}>
+        <Box className={`${classes.auth} wrapper`} onClick={handleBurgerClick}>
           <Box>
             <Link to="/auth/login">
               <p className={classes.btn}>Log In /</p>
