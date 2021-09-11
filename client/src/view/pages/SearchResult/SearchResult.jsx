@@ -15,11 +15,14 @@ import _ from 'lodash';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { makeStyles } from '@material-ui/styles';
 import generateStyles from './SearchResultStyles.js';
+import Loader from '../../components/Loader/Loader';
 
 const useStyles = makeStyles(generateStyles);
 
 function SearchResult() {
   const [products, setProducts] = useState([]);
+  const [isLoaded, setLoaded] = useState(false);
+
   const searchResult = useSelector(searchResultSelectors.getSearchResult);
   const throwAsyncError = useAsyncError();
   const history = useHistory();
@@ -33,6 +36,7 @@ function SearchResult() {
 
   if (searchResult.length && !products.length) {
     setProducts(searchResult);
+    setLoaded(true);
   }
 
   if (!searchResult.length && !products.length) {
@@ -41,6 +45,7 @@ function SearchResult() {
         setProducts(data);
         if (data.length) {
           dispatch(searchResultActions.setSearchResult(data));
+          setLoaded(true);
         }
       },
       (error) => throwAsyncError(error)
@@ -64,7 +69,11 @@ function SearchResult() {
           >
             {_.upperFirst(_.lowerCase(query))}
           </Typography>
-          <Box className={classes.grid}>{productList}</Box>
+          {isLoaded ? (
+            <Box className={classes.grid}>{productList}</Box>
+          ) : (
+            <Loader fixed />
+          )}
         </Box>
       </Box>
     </>

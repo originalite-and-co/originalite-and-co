@@ -41,6 +41,7 @@ const PopularProductsCarousel = () => {
       (res) => setProductList(res),
       (error) => throwError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const slides = productList.map((product) => (

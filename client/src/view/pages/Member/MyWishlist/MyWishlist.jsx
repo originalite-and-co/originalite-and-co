@@ -62,6 +62,7 @@ function MyWishlist({ wishlist }) {
         onClose={(value) => handleDialogClose(activeProduct, value)}
       />
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [isDialogOpen]
   );
 
@@ -86,6 +87,7 @@ function MyWishlist({ wishlist }) {
         onClose={() => setShowCartNotification(false)}
       />
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showCartNotification]);
 
   let wishlistList;

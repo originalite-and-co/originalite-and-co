@@ -1,6 +1,4 @@
 import { createBrowserHistory } from 'history';
-import { render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import renderWithProjectProviders from '../../utils/renderWithProjectProviders';
 import store from '../../redux/store/store';

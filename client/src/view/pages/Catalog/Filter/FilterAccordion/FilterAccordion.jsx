@@ -7,7 +7,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Grid,
   Typography
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';

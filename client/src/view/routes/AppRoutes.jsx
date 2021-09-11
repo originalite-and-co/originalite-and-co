@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import Home from '../pages/Home/Home';
 import Authentication from '../pages/Authentication/Authentication';
@@ -22,10 +22,7 @@ import {
 } from '../../redux/features/authorization';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductPage from '../pages/ProductPage/ProductPage';
-import {
-  wishlistOperations,
-  wishlistSelectors
-} from '../../redux/features/wishlist';
+import { wishlistOperations } from '../../redux/features/wishlist';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Email from '../components/Email/Email';
@@ -34,11 +31,11 @@ import * as ReactDOMServer from 'react-dom/server';
 function AppRoutes() {
   const dispatch = useDispatch();
   const authorization = useSelector(authorizationSelectors.authorization);
-  const wishlist = useSelector(wishlistSelectors.getWishlist);
   const [isAuthenticated, setAuthenticated] = useState(
     !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
   );
 
+  const { location } = useHistory();
   const [staticPages, setStaticPages] = useState([]);
 
   const throwError = useAsyncError();
@@ -46,24 +43,24 @@ function AppRoutes() {
   useEffect(() => {
     dispatch(authorizeOperations.authorizeUser());
     dispatch(wishlistOperations.gotWishlist());
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   useEffect(() => {
     dispatch(authorizeOperations.authorizeUser());
     setAuthenticated(
       !!sessionStorage.getItem('token') || !!localStorage.getItem('token')
     );
-  }, [authorization, isAuthenticated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authorization, isAuthenticated, location]);
 
-  useEffect(
-    useCallback(() => {
-      pageRequests.retrievePages().then(
-        (data) => setStaticPages(data),
-        (error) => throwError(error)
-      );
-    }, [staticPages]),
-    []
-  );
+  useEffect(() => {
+    pageRequests.retrievePages().then(
+      (data) => setStaticPages(data),
+      (error) => throwError(error)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     customerRequests.retrieveCustomer().catch((error) => {
@@ -72,7 +69,7 @@ function AppRoutes() {
         localStorage.removeItem('token');
       }
     });
-  }, []);
+  }, [location]);
 
   let staticPageRoutes;
 
@@ -122,6 +119,7 @@ function AppRoutes() {
   ];
 
   const email = <Email products={products} total={540} orderNumber={654559} />;
+  // eslint-disable-next-line no-console
   console.log(
     JSON.stringify({
       letterHtml: ReactDOMServer.renderToString(email)

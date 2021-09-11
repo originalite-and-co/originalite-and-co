@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Box from '@material-ui/core/Box';
 import Dropdown from '../../../Dropdown/Dropdown';
@@ -37,15 +37,13 @@ function Burger() {
     }
   }, [isAnyDropdownOpen, isDropdownActive]);
 
-  useEffect(
-    useCallback(() => {
-      catalogRequests.retrieveCatalog().then(
-        (data) => setCatalog(data),
-        (error) => throwError(error)
-      );
-    }, [catalog]),
-    []
-  );
+  useEffect(() => {
+    catalogRequests.retrieveCatalog().then(
+      (data) => setCatalog(data),
+      (error) => throwError(error)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const mainCategoryLinks = catalog
     .filter((category) => category.parentId === 'null')
@@ -58,7 +56,7 @@ function Burger() {
       />
     ));
 
-  const handleBurgerIconClick = (event) => {
+  const handleBurgerIconClick = () => {
     if (isDropdownActive) {
       dispatch(isAnyDropdownOpenActions.closedDropdown());
       setActiveDropdown(false);

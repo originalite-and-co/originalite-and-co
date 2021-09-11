@@ -7,6 +7,7 @@ describe('ErrorBoundary', () => {
       throw new Error('Test');
     };
 
+    // eslint-disable-next-line no-console
     console.error = jest.fn();
 
     const { getByText } = render(
@@ -16,6 +17,7 @@ describe('ErrorBoundary', () => {
     );
 
     expect(getByText(/error/i)).toBeInTheDocument();
+    // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalled();
   });
 });

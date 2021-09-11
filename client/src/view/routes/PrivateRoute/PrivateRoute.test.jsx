@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Route, Router } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import PrivateRoute from './PrivateRoute';
 import { createBrowserHistory } from 'history';
 
@@ -23,7 +22,7 @@ describe('Private route', () => {
   });
 
   test('Smoke', () => {
-    const { getByTestId, getByText, queryByText } = render(
+    const { getByText, queryByText } = render(
       <Router history={history}>
         <Route path="/auth/login" render={() => <LoginComponent />} />
         <PrivateRoute isAuthenticated component={TestComponent} path="/test" />
@@ -36,7 +35,7 @@ describe('Private route', () => {
   });
 
   test('if private route redirects to login when the user is not authenticated', () => {
-    const { getByTestId, getByText, queryByText } = render(
+    const { getByText, queryByText } = render(
       <Router history={history}>
         <Route path="/auth/login" render={() => <LoginComponent />} />
         <PrivateRoute

@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import AuthenticationContent from './AuthenticationContent';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -13,8 +13,6 @@ const TestAuthenticationContent = () => {
     </BrowserRouter>
   );
 };
-
-const fn = jest.fn();
 
 describe('AuthenticationContent component', () => {
   test('It should render the AuthenticationContent component', () => {

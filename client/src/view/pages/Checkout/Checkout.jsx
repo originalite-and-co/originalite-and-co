@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Stepper, Step } from '../../components/Stepper';
+import { Step, Stepper } from '../../components/Stepper';
 
 import { Box } from '@material-ui/core';
-import { stepper, payment, userData, delivery } from './data';
+import { delivery, payment, stepper, userData } from './data';
 
 import { useSelector } from 'react-redux';
 import { cartSelectors } from '../../../redux/features/cart';
 
 import useAsyncError from '../../hooks/useAsyncError';
-import { productRequests, customerRequests } from '../../../api/server';
+import { customerRequests, productRequests } from '../../../api/server';
 
 import styles from './style';
 
@@ -51,6 +51,7 @@ function Checkout() {
   }, [cart, throwAsyncError]);
 
   const onSubmit = (data) => {
+    // eslint-disable-next-line no-console
     console.log({ data, products });
   };
 

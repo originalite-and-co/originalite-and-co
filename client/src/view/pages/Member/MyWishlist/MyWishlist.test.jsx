@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../../../../redux/store/store';
 import { Provider } from 'react-redux';

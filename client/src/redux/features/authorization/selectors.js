@@ -1,5 +1,7 @@
 const authorization = (state) => state.authorization;
 
-export default {
-  authorization: authorization
+const selectors = {
+  authorization
 };
+
+export default selectors;

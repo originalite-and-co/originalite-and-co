@@ -22,6 +22,7 @@ const ShopCategories = () => {
       (res) => setCategoryList(res.splice(0, 4)),
       (error) => throwError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const gridArea = ['men', 'women', 'kids', 'outwear'];

@@ -47,6 +47,7 @@ function Product() {
 
   useEffect(() => {
     dispatch(wishlistOperations.gotWishlist());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -57,6 +58,7 @@ function Product() {
       },
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -64,6 +66,7 @@ function Product() {
       (colors) => setColors(colors),
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -75,25 +78,30 @@ function Product() {
       },
       (error) => throwAsyncError(error)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
-  return isLoaded ? (
+  return (
     <section className={`${ProductStyles.root} wrapper`}>
       <div className={ProductStyles.content}>
-        <ProductImageSlider detail={product} />
-        <ProductInfo
-          activeProductNumber={itemNumber}
-          colors={colors}
-          detail={product}
-          availableSizes={availableSizes}
-          wishlistIDs={wishlistIDs}
-        />
+        {isLoaded && colors.length > 0 ? (
+          <>
+            <ProductImageSlider detail={product} />
+            <ProductInfo
+              activeProductNumber={itemNumber}
+              colors={colors}
+              detail={product}
+              availableSizes={availableSizes}
+              wishlistIDs={wishlistIDs}
+            />
+          </>
+        ) : (
+          <Loader fixed />
+        )}
       </div>
       <h3 className={ProductStyles.viewed_title}>Recently viewed products</h3>
       <ViewedProducts activeProductNumber={itemNumber} />
     </section>
-  ) : (
-    <Loader fixed />
   );
 }
 

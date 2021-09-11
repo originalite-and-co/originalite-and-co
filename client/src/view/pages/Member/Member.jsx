@@ -12,6 +12,7 @@ function Member() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cartOperations.getCart());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
