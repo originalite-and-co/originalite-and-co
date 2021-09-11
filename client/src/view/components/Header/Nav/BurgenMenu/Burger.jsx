@@ -80,17 +80,23 @@ function Burger() {
     }
   };
 
+  const handleBurgerClick = () => {
+    setTimeout(() => {
+      dispatch(isAnyDropdownOpenActions.closedDropdown());
+    }, 0);
+  };
+
   const burgerDropdownContent = (
     <>
       {!isAuthorized && (
-        <Box className={`${classes.auth} wrapper`}>
+        <Box className={`${classes.auth} wrapper`} onClick={handleBurgerClick}>
           <Box>
-            <Link to="/member">
+            <Link to="/auth/login">
               <p className={classes.btn}>Log In /</p>
             </Link>
           </Box>
           <Box style={{ marginLeft: '5px' }}>
-            <Link to="/member">
+            <Link to="/auth/signup">
               <p className={classes.btn}>Sign Up</p>
             </Link>
           </Box>
