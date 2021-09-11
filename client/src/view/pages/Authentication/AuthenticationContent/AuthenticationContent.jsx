@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Styles from './Authentication.module.scss';
 import LoginPage from './LoginPage/LoginPage';
 import SignUpPage from './SignUpPage/SignUpPage';
 import ErrorBoundary from '../../../HOC/ErrorBoundary/ErrorBoundary';
 import Toast from '../../../components/Toast/Toast';
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 
 function AuthenticationContent() {
-  const [loginClicked, setLoginClicked] = useState(true);
-  const [signupClicked, setSignupClicked] = useState(false);
+  const { section } = useParams();
+  const { url } = useRouteMatch();
+  const { replace, goBack } = useHistory();
+  const [activeSection, setActiveSection] = useState(section);
+  const [loginClicked, setLoginClicked] = useState();
+  const [signupClicked, setSignupClicked] = useState();
+
+  useEffect(() => {
+    setActiveSection(section);
+  }, [section]);
+
+  useEffect(() => {
+    setLoginClicked(section === 'login');
+  }, [section]);
+
+  useEffect(() => {
+    setSignupClicked(section === 'signup');
+  }, [section]);
 
   const handleloginOptionClick = () => {
+    const pageUrl = url.replace(section, 'login');
+    replace(pageUrl);
+
     setSignupClicked(false);
     if (loginClicked) {
       return;
@@ -18,6 +38,8 @@ function AuthenticationContent() {
     setLoginClicked(!loginClicked);
   };
   const handleSignupClick = () => {
+    const pageUrl = url.replace(section, 'signup');
+    replace(pageUrl);
     setLoginClicked(false);
     if (signupClicked) {
       return;
@@ -27,6 +49,7 @@ function AuthenticationContent() {
 
   const handleSignUpClick = () => {
     setLoginClicked(true);
+    setActiveSection('login');
     setSignupClicked(false);
   };
 
@@ -63,8 +86,10 @@ function AuthenticationContent() {
             />
           }
         >
-          {loginClicked && <LoginPage />}
-          {signupClicked && <SignUpPage onClick={handleSignUpClick} />}
+          {activeSection === 'login' && <LoginPage goBack={goBack} />}
+          {activeSection === 'signup' && (
+            <SignUpPage onClick={handleSignUpClick} />
+          )}
         </ErrorBoundary>
       </Box>
     </Box>

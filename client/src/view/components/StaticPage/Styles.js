@@ -3,6 +3,7 @@ export function generateStyles({ breakpoints }) {
     wrapper: {
       position: 'relative',
       marginBottom: '15vh',
+      marginTop: '5vh',
 
       [breakpoints.up('largeScreens')]: {
         marginBottom: '30vh'
@@ -10,11 +11,12 @@ export function generateStyles({ breakpoints }) {
     },
     mapWrapper: {
       border: '1px solid black',
+      width: '90vw',
       marginTop: '5vh',
       marginLeft: '5vw',
 
       [breakpoints.up('tablet')]: {
-        marginLeft: '5vw'
+        width: '400px'
       }
     }
   };

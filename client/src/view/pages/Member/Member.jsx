@@ -13,6 +13,7 @@ function Member() {
   useEffect(() => {
     dispatch(cartOperations.getCart());
   }, []);
+
   return (
     <div>
       <Header />

@@ -13,12 +13,18 @@ import Bag from '../../../../assets/icons/Bag';
 import Person from '../../../../assets/icons/Person';
 import { Typography } from '@material-ui/core';
 import { cartSelectors } from '../../../../../redux/features/cart';
+import MemberDropdown from '../../../MemberDropdown/MemberDropdown';
 
 function NavItems() {
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
 
   const [isDropdownActive, setActiveDropdown] = useState(false);
+  const [toggledMemberDropdown, setToggledMemberDropdown] = useState(false);
+  const toggleMemberDropdown = () => {
+    setToggledMemberDropdown(!toggledMemberDropdown);
+  };
+
   const dispatch = useDispatch();
   const isAnyDropdownOpen = useSelector(
     isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
@@ -41,23 +47,26 @@ function NavItems() {
   return (
     <Box className={classes.navItemsGroup} data-testid="navItems">
       <Search />
-      <Box className={classes.navItem}>
-        <Link to="/member/profile">
-          <Box component="div" className={classes.imageWrapper}>
-            <Person color="primary" className={classes.icon} />
-            {isDesktop && (
-              <Typography
-                className={classes.iconTitle}
-                component="p"
-                variant="body1"
-                color="textPrimary"
-                noWrap
-              >
-                My account
-              </Typography>
-            )}
-          </Box>
-        </Link>
+      <Box className={classes.navItem} onClick={toggleMemberDropdown}>
+        <Box
+          component="div"
+          className={classes.imageWrapper}
+          style={{ position: 'relative' }}
+        >
+          <MemberDropdown toggledMemberDropdown={toggledMemberDropdown} />
+          <Person color="primary" className={classes.icon} />
+          {isDesktop && (
+            <Typography
+              className={classes.iconTitle}
+              component="p"
+              variant="body1"
+              color="textPrimary"
+              noWrap
+            >
+              My account
+            </Typography>
+          )}
+        </Box>
       </Box>
       <Box className={classes.navItem}>
         <Link
