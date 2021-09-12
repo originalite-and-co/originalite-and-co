@@ -10,7 +10,11 @@ import { Typography } from '@material-ui/core';
 import { stepper, payment, userData, delivery } from '../data';
 
 import useAsyncError from '../../../hooks/useAsyncError';
-import { customerRequests, ordersRequests } from '../../../../api/server';
+import {
+  customerRequests,
+  ordersRequests,
+  cartRequests
+} from '../../../../api/server';
 
 import styles from '../style';
 
@@ -48,6 +52,9 @@ const CheckoutStepper = ({ products, setResponse }) => {
       letterHtml: renderToString(<Email products={products} />)
     });
 
+    console.log(orderResponce);
+    await cartRequests.deleteCart();
+    localStorage.removeItem('cart');
     setLoading(false);
     setResponse(orderResponce);
   };
