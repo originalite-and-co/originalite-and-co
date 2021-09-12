@@ -1,7 +1,15 @@
 import React from 'react';
 import Image from '../../../components/Image';
-
 import { Box, Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
+
+CheckoutProduct.propTypes = {
+  brand: PropTypes.string.isRequired,
+  currentPrice: PropTypes.number.isRequired,
+  name: PropTypes.number.isRequired,
+  cartQuantity: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired
+};
 
 function CheckoutProduct({ brand, currentPrice, name, cartQuantity, image }) {
   return (

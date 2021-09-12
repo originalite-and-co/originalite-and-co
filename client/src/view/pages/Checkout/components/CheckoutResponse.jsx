@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Typography } from '@material-ui/core';
 
 import style from '../style';
 
-const CheckoutResponse = ({ response = {} }) => {
+CheckoutResponse.propTypes = {
+  response: PropTypes.object
+};
+
+function CheckoutResponse({ response = {} }) {
   const styles = style();
   const history = useHistory();
 
@@ -40,6 +45,6 @@ const CheckoutResponse = ({ response = {} }) => {
       </Button>
     </Box>
   );
-};
+}
 
 export default CheckoutResponse;

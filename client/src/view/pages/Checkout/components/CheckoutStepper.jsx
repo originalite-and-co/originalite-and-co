@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import PropTypes from 'prop-types';
 import { renderToString } from 'react-dom/server';
 
 import { Stepper, Step } from '../../../components/Stepper';
@@ -18,7 +20,12 @@ import {
 
 import styles from '../style';
 
-const CheckoutStepper = ({ products, setResponse }) => {
+CheckoutStepper.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setResponse: PropTypes.func.isRequired
+};
+
+function CheckoutStepper({ products, setResponse }) {
   const useStyle = styles();
   const [profileData, setProfileData] = useState();
   const [loading, setLoading] = useState(false);
@@ -84,6 +91,6 @@ const CheckoutStepper = ({ products, setResponse }) => {
       )}
     </>
   );
-};
+}
 
 export default CheckoutStepper;
