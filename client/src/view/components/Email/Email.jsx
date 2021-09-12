@@ -9,7 +9,7 @@ Email.propTypes = {
       image: PropTypes.string,
       name: PropTypes.string,
       size: PropTypes.string,
-      price: PropTypes.number,
+      currentPrice: PropTypes.number,
       color: PropTypes.string,
       quantity: PropTypes.number
     })
@@ -111,9 +111,7 @@ function Email({ products, total }) {
                 color: '#757575',
                 marginRight: '3px'
               }}
-            >
-              Price:{' '}
-            </p>
+            ></p>
             <p
               style={{
                 fontFamily: '"Open Sans"  ,sans-serif',

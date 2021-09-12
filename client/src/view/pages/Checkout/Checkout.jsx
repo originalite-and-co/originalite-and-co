@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
 
+import Email from '../../components/Email/Email';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Step, Stepper } from '../../components/Stepper';
-
-import { Box } from '@material-ui/core';
-import { delivery, payment, stepper, userData } from './data';
+import { Stepper, Step } from '../../components/Stepper';
+import List from '../../components/List';
+import Product from './ChechoutProducts';
+import { Box, Typography } from '@material-ui/core';
+import { stepper, payment, userData, delivery } from './data';
 
 import { useSelector } from 'react-redux';
 import { cartSelectors } from '../../../redux/features/cart';
 
 import useAsyncError from '../../hooks/useAsyncError';
-import { customerRequests, productRequests } from '../../../api/server';
+import {
+  productRequests,
+  customerRequests,
+  ordersRequests
+} from '../../../api/server';
 
 import styles from './style';
 
@@ -43,16 +50,45 @@ function Checkout() {
         const response = await productRequests.retrieveProductsByItemNumbers(
           catrItems
         );
-        setProducts(response);
+
+        setProducts(
+          response.map((props, index) => ({
+            ...props,
+            ...cart[index],
+            size: cart[index].chosenSize,
+            image: props.imageUrls[0]
+          }))
+        );
       } catch (error) {
         throwAsyncError(error);
       }
     })();
   }, [cart, throwAsyncError]);
 
-  const onSubmit = (data) => {
-    // eslint-disable-next-line no-console
-    console.log({ data, products });
+  const onSubmit = async (data) => {
+    const total = products.reduce(
+      (acc, { currentPrice }) => acc + currentPrice,
+      0
+    );
+
+    const letterHtml = ReactDOMServer.renderToString(
+      <Email products={products} total={total} />
+    );
+    const order = {
+      customerId: profileData._id,
+      deliveryInformation: {
+        country: data.country,
+        city: data.city,
+        address: data.streetAdress,
+        postal: data.zipCode
+      },
+      email: profileData.email,
+      mobile: profileData.telephone,
+      letterSubject: 'Thank you for order! You are welcome!',
+      letterHtml: letterHtml
+    };
+
+    await ordersRequests.createOrder(order);
   };
 
   return (
@@ -61,7 +97,17 @@ function Checkout() {
       <Box className={useStyle.content} component={'main'}>
         {profileData && (
           <Stepper {...stepper(profileData)} onSubmit={onSubmit}>
-            <Step>{JSON.stringify(products, null, 2)}</Step>
+            <Step>
+              <Typography component="h4" className={useStyle.title}>
+                Product list
+              </Typography>
+              <List
+                data={products}
+                className={useStyle.productList}
+                setKey={(props) => props._id}
+                component={(props) => <Product {...props} />}
+              />
+            </Step>
             <Step {...userData(useStyle)} />
             <Step {...payment(useStyle)} />
             <Step {...delivery(useStyle)} />
