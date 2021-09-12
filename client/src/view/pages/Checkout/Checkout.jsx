@@ -4,20 +4,20 @@ import ReactDOMServer from 'react-dom/server';
 import Email from '../../components/Email/Email';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Stepper, Step } from '../../components/Stepper';
+import { Step, Stepper } from '../../components/Stepper';
 import List from '../../components/List';
 import Product from './ChechoutProducts';
 import { Box, Typography } from '@material-ui/core';
-import { stepper, payment, userData, delivery } from './data';
+import { delivery, payment, stepper, userData } from './data';
 
 import { useSelector } from 'react-redux';
 import { cartSelectors } from '../../../redux/features/cart';
 
 import useAsyncError from '../../hooks/useAsyncError';
 import {
-  productRequests,
   customerRequests,
-  ordersRequests
+  ordersRequests,
+  productRequests
 } from '../../../api/server';
 
 import styles from './style';
@@ -67,12 +67,25 @@ function Checkout() {
 
   const onSubmit = async (data) => {
     const total = products.reduce(
-      (acc, { currentPrice }) => acc + currentPrice,
+      (acc, { currentPrice, cartQuantity }) =>
+        Number(acc) + Number(currentPrice) * Number(cartQuantity),
       0
     );
 
+    const dataForEmail = products.map((item) => {
+      return {
+        _id: item._id,
+        image: item.image,
+        name: item.name,
+        size: item.chosenSize,
+        currentPrice: Number(item.currentPrice),
+        color: item.color,
+        quantity: item.cartQuantity
+      };
+    });
+
     const letterHtml = ReactDOMServer.renderToString(
-      <Email products={products} total={total} />
+      <Email products={dataForEmail} total={total} />
     );
     const order = {
       customerId: profileData._id,
@@ -82,8 +95,8 @@ function Checkout() {
         address: data.streetAdress,
         postal: data.zipCode
       },
-      email: profileData.email,
-      mobile: profileData.telephone,
+      email: data.email,
+      mobile: data.phone,
       letterSubject: 'Thank you for order! You are welcome!',
       letterHtml: letterHtml
     };

@@ -14,13 +14,12 @@ Email.propTypes = {
       quantity: PropTypes.number
     })
   ).isRequired,
-  total: PropTypes.number.isRequired,
-  orderNumber: PropTypes.number.isRequired
+  total: PropTypes.number.isRequired
 };
 
 function Email({ products, total }) {
   const productList = products.map(
-    ({ _id, image, name, size, price, color, quantity }) => (
+    ({ _id, image, name, size, currentPrice, color, quantity }) => (
       <tr
         key={_id}
         style={{
@@ -122,8 +121,7 @@ function Email({ products, total }) {
                 color: '#000000'
               }}
             >
-              {' '}
-              ${Number(price).toFixed(2)}
+              ${Number(currentPrice).toFixed(2)}
             </p>
           </div>
         </td>
