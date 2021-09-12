@@ -25,7 +25,6 @@ function NavItems() {
     setToggledMemberDropdown(!toggledMemberDropdown);
   };
 
-  const dispatch = useDispatch();
   const isAnyDropdownOpen = useSelector(
     isAnyDropdownOpenSelectors.getIsAnyDropdownOpen
   );
