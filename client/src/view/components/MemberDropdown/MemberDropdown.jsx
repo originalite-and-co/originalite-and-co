@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { makeStyles } from '@material-ui/styles';
 import { generateStyles } from './generateStyles';
