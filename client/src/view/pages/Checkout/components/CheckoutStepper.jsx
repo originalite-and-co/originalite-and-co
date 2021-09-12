@@ -58,8 +58,6 @@ function CheckoutStepper({ products, setResponse }) {
       letterSubject: 'Thank you for order! You are welcome!',
       letterHtml: renderToString(<Email products={products} />)
     });
-
-    console.log(orderResponce);
     await cartRequests.deleteCart();
     localStorage.removeItem('cart');
     setLoading(false);
