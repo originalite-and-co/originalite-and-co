@@ -13,12 +13,14 @@ Email.propTypes = {
       color: PropTypes.string,
       quantity: PropTypes.number
     })
-  ).isRequired,
-  total: PropTypes.number.isRequired,
-  orderNumber: PropTypes.number.isRequired
+  ).isRequired
 };
 
-function Email({ products, total }) {
+function Email({ products }) {
+  const total = products.reduce(
+    (acc, { currentPrice, cartQuantity }) => acc + currentPrice * cartQuantity,
+    0
+  );
   const productList = products.map(
     ({ _id, image, name, size, price, color, quantity }) => (
       <tr

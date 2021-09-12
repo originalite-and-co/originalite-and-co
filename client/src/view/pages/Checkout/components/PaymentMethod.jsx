@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 
-import { FormFields } from '../../components/Form';
+import { FormFields } from '../../../components/Form';
 
 const PaymentMethodComponent = ({ value, style }) => {
   const components = {
@@ -49,18 +49,6 @@ const PaymentMethodComponent = ({ value, style }) => {
             name: 'payment.paypal.expityDate',
             title: 'Expity date',
             type: 'date'
-          }
-        ]}
-      />
-    ),
-    cash: (
-      <FormFields
-        fields={[
-          {
-            type: 'number',
-            groupClass: 'cash',
-            title: 'Cash',
-            name: 'payment.cash.value'
           }
         ]}
       />
