@@ -50,11 +50,12 @@ function Checkout() {
         const response = await productRequests.retrieveProductsByItemNumbers(
           catrItems
         );
+
         setProducts(
           response.map((props, index) => ({
             ...props,
             ...cart[index],
-            size: props.sizes[props.chosenSize],
+            size: cart[index].chosenSize,
             image: props.imageUrls[0]
           }))
         );
@@ -65,8 +66,13 @@ function Checkout() {
   }, [cart, throwAsyncError]);
 
   const onSubmit = async (data) => {
+    const total = products.reduce(
+      (acc, { currentPrice }) => acc + currentPrice,
+      0
+    );
+
     const letterHtml = ReactDOMServer.renderToString(
-      <Email products={products} total={1000} />
+      <Email products={products} total={total} />
     );
     const order = {
       customerId: profileData._id,
@@ -82,10 +88,7 @@ function Checkout() {
       letterHtml: letterHtml
     };
 
-    const orderRequest = await ordersRequests.createOrder(order);
-
-    // eslint-disable-next-line no-console
-    console.log(orderRequest);
+    await ordersRequests.createOrder(order);
   };
 
   return (
