@@ -20,30 +20,38 @@ Email.propTypes = {
 
 function Email({ products, total }) {
   const productList = products.map(
-    ({ _id, image, name, size, currentPrice, color, quantity }) => (
-      <li
+    ({ _id, image, name, size, price, color, quantity }) => (
+      <tr
+        key={_id}
         style={{
-          display: 'grid',
-          gridTemplateColumns: '2fr 10fr',
-          gridColumnGap: '2vw',
-          padding: '2vw',
-          borderBottom: '1px solid #000000',
-          listStyleType: 'none',
-          marginBottom: '3vw'
+          borderBottom: '1px solid #000000'
         }}
       >
-        <figure>
-          <img
-            style={{
-              display: 'block',
-              maxWidth: '100%',
-              objectFit: 'cover'
-            }}
-            src={image}
-            alt={name}
-          />
-        </figure>
-        <div>
+        <td
+          style={{
+            width: '20%',
+            paddingTop: '15px',
+            paddingBottom: '10px'
+          }}
+        >
+          <figure>
+            <img
+              style={{
+                display: 'block',
+                maxWidth: '100%',
+                objectFit: 'cover'
+              }}
+              src={image}
+              alt={name}
+            />
+          </figure>
+        </td>
+        <td
+          style={{
+            verticalAlign: 'top',
+            padding: '1rem'
+          }}
+        >
           <p
             style={{
               fontFamily: '"Open Sans"  ,sans-serif',
@@ -115,76 +123,31 @@ function Email({ products, total }) {
               }}
             >
               {' '}
-              ${Number(currentPrice).toFixed(2)}
+              ${Number(price).toFixed(2)}
             </p>
           </div>
-        </div>
-      </li>
+        </td>
+      </tr>
     )
   );
   return (
     <section>
       <header style={{ backgroundColor: '#000' }}>
-        <div
+        <a
+          href="https://originalite-and-co.herokuapp.com/"
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            maxWidth: '1200px',
-            padding: '10px',
-            margin: '0 auto'
+            display: 'block',
+            margin: '0 auto',
+            maxWidth: '270px',
+            padding: '10px 0 6px 0',
+            textDecoration: 'none'
           }}
         >
-          <p style={{ color: '#fff' }}>Logo</p>
-          <nav>
-            <ul
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}
-            >
-              <li style={{ marginRight: '1rem', listStyleType: 'none' }}>
-                <a
-                  style={{
-                    fontFamily: '"Open Sans"  ,sans-serif',
-                    textDecoration: 'none',
-                    color: ' #fff',
-                    textTransform: 'uppercase'
-                  }}
-                  href="#"
-                >
-                  Men
-                </a>
-              </li>
-              <li style={{ marginRight: '1rem', listStyleType: 'none' }}>
-                <a
-                  style={{
-                    fontFamily: '"Open Sans"  ,sans-serif',
-                    textDecoration: 'none',
-                    color: ' #fff',
-                    textTransform: 'uppercase'
-                  }}
-                  href="#"
-                >
-                  Women
-                </a>
-              </li>
-              <li style={{ listStyleType: 'none' }}>
-                <a
-                  style={{
-                    fontFamily: '"Open Sans"  ,sans-serif',
-                    textDecoration: 'none',
-                    color: ' #fff',
-                    textTransform: 'uppercase'
-                  }}
-                  href="#"
-                >
-                  Kids
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+          <img
+            src="https://res.cloudinary.com/originalite-and-co/image/upload/v1631394391/Originalite%CC%81-logo1_hf5mkd.png"
+            alt="Logo"
+          />
+        </a>
       </header>
       <div
         style={{
@@ -232,13 +195,16 @@ function Email({ products, total }) {
           >
             Order #
           </p>
-          <ul
+          <table
             style={{
-              borderTop: '1px solid #000000'
+              borderTop: '1px solid #000000',
+              borderSpacing: '0 15px',
+              marginBottom: '20px',
+              borderCollapse: 'collapse'
             }}
           >
             {productList}
-          </ul>
+          </table>
           <div
             style={{
               borderRadius: '7px',
@@ -279,50 +245,52 @@ function Email({ products, total }) {
         <address
           style={{ maxWidth: '1200px', padding: '10px', margin: ' 0 auto' }}
         >
-          <ul
+          <table
             style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              borderSpacing: '10px 15px',
+              borderCollapse: 'separate',
+              margin: '0 auto'
             }}
           >
-            <li style={{ marginRight: '.5rem', listStyleType: 'none' }}>
-              <a
-                href="#"
-                style={{
-                  fontFamily: '"Open Sans"  ,sans-serif',
-                  textDecoration: 'none',
-                  color: ' #fff'
-                }}
-              >
-                Facebook
-              </a>
-            </li>
-            <li style={{ marginRight: '.5rem', listStyleType: 'none' }}>
-              <a
-                href="#"
-                style={{
-                  fontFamily: '"Open Sans"  ,sans-serif',
-                  textDecoration: 'none',
-                  color: ' #fff'
-                }}
-              >
-                Instagram
-              </a>
-            </li>
-            <li style={{ listStyleType: 'none' }}>
-              <a
-                href="#"
-                style={{
-                  fontFamily: '"Open Sans"  ,sans-serif',
-                  textDecoration: 'none',
-                  color: ' #fff'
-                }}
-              >
-                Pinterest
-              </a>
-            </li>
-          </ul>
+            <tr>
+              <td style={{ marginRight: '.5rem' }}>
+                <a
+                  href="https://www.facebook.com/"
+                  style={{
+                    fontFamily: '"Open Sans"  ,sans-serif',
+                    textDecoration: 'none',
+                    color: ' #fff'
+                  }}
+                >
+                  Facebook
+                </a>
+              </td>
+              <td style={{ marginRight: '.5rem', listStyleType: 'none' }}>
+                <a
+                  href="https://www.instagram.com/"
+                  style={{
+                    fontFamily: '"Open Sans"  ,sans-serif',
+                    textDecoration: 'none',
+                    color: ' #fff'
+                  }}
+                >
+                  Instagram
+                </a>
+              </td>
+              <td style={{ listStyleType: 'none' }}>
+                <a
+                  href="https://www.pinterest.com/"
+                  style={{
+                    fontFamily: '"Open Sans"  ,sans-serif',
+                    textDecoration: 'none',
+                    color: ' #fff'
+                  }}
+                >
+                  Pinterest
+                </a>
+              </td>
+            </tr>
+          </table>
         </address>
       </footer>
     </section>

@@ -17,8 +17,10 @@ const removeFromWishlist = (updatedWishlist) => ({
   payload: updatedWishlist
 });
 
-export default {
+const actions = {
   getWishlist,
   addToWishlist,
   removeFromWishlist
 };
+
+export default actions;

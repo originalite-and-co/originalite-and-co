@@ -1,5 +1,7 @@
 const getWishlist = (state) => state.wishlist;
 
-export default {
+const selectors = {
   getWishlist
 };
+
+export default selectors;

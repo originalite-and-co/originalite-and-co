@@ -28,7 +28,7 @@ import * as Yup from 'yup';
 
 Search.propTypes = {};
 
-function Search(props) {
+function Search() {
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
 
@@ -57,7 +57,7 @@ function Search(props) {
     }
   }, [isAnyDropdownOpen, isDropdownActive]);
 
-  const handleIconClick = (event) => {
+  const handleIconClick = () => {
     if (isDropdownActive) {
       dispatch(isAnyDropdownOpenActions.closedDropdown());
       setActiveDropdown(false);
@@ -82,7 +82,7 @@ function Search(props) {
     }
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values) => {
     setLoaded(false);
     productRequests.searchForProduct(values.search).then(
       (data) => {
@@ -108,6 +108,7 @@ function Search(props) {
         message="No items have been found "
       />
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

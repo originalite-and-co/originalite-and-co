@@ -63,6 +63,7 @@ function Cart() {
       }
     };
     asyncFunction();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -99,9 +100,11 @@ function Cart() {
       .catch((err) => {
         if (err.status >= 400) {
           setLoaded(true);
+          // eslint-disable-next-line no-console
           console.error(err);
         }
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUserAuthorized]);
 
   const productList = useMemo(() => {
@@ -139,7 +142,7 @@ function Cart() {
         );
       }
     );
-  }, [cartProducts]);
+  }, [cartProducts, isDesktop]);
   return (
     <>
       <Header />

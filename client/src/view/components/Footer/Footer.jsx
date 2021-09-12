@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Grid, Typography, Container } from '@material-ui/core';
+import { Box, Container, Grid, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   footerLinksOperations,
@@ -16,6 +16,7 @@ const Footer = () => {
 
   useEffect(() => {
     dispatch(getData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const checkTypeLink = (url) => url.includes('https') || url.includes('http');

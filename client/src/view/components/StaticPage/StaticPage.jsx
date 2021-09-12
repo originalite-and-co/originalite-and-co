@@ -54,7 +54,7 @@ function StaticPage({ title, htmlContent }) {
     if (title === 'Contact') {
       setIsContactPage(true);
     }
-  }, []);
+  }, [title]);
   const offices = officesArray.map((office) => (
     <Marker
       longitude={office.longitude}
@@ -68,7 +68,7 @@ function StaticPage({ title, htmlContent }) {
           setSelectedOffice(office);
         }}
       >
-        <img src={icon} />
+        <img src={icon} alt="map marker" />
       </button>
     </Marker>
   ));
@@ -79,41 +79,42 @@ function StaticPage({ title, htmlContent }) {
     ? (page = (
         <Box className={classes.wrapper}>
           {html}
-          <ReactMapGL
-            className={classes.mapWrapper}
-            {...viewport}
-            width={isTablet ? '400px' : '90vw'}
-            height="20vh"
-            mapboxApiAccessToken={token}
-            mapStyle="mapbox://styles/antonmolchanov/ckt0gexez00qb18mk01wp9eeq"
-            onViewportChange={(viewport) => {
-              setViewport(viewport);
-            }}
-          >
-            {offices}
-            {selectedOffice && (
-              <Popup
-                longitude={selectedOffice.longitude}
-                latitude={selectedOffice.latitude}
-                onClose={() => {
-                  setSelectedOffice(null);
-                }}
-              >
-                <div>
-                  <Typography
-                    component="p"
-                    color="textSecondary"
-                    style={{ fontSize: '14px' }}
-                  >
-                    {selectedOffice.address}
-                  </Typography>
-                  <Typography component="p" color="textSecondary">
-                    {selectedOffice.mobile}
-                  </Typography>
-                </div>
-              </Popup>
-            )}
-          </ReactMapGL>
+          <Box className={classes.mapWrapper}>
+            <ReactMapGL
+              {...viewport}
+              width={isTablet ? '400px' : '90vw'}
+              height={isTablet ? '40vh' : '30vh'}
+              mapboxApiAccessToken={token}
+              mapStyle="mapbox://styles/antonmolchanov/ckt0gexez00qb18mk01wp9eeq"
+              onViewportChange={(viewport) => {
+                setViewport(viewport);
+              }}
+            >
+              {offices}
+              {selectedOffice && (
+                <Popup
+                  longitude={selectedOffice.longitude}
+                  latitude={selectedOffice.latitude}
+                  onClose={() => {
+                    setSelectedOffice(null);
+                  }}
+                >
+                  <div>
+                    <Typography
+                      component="p"
+                      color="textSecondary"
+                      style={{ fontSize: '14px' }}
+                    >
+                      {selectedOffice.address}
+                    </Typography>
+                    <Typography component="p" color="textSecondary">
+                      {selectedOffice.mobile}
+                    </Typography>
+                  </div>
+                </Popup>
+              )}
+            </ReactMapGL>
+          </Box>
         </Box>
       ))
     : (page = <>{html}</>);

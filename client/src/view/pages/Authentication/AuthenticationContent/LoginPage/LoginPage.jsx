@@ -4,11 +4,10 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '../../../../components/Button/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { Form, Formik, Field, ErrorMessage } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FormGroup, Typography } from '@material-ui/core';
 import { customerRequests } from '../../../../../api/server';
 import useAsyncError from '../../../../hooks/useAsyncError';
-import { useHistory } from 'react-router-dom';
 import Toast from '../../../../components/Toast/Toast';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -44,12 +43,11 @@ const validationSchema = yup.object().shape({
   password: yup.string().label('password')
 });
 
-function LoginPage() {
+function LoginPage({ goBack }) {
   const dispatch = useDispatch();
 
   const classes = useStyles();
   const throwAsyncError = useAsyncError();
-  const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [typePassword, setTypePassword] = useState(true);
   const [checked, setChecked] = React.useState(false);
@@ -67,7 +65,7 @@ function LoginPage() {
     if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
       setLoggedIn(true);
       setTimeout(() => {
-        history.push('/');
+        goBack();
       }, 1500);
     }
   };

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import { createTheme, useTheme } from '@material-ui/core';
 
-CustomThemeProvider.propTypes = {};
+CustomThemeProvider.propTypes = {
+  children: PropTypes.element
+};
 
 function CustomThemeProvider({ children }) {
   const theme = useTheme();

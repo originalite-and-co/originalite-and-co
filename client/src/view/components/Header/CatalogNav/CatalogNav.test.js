@@ -1,8 +1,8 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import store from '../../../../redux/store/store';
-import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import { CatalogNavButton, CatalogNavLink } from './LinkButtonGenerators';
 import CatalogNav from './CatalogNav';

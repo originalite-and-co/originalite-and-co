@@ -32,9 +32,10 @@ function Color({ name, cssValue, isDesktop }) {
     }
 
     setChecked(colors === name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [colors]);
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = () => {
     if (isChecked) {
       setChecked(false);
       dispatch(filterActions.deleteFilterValue('color', name));

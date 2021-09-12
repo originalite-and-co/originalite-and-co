@@ -6,13 +6,13 @@ import { makeStyles } from '@material-ui/styles';
 import { generateStyles } from './Styles';
 import CreateIcon from '@material-ui/icons/Create';
 import * as yup from 'yup';
+import { string } from 'yup';
 
-import { FormGroup, Box, Typography, TextField } from '@material-ui/core';
+import { Box, FormGroup, TextField, Typography } from '@material-ui/core';
 
 import Button from '../../../components/Button/Button';
 import useAsyncError from '../../../hooks/useAsyncError';
 import Styles from './../Member.module.scss';
-import { string } from 'yup';
 import { useDispatch } from 'react-redux';
 import { authorizeOperations } from '../../../../redux/features/authorization';
 
@@ -64,7 +64,7 @@ function MyProfile({ customer, handleDataUpdate }) {
             .catch((error) => throwError(error));
         }}
       >
-        {({ values, errors, touched, isSubmitting, isValidating }) => (
+        {({ isSubmitting, isValidating }) => (
           <Form>
             <Box>
               <FormGroup className={classes.formGroup}>
