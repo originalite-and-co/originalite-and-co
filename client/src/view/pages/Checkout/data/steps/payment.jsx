@@ -1,10 +1,9 @@
 import * as yup from 'yup';
 
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 
-import PaymentMethodComponent from '../../PaymentMethod';
+import PaymentMethodComponent from '../../components/PaymentMethod';
 
 const requiredMessage = 'This field is required';
 
@@ -18,9 +17,6 @@ const validationSchemaData = {
     creditNumber: yup.number().required(requiredMessage),
     expityDate: yup.date().required(requiredMessage),
     cvv: yup.number().required(requiredMessage)
-  }),
-  cash: yup.object().shape({
-    value: yup.number().min(0).required(requiredMessage)
   })
 };
 
@@ -45,11 +41,6 @@ const payment = (style) => ({
           label: 'Credit card',
           value: 'credit',
           icon: <CreditCardIcon />
-        },
-        {
-          label: 'Cash',
-          value: 'cash',
-          icon: <MonetizationOnIcon />
         }
       ]
     }

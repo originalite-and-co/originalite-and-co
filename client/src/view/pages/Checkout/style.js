@@ -1,6 +1,30 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = ({ breakpoints }) => ({
+  responseWrapper: {
+    padding: '60px 0',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  responseTitle: {
+    padding: '15px 0',
+    fontSize: 22,
+    fontWeight: 700
+  },
+  responseText: {
+    padding: '15px 0',
+    fontSize: '16'
+  },
+  button: {
+    margin: '15px 0',
+    backgroundColor: '#000',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#333',
+      color: '#f2f2f2'
+    }
+  },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -71,16 +95,28 @@ const styles = ({ breakpoints }) => ({
       gridGap: 20
     },
     '& .streetAdress': {
-      gridArea: '1 / 1 / 2 / 4'
+      gridArea: '1 / 1 / 2 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '1 / 1 / 2 / 4'
+      }
     },
     '& .zipCode': {
-      gridArea: '2 / 1 / 3 / 2'
+      gridArea: '2 / 1 / 3 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '2 / 1 / 3 / 2'
+      }
     },
     '& .city': {
-      gridArea: '2 / 2 / 3 / 3'
+      gridArea: '3 / 1 / 4 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '2 / 2 / 3 / 3'
+      }
     },
     '& .country': {
-      gridArea: '2 / 3 / 3 / 4'
+      gridArea: '4 / 1 / 5 / 5',
+      [breakpoints.up('desktop')]: {
+        gridArea: '2 / 3 / 3 / 4'
+      }
     }
   },
   stepThree: {

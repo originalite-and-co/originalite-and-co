@@ -1,9 +1,16 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 
-import { FormFields } from '../../components/Form';
+import { FormFields } from '../../../components/Form';
 
-const PaymentMethodComponent = ({ value, style }) => {
+PaymentMethodComponent.propTypes = {
+  value: PropTypes.string.isRequired,
+  style: PropTypes.object.isRequired
+};
+
+function PaymentMethodComponent({ value, style }) {
   const components = {
     credit: (
       <FormFields
@@ -52,18 +59,6 @@ const PaymentMethodComponent = ({ value, style }) => {
           }
         ]}
       />
-    ),
-    cash: (
-      <FormFields
-        fields={[
-          {
-            type: 'number',
-            groupClass: 'cash',
-            title: 'Cash',
-            name: 'payment.cash.value'
-          }
-        ]}
-      />
     )
   };
 
@@ -75,6 +70,6 @@ const PaymentMethodComponent = ({ value, style }) => {
       <Box className={style.paymentMethodInner}>{components[value]}</Box>
     </Box>
   );
-};
+}
 
 export default PaymentMethodComponent;

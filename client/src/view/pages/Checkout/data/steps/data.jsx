@@ -1,7 +1,14 @@
-const checkoutStepper = ({ firstName, lastName, email, telephone: phone }) => ({
+const checkoutStepper = ({
+  _id,
+  firstName,
+  lastName,
+  email,
+  telephone: phone
+}) => ({
   className: 'form__checkout',
   steps: true,
   initialValues: {
+    customerId: _id,
     firstName,
     lastName,
     email,
@@ -21,9 +28,6 @@ const checkoutStepper = ({ firstName, lastName, email, telephone: phone }) => ({
         creditNumber: '',
         cvv: '',
         expityDate: ''
-      },
-      cash: {
-        value: ''
       }
     }
   }

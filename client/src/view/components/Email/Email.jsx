@@ -11,15 +11,18 @@ Email.propTypes = {
       size: PropTypes.string,
       currentPrice: PropTypes.number,
       color: PropTypes.string,
-      quantity: PropTypes.number
+      cartQuantity: PropTypes.number
     })
-  ).isRequired,
-  total: PropTypes.number.isRequired
+  ).isRequired
 };
 
-function Email({ products, total }) {
+function Email({ products }) {
+  const total = products.reduce(
+    (acc, { currentPrice, cartQuantity }) => acc + currentPrice * cartQuantity,
+    0
+  );
   const productList = products.map(
-    ({ _id, image, name, size, currentPrice, color, quantity }) => (
+    ({ _id, image, name, size, currentPrice, color, cartQuantity }) => (
       <tr
         key={_id}
         style={{
@@ -97,7 +100,7 @@ function Email({ products, total }) {
               marginBottom: '.5rem'
             }}
           >
-            Quantity: {quantity}
+            Quantity: {cartQuantity}
           </p>
           <div>
             <p
@@ -121,6 +124,7 @@ function Email({ products, total }) {
                 color: '#000000'
               }}
             >
+              {' '}
               ${Number(currentPrice).toFixed(2)}
             </p>
           </div>
