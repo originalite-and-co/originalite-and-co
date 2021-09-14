@@ -26,9 +26,10 @@ exports.placeOrder = async (req, res, next) => {
         }
 
         if ((!req.body.products || req.body.products.length < 1) && cartProducts.length < 1) {
-            res
+            return res
                 .status(400)
-                .send({message: "The list of products is required, but absent!"});
+                .send({message: "The list of products is required, but absent!"})
+                .end();
         }
 
         if (cartProducts.length > 0) {
@@ -46,10 +47,10 @@ exports.placeOrder = async (req, res, next) => {
         );
 
         if (!productAvailibilityInfo.productsAvailibilityStatus) {
-            res.json({
+            return res.json({
                 message: "Some of your products are unavailable for now",
                 productAvailibilityInfo
-            });
+            }).end();
         } else {
             const subscriberMail = order.email;
             const letterSubject = order.letterSubject;
@@ -59,7 +60,7 @@ exports.placeOrder = async (req, res, next) => {
 
             // Check Validation
             if (!isValid) {
-                return res.status(400).json(errors);
+                return res.status(400).json(errors).end();
             }
 
             if (!letterSubject) {
@@ -99,7 +100,7 @@ exports.placeOrder = async (req, res, next) => {
                         await Product.findOneAndUpdate({_id: id}, {quantity: productQuantity - item.product.quantity}, {new: true})
                     }
 
-                    res.json({order, mailResult});
+                    return res.json({order, mailResult}).end();
                 })
                 .catch(err => {
                         res.status(400).send({
