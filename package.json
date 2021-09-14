@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test --prefix client -- --coverage",
     "build": "npm install --prefix server",
-    "start": "npm run start --prefix server",
+    "start": "npm run start --prefix server"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,5 @@
   "bugs": {
     "url": "https://github.com/originalite-and-co/originalite-and-co/issues"
   },
-  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme",
+  "homepage": "https://github.com/originalite-and-co/originalite-and-co#readme"
 }
