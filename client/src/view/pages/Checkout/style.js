@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const styles = ({ breakpoints }) => ({
+const styles = ({ breakpoints, palette }) => ({
   responseWrapper: {
     padding: '60px 0',
     display: 'flex',
@@ -186,59 +186,10 @@ const styles = ({ breakpoints }) => ({
       }
     }
   },
-  productList: {
-    '& .checkoutProductItem': {
-      display: 'flex',
-      margin: '10px 0'
-    },
-    '& .cardContent': {
-      display: 'flex',
-      flex: 1,
-      justifyContent: 'space-between'
-    },
-    '& .cardImageWrapper': {
-      width: 70,
-      height: 70,
-      margin: '0 15px 0 0'
-    },
-    '& .cardImage': {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover'
-    },
-    '& .cardHeader': {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between'
-    },
-    '& .cardTitle': {
-      fontSize: 18,
-      fontWeight: 700,
-      [breakpoints.up('desktop')]: {
-        fontSize: 24
-      }
-    },
-    '& .cardSubTitle': {
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-      maxWidth: 150,
-      fontSize: 14,
-      fontWeight: 500,
-      [breakpoints.up('desktop')]: {
-        fontSize: 18
-      }
-    },
-    '& .cardText': {
-      display: 'flex',
-      alignItems: 'center',
-      color: '#ccc',
-      fontSize: 16,
-      fontWeight: 500,
-      [breakpoints.up('desktop')]: {
-        fontSize: 20
-      }
-    }
+  product: {
+    paddingBottom: '6px',
+    marginBottom: '10px',
+    borderBottom: `1px solid ${palette.grey['500']}`
   },
   title: {
     padding: '0 0 20px 0',

@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { renderToString } from 'react-dom/server';
 
-import { Stepper, Step } from '../../../components/Stepper';
-import List from '../../../components/List';
+import { Step, Stepper } from '../../../components/Stepper';
 import Email from '../../../components/Email/Email';
 import Loader from '../../../components/Loader/Loader';
-import Product from './ChechoutProducts';
-import { Typography } from '@material-ui/core';
-import { stepper, payment, userData, delivery } from '../data';
+import { Grid, Typography } from '@material-ui/core';
+import { delivery, payment, stepper, userData } from '../data';
 
 import useAsyncError from '../../../hooks/useAsyncError';
 import {
+  cartRequests,
   customerRequests,
-  ordersRequests,
-  cartRequests
+  ordersRequests
 } from '../../../../api/server';
 
-import styles from '../style';
+import useStyles from '../style';
+import { cartOperations } from '../../../../redux/features/cart';
+import { useDispatch } from 'react-redux';
+import ChosenProductInfo from '../../../components/ChosenProductInfo/ChosenProductInfo';
 
 CheckoutStepper.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -26,11 +27,12 @@ CheckoutStepper.propTypes = {
 };
 
 function CheckoutStepper({ products, setResponse }) {
-  const useStyle = styles();
+  const styles = useStyles();
   const [profileData, setProfileData] = useState();
   const [loading, setLoading] = useState(false);
 
   const throwAsyncError = useAsyncError();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
@@ -45,7 +47,7 @@ function CheckoutStepper({ products, setResponse }) {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const orderResponce = await ordersRequests.createOrder({
+    const orderResponse = await ordersRequests.createOrder({
       customerId: data.customerId,
       deliveryInformation: {
         country: data.country,
@@ -55,14 +57,37 @@ function CheckoutStepper({ products, setResponse }) {
       },
       email: data.email,
       mobile: data.phone,
-      letterSubject: 'Thank you for order! You are welcome!',
+      letterSubject: 'Thank you for order!',
       letterHtml: renderToString(<Email products={products} />)
     });
     await cartRequests.deleteCart();
-    localStorage.removeItem('cart');
+    dispatch(cartOperations.deleteCart());
     setLoading(false);
-    setResponse(orderResponce);
+    setResponse(orderResponse);
   };
+
+  const chosenProductList = products?.map(
+    ({ image, name, size, currentPrice, color, cartQuantity }) => {
+      return (
+        <ChosenProductInfo
+          product={{
+            image,
+            name,
+            size,
+            price: currentPrice,
+            color,
+            quantity: cartQuantity
+          }}
+          sizes={{
+            img: 2,
+            description: 9
+          }}
+          className={styles.product}
+          isListItem={true}
+        />
+      );
+    }
+  );
 
   return (
     <>
@@ -70,19 +95,16 @@ function CheckoutStepper({ products, setResponse }) {
       {profileData ? (
         <Stepper {...stepper(profileData)} onSubmit={onSubmit}>
           <Step>
-            <Typography component="h4" className={useStyle.title}>
+            <Typography component="h4" className={styles.title}>
               Product list
             </Typography>
-            <List
-              data={products}
-              className={useStyle.productList}
-              setKey={({ _id }) => _id}
-              component={(props) => <Product {...props} />}
-            />
+            <Grid container component="ul" direction="column">
+              {chosenProductList}
+            </Grid>
           </Step>
-          <Step {...userData(useStyle)} />
-          <Step {...payment(useStyle)} />
-          <Step {...delivery(useStyle)} />
+          <Step {...userData(styles)} />
+          <Step {...payment(styles)} />
+          <Step {...delivery(styles)} />
         </Stepper>
       ) : (
         <Loader fixed />

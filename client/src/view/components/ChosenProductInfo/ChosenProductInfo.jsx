@@ -11,21 +11,26 @@ ChosenProductInfo.propTypes = {
     description: PropTypes.number
   }).isRequired,
   product: PropTypes.shape({
-    image: PropTypes.string,
-    name: PropTypes.string,
-    size: PropTypes.string,
-    price: PropTypes.number
-  }).isRequired
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    color: PropTypes.string,
+    quantity: PropTypes.string
+  }).isRequired,
+  className: PropTypes.string,
+  isListItem: PropTypes.bool
 };
 
-function ChosenProductInfo({ sizes, product }) {
+function ChosenProductInfo({ sizes, product, className, isListItem }) {
   const useStyles = makeStyles(generateStyles);
   const classes = useStyles();
   return (
     <Grid
+      component={isListItem ? 'li' : 'div'}
       container
       justifyContent="space-between"
-      className={classes.content}
+      className={`${classes.content} ${className}`}
       wrap="nowrap"
     >
       <Grid xs={sizes.img} item component="figure" className={classes.image}>
@@ -54,6 +59,15 @@ function ChosenProductInfo({ sizes, product }) {
             variant="body2"
           >
             Color: {_.upperFirst(product.color)}
+          </Typography>
+        )}
+        {product.quantity && (
+          <Typography
+            className={classes.productInfo}
+            component="p"
+            variant="body2"
+          >
+            Quantity: {_.upperFirst(product.quantity.toString())}
           </Typography>
         )}
         <Box className={classes.productPrice}>
