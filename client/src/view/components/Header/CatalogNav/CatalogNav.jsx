@@ -32,9 +32,12 @@ function CatalogNav() {
   const [categoryLinks, setCategoryLinks] = useState([]);
   const [isDropdownActive, setActiveDropdown] = useState(false);
   const [activeLinkId, setActiveLinkId] = useState(null);
-  const [isDesktop, setIsDesktop] = useState();
 
   const { width } = useWindowSize();
+  const [isDesktop, setIsDesktop] = useState(
+    width >= constants.WINDOW_DESKTOP_SIZE
+  );
+
   const throwError = useAsyncError();
 
   const dispatch = useDispatch();
@@ -205,7 +208,7 @@ function CatalogNav() {
           closed: classes.dropdown,
           active: classes.dropdownActive
         }}
-        lockBodyScrolling
+        lockBodyScrolling={!isDesktop}
         isActive={isDropdownActive}
         onMouseLeave={() => {
           if (isDesktop) {
