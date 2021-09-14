@@ -22,6 +22,7 @@ const generateStyles = ({ breakpoints, palette }) => ({
       top: '94px',
       left: 0,
       maxHeight: '100vh',
+      paddingBottom: '5vh',
       backgroundColor: palette.primary.main
     }
   },
