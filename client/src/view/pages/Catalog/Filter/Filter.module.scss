@@ -23,6 +23,10 @@
 .accordion {
   box-shadow: unset !important;
 
+  &:last-child {
+    padding-bottom: 3vh !important;
+  }
+
   &::before {
     content: unset !important;
   }
@@ -38,7 +42,7 @@
 
 @media (min-width: $desktop) {
   .content {
-    padding: 3.5vh 0 0 0 !important;
+    padding: 3.5vh 0 3vh 0 !important;
   }
 
   .accordion,
