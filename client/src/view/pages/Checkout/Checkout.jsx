@@ -26,10 +26,10 @@ function Checkout() {
   useEffect(() => {
     (async () => {
       if (!cart.length) return;
-      const catrItems = cart.map(({ itemNo }) => itemNo);
+      const cartItems = cart.map(({ itemNo }) => itemNo);
       try {
         const response = await productRequests.retrieveProductsByItemNumbers(
-          catrItems
+          cartItems
         );
         setProducts(
           response.map((props, index) => ({

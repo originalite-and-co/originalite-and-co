@@ -1,14 +1,16 @@
 const generateStyles = ({ breakpoints, palette }) => ({
   content: {
     height: '100%',
-    paddingTop: '124px',
+    paddingTop: '68px',
 
-    [breakpoints.up('desktop')]: {
+    [breakpoints.up('minDesktop')]: {
       paddingTop: '94px!important'
     }
   },
   breadcrumbsContainer: {
     paddingTop: '1rem!important',
+    paddingLeft: '7vw!important',
+    paddingRight: '7vw!important',
 
     [breakpoints.up('desktop')]: {
       padding: '1vh 4vw',

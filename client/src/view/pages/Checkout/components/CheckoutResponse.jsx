@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Typography } from '@material-ui/core';
 
-import style from '../style';
+import useStyles from '../style';
 
 CheckoutResponse.propTypes = {
   response: PropTypes.object
 };
 
 function CheckoutResponse({ response = {} }) {
-  const styles = style();
+  const styles = useStyles();
   const history = useHistory();
 
   const handleClick = () => history.push('/');
@@ -29,10 +29,10 @@ function CheckoutResponse({ response = {} }) {
       ) : (
         <Box className={styles.response}>
           <Typography variant="h4" className={styles.responseTitle}>
-            Successfully
+            Success
           </Typography>
           <Typography className={styles.responseText}>
-            Order successfully completed
+            Order has successfully been operated
           </Typography>
         </Box>
       )}
@@ -41,7 +41,7 @@ function CheckoutResponse({ response = {} }) {
         variant="contained"
         onClick={handleClick}
       >
-        Okey
+        OK
       </Button>
     </Box>
   );
