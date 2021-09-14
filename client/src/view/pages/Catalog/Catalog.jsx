@@ -104,7 +104,10 @@ function Catalog() {
     setLoaded(false);
     productRequests.retrieveByQuery(requestQuery).then(
       (data) => {
-        setProducts(data);
+        setProducts({
+          products: data.products.filter((item) => item.quantity > 0),
+          productsQuantity
+        });
         setLoaded(true);
       },
       (error) => throwAsyncError(error)
