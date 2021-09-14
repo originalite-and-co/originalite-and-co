@@ -10,11 +10,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { delivery, payment, stepper, userData } from '../data';
 
 import useAsyncError from '../../../hooks/useAsyncError';
-import {
-  cartRequests,
-  customerRequests,
-  ordersRequests
-} from '../../../../api/server';
+import { customerRequests, ordersRequests } from '../../../../api/server';
 
 import useStyles from '../style';
 import { cartOperations } from '../../../../redux/features/cart';
@@ -47,23 +43,27 @@ function CheckoutStepper({ products, setResponse }) {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const orderResponse = await ordersRequests.createOrder({
-      customerId: data.customerId,
-      deliveryInformation: {
-        country: data.country,
-        city: data.city,
-        address: data.streetAdress,
-        postal: data.zipCode
-      },
-      email: data.email,
-      mobile: data.phone,
-      letterSubject: 'Thank you for order!',
-      letterHtml: renderToString(<Email products={products} />)
-    });
-    await cartRequests.deleteCart();
-    dispatch(cartOperations.deleteCart());
-    setLoading(false);
-    setResponse(orderResponse);
+    try {
+      const orderResponse = await ordersRequests.createOrder({
+        customerId: data.customerId,
+        deliveryInformation: {
+          country: data.country,
+          city: data.city,
+          address: data.streetAdress,
+          postal: data.zipCode
+        },
+        email: data.email,
+        mobile: data.phone,
+        letterSubject: 'Thank you for order!',
+        letterHtml: renderToString(<Email products={products} />)
+      });
+      dispatch(cartOperations.deleteCart());
+      setLoading(false);
+      setResponse(orderResponse);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   };
 
   const chosenProductList = products?.map(
