@@ -5,8 +5,6 @@ const getConfigs = require("../config/getConfigs");
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
   const configs = await getConfigs();
 
-  console.log(process.env.NODE_ENV);
-  console.log(configs.production);
   //authorization for sending email
   let transporter = nodemailer.createTransport({
     service:
