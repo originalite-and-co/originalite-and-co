@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const cors = require('cors')
+const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
@@ -29,23 +29,23 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 
-app.use(cors())
+app.use(cors());
 
 // Body parser middleware
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // DB Config
 const db = require('./app/config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
-    .connect(db, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})
-    .then(() => {
-        console.log('MongoDB has connected successfully');
-        app.listen(port, () => console.log(`Server is running on port ${port}`));
-    })
-    .catch((err) => console.log(err));
+  .connect(db, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDB has connected successfully');
+    app.listen(port, () => console.log(`Server is running on port ${port}`));
+  })
+  .catch((err) => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -74,8 +74,7 @@ app.use('/api/comments', comments);
 app.use('/api/shipping-methods', shippingMethods);
 app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
-app.use('/', mainRoute);
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
