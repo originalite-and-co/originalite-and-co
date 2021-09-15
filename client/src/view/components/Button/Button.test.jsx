@@ -1,9 +1,11 @@
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from '../../../redux/store/store';
+import storeExp from '../../../redux/store/store';
 import React from 'react';
 import Button from './Button';
+
+const { store } = storeExp;
 
 const fn = jest.fn();
 const TestButton = () => {

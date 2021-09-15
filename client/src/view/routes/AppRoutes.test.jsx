@@ -12,7 +12,7 @@ jest.mock('../pages/Checkout/Checkout.jsx', () => () => <p>Checkout</p>);
 jest.mock('../pages/Home/Home.jsx', () => () => <p>Home</p>);
 jest.mock('../pages/Member/Member.jsx', () => () => <p>Member</p>);
 jest.mock('../pages/Page404/Page404.jsx', () => () => <p>404</p>);
-jest.mock('../pages/Product/Product.jsx', () => () => <p>Product</p>);
+jest.mock('../pages/ProductPage/ProductPage.jsx', () => () => <p>Product</p>);
 
 /**
  * Regular expression is used to check if component includes written text.

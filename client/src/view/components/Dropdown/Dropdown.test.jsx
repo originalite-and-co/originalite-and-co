@@ -1,10 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from '../../../redux/store/store';
+import storeExp from '../../../redux/store/store';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Dropdown from './Dropdown';
 import styles from './Dropdown.module.scss';
+
+const { store } = storeExp;
 
 const fn = jest.fn();
 const dropdownContent = <p>Hello Kids</p>;
