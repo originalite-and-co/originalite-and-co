@@ -16,6 +16,6 @@ before_script:
 - npm install --prefix server
 script:
 - npm run test
-- npm run build
+- npm run public
 install:
 - npm ci

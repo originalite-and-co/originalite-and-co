@@ -1,12 +1,12 @@
-const Product = require("../models/Product");
-const Cart = require("../models/Cart");
-const mongoose = require("mongoose");
+const Product = require('../models/Product');
+const Cart = require('../models/Cart');
+const mongoose = require('mongoose');
 
 module.exports = async customerId => {
   try {
     const cart = await Cart.findOne({ customerId: customerId });
 
-    const cartProducts = await cart.products.reduce(
+    return await cart.products.reduce(
       async (resultPromise, cartItem) => {
         const result = await resultPromise;
         const dbProduct = await Product.findOne({
@@ -22,7 +22,7 @@ module.exports = async customerId => {
       Promise.resolve([])
     );
 
-    return cartProducts;
+
   } catch (err) {
     return {
       message: `Error happened on server: "${err}" `

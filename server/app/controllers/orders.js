@@ -47,10 +47,10 @@ exports.placeOrder = async (req, res, next) => {
         );
 
         if (!productAvailibilityInfo.productsAvailibilityStatus) {
-            return res.json({
+            res.json({
                 message: "Some of your products are unavailable for now",
                 productAvailibilityInfo
-            }).end();
+            });
         } else {
             const subscriberMail = order.email;
             const letterSubject = order.letterSubject;
@@ -60,7 +60,7 @@ exports.placeOrder = async (req, res, next) => {
 
             // Check Validation
             if (!isValid) {
-                return res.status(400).json(errors).end();
+                return res.status(400).json(errors);
             }
 
             if (!letterSubject) {
@@ -97,10 +97,11 @@ exports.placeOrder = async (req, res, next) => {
                         const id = item.product._id;
                         const product = await Product.findOne({_id: id});
                         const productQuantity = product.quantity;
-                        await Product.findOneAndUpdate({_id: id}, {quantity: productQuantity - item.product.quantity}, {new: true})
+                        const updatedQuantity = productQuantity - item.cartQuantity;
+                        await Product.findOneAndUpdate({_id: id}, {quantity: updatedQuantity}, {new: true})
                     }
 
-                    return res.json({order, mailResult}).end();
+                    res.json({order, mailResult});
                 })
                 .catch(err => {
                         res.status(400).send({
