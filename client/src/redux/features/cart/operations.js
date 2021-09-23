@@ -16,7 +16,7 @@ const getCart = () => async (dispatch, getState) => {
   const { cart: currentCart, authorization } = getState();
   if (authorization) {
     const response = await cartRequests.retrieveCart();
-    if (!response) {
+    if (!response && !currentCart?.length) {
       await cartRequests.createCart();
       return dispatch(actions.getCart([]));
     }
