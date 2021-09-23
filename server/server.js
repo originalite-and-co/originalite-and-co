@@ -23,7 +23,6 @@ const comments = require('./app/routes/comments');
 const shippingMethods = require('./app/routes/shippingMethods');
 const paymentMethods = require('./app/routes/paymentMethods');
 const partners = require('./app/routes/partners');
-const mainRoute = require('./app/routes/index');
 
 const app = express();
 
