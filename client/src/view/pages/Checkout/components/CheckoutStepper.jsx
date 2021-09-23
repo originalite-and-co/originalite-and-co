@@ -46,7 +46,7 @@ function CheckoutStepper({ products, setResponse }) {
     try {
       const orderResponse = await ordersRequests.createOrder({
         customerId: data.customerId,
-        deliveryInformation: {
+        deliveryAddress: {
           country: data.country,
           city: data.city,
           address: data.streetAdress,

@@ -22,7 +22,12 @@ const cartRequests = new ServerApiRequests(CART_PATH, headers, exceptions);
  */
 
 const createCart = async (data) => {
-  return await cartRequests.create(data);
+  return await cartRequests.create(
+    data,
+    undefined,
+    undefined,
+    generateHeaders()
+  );
 };
 
 /**
@@ -41,7 +46,12 @@ const retrieveCart = async () => {
  */
 
 const updateCart = async (data) => {
-  return await cartRequests.update(data);
+  return await cartRequests.update(
+    data,
+    undefined,
+    undefined,
+    generateHeaders()
+  );
 };
 
 /**
@@ -56,7 +66,8 @@ const addProductToCart = async (id, size) => {
   return await cartRequests.update(
     {},
     `${CART_PATH}/${id}?size=${size}`,
-    exception
+    exception,
+    generateHeaders()
   );
 };
 
@@ -71,7 +82,8 @@ const decreaseProductQuantity = async (id, size) => {
   const exception = generateFetchException('decreasing a product quantity');
   return await cartRequests.delete(
     `${CART_PATH}/product/${id}?size=${size}`,
-    exception
+    exception,
+    generateHeaders()
   );
 };
 
@@ -85,7 +97,8 @@ const deleteProductFromCart = async (id, size) => {
   const exception = generateFetchException('deleting a product from the cart');
   return await cartRequests.delete(
     `${CART_PATH}/${id}?size=${size}`,
-    exception
+    exception,
+    generateHeaders()
   );
 };
 
@@ -93,7 +106,7 @@ const deleteProductFromCart = async (id, size) => {
  * @returns {Promise<Object>}
  */
 const deleteCart = async () => {
-  return await cartRequests.delete();
+  return await cartRequests.delete(undefined, undefined, generateHeaders());
 };
 
 const cart = {

@@ -47,7 +47,8 @@ export function generateStyles() {
       backgroundColor: '#000000',
       top: '67px',
       height: '100%',
-      overflowY: 'auto'
+      overflowY: 'auto',
+      boxSizing: 'border-box'
     },
     dropdownActive: {
       left: '0'

@@ -19,8 +19,8 @@ export function ListItemUpper({ text, category, catalog }) {
   const classes = useStyles();
 
   const dropdown = getAllChildCategories(catalog, category.id);
-  const renderDropdown = dropdown.map((childrenCategory) => (
-    <li>
+  const renderDropdown = dropdown.map((childrenCategory, index) => (
+    <li key={`${index}-${childrenCategory.name}`}>
       <NavLink to={`/catalog/${generateCategoryPath(childrenCategory)}`}>
         <Typography variant="body1" component="p" color="textPrimary">
           {childrenCategory.name}

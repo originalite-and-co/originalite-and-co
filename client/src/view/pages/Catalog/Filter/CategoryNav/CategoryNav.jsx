@@ -29,6 +29,23 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const viewAll = (
+    <ListItem
+      disableGutters
+      className={classes.listItem}
+      key={parentCategoryId}
+    >
+      <NavLink
+        activeClassName={classes.activeLink}
+        className={classes.link}
+        to={`/catalog/${parentCategoryId}`}
+        replace
+        exact
+      >
+        View all
+      </NavLink>
+    </ListItem>
+  );
   const categories = getAllChildCategories(catalog, parentCategoryId);
 
   const categoryList = categories?.map(({ _id, id, name }) => {
@@ -54,7 +71,10 @@ function CategoryNav({ parentCategoryId, parentCategoryName }) {
       <Typography className={classes.heading} component="h4" variant="h6">
         {parentCategoryName}
       </Typography>
-      <List className={classes.list}>{categoryList}</List>
+      <List className={classes.list}>
+        {viewAll}
+        {categoryList}
+      </List>
     </Box>
   );
 }

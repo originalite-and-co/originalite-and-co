@@ -26,10 +26,10 @@ CartNotification.propTypes = {
     vertical: PropTypes.oneOf(['bottom', 'up'])
   }),
   product: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
+    image: PropTypes.string,
+    name: PropTypes.string,
+    size: PropTypes.string,
+    price: PropTypes.number
   }).isRequired,
   onClose: PropTypes.func
 };

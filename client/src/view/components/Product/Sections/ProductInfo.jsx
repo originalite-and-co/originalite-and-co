@@ -123,6 +123,7 @@ function ProductInfo({
     dispatch(cartOperations.addProductToCart(_id, itemNo, activeSize));
   };
 
+  // eslint-disable-next-line no-debugger
   const cartNotification = useMemo(
     () => (
       <CartNotification
@@ -191,7 +192,7 @@ function ProductInfo({
         <span>{currentPrice} $</span>
       </div>
       <span className={OneProductStyles.itemNo}>{itemNo}</span>
-      <h3>Color</h3>
+      <h3 className={OneProductStyles.categoryTitle}>Color</h3>
       <div>
         <Grid spacing={2} container component="ul">
           {colorList}
@@ -214,7 +215,7 @@ function ProductInfo({
                   : ''
               }
             >
-              {item}
+              <span>{item}</span>
             </li>
           ))}
         </ul>

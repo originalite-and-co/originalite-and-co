@@ -7,7 +7,7 @@ export function generateStyles() {
     },
     accordionSummary: {
       flexDirection: 'row-reverse',
-      paddingBottom: '0px'
+      padding: 0
     },
     accordionDetails: {
       padding: '0 32px 16px'
