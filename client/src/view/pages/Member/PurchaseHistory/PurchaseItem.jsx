@@ -24,8 +24,8 @@ function PurchaseItem({ order }) {
     setExpanded(!expanded);
   };
 
-  const { address, city, country, postal } = order.deliveryAddress;
-  const { firstName, lastName } = order.customerId;
+  const { address, city, country, postal } = order.deliveryAddress || {};
+  const { firstName, lastName } = order.customerId || {};
   const products = order.products;
 
   const purchasedProductsImgs = products.map((productItem) => {
@@ -101,11 +101,15 @@ function PurchaseItem({ order }) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent className={classes.cardInnerWrapper}>
             <Box className={classes.infoBlock}>
-              <p className={classes.heading}>Delivery info</p>
-              <p className={classes.purchaseItemAddInfo}>{order.status}</p>
-              <p className={classes.secondaryTheme}>
-                {country}, {city}, {address}, {postal}
-              </p>
+              {order.deliveryAddress && (
+                <>
+                  <p className={classes.heading}>Delivery info</p>
+                  <p className={classes.purchaseItemAddInfo}>{order.status}</p>
+                  <p className={classes.secondaryTheme}>
+                    {country}, {city}, {address}, {postal}
+                  </p>
+                </>
+              )}
             </Box>
             <Box className={classes.infoBlock}>
               <p className={classes.heading}>Customer info</p>

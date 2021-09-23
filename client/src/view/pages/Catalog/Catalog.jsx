@@ -39,6 +39,8 @@ function numberOfProductsGenerator(initialValue) {
   };
 }
 
+const PRODUCTS_PER_PAGE = 10;
+
 function Catalog() {
   const { width } = useWindowSize();
 
@@ -46,7 +48,7 @@ function Catalog() {
     width >= constants.WINDOW_DESKTOP_SIZE
   );
   const [{ products, productsQuantity }, setProducts] = useState({});
-  const [numberOfProducts, setNumberOfProducts] = useState(10);
+  const [numberOfProducts, setNumberOfProducts] = useState(PRODUCTS_PER_PAGE);
   const [categoryName, setCategoryName] = useState('');
   const [isLoaded, setLoaded] = useState(false);
 

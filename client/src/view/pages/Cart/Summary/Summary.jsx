@@ -63,6 +63,7 @@ function Summary({ products }) {
           variant="contained"
           color="primary"
           className={classes.checkoutBtn}
+          disabled={products.length === 0}
         >
           Checkout
         </Button>

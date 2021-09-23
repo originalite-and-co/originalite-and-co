@@ -84,8 +84,8 @@ function Products({
     dispatch(isAnyDropdownOpenActions.openedDropdown());
   };
 
-  const productList = products?.map((product) => {
-    return <ProductCard key={products._id} product={product} />;
+  const productList = products?.map((product, index) => {
+    return <ProductCard key={`${products._id}-${index}`} product={product} />;
   });
 
   return (

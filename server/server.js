@@ -23,7 +23,6 @@ const comments = require('./app/routes/comments');
 const shippingMethods = require('./app/routes/shippingMethods');
 const paymentMethods = require('./app/routes/paymentMethods');
 const partners = require('./app/routes/partners');
-const mainRoute = require('./app/routes/index');
 
 const app = express();
 
@@ -74,7 +73,6 @@ app.use('/api/comments', comments);
 app.use('/api/shipping-methods', shippingMethods);
 app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
-app.use('/', mainRoute);
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

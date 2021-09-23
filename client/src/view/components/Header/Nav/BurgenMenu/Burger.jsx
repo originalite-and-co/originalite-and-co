@@ -47,10 +47,10 @@ function Burger() {
 
   const mainCategoryLinks = catalog
     .filter((category) => category.parentId === 'null')
-    .map((category) => (
+    .map((category, index) => (
       <ListItemUpper
         catalog={catalog}
-        key={category._id}
+        key={`${category._id}-${index}`}
         category={category}
         text={category.name}
       />
@@ -128,7 +128,7 @@ function Burger() {
       </Box>
       <Dropdown
         classNames={{
-          closed: classes.dropdown,
+          closed: `${classes.dropdown} wrapper`,
           active: classes.dropdownActive
         }}
         isActive={isDropdownActive}
