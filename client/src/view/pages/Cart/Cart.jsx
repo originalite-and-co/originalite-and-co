@@ -58,6 +58,7 @@ function Cart() {
           itemNumbers
         );
         setProducts(response);
+        setLoaded(true);
       } catch (error) {
         throwAsyncError(error);
       }
@@ -143,6 +144,7 @@ function Cart() {
       }
     );
   }, [cartProducts, isDesktop]);
+
   return (
     <>
       <Header />
@@ -165,6 +167,7 @@ function Cart() {
               component="ul"
               xs={isDesktop ? 8 : 12}
             >
+              {isLoaded && cart.length > 0 && productList}
               {isLoaded && !cart.length && (
                 <Typography
                   className={classes.noItemsAlert}
@@ -178,7 +181,6 @@ function Cart() {
               {!isLoaded && !cart.length && (
                 <Loader className={{ container: classes.loaderContainer }} />
               )}
-              {isLoaded && cart.length > 0 && productList}
             </Grid>
 
             <Grid
