@@ -63,6 +63,8 @@ function CheckoutStepper({ products, setResponse }) {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
+      setLoading(false);
+      setResponse({ message: '' });
     }
   };
 
