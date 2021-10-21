@@ -96,7 +96,7 @@ class ServerApiRequests {
         headers: currentHeaders
       });
 
-      const isResponseJSON = isJSON(response);
+      const isResponseJSON = await isJSON(response);
       const data = isResponseJSON
         ? await response.json()
         : await response.text();
