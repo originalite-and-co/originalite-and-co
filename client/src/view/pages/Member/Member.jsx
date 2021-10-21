@@ -5,13 +5,20 @@ import { Box } from '@material-ui/core';
 import MemberTabs from './MemberTabs/MemberTabs';
 import { useDispatch } from 'react-redux';
 import { cartOperations } from '../../../redux/features/cart';
+import { useHistory } from 'react-router-dom';
 
 Member.propTypes = {};
 
 function Member() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(() => {
-    dispatch(cartOperations.getCart());
+    dispatch(cartOperations.getCart()).catch((error) => {
+      if (Number(error.status) === 401) {
+        history.push('/auth/login');
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

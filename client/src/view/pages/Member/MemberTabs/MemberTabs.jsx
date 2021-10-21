@@ -43,7 +43,7 @@ function MemberTabs() {
   const throwError = useAsyncError();
   const wishlistState = useSelector(wishlistSelectors.getWishlist);
 
-  const { replace } = useHistory();
+  const { replace, push } = useHistory();
 
   const [value, setValue] = useState('profile');
 
@@ -56,7 +56,12 @@ function MemberTabs() {
   useEffect(() => {
     customerRequests.retrieveCustomer().then(
       (data) => setCustomer(data),
-      (error) => throwError(error)
+      (error) => {
+        if (Number(error.status) === 401){
+          push("/auth/login")
+        }
+        throwError(error)
+      }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDataUpdated]);
@@ -64,14 +69,24 @@ function MemberTabs() {
   useEffect(() => {
     ordersRequests.retrieveOrder().then(
       (data) => setOrders(data),
-      (error) => throwError(error)
+      (error) => {
+        if (Number(error.status) === 401){
+          push("/auth/login")
+        }
+        throwError(error)
+      }
     );
   }, []);
 
   useEffect(() => {
     wishlistRequests.retrieveWishlist().then(
       (data) => setWishlist(data),
-      (error) => throwError(error)
+      (error) => {
+        if (Number(error.status) === 401){
+          push("/auth/login")
+        }
+        throwError(error)
+      }
     );
   }, [wishlistState]);
 

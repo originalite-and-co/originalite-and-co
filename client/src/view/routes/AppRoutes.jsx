@@ -67,7 +67,7 @@ function AppRoutes() {
         localStorage.removeItem('token');
       }
     });
-  }, [location]);
+  }, [location.pathname]);
 
   let staticPageRoutes;
 
